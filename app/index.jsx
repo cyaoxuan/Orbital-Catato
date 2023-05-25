@@ -1,12 +1,10 @@
-import { View } from "react-native";
-import { Text } from "react-native-paper";
-import { Link } from "expo-router";
+import { AuthProvider, useAuth } from "./context/useAuth";
+import WelcomeScreen from "./screens/authentication/Welcome";
+import Dashboard from "./screens/main/dashboard";
 
-export default function HomePage() {
-    return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text>CatAtO 🐱</Text>
-            <Link href="/screens/dashboard">Continue as Guest</Link>
-        </View>
-    );
+export default function RootNavigation() {
+    console.log("in RootNav");
+    const { user } = useAuth();
+
+    return <AuthProvider>{user ? <Dashboard /> : <WelcomeScreen />}</AuthProvider>;
 }
