@@ -1,29 +1,22 @@
 import { View } from "react-native";
 import { ActivityIndicator, Button, Text } from "react-native-paper";
+import { auth, useAuth } from "../../context/auth";
 import { useRouter } from "expo-router";
-import { auth } from "../../context/auth";
-import { signInAnonymously } from "firebase/auth";
 import { useState } from "react";
+import { signOut } from "firebase/auth";
 
-export default function WelcomeScreen() {
+export default function Settings() {
+    const { user } = useAuth();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
-    const onLoginPressed = () => {
-        router.push("/screens/authentication/Login");
-    };
-
-    const onSignUpPressed = () => {
-        router.push("/screens/authentication/SignUp");
-    };
-
-    const handleLoginAnonymously = () => {
+    const handleLogout = () => {
         setLoading(true);
-        signInAnonymously(auth)
+        signOut(auth)
             .then(() => {
                 setLoading(false);
-                router.replace("/screens/main/Dashboard");
+                router.replace("/screens/authentication/Welcome");
             })
             .catch((error) => {
                 console.error(error);
@@ -34,11 +27,11 @@ export default function WelcomeScreen() {
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text>Catato</Text>
-            <Text>(Logo)</Text>
-            <Button onPress={onLoginPressed}>Log In</Button>
-            <Button onPress={onSignUpPressed}>Sign Up</Button>
-            <Button onPress={handleLoginAnonymously}>Continue as Guest</Button>
+            <Text style={{ fontWeight: "bold" }}>Settings</Text>
+            <Text>Username: {user ? (user.displayName ? user.displayName : "__GUEST__") : "None"}</Text>
+            <Text>User ID: {user ? user.uid : "None"}</Text>
+            <Text>Is Guest: {user ? String(user.isAnonymous) : "None"}</Text>
+            <Button onPress={handleLogout}>Logout</Button>
 
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}

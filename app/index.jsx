@@ -1,10 +1,18 @@
-import { AuthProvider, useAuth } from "./context/useAuth";
+import { AuthProvider, useAuth } from "./context/auth";
+import Dashboard from "./screens/main/Dashboard"
 import WelcomeScreen from "./screens/authentication/Welcome";
-import Dashboard from "./screens/main/Dashboard";
+
+export const unstable_settings = {
+    // Ensure any route can link back to `/`
+    initialRouteName: "index",
+};
 
 export default function RootNavigation() {
-    console.log("in RootNav");
     const { user } = useAuth();
 
-    return <AuthProvider>{user ? <Dashboard /> : <WelcomeScreen />}</AuthProvider>;
+    return (
+        <AuthProvider>
+            {user ? <Dashboard /> : <WelcomeScreen />}
+        </AuthProvider>
+    );
 }
