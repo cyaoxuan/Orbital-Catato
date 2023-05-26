@@ -5,11 +5,11 @@ export default function MainLayout() {
     return (
         <AuthProvider>
             <Tabs>
-                <Tabs.Screen name="dashboard" options={{ tabBarLabel: "Dashboard" }} />
-                <Tabs.Screen name="update" options={{ tabBarLabel: "Update" }} />
-                <Tabs.Screen name="catalogue" options={{ tabBarLabel: "CATalogue" }} />
-                <Tabs.Screen name="map" options={{ tabBarLabel: "Map" }} />
-                <Tabs.Screen name="settings" options={{ tabBarLabel: "Settings" }} />
+                <Tabs.Screen name="Dashboard" options={{ tabBarLabel: "Dashboard" }} />
+                <Tabs.Screen name="Update" options={{ tabBarLabel: "Update" }} />
+                <Tabs.Screen name="CATalogue" options={{ tabBarLabel: "CATalogue" }} />
+                <Tabs.Screen name="Map" options={{ tabBarLabel: "Map" }} />
+                <Tabs.Screen name="Settings" options={{ tabBarLabel: "Settings" }} />
             </Tabs>
         </AuthProvider>
     );

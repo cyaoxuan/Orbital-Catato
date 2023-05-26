@@ -1,11 +1,12 @@
 import { View } from "react-native";
 import { Button, Text } from "react-native-paper";
-import { useRouter } from "expo-router";
+import { useRouter } from "expo-router"; 
+import { getAuth, signInAnonymously } from "firebase/auth";
 import { useAuth } from "../../context/useAuth";
 
 export default function WelcomeScreen() {
     const router = useRouter();
-    const { loginAnonymously } = useAuth();
+    const { user } = useAuth();
 
     const onLoginPressed = () => {
         router.push("/screens/authentication/Login");
@@ -16,8 +17,17 @@ export default function WelcomeScreen() {
     };
 
     const onGuestPressed = () => {
-        loginAnonymously()
-            .then(() => router.push("/screens/main/dashboard"));
+        console.log("continue as guest");
+        const auth = getAuth();
+        signInAnonymously(auth)
+            .then(() => {
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+        // loginAnonymously()
+        //     .then(() => router.push("/screens/main/dashboard"));
     };
 
     return (

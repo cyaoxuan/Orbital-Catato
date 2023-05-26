@@ -5,12 +5,9 @@ import { useRouter } from "expo-router";
 import { useAuth } from "../../context/useAuth";
 
 export default function LoginScreen() {
-    const { loginAnonymously } = useAuth()
-    console.log(loginAnonymously);
-    // const { user, errMsg } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [errMsg, setErrMsg] = useState("");
 
     const handleLogin = () => {
         console.log("in handleLogin")
@@ -23,9 +20,6 @@ export default function LoginScreen() {
         //     setErrMsg("Password cannot be empty");
         //     return;
         // }
-
-        console.log(loginWithEmail);
-        loginWithEmail(email, password)
     };
 
     return (
