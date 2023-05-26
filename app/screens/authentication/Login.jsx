@@ -14,6 +14,7 @@ export default function LoginScreen() {
 
     const handleLoginWithEmail = () => {
         setLoading(true);
+        setError(null);
 
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
@@ -25,7 +26,7 @@ export default function LoginScreen() {
                 setError(error);
                 setLoading(false);
             });
-    }
+    };
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

@@ -15,6 +15,7 @@ export default function SignUpScreen() {
 
     const handleSignUp = () => {
         setLoading(true);
+        setError(null);
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(() => {

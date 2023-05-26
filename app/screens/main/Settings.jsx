@@ -23,7 +23,7 @@ export default function Settings() {
                 setError(error);
                 setLoading(false);
             });
-    }
+    };
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
