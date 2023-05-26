@@ -17,7 +17,7 @@ export default function WelcomeScreen() {
 
     const onGuestPressed = () => {
         loginAnonymously()
-            .then(() => router.push("/screens/main/dashboard"));
+            .then(() => router.push("/screens/main/Dashboard"));
     };
 
     return (

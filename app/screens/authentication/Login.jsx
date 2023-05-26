@@ -24,8 +24,8 @@ export default function LoginScreen() {
         //     return;
         // }
 
-        console.log(loginWithEmail);
-        loginWithEmail(email, password)
+        // console.log(loginWithEmail);
+        // loginWithEmail(email, password)
     };
 
     return (

@@ -1,6 +1,6 @@
 import { AuthProvider, useAuth } from "./context/useAuth";
 import WelcomeScreen from "./screens/authentication/Welcome";
-import Dashboard from "./screens/main/dashboard";
+import Dashboard from "./screens/main/Dashboard";
 
 export default function RootNavigation() {
     console.log("in RootNav");
