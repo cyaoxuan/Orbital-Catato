@@ -1,10 +1,9 @@
 import { View } from "react-native";
 import { Text } from "react-native-paper";
-import { useAuth } from "../../context/useAuth";
+import { useAuth } from "../../context/auth";
 
 export default function Dashboard() {
     const { user } = useAuth();
-    console.log("in Dashboard", user);
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

@@ -1,11 +1,14 @@
 import { View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { ActivityIndicator, Button, Text } from "react-native-paper";
 import { useRouter } from "expo-router";
-import { useAuth } from "../../context/useAuth";
+import { auth } from "../../context/auth";
+import { signInAnonymously } from "firebase/auth";
+import { useState } from "react";
 
 export default function WelcomeScreen() {
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
-    const { loginAnonymously } = useAuth();
 
     const onLoginPressed = () => {
         router.push("/screens/authentication/Login");
@@ -15,10 +18,19 @@ export default function WelcomeScreen() {
         router.push("/screens/authentication/SignUp");
     };
 
-    const onGuestPressed = () => {
-        loginAnonymously()
-            .then(() => router.push("/screens/main/dashboard"));
-    };
+    const handleLoginAnonymously = () => {
+        setLoading(true);
+        signInAnonymously(auth)
+            .then(() => {
+                setLoading(false);
+                router.replace("/screens/main/Dashboard");
+            })
+            .catch((error) => {
+                console.error(error);
+                setError(error);
+                setLoading(false);
+            });
+    }
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -26,7 +38,10 @@ export default function WelcomeScreen() {
             <Text>(Logo)</Text>
             <Button onPress={onLoginPressed}>Log In</Button>
             <Button onPress={onSignUpPressed}>Sign Up</Button>
-            <Button onPress={onGuestPressed}>Continue as Guest</Button>
+            <Button onPress={handleLoginAnonymously}>Continue as Guest</Button>
+
+            {error && <Text>{error.message}</Text>}
+            {loading && <ActivityIndicator />}
         </View>
     );
 }
