@@ -20,6 +20,7 @@ export default function WelcomeScreen() {
 
     const handleLoginAnonymously = () => {
         setLoading(true);
+        setError(null);
         signInAnonymously(auth)
             .then(() => {
                 setLoading(false);
@@ -30,7 +31,7 @@ export default function WelcomeScreen() {
                 setError(error);
                 setLoading(false);
             });
-    }
+    };
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
