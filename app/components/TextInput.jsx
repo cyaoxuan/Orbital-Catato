@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity, ViewStyle, TouchableWithoutFeedback } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { TextInput, HelperText } from "react-native-paper";
 import { useState } from "react";
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -6,7 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 const AuthInput = (props) => {
     return (
         <View style={styles.inputContainer}>
-            <Ionicons name={props.iconName} size={24} style={ styles.icon }/>
+            <Ionicons name={props.iconName} size={24} style={ styles.icon } />
             <TextInput style={styles.input}
                     mode="outlined"
                     disabled={props.disabled}
@@ -28,7 +28,7 @@ const PasswordInput = (props) => {
 
     return (
         <View style={styles.inputContainer}>
-            <Ionicons name={props.iconName} size={24} style={styles.icon}/>
+            <Ionicons name={props.iconName} size={24} style={styles.icon} />
             <TextInput style={styles.input}
                 mode="outlined"
                 disabled={props.disabled}

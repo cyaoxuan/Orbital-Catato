@@ -5,6 +5,7 @@ export default function Update() {
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <Text>Update</Text>
+            <Text>Work in Progress :D</Text>
         </View>
     );
 }
