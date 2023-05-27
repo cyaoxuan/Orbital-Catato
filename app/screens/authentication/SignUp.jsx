@@ -4,6 +4,7 @@ import { ActivityIndicator, Button, Text, TextInput } from "react-native-paper";
 import { auth } from "../../context/auth";
 import { useRouter } from "expo-router";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { AuthInput, PasswordInput } from "../../components/TextInput"
 
 export default function SignUpScreen() {
     const [error, setError] = useState(null);
@@ -44,27 +45,31 @@ export default function SignUpScreen() {
             <Text>Create an account</Text>
             <Text></Text>
 
-            <Text>Username</Text>
-            <TextInput 
-                autoCapitalize="none"
-                textContentType="username"
-                value={username}
-                onChangeText={setUsername} />
+            <View style={{ justifyContent: "space-between" }}>
+                <AuthInput label="Username"
+                    iconName="person"
+                    placeholder="orbitee"
+                    textContentType="username"
+                    value={username}
+                    onChangeText={setUsername}
+                />
 
-            <Text>Email</Text>
-            <TextInput 
-                autoCapitalize="none"
-                textContentType="emailAddress"
-                value={email}
-                onChangeText={setEmail} />
+                <AuthInput label="Email"
+                    iconName="mail"
+                    placeholder="orbitee@kitty.xyz"
+                    textContentType="emailAddress"
+                    value={email}
+                    onChangeText={setEmail}
+                />
 
-            <Text>Password</Text>
-            <TextInput 
-                secureTextEntry
-                autoCapitalize="none"
-                textContentType="password"
-                value={password}
-                onChangeText={setPassword} />
+                <PasswordInput
+                    iconName="lock-closed"
+                    label="Password"
+                    textContentType="password"
+                    value={password}
+                    onChangeText={setPassword} 
+                />
+            </View>
             
             <Button onPress={handleSignUp}>Sign Up</Button>
 

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { ActivityIndicator, Button, Text, TextInput } from "react-native-paper";
 import { useRouter } from "expo-router";
 import { auth } from "../../context/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { AuthInput, PasswordInput } from "../../components/TextInput"
 
 export default function LoginScreen() {
     const [error, setError] = useState(null);
@@ -34,20 +35,25 @@ export default function LoginScreen() {
             <Text>Sign in to continue</Text>
             <Text></Text>
 
-            <Text>Email</Text>
-            <TextInput
-                autoCapitalize="none"
-                textContentType="emailAddress"
-                value={email}
-                onChangeText={setEmail} />
+            <View style={{ justifyContent: "space-between" }}>
+                <AuthInput label="Email"
+                    iconName="mail"
+                    placeholder="orbitee@kitty.xyz"
+                    textContentType="emailAddress"
+                    value={email}
+                    onChangeText={setEmail}
+                />
 
-            <Text>Password</Text>
-            <TextInput 
-                autoCapitalize="none"
-                secureTextEntry
-                textContentType="password"
-                value={password}
-                onChangeText={setPassword} />
+                <PasswordInput
+                    iconName="lock-closed"
+                    label="Password"
+                    textContentType="password"
+                    value={password}
+                    onChangeText={setPassword} 
+                />
+            </View>
+            
+            
 
             <Button onPress={handleLoginWithEmail}>Log In</Button>
             {error && <Text>{error.message}</Text>}
