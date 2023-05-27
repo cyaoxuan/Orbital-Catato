@@ -4,6 +4,7 @@ import { useState } from "react";
 import { View } from "react-native";
 import { ActivityIndicator, Button, Text, TextInput } from "react-native-paper";
 import { auth } from "../../context/auth";
+import { AuthInput } from "../../components/TextInput"
 
 export default function ForgotPasswordScreen() {
     const [error, setError] = useState(null);
@@ -39,12 +40,13 @@ export default function ForgotPasswordScreen() {
             <Text>Please enter your email to reset your password</Text>
             <Text></Text>
 
-            <Text>Email</Text>
-            <TextInput
-                autoCapitalize="none"
-                textContentType="emailAddress"
-                value={email}
-                onChangeText={setEmail} />
+            <AuthInput label="Email"
+                    iconName="mail"
+                    placeholder="orbitee@kitty.xyz"
+                    textContentType="emailAddress"
+                    value={email}
+                    onChangeText={setEmail}
+                />
             
             <Button onPress={handlePasswordReset}>Request Password Reset</Button>
             {error && <Text>{error.message}</Text>}

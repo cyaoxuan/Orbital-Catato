@@ -5,6 +5,7 @@ export default function Catalogue() {
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <Text>CATalogue</Text>
+            <Text>Work in Progress :D</Text>
         </View>
     );
 }
