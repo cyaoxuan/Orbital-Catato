@@ -9,27 +9,27 @@ export default function MainLayout() {
             }>
                 <Tabs.Screen name="Dashboard" options={{ tabBarLabel: "Dashboard", 
                     tabBarIcon: ({ color }) => (
-                        <Ionicons name="ios-grid" size={24} color={ color } />
+                        <Ionicons name="grid" size={24} color={ color } />
                     ) 
                 }} />
                 <Tabs.Screen name="Update" options={{ tabBarLabel: "Update", 
                     tabBarIcon: ({ color }) => (
-                        <Ionicons name="ios-create" size={24} color={ color } />
+                        <Ionicons name="create" size={24} color={ color } />
                     )
                 }} />
                 <Tabs.Screen name="Catalogue" options={{ tabBarLabel: "CATalogue", 
                     tabBarIcon: ({ color }) => (
-                        <Ionicons name="ios-heart" size={24} color={ color } />
+                        <Ionicons name="heart" size={24} color={ color } />
                     )
                 }} />
                 <Tabs.Screen name="Map" options={{ tabBarLabel: "Map", 
                     tabBarIcon: ({ color }) => (
-                        <Ionicons name="ios-location" size={24} color={ color } />
+                        <Ionicons name="location" size={24} color={ color } />
                     )
                 }} />
                 <Tabs.Screen name="Settings" options={{ tabBarLabel: "Settings", 
                     tabBarIcon: ({ color }) => (
-                        <Ionicons name="ios-settings" size={24} color={ color } />
+                        <Ionicons name="settings" size={24} color={ color } />
                     )
                 }} />
             </Tabs>
