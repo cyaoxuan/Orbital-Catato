@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { ActivityIndicator, Button, Text, TextInput } from "react-native-paper";
+import { View } from "react-native";
+import { ActivityIndicator, Text } from "react-native-paper";
 import { useRouter } from "expo-router";
 import { auth } from "../../context/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthInput, PasswordInput } from "../../components/TextInput"
+import { PillButton } from "../../components/Button";
 
 export default function LoginScreen() {
     const [error, setError] = useState(null);
@@ -31,9 +32,8 @@ export default function LoginScreen() {
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text>Login</Text>
-            <Text>Sign in to continue</Text>
-            <Text></Text>
+            <Text variant="displayMedium">Login</Text>
+            <Text variant="displaySmall">Sign in to continue</Text>
 
             <View style={{ justifyContent: "space-between" }}>
                 <AuthInput label="Email"
@@ -53,13 +53,18 @@ export default function LoginScreen() {
                 />
             </View>
             
-            
+            <PillButton mode="outlined"
+                width="60%"
+                label="Log In"
+                onPress={handleLoginWithEmail} />
 
-            <Button onPress={handleLoginWithEmail}>Log In</Button>
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}
             
-            <Button onPress={() => router.push("./ForgotPassword")}>Forgot Password?</Button>
+            <PillButton mode="text"
+                width="40%"
+                label="Forgot Password?"
+                onPress={() => router.push("./ForgotPassword")} />
         </View>
     );
 }

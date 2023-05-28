@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { View } from "react-native";
-import { ActivityIndicator, Button, Text, TextInput } from "react-native-paper";
+import { ActivityIndicator, Text } from "react-native-paper";
 import { auth } from "../../context/auth";
 import { useRouter } from "expo-router";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { AuthInput, PasswordInput } from "../../components/TextInput"
+import { PillButton } from "../../components/Button";
 
 export default function SignUpScreen() {
     const [error, setError] = useState(null);
@@ -41,9 +42,8 @@ export default function SignUpScreen() {
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text>Sign Up</Text>
-            <Text>Create an account</Text>
-            <Text></Text>
+            <Text variant="displayMedium">Sign Up</Text>
+            <Text variant="displaySmall">Create an account</Text>
 
             <View style={{ justifyContent: "space-between" }}>
                 <AuthInput label="Username"
@@ -71,7 +71,10 @@ export default function SignUpScreen() {
                 />
             </View>
             
-            <Button onPress={handleSignUp}>Sign Up</Button>
+            <PillButton mode="outlined"
+                width="60%"
+                label="Sign Up" 
+                onPress={handleSignUp} />
 
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}

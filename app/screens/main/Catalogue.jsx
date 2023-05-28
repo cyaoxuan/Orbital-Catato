@@ -1,6 +1,6 @@
 import { FlatList, View } from "react-native";
 import { Text } from "react-native-paper";
-import { concernCatCards } from "../../components/CatCardData";
+import { concernCatCards } from "../../components/CatTempData";
 import { TouchableCatAvatar } from "../../components/CatAvatar";
 
 export default function Catalogue() {

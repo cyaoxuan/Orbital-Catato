@@ -2,9 +2,10 @@ import { useRouter } from "expo-router";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
 import { View } from "react-native";
-import { ActivityIndicator, Button, Text, TextInput } from "react-native-paper";
+import { ActivityIndicator, Text } from "react-native-paper";
 import { auth } from "../../context/auth";
 import { AuthInput } from "../../components/TextInput"
+import { PillButton } from "../../components/Button";
 
 export default function ForgotPasswordScreen() {
     const [error, setError] = useState(null);
@@ -36,8 +37,8 @@ export default function ForgotPasswordScreen() {
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text>Forgot Password</Text>
-            <Text>Please enter your email to reset your password</Text>
+            <Text variant="displayMedium">Forgot Password</Text>
+            <Text variant="titleMedium">Please enter your email to reset your password</Text>
             <Text></Text>
 
             <AuthInput label="Email"
@@ -48,7 +49,11 @@ export default function ForgotPasswordScreen() {
                     onChangeText={setEmail}
                 />
             
-            <Button onPress={handlePasswordReset}>Request Password Reset</Button>
+            <PillButton mode="outlined"
+                width="60%"
+                label="Request Password Reset" 
+                onPress={handlePasswordReset} />
+
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}
             {emailSent && <Text>Email sent!</Text>}
