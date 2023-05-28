@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 import { Text } from "react-native-paper";
 import { useAuth } from "../../context/auth";
 import { concernCatCards, fedCatCards } from "../../components/CatTempData";
@@ -10,7 +10,7 @@ export default function Dashboard() {
     const { user } = useAuth();
 
     return (
-        <View>
+        <ScrollView>
             <Text variant="headlineMedium">Cats of Concern</Text>
             <Text variant="headlineSmall">New, Injured, Missing for 3 Days</Text>
             <Carousel cards={concernCatCards} />
@@ -18,6 +18,6 @@ export default function Dashboard() {
             <Text variant="headlineMedium">Unfed Cats</Text>
             <Text variant="headlineSmall">Not Fed in 12 Hours</Text>
             <Carousel cards={fedCatCards} />
-        </View>
+        </ScrollView>
     );
 }
