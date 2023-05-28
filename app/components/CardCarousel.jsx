@@ -12,10 +12,10 @@ const Carousel = (props) => {
                 showsHorizontalScrollIndicator={false}
                 scrollEventThrottle={10}
                 snapToInterval={boxWidth}
-                data={props.cards}
-                contentOffset={{ x: - 120, y: 0 }}
+                contentOffset={{ x: -120, y: 0 }}
                 ItemSeparatorComponent={() => <View style={{width: 20}} />}
                 
+                data={props.cards}
                 renderItem={({item, index}) => {
                     return (
                         <View key={index}> 
