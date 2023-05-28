@@ -1,9 +1,10 @@
 import { View } from "react-native";
-import { ActivityIndicator, Button, Text } from "react-native-paper";
+import { ActivityIndicator, Avatar, Text } from "react-native-paper";
 import { useRouter } from "expo-router";
 import { auth } from "../../context/auth";
 import { signInAnonymously } from "firebase/auth";
 import { useState } from "react";
+import { PillButton } from "../../components/Button";
 
 export default function WelcomeScreen() {
     const [error, setError] = useState(null);
@@ -35,11 +36,27 @@ export default function WelcomeScreen() {
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text>Catato</Text>
-            <Text>(Logo)</Text>
-            <Button onPress={onLoginPressed}>Log In</Button>
-            <Button onPress={onSignUpPressed}>Sign Up</Button>
-            <Button onPress={handleLoginAnonymously}>Continue as Guest</Button>
+            <Text variant="displayLarge">Catato</Text>
+
+            <Avatar.Text style={{ backgroundColor: "transparent", borderWidth: 1, margin: 20 }}
+                labelStyle={{ color: "black", fontSize: 32 }}
+                label="Logo" 
+                size={300} />
+          
+            <PillButton mode="outlined"
+                width="60%" 
+                label="Log In" 
+                onPress={onLoginPressed} />
+            
+            <PillButton mode="outlined"
+                width="60%" 
+                label="Sign Up" 
+                onPress={onSignUpPressed} />
+            
+            <PillButton mode="text"
+                width="40%"
+                label="Continue as Guest"
+                onPress={handleLoginAnonymously} />
 
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}

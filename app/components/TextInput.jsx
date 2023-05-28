@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: "row", 
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        padding: 12
     },
     
     input: {

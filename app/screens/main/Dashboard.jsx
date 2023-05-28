@@ -1,8 +1,7 @@
 import { View } from "react-native";
 import { Text } from "react-native-paper";
 import { useAuth } from "../../context/auth";
-import { concernCatCards, fedCatCards } from "../../components/CatCardData";
-import { CatCard } from "../../components/CatCard";
+import { concernCatCards, fedCatCards } from "../../components/CatTempData";
 import { Carousel } from "../../components/CardCarousel";
 
 
