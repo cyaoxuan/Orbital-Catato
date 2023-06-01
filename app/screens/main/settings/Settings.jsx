@@ -1,11 +1,11 @@
 import { View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
-import { auth, useAuth } from "../../context/auth";
+import { auth, useAuth } from "../../../context/auth";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
-import { PillButton } from "../../components/Button";
-import { SettingsOptionList } from "../../components/OptionList";
+import { PillButton } from "../../../components/Button";
+import { SettingsOptionList } from "../../../components/OptionList";
 
 
 export default function Settings() {

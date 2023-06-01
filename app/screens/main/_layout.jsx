@@ -12,12 +12,12 @@ export default function MainLayout() {
                         <Ionicons name="grid" size={24} color={ color } />
                     ) 
                 }} />
-                <Tabs.Screen name="Update" options={{ tabBarLabel: "Update", 
+                <Tabs.Screen name="update" options={{ tabBarLabel: "Update", 
                     tabBarIcon: ({ color }) => (
                         <Ionicons name="create" size={24} color={ color } />
                     )
                 }} />
-                <Tabs.Screen name="Catalogue" options={{ tabBarLabel: "CATalogue", 
+                <Tabs.Screen name="catalogue" options={{ tabBarLabel: "CATalogue", 
                     tabBarIcon: ({ color }) => (
                         <Ionicons name="heart" size={24} color={ color } />
                     )
@@ -27,7 +27,7 @@ export default function MainLayout() {
                         <Ionicons name="location" size={24} color={ color } />
                     )
                 }} />
-                <Tabs.Screen name="Settings" options={{ tabBarLabel: "Settings", 
+                <Tabs.Screen name="settings" options={{ tabBarLabel: "Settings", 
                     tabBarIcon: ({ color }) => (
                         <Ionicons name="settings" size={24} color={ color } />
                     )

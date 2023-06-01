@@ -8,21 +8,22 @@ const CatAvatar = (props) => {
                 source={props.image}
                 size={props.size}
             />
-            <Text variant={props.variant}>{props.text}</Text>
+            <Text variant={props.variant}>{props.catName}</Text>
         </View>
     );
 };
 
 const TouchableCatAvatar = (props) => {
     return (
-        <TouchableOpacity style={styles.avatarContainer}
-            activeOpacity={0.7}>
-            <Avatar.Image
-                source={props.image}
-                size={props.size}
-            />
-            <Text variant={props.variant}>{props.text}</Text>
-        </TouchableOpacity>
+            <TouchableOpacity style={styles.avatarContainer}
+                activeOpacity={0.7}
+                onPress={props.onPress}>
+                <Avatar.Image
+                    source={props.image}
+                    size={props.size}
+                />
+                <Text variant={props.variant}>{props.catName}</Text>
+            </TouchableOpacity>
     );
 };
 
