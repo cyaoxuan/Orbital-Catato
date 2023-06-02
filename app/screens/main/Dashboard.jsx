@@ -1,7 +1,6 @@
 import { ScrollView } from "react-native";
 import { Text } from "react-native-paper";
 import { useAuth } from "../../context/auth";
-import { concernCatCards, fedCatCards } from "../../components/CatTempData";
 import { Carousel } from "../../components/CardCarousel";
 
 
@@ -13,11 +12,19 @@ export default function Dashboard() {
         <ScrollView>
             <Text variant="headlineMedium">Cats of Concern</Text>
             <Text variant="headlineSmall">New, Injured, Missing for 3 Days</Text>
-            <Carousel cards={concernCatCards} />
+            <Carousel carouselType="concern"
+                iconName1="information-circle"
+                field1="Status: "
+                iconName2="location"
+                field2="Last Seen: " />
 
             <Text variant="headlineMedium">Unfed Cats</Text>
             <Text variant="headlineSmall">Not Fed in 12 Hours</Text>
-            <Carousel cards={fedCatCards} />
+            <Carousel carouselType="unfed"
+                iconName1="time"
+                field1="Last Fed: "
+                iconName2="location"
+                field2="Last Seen: " />
         </ScrollView>
     );
 }
