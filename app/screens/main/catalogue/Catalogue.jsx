@@ -1,27 +1,27 @@
 import { FlatList, View } from "react-native";
 import { Text } from "react-native-paper";
-import { useRouter } from "expo-router";
+import { useNavigation } from "expo-router";
 import { cats } from "../../../data/CatTempData";
 import { TouchableCatAvatar } from "../../../components/CatAvatar";
 
 export default function Catalogue() {
-    const router = useRouter();
+    const navigation = useNavigation();
 
     return (
         <FlatList style={{ alignContent: "center" }}
             ItemSeparatorComponent={() => <View style={{height: 20}} />}
             ListHeaderComponent={<Text variant="headlineLarge">Meet the Cats!</Text>}
             
-            data={cats}
+            data={cats.filter(cat => cat.catID != 0)}
             renderItem={({item}) => {
                 return (
                     <TouchableCatAvatar size={200}
-                        image={item.photoURL}
+                        photoURL={item.photoURL}
                         variant="headlineLarge"
-                        catName={item.name}
+                        name={item.name}
                         // 
                         onPress={() => {
-                            router.push({ pathname: `screens/main/catalogue/${item.name}`, params: { cat: item } });
+                            navigation.navigate("CatProfile", { catID: item.catID })
                         }}
                     />
                 )
