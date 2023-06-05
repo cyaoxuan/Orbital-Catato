@@ -5,10 +5,10 @@ const CatAvatar = (props) => {
     return (
         <View style={styles.avatarContainer}>
             <Avatar.Image
-                source={props.image}
+                source={props.photoURL}
                 size={props.size}
             />
-            <Text variant={props.variant}>{props.catName}</Text>
+            <Text variant={props.variant}>{props.name}</Text>
         </View>
     );
 };
@@ -19,10 +19,10 @@ const TouchableCatAvatar = (props) => {
                 activeOpacity={0.7}
                 onPress={props.onPress}>
                 <Avatar.Image
-                    source={props.image}
+                    source={props.photoURL}
                     size={props.size}
                 />
-                <Text variant={props.variant}>{props.catName}</Text>
+                <Text variant={props.variant}>{props.name}</Text>
             </TouchableOpacity>
     );
 };
