@@ -1,12 +1,56 @@
-import { View } from "react-native";
-import { ActivityIndicator, Text } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+import { ActivityIndicator, Divider, List, Switch, Text } from "react-native-paper";
 import { auth, useAuth } from "../../../context/auth";
-import { useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { PillButton } from "../../../components/Button";
-import { SettingsOptionList } from "../../../components/OptionList";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
+const SettingsOptionList = () => {
+    const [valueNotif, setValueNotif] = useState(false);
+    const navigation = useNavigation();
+
+    return (
+        <List.Section>
+            <List.Item  
+                title="Reset Password"
+                titleStyle={styles.title}
+                onPress={() => {}}
+                left={() => <List.Icon icon={() => <Ionicons name="lock-closed" size={24} />} />}
+                right={() => <List.Icon icon="arrow-right" />}
+            />
+            <Divider />
+            <List.Item 
+                title="FAQs"
+                titleStyle={styles.title}
+                onPress={() => {}}
+                left={() => <List.Icon icon={() => <Ionicons name="help-circle" size={24} />} />}
+                right={() => <List.Icon icon="arrow-right" />}
+            />
+            <Divider />
+            <List.Item 
+                bottomDivider
+                title="Notifications"
+                titleStyle={styles.title}
+                left={() => <List.Icon icon={() => <Ionicons name="notifications" size={24} />} />}
+                right={() => <Switch style={{ transform:[{ scaleX: 1.5 }, { scaleY: 1.5 }] }} 
+                    value={valueNotif} 
+                    onValueChange={setValueNotif} 
+                />}
+            />
+            <Divider />
+            <List.Item 
+                title="Documentation"
+                titleStyle={styles.title}
+                onPress={() => {}}
+                left={() => <List.Icon icon={() => <Ionicons name="paper-plane" size={24} />} />}
+                right={() => <List.Icon icon="arrow-right" />}
+            />
+            <Divider />
+        </List.Section>
+    );
+}
 
 export default function Settings() {
     const { user } = useAuth();
@@ -53,3 +97,9 @@ export default function Settings() {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    title: {
+        fontSize: 24
+    }
+})
