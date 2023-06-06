@@ -1,6 +1,6 @@
 import { FlatList, ScrollView, View } from "react-native";
 import { Text } from "react-native-paper";
-import { useAuth } from "../../context/auth";
+import { useAuth } from "../../utils/context/auth";
 import { CatCard } from "../../components/CatCard";
 import { cats } from "../../data/CatTempData";
 
