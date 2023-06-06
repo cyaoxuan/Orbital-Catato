@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 import { useRouter } from "expo-router";
-import { auth } from "../../context/auth";
+import { auth } from "../../utils/context/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthInput, PasswordInput } from "../../components/TextInput"
 import { PillButton } from "../../components/Button";
@@ -14,21 +14,21 @@ export default function LoginScreen() {
     const [password, setPassword] = useState("");
     const router = useRouter();
 
-    const handleLoginWithEmail = () => {
-        setLoading(true);
-        setError(null);
+    const handleLoginWithEmail = async () => {
+        try {
+            setLoading(true);
+            setError(null);
 
-        signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                setLoading(false);
-                router.replace("/screens/main/Dashboard");
-            })
-            .catch((error) => {
-                console.error(error);
-                setError(error);
-                setLoading(false);
-            });
-    };
+            await signInWithEmailAndPassword(auth, email, password);
+            
+            setLoading(false);
+            router.replace("/screens/main/Dashboard");
+        } catch (error) {
+            console.error(error);
+            setError(error);
+            setLoading(false);
+        }
+    }
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

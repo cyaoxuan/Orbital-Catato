@@ -3,7 +3,7 @@ import { sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
 import { View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
-import { auth } from "../../context/auth";
+import { auth } from "../../utils/context/auth";
 import { AuthInput } from "../../components/TextInput"
 import { PillButton } from "../../components/Button";
 
@@ -14,26 +14,23 @@ export default function ForgotPasswordScreen() {
     const [emailSent, setEmailSent] = useState(false);
     const router = useRouter();
 
-    const handlePasswordReset = () => {
-        setLoading(true);
-        setError(null);
-        setEmailSent(false);
-        
-        sendPasswordResetEmail(auth, email)
-            .then(() => {
-                setEmailSent(true);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error(error);
-                setError(error);
-                setLoading(false);
-            });
-    };
+    const handlePasswordReset = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            setEmailSent(false);
 
-    const onLoginPressed = () => {
-        router.push("/screens/authentication/Login");
-    };
+            await sendPasswordResetEmail(auth, email);
+            
+            setEmailSent(true);
+            setLoading(false);
+            router.replace("/screens/main/Dashboard");
+        } catch (error) {
+            console.error(error);
+            setError(error);
+            setLoading(false);
+        }
+    }
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

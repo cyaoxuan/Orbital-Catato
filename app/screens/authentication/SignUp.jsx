@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
-import { auth } from "../../context/auth";
+import { auth } from "../../utils/context/auth";
 import { useRouter } from "expo-router";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { AuthInput, PasswordInput } from "../../components/TextInput"
 import { PillButton } from "../../components/Button";
+import { createUser } from "../../utils/db/user";
 
 export default function SignUpScreen() {
     const [error, setError] = useState(null);
@@ -15,30 +16,23 @@ export default function SignUpScreen() {
     const [password, setPassword] = useState("");
     const router = useRouter();
 
-    const handleSignUp = () => {
-        setLoading(true);
-        setError(null);
+    const handleSignUp = async () => {
+        try {
+            setLoading(true);
+            setError(null);
 
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                const currentUser = auth.currentUser;
-                updateProfile(currentUser, { displayName: username })
-                    .then(() => {
-                        setLoading(false);
-                        router.replace("/screens/main/Dashboard");
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                        setError(error);
-                        setLoading(false);
-                    });
-            })
-            .catch((error) => {
-                console.error(error);
-                setError(error);
-                setLoading(false);
-            });
-    };
+            await createUserWithEmailAndPassword(auth, email, password); // Firebase Auth
+            await updateProfile(auth.currentUser, { displayName: username }); // Set display name
+            await createUser(auth.currentUser.uid, false); // Write to db
+
+            setLoading(false);
+            router.replace("/screens/main/Dashboard");
+        } catch (errror) {
+            console.error(error);
+            setError(error);
+            setLoading(false);
+        }
+    }
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
