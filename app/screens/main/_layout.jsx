@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { AuthProvider } from "../../utils/context/auth";
+import { AuthProvider } from "../../context/auth";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function MainLayout() {

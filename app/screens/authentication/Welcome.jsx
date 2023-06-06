@@ -1,11 +1,10 @@
 import { View } from "react-native";
 import { ActivityIndicator, Avatar, Text } from "react-native-paper";
 import { useRouter } from "expo-router";
-import { auth } from "../../utils/context/auth";
+import { auth } from "../../context/auth";
 import { signInAnonymously } from "firebase/auth";
 import { useState } from "react";
 import { PillButton } from "../../components/Button";
-import { createUser } from "../../utils/db/user";
 
 export default function WelcomeScreen() {
     const [error, setError] = useState(null);
@@ -20,22 +19,20 @@ export default function WelcomeScreen() {
         router.push("/screens/authentication/SignUp");
     };
 
-    const handleLoginAnonymously = async () => {
-        try {
-            setLoading(true);
-            setError(null);
-
-            await signInAnonymously(auth); // Firebase Auth
-            await createUser(auth.currentUser.uid, true) // Write to db
-
-            setLoading(false);
-            router.replace("/screens/main/Dashboard");
-        } catch (error) {
-            console.error(error);
-            setError(error);
-            setLoading(false);
-        }
-    }
+    const handleLoginAnonymously = () => {
+        setLoading(true);
+        setError(null);
+        signInAnonymously(auth)
+            .then(() => {
+                setLoading(false);
+                router.replace("/screens/main/Dashboard");
+            })
+            .catch((error) => {
+                console.error(error);
+                setError(error);
+                setLoading(false);
+            });
+    };
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

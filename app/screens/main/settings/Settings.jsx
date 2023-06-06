@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import { ActivityIndicator, Divider, List, Switch, Text } from "react-native-paper";
-import { auth, useAuth } from "../../../utils/context/auth";
+import { auth, useAuth } from "../../../context/auth";
 import { useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
 import { signOut } from "firebase/auth";

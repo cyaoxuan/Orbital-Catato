@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { AuthProvider } from "../../../utils/context/auth"
+import { AuthProvider } from "../../../context/auth"
 
 export default function CatalogueLayout() {
     return (

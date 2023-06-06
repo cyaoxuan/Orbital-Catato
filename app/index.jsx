@@ -1,4 +1,4 @@
-import { AuthProvider, useAuth } from "./utils/context/auth";
+import { AuthProvider, useAuth } from "./context/auth";
 import Dashboard from "./screens/main/Dashboard"
 import WelcomeScreen from "./screens/authentication/Welcome";
 
