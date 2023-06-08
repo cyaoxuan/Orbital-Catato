@@ -1,7 +1,20 @@
-import { FlatList, View } from "react-native"
+import { Dimensions, FlatList, View } from "react-native"
 import { Stack, useNavigation } from "expo-router";
 import { cats } from "../../../data/CatTempData";
 import { CatCardSimple } from "../../../components/CatCard";
+
+// Calculate card width based on phone screen dimensions
+function getCardWidth() {
+    const {height, width} = Dimensions.get("window");
+    // Card is 3/4 the width of a screen - margins
+    const cardWidth = (width) / 2;
+    return cardWidth;
+}
+
+// Eventual Call from DB
+function getCats() {
+    return cats;
+}
 
 export default function SelectCat() {
     const navigation = useNavigation();
@@ -13,15 +26,14 @@ export default function SelectCat() {
         <FlatList
             numColumns={2}
             contentContainerStyle={{ justifyContent: "space-around" }}
-            data={cats}
+            data={getCats()}
             renderItem={({item}) => {
                 return (
                     <View key={item.catId}>
-                        <CatCardSimple cat={item} 
-                            onPress={() => {
-                                item.catID === 0
-                                    ? navigation.navigate("Form", { catID: item.catID, formType: "create" })
-                                    : navigation.navigate("Update", { catID: item.catID })
+                        <CatCardSimple cat={item}
+                            cardWidth={getCardWidth()}
+                            onPress={() => {navigation.navigate("Update", 
+                                { catID: item.catID, name: item.name, photoURL: item.photoURL })
                             }}/>
                     </View>
                 );

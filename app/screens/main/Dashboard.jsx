@@ -12,12 +12,11 @@ const unfedCats = cats.filter(cat => {
     return cat.lastFedTime && ((today - cat.lastFedTime) / 3600000 > 12);
 }) // Will eventually use Date.now()
 
-
 // Calculate card width based on phone screen dimensions
-function getCardWidth() {
-    const {height, width} = Dimensions.get("window");
+function getCardWidth() { 
     // Card is 3/4 the width of a screen - margins
-    const cardWidth = (width - (8 * 2)) / 4 * 3;
+    const {height, width} = Dimensions.get("window");
+    const cardWidth = (width) / 4 * 3;
     return cardWidth;
 }
 
@@ -30,7 +29,6 @@ const CarouselContainer = ({ titleText, subtitleText, ...carousel }) => {
         </View>
     );
 }
-
 
 export default function Dashboard() {
     const { user } = useAuth();

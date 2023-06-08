@@ -13,16 +13,17 @@ const dateTimeOptions = {
 
 const Carousel = ({cats, cardWidth, carouselType, ...card}) => {
     const navigation = useNavigation();
+    const spaceBetweenCards = 24;
 
     return (
-        <FlatList style={{ height: cardWidth * 1.1 }}
+        <FlatList style={{ height: cardWidth }}
                 horizontal
                 snapToAlignment="center"
                 decelerationRate="normal"
                 showsHorizontalScrollIndicator={false}
                 scrollEventThrottle={4}
-                snapToInterval={cardWidth}
-                ItemSeparatorComponent={() => <View style={{width: 24}} />}
+                snapToInterval={cardWidth + spaceBetweenCards}
+                ItemSeparatorComponent={() => <View style={{width: spaceBetweenCards}} />}
                 
                 data={cats}
                 keyExtractor={(item, index) => item.catID}

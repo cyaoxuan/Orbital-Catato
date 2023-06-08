@@ -2,28 +2,27 @@ import { StyleSheet, View } from "react-native";
 import { Divider, List }  from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
-import { cats } from "../../../data/CatTempData";
 import { CatAvatar } from "../../../components/CatAvatar";
 
 const UpdateOptionList = () => {
     const navigation = useNavigation();
 
     const route = useRoute();
-    const catID = route.params.catID;
+    const cat = route.params;
 
     return (
         <List.Section>
             <List.Item  
                 title="Update Location"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { catID: catID, formType: "location" })}}
+                onPress={() => {navigation.navigate("Form", { ...cat, formType: "location" })}}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
             <List.Item 
                 title="Update Concern"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { catID: catID, formType: "concern" })}}
+                onPress={() => {navigation.navigate("Form", { ...cat, formType: "concern" })}}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
@@ -31,28 +30,28 @@ const UpdateOptionList = () => {
                 bottomDivider
                 title="Update Fed Status"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { catID: catID, formType: "fed" })}}
+                onPress={() => {navigation.navigate("Form", { ...cat, formType: "fed" })}}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
             <List.Item 
                 title="Temporarily Foster"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { catID: catID, formType: "foster" })}}
+                onPress={() => {navigation.navigate("Form", { ...cat, formType: "foster" })}}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
             <List.Item 
                 title="Update Profile"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { catID: catID, formType: "update" })}}
+                onPress={() => {navigation.navigate("Form", { ...cat, formType: "update" })}}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
             <List.Item 
                 title="Remove Cat Profile"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { catID: catID, formType: "delete" })}}
+                onPress={() => {navigation.navigate("Form", { ...cat, formType: "delete" })}}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />

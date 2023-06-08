@@ -6,7 +6,7 @@ const CatCard = (props) => {
     const cardWidth = props.cardWidth;
 
     return (
-        <Card style={{ height: cardWidth, width: cardWidth, margin: 4 }} 
+        <Card style={{ height: 7 * cardWidth / 8, width: cardWidth, margin: 4 }} 
             onPress={props.onPress}
             mode="elevated">
             <Card.Cover style={{ height: cardWidth / 2, width: cardWidth, resizeMode: "cover"}} 
