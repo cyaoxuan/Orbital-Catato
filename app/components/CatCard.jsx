@@ -57,7 +57,7 @@ const CatCardSimple = (props) => {
     const cat = props.cat;
 
     return (
-        <Card style={{ flex: 1/2, margin: 4 }} 
+        <Card style={{ flex: 0.5, margin: 4 }} 
             onPress={props.onPress}
             mode="elevated">
             <Card.Cover style={{ height: 3 * simpleCardWidth / 4, width: simpleCardWidth, resizeMode: "cover"}} 
