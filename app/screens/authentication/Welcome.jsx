@@ -39,12 +39,11 @@ export default function WelcomeScreen() {
 
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text variant="displayLarge">Catato</Text>
+            <Text variant="displayLarge">Welcome</Text>
 
-            <Avatar.Text style={{ backgroundColor: "transparent", borderWidth: 1, margin: 20 }}
-                labelStyle={{ color: "black", fontSize: 32 }}
-                label="Logo" 
-                size={300} />
+            <Avatar.Image style={{ backgroundColor: "transparent", margin: 20 }}
+                source={require("../../../assets/catato-logo.png")}
+                size={350} />
           
             <PillButton mode="outlined"
                 width="60%" 
