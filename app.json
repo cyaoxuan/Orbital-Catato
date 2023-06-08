@@ -22,10 +22,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/catato-logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.yxsandpie.Catato"
     },
     "web": {
       "favicon": "./assets/catato-logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9167ec75-117b-4ce7-b0fb-c3f82a4e8929"
+      }
     }
   }
 }

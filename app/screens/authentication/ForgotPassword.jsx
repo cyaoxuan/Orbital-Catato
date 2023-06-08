@@ -24,7 +24,6 @@ export default function ForgotPasswordScreen() {
             
             setEmailSent(true);
             setLoading(false);
-            router.replace("/screens/main/Dashboard");
         } catch (error) {
             console.error(error);
             setError(error);
