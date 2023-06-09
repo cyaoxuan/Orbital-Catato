@@ -1,9 +1,8 @@
 import { Dimensions, ScrollView, View } from "react-native";
 import { Text } from "react-native-paper";
 import { useAuth } from "../../utils/context/auth";
-import { Carousel } from "../../components/CardCarousel";
+import { CardCarousel } from "../../components/Carousel";
 import { cats } from "../../data/CatTempData"
-import { getCatsOfConcern, getUnfedCats } from "../../utils/db/cat";
 
 // Filter cat data
 const concernCats = cats.filter(cat => cat.concernStatus && cat.concernStatus.length != 0);
@@ -14,7 +13,7 @@ const unfedCats = cats.filter(cat => {
 
 // Calculate card width based on phone screen dimensions
 function getCardWidth() { 
-    // Card is 3/4 the width of a screen - margins
+    // Card is 3/4 the width of a screen
     const {height, width} = Dimensions.get("window");
     const cardWidth = (width) / 4 * 3;
     return cardWidth;
@@ -25,7 +24,7 @@ const CarouselContainer = ({ titleText, subtitleText, ...carousel }) => {
         <View>
             <Text variant="headlineMedium">{titleText}</Text>
             <Text variant="headlineSmall">{subtitleText}</Text>
-            <Carousel {...carousel} />
+            <CardCarousel {...carousel} />
         </View>
     );
 }
@@ -41,7 +40,7 @@ export default function Dashboard() {
                 carouselType="concern"
                 cats={concernCats}
                 cardWidth={getCardWidth()}
-                iconName1="information-circle"
+                iconName1="alert-circle-outline"
                 field1="Status: "
                 iconName2="location"
                 field2="Last Seen: "
@@ -50,10 +49,10 @@ export default function Dashboard() {
             <CarouselContainer 
                 titleText="Unfed Cats"
                 subtitleText="Not Fed in 12 Hours"
-                carouselType="unfed"
+                carouselType="unfed "
                 cats={unfedCats}
                 cardWidth={getCardWidth()}
-                iconName1="time"
+                iconName1="time-outline"
                 field1="Last Fed: "
                 iconName2="location"
                 field2="Last Seen: "

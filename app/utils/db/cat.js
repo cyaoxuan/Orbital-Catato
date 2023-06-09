@@ -12,7 +12,7 @@ export const createCat = async (data) => {
     // TODO: Redefine default values
     const cat = await addDoc(catColl, {
         name: data.name || "NONE",
-        photoURL: data.photoURL || "NONE",
+        photoURLs: data.photoURLs || [],
         gender: data.gender || "NONE",
         birthYear: data.birthYear || -1,
         sterilised: data.sterilised || false,
@@ -86,12 +86,12 @@ export const userUpdateCatLocation = async (userID, catID, location) => {
     });
 };
 
-export const userUpdateCatConcern = async (userID, catID, concernStatus, location, concernDesc, photoURL) => {
+export const userUpdateCatConcern = async (userID, catID, concernStatus, location, concernDesc, photoURLs) => {
     await userUpdateCat(userID, catID, "Update Concern", {
         concernStatus: concernStatus,
         lastSeenLocation: location,
         concernDesc: concernDesc,
-        photoURL: photoURL,
+        photoURLs: photoURLs,
         lastSeenTime: serverTimestamp(),
     });
 };

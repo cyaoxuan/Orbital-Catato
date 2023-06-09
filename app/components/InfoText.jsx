@@ -8,7 +8,7 @@ const IconTextField = (props) => {
             <Ionicons name={props.iconName} size={props.iconSize} style={{ marginHorizontal: 4 }} />
             <Text style={styles.field} variant={props.variant}>
                 {props.field}
-                <Text variant={props.variant}>{props.info}</Text>
+                <Text style={styles.info} variant={props.variant}>{props.info}</Text>
                 </Text>
         </View>
     );
@@ -17,7 +17,7 @@ const IconTextField = (props) => {
 const KeyTextField = (props) => {
     return (
         <View style={styles.keyTextContainer}>
-            <Text style={styles.field} variant={props.variant}>{props.field}</Text>
+            <Text style={{ fontWeight: "bold" }} variant={props.variant}>{props.field}</Text>
             <Text variant={props.variant}>{props.info}</Text>
         </View>
     );
@@ -27,14 +27,20 @@ export { IconTextField, KeyTextField };
 
 const styles = StyleSheet.create({
     iconTextContainer: {
-        flexDirection: "row", 
+        flexDirection: "row"
     },
 
     keyTextContainer: {
-        justifyContent: "center" 
+        justifyContent: "center",
+        alignItems: "center"
     },
     
     field: {
+        flex: 1,
         fontWeight: "bold"
+    },
+
+    info: {
+        flex: 1
     }
 })

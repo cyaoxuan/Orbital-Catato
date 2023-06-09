@@ -1,17 +1,17 @@
 import { FlatList, View } from "react-native";
 import { useNavigation } from "expo-router";
 import { CatCard } from "./CatCard";
+import { dateTimeOptions } from "../data/DateTimeOptions";
 
-const dateTimeOptions = {
-    timeZone: "Asia/Singapore",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false
+function getInfo1(carouselType, cat) {
+    return carouselType === "concern" 
+        ? cat.concernStatus.join(", ") 
+        // : item.lastFedTime.toDate().toLocaleString("en-GB", dateTimeOptions) for TimeStamp
+        : cat.lastFedTime.toLocaleString("en-GB", dateTimeOptions);
 }
 
-const Carousel = ({cats, cardWidth, carouselType, ...card}) => {
+// Card Carousel used in Dashboard
+const CardCarousel = ({cats, cardWidth, carouselType, ...card}) => {
     const navigation = useNavigation();
     const spaceBetweenCards = 24;
 
@@ -34,10 +34,7 @@ const Carousel = ({cats, cardWidth, carouselType, ...card}) => {
                             onPress={() => navigation.navigate("catalogue", 
                                 { screen: "CatProfile", initial: false, params: { catID: item.catID }})}
                             {...card}
-                            info1={carouselType === "concern" 
-                            ? item.concernStatus.join(", ") 
-                            // : item.lastFedTime.toDate().toLocaleString("en-GB", dateTimeOptions) for TimeStamp
-                            : item.lastFedTime.toLocaleString("en-GB", dateTimeOptions)}
+                            info1={getInfo1(carouselType, item)}
                             info2={item.lastSeenLocation}
                         />
                     );
@@ -46,4 +43,4 @@ const Carousel = ({cats, cardWidth, carouselType, ...card}) => {
     );
 };
 
-export { Carousel };
+export { CardCarousel };
