@@ -19,11 +19,16 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.yxsandpie.Catato",
       "adaptiveIcon": {
         "foregroundImage": "./assets/catato-logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.yxsandpie.Catato"
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDAXfc3zGF-e5b891L3-NhFG0L3wPZfkrI"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/catato-logo.png"

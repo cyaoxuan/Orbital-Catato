@@ -5,10 +5,9 @@ import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import { PillButton } from "../../../components/Button";
-import { cats } from "../../../data/CatTempData";
 import { SelectList } from "react-native-dropdown-select-list";
 
-export function CreateProfile({cat}) {
+export function CreateProfile({catID}) {
     return (
         <ScrollView>
             <Text>Create Profile</Text>
@@ -16,7 +15,7 @@ export function CreateProfile({cat}) {
     );
 }
 
-export function UpdateLocation({cat}) {
+export function UpdateLocation({catID}) {
     const [selected, setSelected] = useState("");
 
     const data = [
@@ -30,7 +29,7 @@ export function UpdateLocation({cat}) {
 
     return (
         <View style={{width: "80%"}}>
-            <Text>Update Location for {cat.name}</Text>
+            <Text>Update Location for {catID}</Text>
             <SelectList
                 setSelected={(val) => setSelected(val)}
                 data={data}
@@ -41,44 +40,69 @@ export function UpdateLocation({cat}) {
     );
 }
 
-export function UpdateConcern({cat}) {
+export function UpdateConcern({catID}) {
     return (
         <View>
-            <Text>Update Concern for {cat.name}</Text>
+            <Text>Update Concern for {catID}</Text>
         </View>
     );
 }
 
-export function UpdateFed({cat}) {
+export function UpdateFed({catID}) {
     return (
         <View>
-            <Text>Update Fed for {cat.name}</Text>
+            <Text>Update Fed for {catID}</Text>
         </View>
     );
 }
 
-export function UpdateFoster({cat}) {
+export function UpdateFoster({catID}) {
     return (
         <View>
-            <Text>Temporarily Foster {cat.name}</Text>
+            <Text>Temporarily Foster {catID} </Text>
         </View>
     );
 }
 
-export function UpdateProfile({cat}) {
+export function UpdateProfile({catID}) {
     return (
         <View>
-            <Text>Update Profile for {cat.name}</Text>
+            <Text>Update Profile for {catID}</Text>
         </View>
     );
 }
 
-export function DeleteProfile({cat}) {
+export function DeleteProfile({catID}) {
     return (
         <View>
-            <Text>Delete Profile for {cat.name}</Text>
+            <Text>Delete Profile for {catID}</Text>
         </View>
     );
+}
+
+function getForm(formType, catID) {
+    switch(formType) {
+        case "create":
+            return <CreateProfile catID={catID}/>;
+        case "location":
+            return <UpdateLocation catID={catID} />;
+        case "concern":
+            return <UpdateConcern catID={catID} />;
+        case "fed":
+            return <UpdateFed catID={catID} />;
+        case "foster":
+            return <UpdateFoster catID={catID} />
+        case "update":
+            return <UpdateProfile catID={catID} />
+        case "delete":
+            return <DeleteProfile catID={catID} />
+        default:
+            return (
+                <View>
+                    <Text>Form not found!</Text>
+                </View>
+            )                  
+    }
 }
 
 export default function Form() {
@@ -86,49 +110,20 @@ export default function Form() {
 
     const route = useRoute();
     const formType = route.params.formType;
-    const cat = cats.find((cat) => cat.catID === route.params.catID);
-    
-
-    let form;
-    
-    switch(formType) {
-        case "create":
-            form = <CreateProfile cat={cat} />
-            break;
-        case "location":
-            form = <UpdateLocation cat={cat} />
-            break;
-        case "concern":
-            form = <UpdateConcern cat={cat} />
-            break;
-        case "fed":
-            form = <UpdateFed cat={cat} />
-            break;
-        case "foster":
-            form = <UpdateFoster cat={cat} />
-            break;
-        case "update":
-            form = <UpdateProfile cat={cat} />
-            break;
-        case "delete":
-            form = <DeleteProfile cat={cat} />
-            break;                       
-    }
+    const catID = route.params?.catID ? route.params.catID : null;
+    const name = route.params.name;
+    const photoURL = route.params.photoURL;
     
     return (
         <ScrollView contentContainerStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <CatAvatar 
-                photoURL={ cat
-                    ? cat.photoURL
-                    : require("../../../../assets/placeholder.png")}
+                photoURL={ photoURL }
                 size={200}
                 variant="headlineLarge"
-                name={ cat
-                    ? cat.name
-                    : "Select Cat" }
+                name={ name }
             />
 
-            { form }
+            { getForm(formType, route.params.catID) }
 
             <PillButton mode="outlined"
                 width="60%"
@@ -136,7 +131,7 @@ export default function Form() {
                     ? "Remove"
                     : "Update"}
                 onPress={() => {navigation.navigate("ConfirmUpdate", 
-                    { name: cat.name, photoURL: cat.photoURL, formType: formType })}}
+                    { name: name, photoURL: photoURL, formType: formType })}}
                 />
          </ScrollView>
     )

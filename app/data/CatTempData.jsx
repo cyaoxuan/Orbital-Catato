@@ -1,19 +1,5 @@
 // Temp data to showcase static pages
 const cats = [{
-    // For Select FlatList
-    catID: 0,
-    name: "New Cat",
-    photoURL: require("../../assets/placeholder.png"),
-    gender: null,
-    birthYear: null,
-    sterilised: null,
-    keyFeatures: null,
-    lastSeenLocation: null,
-    lastSeenTime: null,
-    lastFedTime: null,
-    concernStatus: null,
-    concernDesc: null
-},  {
     catID: 1,
     name: "Kitty",
     photoURL: require("../../assets/temp-cat.jpg"), // Will eventually be an array of 
