@@ -43,7 +43,7 @@ export default function Update() {
                 width="60%"
                 label="New Cat"
                 onPress={() => navigation.navigate("Form", 
-                    { name: "New Cat", photoURL: require("../../../../assets/placeholder.png"), formType: "create" })}
+                    { catID: 0, name: "New Cat", photoURL: require("../../../../assets/placeholder.png"), formType: "create" })}
             />
         </View>
     );

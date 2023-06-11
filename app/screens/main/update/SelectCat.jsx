@@ -2,7 +2,7 @@ import { FlatList, View } from "react-native"
 import { Stack, useNavigation } from "expo-router";
 import { cats } from "../../../data/CatTempData";
 import { CatCardSimple } from "../../../components/CatCard";
-import { getItemWidth } from "../../../data/CalculateDimensions";
+import { getItemWidth } from "../../../utils/CalculateDimensions";
 
 // Eventual Call from DB
 function getCats() {
