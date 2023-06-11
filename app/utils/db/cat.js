@@ -23,7 +23,7 @@ export const useCreateCat = (data) => {
             await addDoc(catColl, {
                 catID: newCatRef.id,
                 name: data.name || "NONE",
-                photoURLs: data.photoURL || [],
+                photoURLs: data.photoURLs || [],
                 gender: data.gender || "NONE",
                 birthYear: data.birthYear || -1,
                 sterilised: data.sterilised || false,
@@ -208,7 +208,7 @@ export const useUserUpdateCatLocation = (userID, catID, location) => {
     return { loading, error };
 };
 
-export const useUserUpdateCatConcern = (userID, catID, concernStatus, location, concernDesc, photoURL) => {
+export const useUserUpdateCatConcern = (userID, catID, concernStatus, location, concernDesc, photoURLs) => {
     // TODO: Handle the photo by storing it into cloud storage, then appending URL into the photoURLs field
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -222,7 +222,7 @@ export const useUserUpdateCatConcern = (userID, catID, concernStatus, location, 
                 concernStatus: concernStatus,
                 lastSeenLocation: location,
                 concernDesc: concernDesc,
-                photoURL: photoURL,
+                photoURLs: photoURLs,
                 lastSeenTime: serverTimestamp(),
             });
         } catch (error) {

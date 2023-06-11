@@ -12,11 +12,11 @@ export default function Catalogue() {
             ItemSeparatorComponent={() => <View style={{height: 20}} />}
             ListHeaderComponent={<Text variant="headlineLarge">Meet the Cats!</Text>}
             
-            data={cats.filter(cat => cat.catID != 0)}
+            data={cats}
             renderItem={({item}) => {
                 return (
                     <TouchableCatAvatar size={200}
-                        photoURL={item.photoURL}
+                        photoURL={item.photoURLs[0]}
                         variant="headlineLarge"
                         name={item.name}
                         // 
