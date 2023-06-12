@@ -28,9 +28,6 @@ jobs:
             - name: Clean Install Dependencies
               run: npm ci
 
-            - name: Prettier
-              run: npx prettier --write
-
             - name: Lint
               run: npm run lint
 
