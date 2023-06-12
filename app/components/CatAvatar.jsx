@@ -7,6 +7,7 @@ const CatAvatar = (props) => {
             <Avatar.Image
                 source={props.photoURL}
                 size={props.size}
+                testID="avatar-image"
             />
             <Text variant={props.variant}>{props.name}</Text>
         </View>
@@ -21,6 +22,7 @@ const TouchableCatAvatar = (props) => {
                 <Avatar.Image
                     source={props.photoURL}
                     size={props.size}
+                    testID="avatar-image"
                 />
                 <Text variant={props.variant}>{props.name}</Text>
             </TouchableOpacity>
