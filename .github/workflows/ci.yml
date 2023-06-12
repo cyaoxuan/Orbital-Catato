@@ -29,7 +29,7 @@ jobs:
               run: npm ci
 
             - name: Prettier
-              run: npm run format
+              run: npx prettier --write
 
             - name: Lint
               run: npm run lint
