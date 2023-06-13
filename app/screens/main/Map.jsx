@@ -4,7 +4,8 @@ import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 export default function Map() {
     return (
         <View style={{ flex: 1 }}>
-            <MapView style={{ height: "100%" }}
+            <MapView testID="map"
+                style={{ height: "100%" }}
                 provider={PROVIDER_GOOGLE}
     
                 showsUserLocation={true}

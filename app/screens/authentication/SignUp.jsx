@@ -65,8 +65,7 @@ export default function SignUpScreen() {
                 />
             </View>
             
-            <PillButton mode="outlined"
-                width="60%"
+            <PillButton
                 label="Sign Up" 
                 onPress={handleSignUp} />
 

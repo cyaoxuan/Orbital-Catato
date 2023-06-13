@@ -43,8 +43,7 @@ export function CatProfileScreen({catID}) {
                 { catID: cat.catID, name: cat.name, photoURLs: cat.photoURLs })}} />
 
             <View style={{ alignItems: "center" }}>
-                <PillButton mode="outlined"
-                    width="60%"
+                <PillButton
                     label="Update Cat"
                     onPress={() => navigation.navigate("update", 
                         { screen: "Update", params: {catID: cat.catID, name: cat.name, photoURL: cat.photoURLs[0]}})}

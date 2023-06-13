@@ -1,7 +1,14 @@
 import { PillButton } from "../app/components/Button";
-import { fireEvent, render, shallow } from "@testing-library/react-native";
+import { cleanup, fireEvent, render } from "@testing-library/react-native";
+
+afterEach(cleanup)
 
 describe("<PillButton />", () => {
+    it("renders successfully", () => {
+        const pillButton = render(<PillButton />);
+        expect(pillButton).toBeDefined();
+    });
+
     it("renders correctly", () => {
         const tree = render(<PillButton />).toJSON();
         expect(tree).toMatchSnapshot();
@@ -25,7 +32,7 @@ describe("<PillButton />", () => {
         expect(button.props.disabled).toBe(true);
     });
 
-    it("displays the label prop", () => {
+    it("displays label prop", () => {
         const { queryByText } = render(<PillButton label="Meow!" />);
         expect(queryByText("Meow!")).not.toBeNull();
     });

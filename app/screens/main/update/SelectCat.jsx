@@ -23,7 +23,9 @@ export default function SelectCat() {
             renderItem={({item}) => {
                 return (
                     <View key={item.catId}>
-                        <CatCardSimple cat={item}
+                        <CatCardSimple
+                            name={item.name}
+                            photoURL={item.photoURLs[0]}
                             cardWidth={cardWidth}
                             onPress={() => {navigation.navigate("Update", 
                                 { catID: item.catID, name: item.name, photoURL: item.photoURLs[0] })

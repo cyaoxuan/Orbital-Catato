@@ -53,8 +53,7 @@ export default function LoginScreen() {
                 />
             </View>
             
-            <PillButton mode="outlined"
-                width="60%"
+            <PillButton
                 label="Log In"
                 onPress={handleLoginWithEmail} />
 
@@ -62,7 +61,6 @@ export default function LoginScreen() {
             {loading && <ActivityIndicator />}
             
             <PillButton mode="text"
-                width="40%"
                 label="Forgot Password?"
                 onPress={() => router.push("./ForgotPassword")} />
         </View>

@@ -24,23 +24,20 @@ export default function Update() {
                 variant="headlineLarge"
                 name={name}
             />
-            <PillButton mode="outlined"
-                width="60%"
+            <PillButton
                 label="Select Cat"
                 onPress={() => {navigation.navigate("SelectCat")}}
                 />
             <Text style={{ marginHorizontal: 100, paddingVertical: 20, textAlign: "center" }}>
                 Please ensure you have selected the right cat before proceeding</Text>
-            <PillButton mode="outlined"
+            <PillButton
                 disabled={!catID}
-                width="60%"
                 label="Continue to Update"
                 onPress={() => {navigation.navigate("UpdateOptions", 
                     { catID: catID, name: name, photoURL: photoURL })}}
             />
 
-            <PillButton mode="outlined"
-                width="60%"
+            <PillButton
                 label="New Cat"
                 onPress={() => navigation.navigate("Form", 
                     { catID: 0, name: "New Cat", photoURL: require("../../../../assets/placeholder.png"), formType: "create" })}

@@ -2,26 +2,26 @@ import { Card } from "react-native-paper";;
 import { IconTextField } from "./InfoText";
 
 const CatCard = (props) => {
-    const cat = props.cat;
-    const cardWidth = props.cardWidth;
+    const cardWidth = props.cardWidth ? props.cardWidth : 300;
 
     return (
         <Card style={{ height: 7 * cardWidth / 8, width: cardWidth, margin: 4 }} 
             onPress={props.onPress}
             mode="elevated">
-            <Card.Cover style={{ height: cardWidth / 2, width: cardWidth, resizeMode: "cover"}} 
-                source={cat.photoURLs[0]} 
+            <Card.Cover style={{ height: cardWidth / 2, width: cardWidth, resizeMode: "cover"}}
+                testID="cover-image"
+                source={props.photoURL || require("../../assets/placeholder.png")} 
             />
-            <Card.Title title={cat.name} titleVariant="headlineMedium"/>
+            <Card.Title title={props.name || "Name"} titleVariant="headlineMedium"/>
             <Card.Content style={{ paddingBottom: 0, paddingHorizontal: 4 }}>
-                <IconTextField 
+                <IconTextField testID="infoText1"
                     iconName={props.iconName1} 
                     iconSize={24} 
                     variant="titleLarge"
                     field={props.field1}
                     info={props.info1}
                 />
-                <IconTextField 
+                <IconTextField testID="infoText2"
                     iconName={props.iconName2} 
                     iconSize={24} 
                     variant="titleLarge" 
@@ -34,16 +34,15 @@ const CatCard = (props) => {
 };
 
 const CatCardSimple = (props) => {
-    const cat = props.cat;
-
     return (
         <Card style={{ flex: 1/2, margin: 4 }} 
             onPress={props.onPress}
             mode="elevated">
-            <Card.Cover style={{ height: 3 * props.cardWidth / 4, width: props.cardWidth, resizeMode: "cover"}} 
-                source={cat.photoURLs[0]} 
+            <Card.Cover style={{ height: 3 * props.cardWidth / 4, width: props.cardWidth, resizeMode: "cover"}}
+                testID="cover-image"
+                source={props.photoURL || require("../../assets/placeholder.png")} 
             />
-            <Card.Title title={cat.name} titleVariant="headlineMedium"/>
+            <Card.Title title={props.name || "Name"} titleVariant="headlineMedium"/>
         </Card>
     );
 };
