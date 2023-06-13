@@ -45,8 +45,7 @@ export default function ForgotPasswordScreen() {
                     onChangeText={setEmail}
                 />
             
-            <PillButton mode="outlined"
-                width="60%"
+            <PillButton
                 label="Request Password Reset" 
                 onPress={handlePasswordReset} />
 

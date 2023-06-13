@@ -86,8 +86,7 @@ export default function Settings() {
             </View>
 
             <View style={{ alignItems: "center" }}>
-                <PillButton mode="outlined"
-                    width="60%"
+                <PillButton
                     label="Log Out"
                     onPress={handleLogout} />
             </View>

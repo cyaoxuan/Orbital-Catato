@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map Screen renders MapView correctly 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    provider="google"
+    region={
+      {
+        "latitude": 1.296769,
+        "latitudeDelta": 0.01,
+        "longitude": 103.776437,
+        "longitudeDelta": 0.01,
+      }
+    }
+    showsUserLocation={true}
+    style={
+      {
+        "height": "100%",
+      }
+    }
+    testID="map"
+  >
+    <View />
+  </View>
+</View>
+`;

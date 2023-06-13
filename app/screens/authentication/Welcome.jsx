@@ -45,18 +45,15 @@ export default function WelcomeScreen() {
                 source={require("../../../assets/catato-logo.png")}
                 size={350} />
           
-            <PillButton mode="outlined"
-                width="60%" 
+            <PillButton
                 label="Log In" 
                 onPress={onLoginPressed} />
             
-            <PillButton mode="outlined"
-                width="60%" 
+            <PillButton
                 label="Sign Up" 
                 onPress={onSignUpPressed} />
             
             <PillButton mode="text"
-                width="40%"
                 label="Continue as Guest"
                 onPress={handleLoginAnonymously} />
 

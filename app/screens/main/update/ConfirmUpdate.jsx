@@ -27,8 +27,7 @@ export default function ConfirmUpdate() {
         <Text style={{ marginHorizontal: 100, paddingVertical: 20, textAlign: "center" }}>
             Thank you for your contribution!</Text>
 
-        <PillButton mode="outlined"
-            width="60%"
+        <PillButton
             label="Make More Updates"
             onPress={() => {navigation.navigate("Update")}} // send param of current cat, send back to prev page unless proceed
         />
