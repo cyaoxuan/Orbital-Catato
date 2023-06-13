@@ -1,39 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardCarousel renders carousel with cat cards correctly 1`] = `
+exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
 <RCTScrollView
   ItemSeparatorComponent={[Function]}
   data={
     [
       {
-        "birthYear": 2019,
         "catID": 1,
-        "concernDesc": "Seen limping, possibly right front leg injured",
         "concernStatus": [
           "Injured",
         ],
-        "gender": "M",
-        "keyFeatures": "Grey tabby and loves to sleep on his back",
         "lastFedTime": 2023-05-19T04:01:00.000Z,
         "lastSeenLocation": "Engineering",
-        "lastSeenTime": 2023-05-19T06:21:00.000Z,
         "name": "Kitty",
         "photoURLs": [
           1,
           1,
         ],
-        "sterilised": true,
       },
       {
-        "birthYear": null,
         "catID": 2,
-        "concernDesc": "New and had wounds on body",
         "concernStatus": [
           "New",
           "Injured",
         ],
-        "gender": null,
-        "keyFeatures": null,
         "lastFedTime": null,
         "lastSeenLocation": "Utown",
         "lastSeenTime": 2023-05-20T02:53:00.000Z,
@@ -41,17 +31,12 @@ exports[`CardCarousel renders carousel with cat cards correctly 1`] = `
         "photoURLs": [
           1,
         ],
-        "sterilised": false,
       },
       {
-        "birthYear": 2020,
         "catID": 3,
-        "concernDesc": "Has not been seen in 5 days",
         "concernStatus": [
           "Missing",
         ],
-        "gender": "F",
-        "keyFeatures": "White with orange patches with a heart-shaped patch on its back, tends to climb up to high places",
         "lastFedTime": 2023-05-15T10:34:00.000Z,
         "lastSeenLocation": "Science",
         "lastSeenTime": 2023-05-15T10:34:00.000Z,
@@ -59,23 +44,6 @@ exports[`CardCarousel renders carousel with cat cards correctly 1`] = `
         "photoURLs": [
           1,
         ],
-        "sterilised": true,
-      },
-      {
-        "birthYear": 2022,
-        "catID": 4,
-        "concernDesc": null,
-        "concernStatus": [],
-        "gender": "M",
-        "keyFeatures": "Slightly chubby tabby and meows alot",
-        "lastFedTime": 2023-05-19T12:47:00.000Z,
-        "lastSeenLocation": "Arts",
-        "lastSeenTime": 2023-05-20T01:16:00.000Z,
-        "name": "Bitty",
-        "photoURLs": [
-          1,
-        ],
-        "sterilised": true,
       },
     ]
   }
@@ -125,7 +93,7 @@ exports[`CardCarousel renders carousel with cat cards correctly 1`] = `
           {
             "backgroundColor": "rgba(247, 243, 249, 1)",
             "borderRadius": 12,
-            "height": 262.5,
+            "height": 300,
             "margin": 4,
             "shadowColor": "#000",
             "shadowOffset": {
@@ -468,7 +436,7 @@ exports[`CardCarousel renders carousel with cat cards correctly 1`] = `
           {
             "backgroundColor": "rgba(247, 243, 249, 1)",
             "borderRadius": 12,
-            "height": 262.5,
+            "height": 300,
             "margin": 4,
             "shadowColor": "#000",
             "shadowOffset": {
@@ -811,7 +779,7 @@ exports[`CardCarousel renders carousel with cat cards correctly 1`] = `
           {
             "backgroundColor": "rgba(247, 243, 249, 1)",
             "borderRadius": 12,
-            "height": 262.5,
+            "height": 300,
             "margin": 4,
             "shadowColor": "#000",
             "shadowOffset": {
@@ -1121,349 +1089,6 @@ exports[`CardCarousel renders carousel with cat cards correctly 1`] = `
                     }
                   >
                     Science
-                  </Text>
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        style={
-          {
-            "width": 24,
-          }
-        }
-      />
-    </View>
-    <View
-      onFocusCapture={[Function]}
-      onLayout={[Function]}
-      style={
-        [
-          {
-            "flexDirection": "row",
-          },
-          null,
-        ]
-      }
-    >
-      <View
-        collapsable={false}
-        style={
-          {
-            "backgroundColor": "rgba(247, 243, 249, 1)",
-            "borderRadius": 12,
-            "height": 262.5,
-            "margin": 4,
-            "shadowColor": "#000",
-            "shadowOffset": {
-              "height": 1,
-              "width": 0,
-            },
-            "shadowOpacity": 0.15,
-            "shadowRadius": 3,
-            "width": 300,
-          }
-        }
-        testID="card-container-outer-layer"
-      >
-        <View
-          collapsable={false}
-          style={
-            {
-              "backgroundColor": "rgba(247, 243, 249, 1)",
-              "borderRadius": 12,
-              "elevation": 1,
-              "flex": 1,
-              "shadowColor": "#000",
-              "shadowOffset": {
-                "height": 1,
-                "width": 0,
-              },
-              "shadowOpacity": 0.3,
-              "shadowRadius": 1,
-            }
-          }
-          testID="card-container"
-        >
-          <View
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
-              }
-            }
-            accessible={true}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              [
-                {
-                  "flexShrink": 1,
-                },
-                undefined,
-              ]
-            }
-            testID="card"
-          >
-            <View
-              style={
-                [
-                  {
-                    "backgroundColor": "#eeeeee",
-                    "height": 195,
-                    "overflow": "hidden",
-                  },
-                  {
-                    "borderRadius": 12,
-                  },
-                  {
-                    "height": 150,
-                    "resizeMode": "cover",
-                    "width": 300,
-                  },
-                ]
-              }
-            >
-              <Image
-                accessibilityIgnoresInvertColors={true}
-                siblings={
-                  [
-                    "Card.Cover",
-                    "Card.Title",
-                    "Card.Content",
-                  ]
-                }
-                source={1}
-                style={
-                  [
-                    {
-                      "flex": 1,
-                      "height": undefined,
-                      "justifyContent": "flex-end",
-                      "padding": 16,
-                      "width": undefined,
-                    },
-                    {
-                      "borderRadius": 12,
-                    },
-                  ]
-                }
-                testID="cover-image"
-              />
-            </View>
-            <View
-              style={
-                [
-                  {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingLeft": 16,
-                  },
-                  {
-                    "minHeight": 50,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              <View
-                style={
-                  [
-                    {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  numberOfLines={1}
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 28,
-                        "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 36,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      [
-                        {
-                          "minHeight": 30,
-                          "paddingRight": 16,
-                        },
-                        {
-                          "marginBottom": 2,
-                        },
-                        undefined,
-                      ],
-                    ]
-                  }
-                >
-                  Bitty
-                </Text>
-              </View>
-              <View />
-            </View>
-            <View
-              style={
-                [
-                  {
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "paddingBottom": 16,
-                  },
-                  {
-                    "paddingBottom": 0,
-                    "paddingHorizontal": 4,
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  [
-                    {
-                      "flexDirection": "row",
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                <Text />
-                <Text
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 22,
-                        "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      {
-                        "flex": 1,
-                        "fontWeight": "bold",
-                      },
-                    ]
-                  }
-                >
-                  Field: 
-                  <Text
-                    style={
-                      [
-                        {
-                          "fontFamily": "System",
-                          "fontSize": 22,
-                          "fontWeight": "400",
-                          "letterSpacing": 0,
-                          "lineHeight": 28,
-                        },
-                        {
-                          "textAlign": "left",
-                        },
-                        {
-                          "color": "rgba(28, 27, 31, 1)",
-                          "writingDirection": "ltr",
-                        },
-                        {
-                          "flex": 1,
-                        },
-                      ]
-                    }
-                  >
-                    Info
-                  </Text>
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexDirection": "row",
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                <Text />
-                <Text
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 22,
-                        "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      {
-                        "flex": 1,
-                        "fontWeight": "bold",
-                      },
-                    ]
-                  }
-                >
-                  Field: 
-                  <Text
-                    style={
-                      [
-                        {
-                          "fontFamily": "System",
-                          "fontSize": 22,
-                          "fontWeight": "400",
-                          "letterSpacing": 0,
-                          "lineHeight": 28,
-                        },
-                        {
-                          "textAlign": "left",
-                        },
-                        {
-                          "color": "rgba(28, 27, 31, 1)",
-                          "writingDirection": "ltr",
-                        },
-                        {
-                          "flex": 1,
-                        },
-                      ]
-                    }
-                  >
-                    Arts
                   </Text>
                 </Text>
               </View>

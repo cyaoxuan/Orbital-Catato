@@ -1,6 +1,30 @@
 import { render, fireEvent } from "@testing-library/react-native";
-import { CardCarousel } from "../app/components/Carousel";
-import { cats } from "../app/data/CatTempData"
+import { getInfo1, CardCarousel } from "../app/components/Carousel";
+
+const cats = [{
+    catID: 1,
+    name: "Kitty",
+    photoURLs: [require("../assets/temp-cat.jpg"), require("../assets/catato-logo.png")],
+    lastSeenLocation: "Engineering", 
+    lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0), 
+    concernStatus: ["Injured"], 
+}, {
+    catID: 2,
+    name: "Skitty",
+    photoURLs: [require("../assets/temp-cat.jpg")],
+    lastSeenLocation: "Utown",
+    lastSeenTime: new Date(2023, 4, 20, 10, 53, 0, 0),
+    lastFedTime: null,
+    concernStatus: ["New", "Injured"],
+}, {
+    catID: 3,
+    name: "Mitty",
+    photoURLs: [require("../assets/temp-cat.jpg")],
+    lastSeenLocation: "Science",
+    lastSeenTime: new Date(2023, 4, 15, 18, 34, 0, 0),
+    lastFedTime: new Date(2023, 4, 15, 18, 34, 0, 0),
+    concernStatus: ["Missing"],
+},];
 
 const mockNavigate = jest.fn();
 
@@ -10,7 +34,37 @@ jest.mock("expo-router", () => ({
   }),
 }));
 
-describe("CardCarousel", () => {
+describe("getInfo1", () => {
+    test("concern, cat concern array with one element", () => {
+        expect(getInfo1("concern", {concernStatus: ["Injured"]})).toBe("Injured");
+    });
+
+    test("concern, cat concern array with more than one element", () => {
+        expect(getInfo1("concern", {concernStatus: ["Injured", "Missing", "New"]})).toBe("Injured, Missing, New");
+    });
+
+    test("concern, cat concern array is empty", () => {
+        expect(getInfo1("concern", {concernStatus: []})).toBe("");
+    });
+
+    test("concern, cat is null", () => {
+        expect(getInfo1("concern", null)).toBe("Unknown");
+    });
+
+    test("carouselType is null, cat is present", () => {
+        expect(getInfo1(null, {concernStatus: [], lastFedTime: new Date(2023, 4, 15, 18, 34, 0, 0)})).toBe("Unknown");
+    });
+
+    test("unfed, valid lastFedTime", () => {
+        expect(getInfo1("unfed", {lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0)})).toBe("19/05, 12:01");
+    });
+
+    test("unfed, lastFedTime is null", () => {
+        expect(getInfo1("unfed", {lastFedTime: null})).toBe("Unknown");
+    });
+})
+
+describe("<CardCarousel />", () => {
   it("renders carousel successfully", () => {
     const { getByTestId } = render(
       <CardCarousel />

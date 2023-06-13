@@ -4,10 +4,16 @@ import { CatCard } from "./CatCard";
 import { dateTimeOptions } from "../data/DateTimeOptions";
 
 function getInfo1(carouselType, cat) {
-    return carouselType === "concern" 
-        ? cat.concernStatus.join(", ") 
-        // : item.lastFedTime.toDate().toLocaleString("en-GB", dateTimeOptions) for TimeStamp
-        : cat.lastFedTime.toLocaleString("en-GB", dateTimeOptions);
+    if (!cat || !carouselType) {
+        return "Unknown";
+    }
+
+    if (carouselType === "concern" && cat.concernStatus) {
+        return cat.concernStatus.join(", ");
+    } else if (carouselType === "unfed" && cat.lastFedTime) {
+        return cat.lastFedTime.toLocaleString("en-GB", dateTimeOptions);
+    }
+    return "Unknown";
 }
 
 // Card Carousel used in Dashboard
@@ -46,4 +52,4 @@ const CardCarousel = ({cats, cardWidth, carouselType, ...card}) => {
     );
 };
 
-export { CardCarousel };
+export { getInfo1, CardCarousel };
