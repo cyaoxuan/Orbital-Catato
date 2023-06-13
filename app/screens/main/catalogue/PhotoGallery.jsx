@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FlatList, Image, View } from "react-native";
 import { FAB, Portal, Provider, Text } from "react-native-paper";
 import { Stack } from "expo-router";
-import { getItemWidth }  from "../../../data/CalculateDimensions";
+import { getItemWidth }  from "../../../utils/CalculateDimensions";
 import { useRoute } from "@react-navigation/native";
 
 export default function PhotoGallery() {

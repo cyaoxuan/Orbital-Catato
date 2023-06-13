@@ -3,7 +3,7 @@ import { Divider, Text } from "react-native-paper";
 import { IconTextField, KeyTextField } from "../../../components/InfoText";
 import { CatAvatar } from "../../../components/CatAvatar";
 import { dateTimeOptions } from "../../../data/DateTimeOptions";
-import { getItemWidth }  from "../../../data/CalculateDimensions";
+import { getItemWidth }  from "../../../utils/CalculateDimensions";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 // Avatar Container
