@@ -186,6 +186,20 @@ export const useUserUpdateCatLocation = () => {
     const [catID, setCatID] = useState("");
     const [userLocation, setUserLocation] = useState(null);
 
+    useEffect(() => {
+        if (userLocation !== null) {
+            userUpdateCat(userID, catID, "Update Location", {
+                lastSeenLocation: userLocation,
+                lastSeenTime: serverTimestamp()
+            }).catch(error => {
+                console.error("Error updating location:", error);
+                setError([error]);
+            }).finally(() => {
+                setLoading([false]);
+            });
+        }
+    }, [catID, userID, userLocation]);
+
     const userUpdateCatLocation = async (userID, catID, location) => {
         try {
             setLoading([true]);
@@ -195,27 +209,26 @@ export const useUserUpdateCatLocation = () => {
             setUserLocation(null);
 
             // TODO: Fix such that userLocation is actually set before the update is called
-            // if (location == "Use Current Location") {
-            //     const { status } = await Location.requestForegroundPermissionsAsync();
-            //     if (status !== "granted") {
-            //         throw new Error("Locations permissions denied");
-            //     }
+            if (location == "Use Current Location") {
+                const { status } = await Location.requestForegroundPermissionsAsync();
+                if (status !== "granted") {
+                    throw new Error("Locations permissions denied");
+                }
 
-            //     const loc = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Balanced});
-            //     const geohash = Geohash.encode(loc.coords.latitude, loc.coords.longitude);
-            //     setUserLocation(geohash);
-            // } else {
-            //     setUserLocation(location);
-            // }
+                const loc = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Balanced});
+                const geohash = Geohash.encode(loc.coords.latitude, loc.coords.longitude);
+                setUserLocation(geohash);
+            } else {
+                setUserLocation(location);
+            }
 
-            await userUpdateCat(userID, catID, "Update Location", {
-                lastSeenLocation: location, // TODO: Change to userLocation
-                lastSeenTime: serverTimestamp()
-            });
+            // await userUpdateCat(userID, catID, "Update Location", {
+            //     lastSeenLocation: userLocation,
+            //     lastSeenTime: serverTimestamp()
+            // });
         } catch (error) {
             console.error("Error getting location:", error);
             setError([error]);
-        } finally {
             setLoading([false]);
         }
     };

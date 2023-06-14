@@ -42,15 +42,15 @@ const UpdateLocation = (props) => {
     ];
 
     useEffect(() => {
-        if (processed && error[0] === null) {
+        if (!loading[0] && processed && error[0] === null) {
             navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
         }
-    }, [processed, error, navigation, name, photoURL, formType]);
+    }, [loading, processed, error, navigation, name, photoURL, formType]);
 
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to cat and userid
-        await userUpdateCatLocation("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", location); 
+        await userUpdateCatLocation("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", location);
         setProcessed(true);
     };
 
