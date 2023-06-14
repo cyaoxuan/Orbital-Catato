@@ -22,7 +22,7 @@ exports[`<PillButton /> renders correctly 1`] = `
         },
         "shadowOpacity": 0,
         "shadowRadius": 0,
-        "width": undefined,
+        "width": "60%",
       }
     }
     testID="button-container-outer-layer"
@@ -32,10 +32,10 @@ exports[`<PillButton /> renders correctly 1`] = `
       style={
         {
           "backgroundColor": "transparent",
-          "borderColor": "transparent",
+          "borderColor": "rgba(121, 116, 126, 1)",
           "borderRadius": 20,
           "borderStyle": "solid",
-          "borderWidth": 0,
+          "borderWidth": 1,
           "flex": undefined,
           "minWidth": 64,
           "shadowColor": "#000",
@@ -131,7 +131,8 @@ exports[`<PillButton /> renders correctly 1`] = `
                   },
                   false,
                   {
-                    "marginHorizontal": 12,
+                    "marginHorizontal": 24,
+                    "marginVertical": 10,
                   },
                   undefined,
                   false,
@@ -148,7 +149,9 @@ exports[`<PillButton /> renders correctly 1`] = `
               ]
             }
             testID="button-text"
-          />
+          >
+            Button
+          </Text>
         </View>
       </View>
     </View>

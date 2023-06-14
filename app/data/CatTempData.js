@@ -2,7 +2,7 @@
 const cats = [{
     catID: 1,
     name: "Kitty",
-    photoURLs: [require("../../assets/temp-cat.jpg"), require("../../assets/catato-logo.png")], // Will eventually be an array of 
+    photoURLs: [require("../../assets/temp-cat.jpg"), require("../../assets/catato-logo.png")],
     gender: "M",
     birthYear: 2019,
     sterilised: true,
