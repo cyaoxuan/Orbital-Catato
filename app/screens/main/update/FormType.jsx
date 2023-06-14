@@ -14,7 +14,8 @@ const CreateProfile = (props) => {
     return (
         <View style={styles.formContainer}>
             <Text>Create Profile</Text>
-            <PillButton
+            <PillButton mode="outlined"
+                width="60%"
                 label="Create Profile"
                 onPress={() => {navigation.navigate("ConfirmUpdate", 
                 { name: name, photoURL: photoURL, formType: formType })}}
@@ -61,13 +62,13 @@ const UpdateLocation = (props) => {
                     setSelected={(val) => setLocation(val)}
                     data={data}
                     save="value"
-                    defaultOption={{ key: "1", value: "Use Current Location" }}
                 />
             </View>
-
-            <PillButton
+            
+            <PillButton 
                 label="Update"
                 onPress={handleUpdate}
+                disabled={location===""}
             />
             {(error[0]) && <Text>Error: {error[0].message}</Text>}
             {(loading[0]) && <ActivityIndicator />}
@@ -82,7 +83,8 @@ const UpdateConcern = (props) => {
     return (
         <View style={styles.formContainer}>
             <Text>Update Concern for {catID}</Text>
-            <PillButton
+            <PillButton mode="outlined"
+                width="60%"
                 label="Update"
                 onPress={() => {navigation.navigate("ConfirmUpdate", 
                 { name: name, photoURL: photoURL, formType: formType })}}
@@ -98,7 +100,8 @@ const UpdateFed = (props) => {
    return (
         <View style={styles.formContainer}>
             <Text>Update Fed for {catID}</Text>
-            <PillButton
+            <PillButton mode="outlined"
+                width="60%"
                 label="Update"
                 onPress={() => {navigation.navigate("ConfirmUpdate", 
                 { name: name, photoURL: photoURL, formType: formType })}}
@@ -114,7 +117,8 @@ const UpdateFoster = (props) => {
     return (
         <View style={styles.formContainer}>
             <Text>Temporarily Foster {catID} </Text>
-            <PillButton
+            <PillButton mode="outlined"
+                width="60%"
                 label="Update"
                 onPress={() => {navigation.navigate("ConfirmUpdate", 
                 { name: name, photoURL: photoURL, formType: formType })}}
@@ -130,7 +134,8 @@ const UpdateProfile = (props) => {
     return (
         <View style={styles.formContainer}>
             <Text>Update Profile for {catID}</Text>
-            <PillButton
+            <PillButton mode="outlined"
+                width="60%"
                 label="Update Profile"
                 onPress={() => {navigation.navigate("ConfirmUpdate", 
                 { name: name, photoURL: photoURL, formType: formType })}}
@@ -146,7 +151,8 @@ const DeleteProfile = (props) => {
     return (
         <View style={styles.formContainer}>
             <Text>Delete Profile for {catID}</Text>
-            <PillButton
+            <PillButton mode="outlined"
+                width="60%"
                 label="Delete Profile"
                 onPress={() => {navigation.navigate("ConfirmUpdate", 
                 { name: name, photoURL: photoURL, formType: formType })}}
