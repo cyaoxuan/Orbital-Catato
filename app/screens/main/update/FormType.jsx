@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
+import { ActivityIndicator, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { SelectList } from "react-native-dropdown-select-list";
 import { PillButton } from "../../../components/Button";
+import { useUserUpdateCatLocation } from "../../../utils/db/cat";
 
 
 const CreateProfile = (props) => {
@@ -25,35 +26,53 @@ const CreateProfile = (props) => {
 
 const UpdateLocation = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURL, formType } = props;
-    const [selected, setSelected] = useState("");
+    const { catID, name, photoURL, formType, userID } = props;
+    const { userUpdateCatLocation, loading, error } = useUserUpdateCatLocation();
+    const [location, setLocation] = useState("");
+    const [processed, setProcessed] = useState(false);
 
+    // TODO: put location data under data folder with geohashes, then just get from there
     const data = [
-        {key: "1", value: "Use Current Location"},
-        {key: "2", value: "Utown"},
-        {key: "3", value: "Engineering"},
-        {key: "4", value: "Science"},
-        {key: "5", value: "BizCom"},
-        {key: "6", value: "Arts"},
-    ]
+        { key: "1", value: "Use Current Location" },
+        { key: "2", value: "Utown" },
+        { key: "3", value: "Engineering" },
+        { key: "4", value: "Science" },
+        { key: "5", value: "BizCom" },
+        { key: "6", value: "Arts" },
+    ];
+
+    useEffect(() => {
+        if (processed && error[0] === null) {
+            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+        }
+    }, [processed, error, navigation, name, photoURL, formType]);
+
+    const handleUpdate = async () => {
+        setProcessed(false);
+        // TODO: change to cat and userid
+        await userUpdateCatLocation("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", location); 
+        setProcessed(true);
+    };
 
     return (
         <View style={styles.formContainer}>
             <Text>Update Location for {catID}</Text>
             <View style={styles.dropdownContainer}>
                 <SelectList
-                    setSelected={(val) => setSelected(val)}
+                    setSelected={(val) => setLocation(val)}
                     data={data}
                     save="value"
                     defaultOption={{ key: "1", value: "Use Current Location" }}
                 />
             </View>
+            
             <PillButton mode="outlined"
                 width="60%"
                 label="Update"
-                onPress={() => {navigation.navigate("ConfirmUpdate", 
-                { name: name, photoURL: photoURL, formType: formType })}}
-                />
+                onPress={handleUpdate}
+            />
+            {(error[0]) && <Text>Error: {error[0].message}</Text>}
+            {(loading[0]) && <ActivityIndicator />}
         </View>
     );
 }
