@@ -4,12 +4,51 @@ import { FAB, Portal, Provider, Text } from "react-native-paper";
 import { Stack } from "expo-router";
 import { getItemWidth }  from "../../../utils/CalculateDimensions";
 import { useRoute } from "@react-navigation/native";
+import * as ImagePicker from 'expo-image-picker';
+import { useUserAddCatPicture } from "../../../utils/db/cat";
+import { getAuth } from "firebase/auth";
 
 export default function PhotoGallery() {
-    const [open, setOpen] = useState(false);
-
+    const { user } = getAuth();
     const route = useRoute();
+    const { userAddCatPicture, loading, error } = useUserAddCatPicture();
+
+    const [open, setOpen] = useState(false);
     const imageSize = getItemWidth(2, 8);
+
+    const getPictureFromGallery = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 1,
+        });
+
+        return result.assets[0].uri;
+    }
+
+    const handleAddImageFromGallery = async () => {
+        const photoURI = await getPictureFromGallery();
+        // TODO: change to cat and userid
+        await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", photoURI);
+    };
+
+    const getPictureFromCamera = async () => {
+        let result = await ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 1,
+        });
+
+        return result.assets[0].uri;
+    };
+
+    const handleAddImageFromCamera = async () => {
+        const photoURI = await getPictureFromCamera();
+        // TODO: change to cat and userid
+        await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", photoURI);
+    };
 
     return (
         <Provider>
@@ -35,8 +74,8 @@ export default function PhotoGallery() {
                         open={open}
                         icon={"plus"}
                         actions={[
-                            {icon: "camera", label: "Camera", onPress: () => {}},
-                            {icon: "image", label: "Gallery", onPress: () => {}}
+                            {icon: "camera", label: "Camera", onPress: handleAddImageFromCamera},
+                            {icon: "image", label: "Gallery", onPress: handleAddImageFromGallery}
                         ]}
                         onStateChange={() => setOpen((prev) => !prev)}
                     />

@@ -2,6 +2,7 @@ import { db } from "../../config/firebase";
 import { Timestamp, addDoc, collection, doc, getDoc, getDocs, query, serverTimestamp, where, writeBatch } from "firebase/firestore";
 import { sub } from "date-fns";
 import { useEffect, useState } from "react";
+import { uploadImageToStorage } from "./photo"
 import * as Location from 'expo-location';
 import Geohash from "latlon-geohash";
 
@@ -221,11 +222,6 @@ export const useUserUpdateCatLocation = () => {
             } else {
                 setUserLocation(location);
             }
-
-            // await userUpdateCat(userID, catID, "Update Location", {
-            //     lastSeenLocation: userLocation,
-            //     lastSeenTime: serverTimestamp()
-            // });
         } catch (error) {
             console.error("Error getting location:", error);
             setError([error]);
@@ -335,6 +331,37 @@ export const useUserUpdateCatProfile = () => {
     
     return { userUpdateCatProfile, loading, error };
 };
+
+export const useUserAddCatPicture = () => {
+    const [loading, setLoading] = useState([false]);
+    const [error, setError] = useState([null]);
+
+    const userAddCatPicture = async (userID, catID, photoURI) => {
+        try {
+            setLoading([true]);
+            setError([null]);
+
+            // Upload to storage and get download URL
+            const downloadURL = await uploadImageToStorage(photoURI);
+
+            // Get old data from Firestore to append the download URL
+            const cat = (await getDoc(doc(db, "Cat", catID))).data();
+            const newPhotoURLs = [...cat.photoURLs, downloadURL];
+
+            // Update cat document
+            await userUpdateCat(userID, catID, "Add Picture", {
+                photoURLs: newPhotoURLs
+            });
+        } catch (error) {
+            console.error("Error adding cat picture:", error);
+            setError([error]);
+        } finally {
+            setLoading([false]);
+        }
+    };
+
+    return { userAddCatPicture, loading, error };
+}
 
 /* ----- DELETE OPERATIONS ----- */
 export const useUserDeleteCat = () => {
