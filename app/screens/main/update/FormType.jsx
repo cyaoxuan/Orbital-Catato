@@ -64,6 +64,7 @@ const UpdateLocation = (props) => {
                     defaultOption={{ key: "1", value: "Use Current Location" }}
                 />
             </View>
+
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
