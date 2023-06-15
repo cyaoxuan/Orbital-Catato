@@ -31,4 +31,12 @@ jobs:
               run: npm ci
 
             - name: Build APK on EAS
-              run: eas build --platform android --profile preview --non-interactive
+              id: build
+              run: |
+                  eas build --platform android --profile preview --non-interactive
+                  echo "::set-output name=apk_url::$(echo '${{ steps.build.outputs.stdout }}' | grep -oP '(?<=Android app:\n).+')"
+
+            - name: Output APK URL
+              id: get_URL
+              run: |
+                  echo "APK Download URL: ${{ steps.build.outputs.apk_url }}"
