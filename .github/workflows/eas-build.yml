@@ -34,7 +34,7 @@ jobs:
               id: build
               run: |
                   eas build --platform android --profile preview --non-interactive
-                  echo "::set-output name=apk_url::$(echo '${{ steps.build.outputs.stdout }}' | grep -oP '(?<=Android app:\n).+')"
+                  echo "apk_url=$(eas build --platform android --profile preview --non-interactive | grep -oP '(?<=Android app:\n).+')" >> $GITHUB_OUTPUT
 
             - name: Output APK URL
               id: get_URL
