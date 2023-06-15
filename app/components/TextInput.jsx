@@ -4,51 +4,61 @@ import { useState } from "react";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 const AuthInput = (props) => {
+    const [value, setValue] = useState("");
+
     return (
         <View style={styles.inputContainer}>
-            <Ionicons name={props.iconName} size={24} style={ styles.icon } />
-            <TextInput style={styles.input}
-                    mode="outlined"
-                    disabled={props.disabled}
-                    label={props.label}
-                    placeholder={props.placeholder}
+            <Ionicons testID="icon" 
+                name={props.iconName || "help"} 
+                size={24} 
+                style={styles.icon} />
+            <TextInput testID="input"
+                style={styles.input}
+                mode="outlined"
+                disabled={props.disabled}
+                label={props.label || "Label"}
+                placeholder={props.placeholder}
 
-                    autoCapitalize="none"
-                    textContentType={props.textContentType}
+                autoCapitalize="none"
+                textContentType={props.textContentType}
 
-                    value={props.value}
-                    onChangeText={props.onChangeText}
-                  />
+                value={props.value || value}
+                onChangeText={props.onChangeText || setValue}
+                />
         </View>
     );
 };
 
 const PasswordInput = (props) => {
+    const [value, setValue] = useState("");
     const [secureText, setSecureText] = useState(true);
+    const changeHide = () => setSecureText((prev) => !prev);
 
     return (
         <View style={styles.inputContainer}>
-            <Ionicons name={props.iconName} size={24} style={styles.icon} />
-            <TextInput style={styles.input}
+            <Ionicons testID="icon"
+                name={props.iconName || "help"} 
+                size={24} 
+                style={styles.icon} />
+            <TextInput testID="input" 
+                style={styles.input}
                 mode="outlined"
                 disabled={props.disabled}
-                label={props.label}
+                label={props.label || "Label"}
                 placeholder={props.placeholder}
 
                 autoCorrect={false}
                 autoCapitalize="none"
 
                 textContentType={props.textContentType}
-                value={props.value}
-                onChangeText={props.onChangeText}
+                value={props.value || value}
+                onChangeText={props.onChangeText || setValue}
 
                 secureTextEntry={secureText}
                 right={
-                    <TextInput.Icon
+                    <TextInput.Icon testID="hide-icon"
                         icon={secureText ? "eye" : "eye-off"}
-                        onPress={() =>
-                            setSecureText((prev) => !prev)
-                        }
+                        onPress={changeHide}
                         forceTextInputFocus={false}
                     />
                 }
@@ -59,20 +69,22 @@ const PasswordInput = (props) => {
 
 // Required Input, need to pass in a 'value' prop for the error message to work correctly
 const FormInput = (props) => {
+    const [value, setValue] = useState("");
+
     return (
         <View style={{ width: "90%", height:100}}>
             <TextInput style={styles.formInput}
                 disabled={props.disabled}
                 multiline={props.multiline}
-                label={props.label}
+                label={props.label || "Label"}
                 placeholder={props.placeholder}
             
-                value={props.value}
-                onChangeText={props.onChangeText}
+                value={props.value || value}
+                onChangeText={props.onChangeText || setValue}
 
-                error={!props.value}
+                error={!props.value || !value}
             />
-            <HelperText type="error" padding="none" visible={!props.value}>
+            <HelperText type="error" padding="none" visible={!props.value || !value}>
                 Error: {props.errorText}
             </HelperText>
         </View>

@@ -1,0 +1,518 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CatCard /> renders correctly 1`] = `
+<View
+  collapsable={false}
+  style={
+    {
+      "backgroundColor": "rgba(247, 243, 249, 1)",
+      "borderRadius": 12,
+      "height": 300,
+      "margin": 4,
+      "shadowColor": "#000",
+      "shadowOffset": {
+        "height": 1,
+        "width": 0,
+      },
+      "shadowOpacity": 0.15,
+      "shadowRadius": 3,
+      "width": 300,
+    }
+  }
+  testID="card-container-outer-layer"
+>
+  <View
+    collapsable={false}
+    style={
+      {
+        "backgroundColor": "rgba(247, 243, 249, 1)",
+        "borderRadius": 12,
+        "elevation": 1,
+        "flex": 1,
+        "shadowColor": "#000",
+        "shadowOffset": {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 1,
+      }
+    }
+    testID="card-container"
+  >
+    <View
+      style={
+        [
+          {
+            "flexShrink": 1,
+          },
+          undefined,
+        ]
+      }
+      testID="card"
+    >
+      <View
+        style={
+          [
+            {
+              "backgroundColor": "#eeeeee",
+              "height": 195,
+              "overflow": "hidden",
+            },
+            {
+              "borderRadius": 12,
+            },
+            {
+              "height": 150,
+              "resizeMode": "cover",
+              "width": 300,
+            },
+          ]
+        }
+      >
+        <Image
+          accessibilityIgnoresInvertColors={true}
+          siblings={
+            [
+              "Card.Cover",
+              "Card.Title",
+              "Card.Content",
+            ]
+          }
+          source={1}
+          style={
+            [
+              {
+                "flex": 1,
+                "height": undefined,
+                "justifyContent": "flex-end",
+                "padding": 16,
+                "width": undefined,
+              },
+              {
+                "borderRadius": 12,
+              },
+            ]
+          }
+          testID="cover-image"
+        />
+      </View>
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingLeft": 16,
+            },
+            {
+              "minHeight": 50,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+            ]
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              [
+                {
+                  "fontFamily": "System",
+                  "fontSize": 28,
+                  "fontWeight": "400",
+                  "letterSpacing": 0,
+                  "lineHeight": 36,
+                },
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "rgba(28, 27, 31, 1)",
+                  "writingDirection": "ltr",
+                },
+                [
+                  {
+                    "minHeight": 30,
+                    "paddingRight": 16,
+                  },
+                  {
+                    "marginBottom": 2,
+                  },
+                  undefined,
+                ],
+              ]
+            }
+          >
+            Name
+          </Text>
+        </View>
+        <View />
+      </View>
+      <View
+        style={
+          [
+            {
+              "paddingHorizontal": 16,
+            },
+            {
+              "paddingBottom": 16,
+            },
+            {
+              "paddingBottom": 0,
+              "paddingHorizontal": 4,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              undefined,
+            ]
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            selectable={false}
+            style={
+              [
+                {
+                  "color": undefined,
+                  "fontSize": 24,
+                },
+                {
+                  "marginHorizontal": 4,
+                },
+                {
+                  "fontFamily": "ionicons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                {},
+              ]
+            }
+            testID="icon"
+          >
+            
+          </Text>
+          <Text
+            style={
+              [
+                {
+                  "fontFamily": "System",
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "letterSpacing": 0,
+                  "lineHeight": 28,
+                },
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "rgba(28, 27, 31, 1)",
+                  "writingDirection": "ltr",
+                },
+                {
+                  "flex": 1,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Field: 
+            <Text
+              style={
+                [
+                  {
+                    "fontFamily": "System",
+                    "fontSize": 22,
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 28,
+                  },
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "writingDirection": "ltr",
+                  },
+                  {
+                    "flex": 1,
+                  },
+                ]
+              }
+            >
+              Info
+            </Text>
+          </Text>
+        </View>
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              undefined,
+            ]
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            selectable={false}
+            style={
+              [
+                {
+                  "color": undefined,
+                  "fontSize": 24,
+                },
+                {
+                  "marginHorizontal": 4,
+                },
+                {
+                  "fontFamily": "ionicons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                {},
+              ]
+            }
+            testID="icon"
+          >
+            
+          </Text>
+          <Text
+            style={
+              [
+                {
+                  "fontFamily": "System",
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "letterSpacing": 0,
+                  "lineHeight": 28,
+                },
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "rgba(28, 27, 31, 1)",
+                  "writingDirection": "ltr",
+                },
+                {
+                  "flex": 1,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Field: 
+            <Text
+              style={
+                [
+                  {
+                    "fontFamily": "System",
+                    "fontSize": 22,
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 28,
+                  },
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "writingDirection": "ltr",
+                  },
+                  {
+                    "flex": 1,
+                  },
+                ]
+              }
+            >
+              Info
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<CatCardSimple /> renders correctly 1`] = `
+<View
+  collapsable={false}
+  style={
+    {
+      "backgroundColor": "rgba(247, 243, 249, 1)",
+      "borderRadius": 12,
+      "flex": 0.5,
+      "margin": 4,
+      "shadowColor": "#000",
+      "shadowOffset": {
+        "height": 1,
+        "width": 0,
+      },
+      "shadowOpacity": 0.15,
+      "shadowRadius": 3,
+    }
+  }
+  testID="card-container-outer-layer"
+>
+  <View
+    collapsable={false}
+    style={
+      {
+        "backgroundColor": "rgba(247, 243, 249, 1)",
+        "borderRadius": 12,
+        "elevation": 1,
+        "flex": undefined,
+        "shadowColor": "#000",
+        "shadowOffset": {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 1,
+      }
+    }
+    testID="card-container"
+  >
+    <View
+      style={
+        [
+          {
+            "flexShrink": 1,
+          },
+          undefined,
+        ]
+      }
+      testID="card"
+    >
+      <View
+        style={
+          [
+            {
+              "backgroundColor": "#eeeeee",
+              "height": 195,
+              "overflow": "hidden",
+            },
+            {
+              "borderRadius": 12,
+            },
+            {
+              "height": NaN,
+              "resizeMode": "cover",
+              "width": undefined,
+            },
+          ]
+        }
+      >
+        <Image
+          accessibilityIgnoresInvertColors={true}
+          siblings={
+            [
+              "Card.Cover",
+              "Card.Title",
+            ]
+          }
+          source={1}
+          style={
+            [
+              {
+                "flex": 1,
+                "height": undefined,
+                "justifyContent": "flex-end",
+                "padding": 16,
+                "width": undefined,
+              },
+              {
+                "borderRadius": 12,
+              },
+            ]
+          }
+          testID="cover-image"
+        />
+      </View>
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingLeft": 16,
+            },
+            {
+              "minHeight": 50,
+            },
+            undefined,
+          ]
+        }
+      >
+        <View
+          style={
+            [
+              {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              },
+            ]
+          }
+        >
+          <Text
+            numberOfLines={1}
+            style={
+              [
+                {
+                  "fontFamily": "System",
+                  "fontSize": 28,
+                  "fontWeight": "400",
+                  "letterSpacing": 0,
+                  "lineHeight": 36,
+                },
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "rgba(28, 27, 31, 1)",
+                  "writingDirection": "ltr",
+                },
+                [
+                  {
+                    "minHeight": 30,
+                    "paddingRight": 16,
+                  },
+                  {
+                    "marginBottom": 2,
+                  },
+                  undefined,
+                ],
+              ]
+            }
+          >
+            Name
+          </Text>
+        </View>
+        <View />
+      </View>
+    </View>
+  </View>
+</View>
+`;

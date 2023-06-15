@@ -4,11 +4,11 @@ import { Avatar, Text } from "react-native-paper";
 const CatAvatar = (props) => {
     return (
         <View style={styles.avatarContainer}>
-            <Avatar.Image
+            <Avatar.Image testID="avatar-image"
                 source={props.photoURL}
-                size={props.size}
+                size={props.size || 100}
             />
-            <Text variant={props.variant}>{props.name}</Text>
+            <Text variant={props.variant}>{props.name || "Name"}</Text>
         </View>
     );
 };
@@ -18,11 +18,11 @@ const TouchableCatAvatar = (props) => {
             <TouchableOpacity style={styles.avatarContainer}
                 activeOpacity={0.7}
                 onPress={props.onPress}>
-                <Avatar.Image
+                <Avatar.Image testID="avatar-image"
                     source={props.photoURL}
-                    size={props.size}
+                    size={props.size || 100}
                 />
-                <Text variant={props.variant}>{props.name}</Text>
+                <Text variant={props.variant}>{props.name || "Name"}</Text>
             </TouchableOpacity>
     );
 };

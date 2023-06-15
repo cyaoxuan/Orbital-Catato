@@ -4,41 +4,43 @@ import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import { PillButton } from "../../../components/Button";
-import { cats } from "../../../data/CatTempData";
 
 export default function Update() {
     const navigation = useNavigation();
     
     const route = useRoute();
-    const cat = route.params?.catID
-        ? cats.find((cat) => cat.catID === route.params.catID)
-        : null;
+    // Check if there are route params from SelectCat, if not ask user to Select Cat
+    const catID = route.params?.catID ? route.params.catID : null;
+    const name = route.params?.name ? route.params.name : "Select Cat";
+    const photoURL = route.params?.photoURL
+        ? route.params.photoURL
+        : require("../../../../assets/placeholder.png");
     
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
             <CatAvatar 
-                photoURL={ cat
-                    ? cat.photoURL
-                    : require("../../../../assets/placeholder.png")}
+                photoURL={photoURL}
                 size={200}
                 variant="headlineLarge"
-                name={ cat
-                    ? cat.name
-                    : "Select Cat" }
+                name={name}
             />
-            <PillButton mode="outlined"
-                width="60%"
+            <PillButton
                 label="Select Cat"
                 onPress={() => {navigation.navigate("SelectCat")}}
                 />
             <Text style={{ marginHorizontal: 100, paddingVertical: 20, textAlign: "center" }}>
                 Please ensure you have selected the right cat before proceeding</Text>
-            <PillButton mode="outlined"
-                disabled={ !cat }
-                width="60%"
+            <PillButton
+                disabled={!catID}
                 label="Continue to Update"
                 onPress={() => {navigation.navigate("UpdateOptions", 
-                    { catID: cat.catID, name: cat.name, photoURL: cat.photoURL })}} // send param of current cat, send back to prev page unless proceed
+                    { catID: catID, name: name, photoURL: photoURL })}}
+            />
+
+            <PillButton
+                label="New Cat"
+                onPress={() => navigation.navigate("Form", 
+                    { catID: 0, name: "New Cat", photoURL: require("../../../../assets/placeholder.png"), formType: "create" })}
             />
         </View>
     );
