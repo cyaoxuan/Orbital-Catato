@@ -1,2 +1,2 @@
 import "expo-router/entry";
-import { app, db } from "./app/config/firebase";
+import { app, db, storage } from "./app/config/firebase";
