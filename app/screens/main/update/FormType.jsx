@@ -4,12 +4,13 @@ import { ActivityIndicator, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { SelectList } from "react-native-dropdown-select-list";
 import { PillButton } from "../../../components/Button";
-import { useUserUpdateCatLocation } from "../../../utils/db/cat";
-
+import { useUserUpdateCatConcern, useUserUpdateCatFed, useUserUpdateCatFoster, useUserUpdateCatLocation } from "../../../utils/db/cat";
+import { getImageFromCamera, getImageFromGallery } from "../../../utils/db/photo";
 
 const CreateProfile = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURL, formType } = props;
+    const [processed, setProcessed] = useState(false);
 
     return (
         <View style={styles.formContainer}>
@@ -27,12 +28,12 @@ const CreateProfile = (props) => {
 const UpdateLocation = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURL, formType, userID } = props;
+    const [processed, setProcessed] = useState(false);
     const { userUpdateCatLocation, loading, error } = useUserUpdateCatLocation();
     const [location, setLocation] = useState("");
-    const [processed, setProcessed] = useState(false);
 
     // TODO: put location data under data folder with geohashes, then just get from there
-    const data = [
+    const locations = [
         { key: "1", value: "Use Current Location" },
         { key: "2", value: "Utown" },
         { key: "3", value: "Engineering" },
@@ -60,7 +61,7 @@ const UpdateLocation = (props) => {
             <View style={styles.dropdownContainer}>
                 <SelectList
                     setSelected={(val) => setLocation(val)}
-                    data={data}
+                    data={locations}
                     save="value"
                 />
             </View>
@@ -79,16 +80,80 @@ const UpdateLocation = (props) => {
 const UpdateConcern = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURL, formType } = props;
+    const [processed, setProcessed] = useState(false);
+    const { userUpdateCatConcern, loading, error } = useUserUpdateCatConcern();
+    const [photoURI, setPhotoURI] = useState("");
+    const [concernStatus, setConcernStatus] = useState("");
+    const [location, setLocation] = useState("");
+    const [concernDesc, setConcernDesc] = useState("");
+    
+    const concerns = [
+        { key: "1", value: "Healthy" }
+    ];
+
+    // TODO: put location data under data folder with geohashes, then just get from there
+    const locations = [
+        { key: "1", value: "Use Current Location" },
+        { key: "2", value: "Utown" },
+        { key: "3", value: "Engineering" },
+        { key: "4", value: "Science" },
+        { key: "5", value: "BizCom" },
+        { key: "6", value: "Arts" },
+    ];
+
+    useEffect(() => {
+        if (!loading[0] && processed && error[0] === null) {
+            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+        }
+    }, [loading, processed, error, navigation, name, photoURL, formType]);
+
+    const handleImageFromGallery = async () => {
+        const photoURI = await getImageFromGallery();
+        setPhotoURI(photoURI);
+    };
+
+    const handleImageFromCamera = async () => {
+        const photoURI = await getImageFromCamera();
+        setPhotoURI(photoURI);
+    };
+
+    const handleUpdate = async () => {
+        setProcessed(false);
+        // TODO: change to cat and userid
+        await userUpdateCatConcern("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", concernStatus, location, concernDesc, photoURI);
+        setProcessed(true);
+    };
 
     return (
         <View style={styles.formContainer}>
             <Text>Update Concern for {catID}</Text>
+
+            <View style={styles.dropdownContainer}>
+                <Text>Concern:</Text>
+                <SelectList
+                    setSelected={(val) => setConcernStatus(val)}
+                    data={concerns}
+                    save="value"
+                />
+            </View>
+
+            <View style={styles.dropdownContainer}>
+                <Text>Seen at:</Text>
+                <SelectList
+                    setSelected={(val) => setLocation(val)}
+                    data={locations}
+                    save="value"
+                />
+            </View>
+
             <PillButton mode="outlined"
                 width="60%"
                 label="Update"
-                onPress={() => {navigation.navigate("ConfirmUpdate", 
-                { name: name, photoURL: photoURL, formType: formType })}}
-                />
+                onPress={handleUpdate}
+                disabled={true}
+            />
+            {(error[0]) && <Text>Error: {error[0].message}</Text>}
+            {(loading[0]) && <ActivityIndicator />}
         </View>
     );
 }
@@ -96,6 +161,23 @@ const UpdateConcern = (props) => {
 const UpdateFed = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURL, formType } = props;
+    const [processed, setProcessed] = useState(false);
+    const { userUpdateCatFed, loading, error } = useUserUpdateCatFed();
+    const [time, setTime] = useState({});
+    const [location, setLocation] = useState("");
+
+    useEffect(() => {
+        if (!loading[0] && processed && error[0] === null) {
+            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+        }
+    }, [loading, processed, error, navigation, name, photoURL, formType]);
+
+    const handleUpdate = async () => {
+        setProcessed(false);
+        // TODO: change to cat and userid
+        await userUpdateCatFed("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", time, location);
+        setProcessed(true);
+    };
 
    return (
         <View style={styles.formContainer}>
@@ -103,9 +185,9 @@ const UpdateFed = (props) => {
             <PillButton mode="outlined"
                 width="60%"
                 label="Update"
-                onPress={() => {navigation.navigate("ConfirmUpdate", 
-                { name: name, photoURL: photoURL, formType: formType })}}
-                />
+                onPress={handleUpdate}
+                disabled={true}
+            />
         </View>
     );
 }
@@ -113,6 +195,23 @@ const UpdateFed = (props) => {
 const UpdateFoster = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURL, formType } = props;
+    const [processed, setProcessed] = useState(false);
+    const { userUpdateCatFoster, loading, error } = useUserUpdateCatFoster();
+    const [isFostered, setIsFostered] = useState(false);
+    const [fosterReason, setFosterReason] = useState("");
+
+    useEffect(() => {
+        if (!loading[0] && processed && error[0] === null) {
+            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+        }
+    }, [loading, processed, error, navigation, name, photoURL, formType]);
+
+    const handleUpdate = async () => {
+        setProcessed(false);
+        // TODO: change to cat and userid
+        await userUpdateCatFoster("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", isFostered, fosterReason);
+        setProcessed(true);
+    };
 
     return (
         <View style={styles.formContainer}>
@@ -120,9 +219,9 @@ const UpdateFoster = (props) => {
             <PillButton mode="outlined"
                 width="60%"
                 label="Update"
-                onPress={() => {navigation.navigate("ConfirmUpdate", 
-                { name: name, photoURL: photoURL, formType: formType })}}
-                />
+                onPress={handleUpdate}
+                disabled={true}
+            />
         </View>
     );
 }
@@ -130,6 +229,7 @@ const UpdateFoster = (props) => {
 const UpdateProfile = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURL, formType } = props;
+    const [processed, setProcessed] = useState(false);
 
     return (
         <View style={styles.formContainer}>
@@ -147,6 +247,7 @@ const UpdateProfile = (props) => {
 const DeleteProfile = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURL, formType } = props;
+    const [processed, setProcessed] = useState(false);
 
     return (
         <View style={styles.formContainer}>
