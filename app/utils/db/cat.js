@@ -180,20 +180,46 @@ const userUpdateCat = async (userID, catID, updateType, updateFields) => {
     await batch.commit();
 };
 
+const processLocation = async (location) => {
+    if (location == "Use Current Location") {
+        const { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== "granted") {
+            throw new Error("Locations permissions denied");
+        }
+
+        const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
+        const geohash = Geohash.encode(loc.coords.latitude, loc.coords.longitude);
+        location = geohash;
+    }
+    
+    return location;
+};
+
+const processNewPhotoURLs = async (catID, photoURI) => {
+    // Upload to storage and get download URL
+    const downloadURL = await uploadImageToStorage(photoURI);
+
+    // Get old data from Firestore to append the download URL
+    const cat = (await getDoc(doc(db, "Cat", catID))).data();
+    const newPhotoURLs = [...cat.photoURLs, downloadURL];
+
+    return newPhotoURLs;
+};
+
 export const useUserUpdateCatLocation = () => {
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
     const [userID, setUserID] = useState("");
     const [catID, setCatID] = useState("");
-    const [userLocation, setUserLocation] = useState(null);
+    const [userLocation, setUserLocation] = useState("");
 
     useEffect(() => {
-        if (userLocation !== null) {
+        if (userLocation !== "") {
             userUpdateCat(userID, catID, "Update Location", {
                 lastSeenLocation: userLocation,
                 lastSeenTime: serverTimestamp()
             }).catch(error => {
-                console.error("Error updating location:", error);
+                console.error("Error updating cat location:", error);
                 setError([error]);
             }).finally(() => {
                 setLoading([false]);
@@ -207,23 +233,12 @@ export const useUserUpdateCatLocation = () => {
             setError([null]);
             setUserID(userID);
             setCatID(catID);
-            setUserLocation(null);
-
-            // TODO: Fix such that userLocation is actually set before the update is called
-            if (location == "Use Current Location") {
-                const { status } = await Location.requestForegroundPermissionsAsync();
-                if (status !== "granted") {
-                    throw new Error("Locations permissions denied");
-                }
-
-                const loc = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Balanced});
-                const geohash = Geohash.encode(loc.coords.latitude, loc.coords.longitude);
-                setUserLocation(geohash);
-            } else {
-                setUserLocation(location);
-            }
+            setUserLocation("");
+            
+            const userLocation = await processLocation(location);
+            setUserLocation(userLocation);
         } catch (error) {
-            console.error("Error getting location:", error);
+            console.error("Error updating cat location:", error);
             setError([error]);
             setLoading([false]);
         }
@@ -233,22 +248,46 @@ export const useUserUpdateCatLocation = () => {
 };
 
 export const useUserUpdateCatConcern = () => {
-    // TODO: Handle the photo by storing it into cloud storage, then appending URL into the photoURLs field
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
+    const [userID, setUserID] = useState("");
+    const [catID, setCatID] = useState("");
+    const [concernStatus, setConcernStatus] = useState([]);
+    const [concernDesc, setConcernDesc] = useState("");
+    const [userLocation, setUserLocation] = useState("");
+    const [newPhotoURLs, setNewPhotoURLs] = useState([]);
 
-    const userUpdateCatConcern = async (userID, catID, concernStatus, location, concernDesc, photoURLs) => {
+    useEffect(() => {
+        if (userLocation !== "" && newPhotoURLs !== []) {
+            userUpdateCat(userID, catID, "Update Concern", {
+                concernStatus: concernStatus,
+                lastSeenLocation: userLocation,
+                concernDesc: concernDesc,
+                photoURLs: newPhotoURLs,
+                lastSeenTime: serverTimestamp(),
+            }).catch(error => {
+                console.error("Error updating cat concern:", error);
+                setError([error]);
+            }).finally(() => {
+                setLoading([false]);
+            });
+        }
+    }, [catID, concernDesc, concernStatus, newPhotoURLs, userID, userLocation]);
+
+    const userUpdateCatConcern = async (userID, catID, concernStatus, location, concernDesc, photoURI) => {
         try {
             setLoading([true]);
             setError([null]);
+            setUserID(userID);
+            setCatID(catID);
+            setConcernStatus(concernStatus);
+            setConcernDesc(concernDesc);
+            
+            const userLocation = await processLocation(location);
+            setUserLocation(userLocation);
 
-            await userUpdateCat(userID, catID, "Update Concern", {
-                concernStatus: concernStatus,
-                lastSeenLocation: location,
-                concernDesc: concernDesc,
-                photoURLs: photoURLs,
-                lastSeenTime: serverTimestamp(),
-            });
+            const newPhotoURLs = await processNewPhotoURLs(catID, photoURI);
+            setNewPhotoURLs(newPhotoURLs);
         } catch (error) {
             console.error("Error updating cat concern:", error);
             setError([error]);
@@ -263,17 +302,38 @@ export const useUserUpdateCatConcern = () => {
 export const useUserUpdateCatFed = () => {
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
+    const [userID, setUserID] = useState("");
+    const [catID, setCatID] = useState("");
+    const [fedTime, setFedTime] = useState({});
+    const [userLocation, setUserLocation] = useState("");
+
+    useEffect(() => {
+        if (fedTime !== {} && userLocation !== "") {
+            userUpdateCat(userID, catID, "Update Fed", {
+                lastFedTime: fedTime,
+                lastSeenLocation: userLocation,
+                lastSeenTime: fedTime,
+            }).catch(error => {
+                console.error("Error updating cat fed:", error);
+                setError([error]);
+            }).finally(() => {
+                setLoading([false]);
+            });
+        }
+    }, [catID, fedTime, userID, userLocation]);
 
     const userUpdateCatFed = async (userID, catID, time, location) => {
         try {
             setLoading([true]);
             setError([null]);
+            setUserID(userID);
+            setCatID(catID);
+            
+            const fedTime = Timestamp.fromDate(time);
+            setFedTime(fedTime);
 
-            await userUpdateCat(userID, catID, "Update Fed", {
-                lastFedTime: time,
-                lastSeenLocation: location,
-                lastSeenTime: serverTimestamp(),
-            });
+            const userLocation = await processLocation(location);
+            setUserLocation(userLocation);
         } catch (error) {
             console.error("Error updating cat fed:", error);
             setError([error]);
@@ -328,7 +388,6 @@ export const useUserUpdateCatProfile = () => {
         }
     };
 
-    
     return { userUpdateCatProfile, loading, error };
 };
 
@@ -341,14 +400,7 @@ export const useUserAddCatPicture = () => {
             setLoading([true]);
             setError([null]);
 
-            // Upload to storage and get download URL
-            const downloadURL = await uploadImageToStorage(photoURI);
-
-            // Get old data from Firestore to append the download URL
-            const cat = (await getDoc(doc(db, "Cat", catID))).data();
-            const newPhotoURLs = [...cat.photoURLs, downloadURL];
-
-            // Update cat document
+            const newPhotoURLs = await processNewPhotoURLs(catID, photoURI);
             await userUpdateCat(userID, catID, "Add Picture", {
                 photoURLs: newPhotoURLs
             });

@@ -4,9 +4,9 @@ import { FAB, Portal, Provider, Text } from "react-native-paper";
 import { Stack } from "expo-router";
 import { getItemWidth }  from "../../../utils/CalculateDimensions";
 import { useRoute } from "@react-navigation/native";
-import * as ImagePicker from 'expo-image-picker';
 import { useUserAddCatPicture } from "../../../utils/db/cat";
 import { getAuth } from "firebase/auth";
+import { getImageFromCamera, getImageFromGallery } from "../../../utils/db/photo";
 
 export default function PhotoGallery() {
     const { user } = getAuth();
@@ -16,38 +16,20 @@ export default function PhotoGallery() {
     const [open, setOpen] = useState(false);
     const imageSize = getItemWidth(2, 8);
 
-    const getPictureFromGallery = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [1, 1],
-            quality: 1,
-        });
-
-        return result.assets[0].uri;
-    }
-
     const handleAddImageFromGallery = async () => {
-        const photoURI = await getPictureFromGallery();
-        // TODO: change to cat and userid
-        await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", photoURI);
-    };
-
-    const getPictureFromCamera = async () => {
-        let result = await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [1, 1],
-            quality: 1,
-        });
-
-        return result.assets[0].uri;
+        const photoURI = await getImageFromGallery();
+        if (photoURI !== null) {
+            // TODO: change to cat and userid
+            await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", photoURI);
+        }
     };
 
     const handleAddImageFromCamera = async () => {
-        const photoURI = await getPictureFromCamera();
-        // TODO: change to cat and userid
-        await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", photoURI);
+        const photoURI = await getImageFromCamera();
+        if (photoURI !== null) {
+            // TODO: change to cat and userid
+            await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", photoURI);
+        }
     };
 
     return (
