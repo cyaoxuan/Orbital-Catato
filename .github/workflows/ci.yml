@@ -19,9 +19,8 @@ jobs:
         steps:
             - name: Set timezone
               run: |
-                sudo ln -sf /usr/share/zoneinfo/Asia/Singapore /etc/localtime
-                echo "Asia/Singapore" | sudo tee /etc/timezone
-                date
+                echo "Asia/Singapore" > /etc/timezone
+                sudo dpkg-reconfigure -f noninteractive tzdata
     
             - name: Checkout Repository
               uses: actions/checkout@v3
