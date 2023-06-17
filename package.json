@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "test": "npm run test:local || npm run test:ci",
     "test:local": "SET TZ=\"Asia/Singapore\" && jest",
-    "test:ci": "TZ=Asia/Singapore jest"
+    "test:ci": "jest"
   },
   "jest": {
     "preset": "jest-expo",
