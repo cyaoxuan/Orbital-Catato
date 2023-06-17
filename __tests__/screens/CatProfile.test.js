@@ -3,6 +3,16 @@ import { CatProfile, CatProfileScreen } from "../../app/screens/main/catalogue/C
 
 afterEach(cleanup);
 
+// Set time
+beforeAll(() => {
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(new Date(2023, 5, 20, 13, 12, 0, 0));
+});
+
+afterAll(() => {
+    jest.useRealTimers();
+});
+
 // Mock getCat(catID)
 jest.mock("../../app/screens/main/catalogue/CatProfile", () => {
     const originalModule = jest.requireActual("../../app/screens/main/catalogue/CatProfile");

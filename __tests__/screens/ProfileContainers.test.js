@@ -9,6 +9,16 @@ import { AvatarContainer,
 
 afterEach(cleanup);
 
+// Set time
+beforeAll(() => {
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(new Date(2023, 5, 20, 13, 12, 0, 0));
+});
+
+afterAll(() => {
+    jest.useRealTimers();
+});
+
 describe("<AvatarContainer />", () => {
     it("renders avatar container successfully", () => {
         const avatarContainer = render(<AvatarContainer />);

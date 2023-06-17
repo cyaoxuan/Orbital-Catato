@@ -388,7 +388,7 @@ exports[`<CatProfileScreen /> renders CatProfileScreen with cat correctly 1`] = 
               ]
             }
           >
-            Engineering, 19/05, 22:21 (28d ago)
+            Engineering, 19/05, 22:21 (31d ago)
           </Text>
         </Text>
       </View>
@@ -453,7 +453,7 @@ exports[`<CatProfileScreen /> renders CatProfileScreen with cat correctly 1`] = 
               ]
             }
           >
-            19/05, 20:01 (28d ago)
+            19/05, 20:01 (32d ago)
           </Text>
         </Text>
       </View>
