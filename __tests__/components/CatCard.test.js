@@ -1,4 +1,4 @@
-import { CatCard, CatCardSimple } from "../app/components/CatCard";
+import { CatCard, CatCardSimple } from "../../app/components/CatCard";
 import { cleanup, fireEvent, render } from "@testing-library/react-native";
 
 afterEach(cleanup)
@@ -15,7 +15,7 @@ describe("<CatCard />", () => {
     });
 
     it("renders the cover image with the correct photoURL", () => {
-        const photoURL = require("../assets/temp-cat.jpg");
+        const photoURL = require("../../assets/cats/cat-2-1.jpg");
         const { getByTestId } = render(<CatCard photoURL={photoURL} />);
         const cover = getByTestId("cover-image");
         expect(cover.props.source).toBe(photoURL);
@@ -50,7 +50,7 @@ describe("<CatCardSimple />", () => {
     });
 
     it("renders the cover image with the correct photoURL", () => {
-        const photoURL = require("../assets/temp-cat.jpg");
+        const photoURL = require("../../assets/cats/cat-2-1.jpg");
         const { getByTestId } = render(<CatCardSimple photoURL={photoURL} />);
         const cover = getByTestId("cover-image");
         expect(cover.props.source).toBe(photoURL);

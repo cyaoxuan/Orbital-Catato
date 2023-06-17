@@ -1,8 +1,8 @@
 import { FlatList, View } from "react-native"
-import { Stack, useNavigation } from "expo-router";
+import { useNavigation } from "expo-router";
 import { cats } from "../../../data/CatTempData";
 import { CatCardSimple } from "../../../components/CatCard";
-import { getItemWidth } from "../../../utils/CalculateDimensions";
+import { getItemWidth } from "../../../utils/calculateItemWidths";
 
 // Eventual Call from DB
 function getCats() {
@@ -12,13 +12,12 @@ function getCats() {
 export default function SelectCat() {
     const navigation = useNavigation();
 
-    const cardWidth = getItemWidth(2, 4);
+    const cardWidth = getItemWidth(2, 8);
     return (
-        <>
-        <Stack.Screen options={{ title: "Select Cat" }} />
-        <FlatList
-            numColumns={2}
+        <FlatList style={{ flex: 1 }}
             contentContainerStyle={{ justifyContent: "space-around" }}
+            columnWrapperStyle={{ flexShrink: 1 }}
+            numColumns={2}
             data={getCats()}
             renderItem={({item}) => {
                 return (
@@ -34,6 +33,5 @@ export default function SelectCat() {
                 );
             }}
         />
-        </>
     )
 }

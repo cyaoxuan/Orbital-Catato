@@ -1,4 +1,4 @@
-import { PillButton } from "../app/components/Button";
+import { PillButton } from "../../app/components/Button";
 import { cleanup, fireEvent, render } from "@testing-library/react-native";
 
 afterEach(cleanup)

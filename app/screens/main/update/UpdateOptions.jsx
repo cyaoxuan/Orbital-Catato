@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Divider, List }  from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
@@ -63,8 +63,8 @@ export default function UpdateOptions() {
     const route = useRoute();
 
     return (
-        <View style={{ flex: 1 }}>
-            <View style={{ flex: 1, margin: 16 }}>
+        <ScrollView>
+            <View style={{ margin: 8 }}>
                 <CatAvatar 
                     photoURL={ route.params.photoURL }
                     size={200}
@@ -72,15 +72,15 @@ export default function UpdateOptions() {
                     name={ route.params.name }
                 />
             </View>
-            <View style={{ flex: 2, margin: 16 }}>
+            <View>
                 <UpdateOptionList />
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 24
+        fontSize: 20
     }
 })

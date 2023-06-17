@@ -1,4 +1,4 @@
-import { AuthInput, PasswordInput, FormInput } from "../app/components/TextInput";
+import { AuthInput, PasswordInput, FormInput } from "../../app/components/TextInput";
 import { cleanup, fireEvent, render } from "@testing-library/react-native";
 
 afterEach(cleanup)

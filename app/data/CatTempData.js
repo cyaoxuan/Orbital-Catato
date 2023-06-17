@@ -2,7 +2,15 @@
 const cats = [{
     catID: 1,
     name: "Kitty",
-    photoURLs: [require("../../assets/temp-cat.jpg"), require("../../assets/catato-logo.png")],
+    photoURLs: [
+        require("../../assets/cats/cat-1-1.jpg"), 
+        require("../../assets/cats/cat-1-2.jpg"),
+        require("../../assets/cats/cat-1-3.jpg"),
+        require("../../assets/cats/cat-1-4.jpg"),
+        require("../../assets/cats/cat-1-5.jpg"),
+        require("../../assets/cats/cat-1-6.jpg"),
+        require("../../assets/cats/cat-1-7.jpg"),
+    ],
     gender: "M",
     birthYear: 2019,
     sterilised: true,
@@ -15,7 +23,13 @@ const cats = [{
 }, {
     catID: 2,
     name: "Skitty",
-    photoURLs: [require("../../assets/temp-cat.jpg")],
+    photoURLs: [
+        require("../../assets/cats/cat-2-1.jpg"), 
+        require("../../assets/cats/cat-2-2.jpg"),
+        require("../../assets/cats/cat-2-3.jpg"),
+        require("../../assets/cats/cat-2-4.jpg"),
+        require("../../assets/cats/cat-2-5.jpg"),
+    ],
     gender: null,
     birthYear: null,
     sterilised: false,
@@ -28,7 +42,12 @@ const cats = [{
 }, {
     catID: 3,
     name: "Mitty",
-    photoURLs: [require("../../assets/temp-cat.jpg")],
+    photoURLs: [
+        require("../../assets/cats/cat-3-1.jpg"), 
+        require("../../assets/cats/cat-3-2.jpg"),
+        require("../../assets/cats/cat-3-3.jpg"),
+        require("../../assets/cats/cat-3-4.jpg"),
+    ],
     gender: "F",
     birthYear: 2020,
     sterilised: true,
@@ -41,7 +60,11 @@ const cats = [{
 }, {
     catID: 4,
     name: "Bitty",
-    photoURLs: [require("../../assets/temp-cat.jpg")],
+    photoURLs: [
+        require("../../assets/cats/cat-4-1.jpg"), 
+        require("../../assets/cats/cat-4-2.jpg"),
+        require("../../assets/cats/cat-4-3.jpg"),
+    ],
     gender: "M",
     birthYear: 2022,
     sterilised: true,
@@ -50,6 +73,19 @@ const cats = [{
     lastSeenTime: new Date(2023, 4, 20, 9, 16, 0, 0),
     lastFedTime: new Date(2023, 4, 19, 20, 47, 0, 0),
     concernStatus: [], // If the array is empty it's healthy
+    concernDesc: null
+}, {
+    catID: 5,
+    name: "Nully",
+    photoURLs: [],
+    gender: null,
+    birthYear: null,
+    sterilised: false,
+    keyFeatures: null,
+    lastSeenLocation: null,
+    lastSeenTime: null,
+    lastFedTime: null,
+    concernStatus: [],
     concernDesc: null
 }];
 

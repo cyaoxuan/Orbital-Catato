@@ -38,8 +38,8 @@ export default function WelcomeScreen() {
     }
 
     return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-            <Text variant="displayLarge">Welcome</Text>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "white" }}>
+            <Text variant="displayMedium">Welcome</Text>
 
             <Avatar.Image style={{ backgroundColor: "transparent", margin: 20 }}
                 source={require("../../../assets/catato-logo.png")}

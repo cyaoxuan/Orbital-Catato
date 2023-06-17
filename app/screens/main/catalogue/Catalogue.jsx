@@ -4,18 +4,25 @@ import { useNavigation } from "expo-router";
 import { cats } from "../../../data/CatTempData";
 import { TouchableCatAvatar } from "../../../components/CatAvatar";
 
+// Eventual Call from DB
+function getCats() {
+    return cats;
+}
+
 export default function Catalogue() {
     const navigation = useNavigation();
 
     return (
-        <FlatList style={{ alignContent: "center" }}
+        <FlatList testID="catalogue"
+            style={{ alignContent: "center" }}
             ItemSeparatorComponent={() => <View style={{height: 20}} />}
-            ListHeaderComponent={<Text variant="headlineLarge">Meet the Cats!</Text>}
+            ListHeaderComponent={ <Text variant="headlineLarge" style={{ textAlign:"center", margin: 8 }}>Meet the Cats!</Text>}
             
-            data={cats}
+            data={getCats()}
             renderItem={({item}) => {
                 return (
-                    <TouchableCatAvatar size={200}
+                    <TouchableCatAvatar
+                        size={200}
                         photoURL={item.photoURLs[0]}
                         variant="headlineLarge"
                         name={item.name}
