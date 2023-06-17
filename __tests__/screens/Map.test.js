@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react-native";
-import Map from "../app/screens/main/Map";
+import Map from "../../app/screens/main/Map";
 
 jest.mock("react-native-maps", () => {
     const { View } = require("react-native");
@@ -9,15 +9,15 @@ jest.mock("react-native-maps", () => {
         return <View {...{...rest, testID}}>{children}</View>;
     }
     const MockMarker = (props) => {
-      return <View>{props.children}</View>;
+        return <View>{props.children}</View>;
     };
     return {
-      __esModule: true,
-      default: MockMapView,
-      Marker: MockMarker,
-      PROVIDER_GOOGLE: "google",
+        __esModule: true,
+        default: MockMapView,
+        Marker: MockMarker,
+        PROVIDER_GOOGLE: "google",
     };
-  });
+});
 
 describe('Map Screen', () => {
     it("renders MapView successfully", () => {

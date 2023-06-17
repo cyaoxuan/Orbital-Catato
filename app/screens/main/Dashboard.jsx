@@ -1,29 +1,34 @@
-import { Dimensions, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Text } from "react-native-paper";
 import { useAuth } from "../../utils/context/auth";
+import { getCardWidth } from "../../utils/calculateItemWidths";
 import { CardCarousel } from "../../components/Carousel";
 import { cats } from "../../data/CatTempData"
 
-// Filter cat data
-const concernCats = cats.filter(cat => cat.concernStatus && cat.concernStatus.length != 0);
-const unfedCats = cats.filter(cat => {
-    let today = new Date(2023, 5, 20, 13, 12, 0, 0);
-    return cat.lastFedTime && ((today - cat.lastFedTime) / 3600000 > 12);
-}) // Will eventually use Date.now()
 
-// Calculate card width based on phone screen dimensions
-function getCardWidth() { 
-    // Card is 3/4 the width of a screen
-    const {height, width} = Dimensions.get("window");
-    const cardWidth = (width) / 4 * 3;
-    return cardWidth;
+// Eventual Call from DB
+function getConcernCats() {
+    const concernCats = cats.filter(cat => cat.concernStatus && cat.concernStatus.length != 0);
+    return concernCats;
 }
 
-const CarouselContainer = ({ titleText, subtitleText, ...carousel }) => {
+// Eventual Call from DB
+function getUnfedCats() {
+    const unfedCats = cats.filter(cat => {
+        let today = new Date(2023, 5, 20, 13, 12, 0, 0);
+        return cat.lastFedTime && ((today - cat.lastFedTime) / 3600000 > 12);
+    })
+    return unfedCats;
+}
+
+
+export const CarouselContainer = ({ titleText, subtitleText, ...carousel }) => {
     return (
         <View>
-            <Text variant="headlineMedium">{titleText}</Text>
-            <Text variant="headlineSmall">{subtitleText}</Text>
+            <View style={{ margin: 8 }}>
+                <Text variant="headlineMedium">{titleText || "Title"}</Text>
+                <Text variant="headlineSmall">{subtitleText || "Subtitle"}</Text>
+            </View>
             <CardCarousel {...carousel} />
         </View>
     );
@@ -31,27 +36,28 @@ const CarouselContainer = ({ titleText, subtitleText, ...carousel }) => {
 
 export default function Dashboard() {
     const { user } = useAuth();
+    const cardWidth = getCardWidth(2 / 3)
 
     return (
         <ScrollView>
-            <CarouselContainer 
+            <CarouselContainer
                 titleText="Cats of Concern"
-                subtitleText="New, Injured, Missing for 3 Days"
+                subtitleText="New, Injured, Missing >3 Days"
                 carouselType="concern"
-                cats={concernCats}
-                cardWidth={getCardWidth()}
+                cats={getConcernCats()}
+                cardWidth={cardWidth || 250}
                 iconName1="alert-circle-outline"
                 field1="Status: "
                 iconName2="location"
                 field2="Last Seen: "
             />
 
-            <CarouselContainer 
+            <CarouselContainer
                 titleText="Unfed Cats"
                 subtitleText="Not Fed in 12 Hours"
                 carouselType="unfed "
-                cats={unfedCats}
-                cardWidth={getCardWidth()}
+                cats={getUnfedCats()}
+                cardWidth={cardWidth || 250}
                 iconName1="time-outline"
                 field1="Last Fed: "
                 iconName2="location"

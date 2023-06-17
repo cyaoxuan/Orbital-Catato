@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { FlatList, Image, View } from "react-native";
 import { FAB, Portal, Provider, Text } from "react-native-paper";
-import { Stack } from "expo-router";
-import { getItemWidth }  from "../../../utils/CalculateDimensions";
+import { getItemWidth }  from "../../../utils/calculateItemWidths";
 import { useRoute } from "@react-navigation/native";
 import { useUserAddCatPicture } from "../../../utils/db/cat";
 import { getAuth } from "firebase/auth";
@@ -35,7 +34,6 @@ export default function PhotoGallery() {
     return (
         <Provider>
             <View>
-                <Stack.Screen options={{ title: "Photo Gallery"}} />
                 <FlatList
                     ListHeaderComponent={() => <Text variant="headlineMedium">{route.params.name} Meowmories</Text>}
                     ListHeaderComponentStyle={{ alignItems: "center" }}
@@ -44,7 +42,7 @@ export default function PhotoGallery() {
                     data={route.params.photoURLs}
                     renderItem={({item, index}) => {
                         return (
-                            <View key={index}>
+                            <View key={index} testID="gallery-photo">
                                 <Image style={{ height: imageSize, width: imageSize, resizeMode: "cover", margin: 8 }} 
                                 source={item} />
                             </View>
@@ -52,9 +50,10 @@ export default function PhotoGallery() {
                     }}
                 />
                 <Portal>
-                    <FAB.Group style={{ position: "absolute", bottom: 10, right: 10 }}
+                    <FAB.Group testID="fab-group" 
+                        style={{ position: "absolute", bottom: 10, right: 10 }}
                         open={open}
-                        icon={"plus"}
+                        icon={open ? "close" : "plus"}
                         actions={[
                             {icon: "camera", label: "Camera", onPress: handleAddImageFromCamera},
                             {icon: "image", label: "Gallery", onPress: handleAddImageFromGallery}

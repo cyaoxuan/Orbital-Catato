@@ -74,7 +74,6 @@ export default function Settings() {
 
     return (
         <View style={{ flex: 1 }}>
-            <Text variant="headlineLarge">Settings</Text>
             <View style={{ flex: 1 }}>
                 <Text variant="titleMedium" style={{ padding: 8 }}>Username: {user ? (user.displayName ? user.displayName : "__GUEST__") : "None"}</Text>
                 <Text variant="titleMedium" style={{ padding: 8 }}>User ID: {user ? user.uid : "None"}</Text>

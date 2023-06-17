@@ -1,17 +1,28 @@
-import { render, fireEvent } from "@testing-library/react-native";
-import { getInfo1, CardCarousel } from "../app/components/Carousel";
+import { cleanup, render, fireEvent } from "@testing-library/react-native";
+import { getInfo1, CardCarousel } from "../../app/components/Carousel";
+
+afterEach(cleanup)
+
+beforeAll(() => {
+  jest.useFakeTimers("modern");
+  jest.setSystemTime(new Date(2023, 5, 16, 13, 12, 0, 0));
+});
+
+afterAll(() => {
+  jest.useRealTimers();
+});
 
 const cats = [{
     catID: 1,
     name: "Kitty",
-    photoURLs: [require("../assets/temp-cat.jpg"), require("../assets/catato-logo.png")],
+    photoURLs: [require("../../assets/cats/cat-2-1.jpg"), require("../../assets/catato-logo.png")],
     lastSeenLocation: "Engineering", 
     lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0), 
     concernStatus: ["Injured"], 
 }, {
     catID: 2,
     name: "Skitty",
-    photoURLs: [require("../assets/temp-cat.jpg")],
+    photoURLs: [require("../../assets/cats/cat-2-1.jpg")],
     lastSeenLocation: "Utown",
     lastSeenTime: new Date(2023, 4, 20, 10, 53, 0, 0),
     lastFedTime: null,
@@ -19,7 +30,7 @@ const cats = [{
 }, {
     catID: 3,
     name: "Mitty",
-    photoURLs: [require("../assets/temp-cat.jpg")],
+    photoURLs: [require("../../assets/cats/cat-2-1.jpg")],
     lastSeenLocation: "Science",
     lastSeenTime: new Date(2023, 4, 15, 18, 34, 0, 0),
     lastFedTime: new Date(2023, 4, 15, 18, 34, 0, 0),
@@ -56,7 +67,7 @@ describe("getInfo1", () => {
     });
 
     test("unfed, valid lastFedTime", () => {
-        expect(getInfo1("unfed", {lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0)})).toBe("19/05, 12:01");
+        expect(getInfo1("unfed", {lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0)})).toBe("19/05, 20:01 (28d ago)");
     });
 
     test("unfed, lastFedTime is null", () => {

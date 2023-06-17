@@ -7,15 +7,18 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "TZ=Asia/Singapore jest"
+    "test": "npm run test:local || npm run test:ci",
+    "test:local": "SET TZ=\"Asia/Singapore\" && jest",
+    "test:ci": "jest"
   },
   "jest": {
     "preset": "jest-expo",
+    "setupFiles": ["./node_modules/react-native-gesture-handler/jestSetup.js"],
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-native-paper)"
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|react-native-paper|expo-router)"
     ]
   },
   "overrides": {

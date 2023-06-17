@@ -1,7 +1,7 @@
 import { FlatList, View } from "react-native";
 import { useNavigation } from "expo-router";
 import { CatCard } from "./CatCard";
-import { dateTimeOptions } from "../data/DateTimeOptions";
+import { formatLastFed, formatLastSeenSimple } from "../utils/formatDetails";
 
 function getInfo1(carouselType, cat) {
     if (!cat || !carouselType) {
@@ -11,7 +11,7 @@ function getInfo1(carouselType, cat) {
     if (carouselType === "concern" && cat.concernStatus) {
         return cat.concernStatus.join(", ");
     } else if (carouselType === "unfed" && cat.lastFedTime) {
-        return cat.lastFedTime.toLocaleString("en-GB", dateTimeOptions);
+        return formatLastFed(cat.lastFedTime);
     }
     return "Unknown";
 }
@@ -44,7 +44,9 @@ const CardCarousel = ({cats, cardWidth, carouselType, ...card}) => {
                             { screen: "CatProfile", initial: false, params: { catID: item.catID }})}
                         {...card}
                         info1={getInfo1(carouselType, item)}
-                        info2={item.lastSeenLocation}
+                        info2={item.lastSeenLocation 
+                            ? formatLastSeenSimple(item.lastSeenLocation, item.lastSeenTime)
+                            : "Unknown"}
                     />
                 );
             }}

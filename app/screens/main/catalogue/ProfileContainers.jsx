@@ -2,8 +2,8 @@ import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Divider, Text } from "react-native-paper";
 import { IconTextField, KeyTextField } from "../../../components/InfoText";
 import { CatAvatar } from "../../../components/CatAvatar";
-import { dateTimeOptions } from "../../../data/DateTimeOptions";
-import { getItemWidth }  from "../../../utils/CalculateDimensions";
+import { formatAge, formatLastSeen, formatLastFed } from "../../../utils/formatDetails";
+import { getItemWidth }  from "../../../utils/calculateItemWidths";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 // Avatar Container
@@ -17,12 +17,6 @@ const AvatarContainer = ({name, photoURL}) => {
             />
         </View>
     )
-}
-
-// Format Age Field
-function formatAge(birthYear) {
-    const currYear = new Date().getFullYear();
-    return (currYear - birthYear) + "y";
 }
 
 // Key Info Container (Gender, Age, Sterilised)
@@ -48,40 +42,6 @@ const KeyInfoContainer = ({cat, variant}) => {
     )
 }
 
-// Format Last Seen Field
-function formatLastSeen(lastSeenLocation, lastSeenTime) {
-    const lastSeenTimeString = lastSeenTime.toLocaleString("en-GB", dateTimeOptions);
-    let today = new Date();
-    // lastSeenTime.toDate() when using TimeStamp
-    // duration in hours
-    let duration = (today - lastSeenTime) / 3600000;
-    let durationString;
-    if (duration >= 24) {
-        durationString = Math.floor(duration / 24) + "d";
-    } else {
-        durationString = Math.floor(duration) + "h";
-    }
-
-    return `${lastSeenLocation}, ${lastSeenTimeString} (${durationString} ago)`;
-}
-
-// Format Last Fed Field
-function formatLastFed(lastFedTime) {
-    const lastFedTimeString = lastFedTime.toLocaleString("en-GB", dateTimeOptions);
-    let today = new Date();
-    // lastFedTime.toDate() when using TimeStamp
-    // duration in hours
-    let duration = (today - lastFedTime) / 3600000;
-    let durationString;
-    if (duration >= 24) {
-        durationString = Math.floor(duration / 24) + "d";
-    } else {
-        durationString = Math.floor(duration) + "h";
-    }
-
-    return `${lastFedTimeString} (${durationString} ago)`;
-}
-
 // Details Container
 const DetailsContainer = ({cat, ...rest}) => {
     return (
@@ -96,7 +56,7 @@ const DetailsContainer = ({cat, ...rest}) => {
                 {...rest}
                 iconName="location-outline"
                 field="Last Seen: "
-                info={cat.lastSeenLocation && cat.lastSeenTime 
+                info={cat.lastSeenLocation && cat?.lastSeenTime 
                     ? formatLastSeen(cat.lastSeenLocation, cat.lastSeenTime)
                     : "Unknown"}
             />
@@ -118,7 +78,7 @@ const DetailsContainer = ({cat, ...rest}) => {
                 {...rest}
                 iconName="information-circle-outline"
                 field="Concerns: "
-                info={cat.concernDesc ? cat.concernDesc : cat.name + "is happy and healthy!"}
+                info={cat.concernDesc ? cat.concernDesc : "The cat is happy and healthy!"}
             />
         </View>
     )
@@ -128,10 +88,10 @@ const DetailsContainer = ({cat, ...rest}) => {
 const PreviewPhotos = ({photoURLs}) => {
     let previewPhotos;
 
-    if (!photoURLs) {
+    if (!photoURLs || photoURLs.length === 0) {
         return (
             <View style={styles.previewContainer}>
-                <Text>This cat has no photos!</Text>
+                <Text style={{ marginTop: 20 }}>This cat has no photos!</Text>
             </View>
         )
     } else if (photoURLs.length > 4) {
@@ -140,13 +100,13 @@ const PreviewPhotos = ({photoURLs}) => {
         previewPhotos = photoURLs;
     }
 
-    const imageSize = getItemWidth(4, 4);
+    const imageSize = getItemWidth(4, 8);
 
     return (
         <View style={styles.previewContainer}>
             {previewPhotos.map((photoURL, index) => {
                 return (
-                    <View key={index}>
+                    <View key={index} testID="preview-photo">
                         <Image style={{ height: imageSize, width: imageSize, resizeMode: "cover", margin: 4 }} 
                             source={photoURL} />
                     </View>
@@ -162,7 +122,7 @@ const PhotosContainer = ({photoURLs, variant, iconSize, onPress}) => {
         <View style={styles.photosContainer}>
             <View style={styles.photosHeader}>
                 <Text variant={variant}>Photos</Text>
-                <TouchableOpacity
+                <TouchableOpacity testID="view-button"
                     onPress={onPress}>
                     <View style={{ flexDirection: "row" }}>
                         <Text variant={variant}>View All</Text>
@@ -176,7 +136,7 @@ const PhotosContainer = ({photoURLs, variant, iconSize, onPress}) => {
     )
 }
 
-export { AvatarContainer, KeyInfoContainer, DetailsContainer, PhotosContainer }
+export { AvatarContainer, KeyInfoContainer, DetailsContainer, PreviewPhotos, PhotosContainer }
 
 const styles = StyleSheet.create({
     avatarContainer: {
@@ -202,7 +162,7 @@ const styles = StyleSheet.create({
     },
 
     photosContainer: {
-        padding: 15
+        padding: 16
     },
 
     photosHeader: {
@@ -212,6 +172,7 @@ const styles = StyleSheet.create({
     },
 
     previewContainer: {
-        flexDirection: "row"
+        flexDirection: "row",
+        justifyContent: "center"
     }
 })

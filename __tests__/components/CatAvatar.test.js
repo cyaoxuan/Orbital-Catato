@@ -1,4 +1,4 @@
-import { CatAvatar, TouchableCatAvatar } from "../app/components/CatAvatar";
+import { CatAvatar, TouchableCatAvatar } from "../../app/components/CatAvatar";
 import { fireEvent, render } from "@testing-library/react-native";
 
 describe("<CatAvatar />", () => {
@@ -13,7 +13,7 @@ describe("<CatAvatar />", () => {
     });
 
     it("renders avatar with correct photoURL", () => {
-        const photoURL = require("../assets/temp-cat.jpg");
+        const photoURL = require("../../assets/cats/cat-2-1.jpg");
         const { getByTestId } = render(<CatAvatar photoURL={photoURL} />);
         const avatar = getByTestId("avatar-image");
         expect(avatar.props.source).toBe(photoURL);

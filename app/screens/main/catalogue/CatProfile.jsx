@@ -1,13 +1,13 @@
 import { ScrollView, View } from "react-native";
 import { Text } from "react-native-paper";
-import { Stack, useNavigation } from "expo-router";
+import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
 import { cats } from "../../../data/CatTempData";
 import { PillButton } from "../../../components/Button";
 import { AvatarContainer, KeyInfoContainer, DetailsContainer, PhotosContainer } from "./ProfileContainers";
 
 // Call cat data from database
-function getCat(catID) {
+export function getCat(catID) {
     return cats.find((cat) => cat.catID === catID);
 }
 
@@ -29,14 +29,13 @@ export function CatProfileScreen({catID}) {
     };
 
     return (
-        <ScrollView>
-            <Stack.Screen options={{ title: "Cat Profile" }} />
+        <ScrollView testID="profile-container">
             
             <AvatarContainer name={cat.name} photoURL={cat.photoURLs[0]} />
 
-            <KeyInfoContainer cat={cat} variant="bodyLarge" />
+            <KeyInfoContainer cat={cat} variant="bodyMedium" />
 
-            <DetailsContainer cat={cat} variant="bodyLarge" iconSize={24} />
+            <DetailsContainer cat={cat} variant="bodyMedium" iconSize={24} />
 
             <PhotosContainer photoURLs={cat.photoURLs} variant="bodyLarge" iconSize={24}
                 onPress={() => {navigation.navigate("PhotoGallery", 

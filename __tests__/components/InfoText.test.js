@@ -1,4 +1,4 @@
-import { IconTextField, KeyTextField } from "../app/components/InfoText";
+import { IconTextField, KeyTextField } from "../../app/components/InfoText";
 import { cleanup, render } from "@testing-library/react-native";
 
 afterEach(cleanup)

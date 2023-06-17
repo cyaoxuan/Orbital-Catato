@@ -10,7 +10,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         "concernStatus": [
           "Injured",
         ],
-        "lastFedTime": 2023-05-19T04:01:00.000Z,
+        "lastFedTime": 2023-05-19T12:01:00.000Z,
         "lastSeenLocation": "Engineering",
         "name": "Kitty",
         "photoURLs": [
@@ -26,7 +26,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         ],
         "lastFedTime": null,
         "lastSeenLocation": "Utown",
-        "lastSeenTime": 2023-05-20T02:53:00.000Z,
+        "lastSeenTime": 2023-05-20T10:53:00.000Z,
         "name": "Skitty",
         "photoURLs": [
           1,
@@ -37,9 +37,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         "concernStatus": [
           "Missing",
         ],
-        "lastFedTime": 2023-05-15T10:34:00.000Z,
+        "lastFedTime": 2023-05-15T18:34:00.000Z,
         "lastSeenLocation": "Science",
-        "lastSeenTime": 2023-05-15T10:34:00.000Z,
+        "lastSeenTime": 2023-05-15T18:34:00.000Z,
         "name": "Mitty",
         "photoURLs": [
           1,
@@ -93,7 +93,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
           {
             "backgroundColor": "rgba(247, 243, 249, 1)",
             "borderRadius": 12,
-            "height": 300,
+            "height": 275,
             "margin": 4,
             "shadowColor": "#000",
             "shadowOffset": {
@@ -234,10 +234,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     [
                       {
                         "fontFamily": "System",
-                        "fontSize": 28,
+                        "fontSize": 24,
                         "fontWeight": "400",
                         "letterSpacing": 0,
-                        "lineHeight": 36,
+                        "lineHeight": 32,
                       },
                       {
                         "textAlign": "left",
@@ -296,10 +296,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     [
                       {
                         "fontFamily": "System",
-                        "fontSize": 22,
+                        "fontSize": 16,
                         "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
+                        "letterSpacing": 0.15,
+                        "lineHeight": 24,
                       },
                       {
                         "textAlign": "left",
@@ -321,10 +321,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       [
                         {
                           "fontFamily": "System",
-                          "fontSize": 22,
+                          "fontSize": 16,
                           "fontWeight": "400",
-                          "letterSpacing": 0,
-                          "lineHeight": 28,
+                          "letterSpacing": 0.15,
+                          "lineHeight": 24,
                         },
                         {
                           "textAlign": "left",
@@ -359,10 +359,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     [
                       {
                         "fontFamily": "System",
-                        "fontSize": 22,
+                        "fontSize": 16,
                         "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
+                        "letterSpacing": 0.15,
+                        "lineHeight": 24,
                       },
                       {
                         "textAlign": "left",
@@ -384,10 +384,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       [
                         {
                           "fontFamily": "System",
-                          "fontSize": 22,
+                          "fontSize": 16,
                           "fontWeight": "400",
-                          "letterSpacing": 0,
-                          "lineHeight": 28,
+                          "letterSpacing": 0.15,
+                          "lineHeight": 24,
                         },
                         {
                           "textAlign": "left",
@@ -402,7 +402,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       ]
                     }
                   >
-                    Engineering
+                    Engineering (NaNh)
                   </Text>
                 </Text>
               </View>
@@ -436,7 +436,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
           {
             "backgroundColor": "rgba(247, 243, 249, 1)",
             "borderRadius": 12,
-            "height": 300,
+            "height": 275,
             "margin": 4,
             "shadowColor": "#000",
             "shadowOffset": {
@@ -577,10 +577,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     [
                       {
                         "fontFamily": "System",
-                        "fontSize": 28,
+                        "fontSize": 24,
                         "fontWeight": "400",
                         "letterSpacing": 0,
-                        "lineHeight": 36,
+                        "lineHeight": 32,
                       },
                       {
                         "textAlign": "left",
@@ -639,10 +639,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     [
                       {
                         "fontFamily": "System",
-                        "fontSize": 22,
+                        "fontSize": 16,
                         "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
+                        "letterSpacing": 0.15,
+                        "lineHeight": 24,
                       },
                       {
                         "textAlign": "left",
@@ -664,10 +664,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       [
                         {
                           "fontFamily": "System",
-                          "fontSize": 22,
+                          "fontSize": 16,
                           "fontWeight": "400",
-                          "letterSpacing": 0,
-                          "lineHeight": 28,
+                          "letterSpacing": 0.15,
+                          "lineHeight": 24,
                         },
                         {
                           "textAlign": "left",
@@ -702,10 +702,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     [
                       {
                         "fontFamily": "System",
-                        "fontSize": 22,
+                        "fontSize": 16,
                         "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
+                        "letterSpacing": 0.15,
+                        "lineHeight": 24,
                       },
                       {
                         "textAlign": "left",
@@ -727,10 +727,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       [
                         {
                           "fontFamily": "System",
-                          "fontSize": 22,
+                          "fontSize": 16,
                           "fontWeight": "400",
-                          "letterSpacing": 0,
-                          "lineHeight": 28,
+                          "letterSpacing": 0.15,
+                          "lineHeight": 24,
                         },
                         {
                           "textAlign": "left",
@@ -745,7 +745,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       ]
                     }
                   >
-                    Utown
+                    Utown (27d)
                   </Text>
                 </Text>
               </View>
@@ -779,7 +779,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
           {
             "backgroundColor": "rgba(247, 243, 249, 1)",
             "borderRadius": 12,
-            "height": 300,
+            "height": 275,
             "margin": 4,
             "shadowColor": "#000",
             "shadowOffset": {
@@ -920,10 +920,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     [
                       {
                         "fontFamily": "System",
-                        "fontSize": 28,
+                        "fontSize": 24,
                         "fontWeight": "400",
                         "letterSpacing": 0,
-                        "lineHeight": 36,
+                        "lineHeight": 32,
                       },
                       {
                         "textAlign": "left",
@@ -982,10 +982,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     [
                       {
                         "fontFamily": "System",
-                        "fontSize": 22,
+                        "fontSize": 16,
                         "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
+                        "letterSpacing": 0.15,
+                        "lineHeight": 24,
                       },
                       {
                         "textAlign": "left",
@@ -1007,10 +1007,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       [
                         {
                           "fontFamily": "System",
-                          "fontSize": 22,
+                          "fontSize": 16,
                           "fontWeight": "400",
-                          "letterSpacing": 0,
-                          "lineHeight": 28,
+                          "letterSpacing": 0.15,
+                          "lineHeight": 24,
                         },
                         {
                           "textAlign": "left",
@@ -1045,10 +1045,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     [
                       {
                         "fontFamily": "System",
-                        "fontSize": 22,
+                        "fontSize": 16,
                         "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
+                        "letterSpacing": 0.15,
+                        "lineHeight": 24,
                       },
                       {
                         "textAlign": "left",
@@ -1070,10 +1070,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       [
                         {
                           "fontFamily": "System",
-                          "fontSize": 22,
+                          "fontSize": 16,
                           "fontWeight": "400",
-                          "letterSpacing": 0,
-                          "lineHeight": 28,
+                          "letterSpacing": 0.15,
+                          "lineHeight": 24,
                         },
                         {
                           "textAlign": "left",
@@ -1088,7 +1088,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       ]
                     }
                   >
-                    Science
+                    Science (31d)
                   </Text>
                 </Text>
               </View>
