@@ -7,7 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "SET TZ=\"Asia/Singapore\" && jest"
+    "test": "npm run test:local || npm run test:ci",
+    "test:local": "set TZ=Asia/Singapore && jest",
+    "test:ci": "TZ=Asia/Singapore jest"
   },
   "jest": {
     "preset": "jest-expo",
