@@ -17,6 +17,12 @@ jobs:
                 node-version: [18.x]
 
         steps:
+            - name: Set timezone
+              run: |
+                sudo ln -sf /usr/share/zoneinfo/Asia/Singapore /etc/localtime
+                echo "Asia/Singapore" | sudo tee /etc/timezone
+                date
+    
             - name: Checkout Repository
               uses: actions/checkout@v3
 
