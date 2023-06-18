@@ -4,11 +4,8 @@ import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 
-const UpdateOptionList = () => {
+const UpdateOptionList = ({cat}) => {
     const navigation = useNavigation();
-
-    const route = useRoute();
-    const cat = route.params;
 
     return (
         <List.Section>
@@ -66,14 +63,14 @@ export default function UpdateOptions() {
         <ScrollView>
             <View style={{ margin: 8 }}>
                 <CatAvatar 
-                    photoURL={ route.params.photoURL }
+                    photoURL={route.params.photoURLs[0]}
                     size={200}
                     variant="headlineLarge"
                     name={ route.params.name }
                 />
             </View>
             <View>
-                <UpdateOptionList />
+                <UpdateOptionList cat={route.params}/>
             </View>
         </ScrollView>
     );

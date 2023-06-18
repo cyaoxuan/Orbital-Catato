@@ -10,10 +10,11 @@ export default function Update() {
     
     const route = useRoute();
     // Check if there are route params from SelectCat, if not ask user to Select Cat
-    const catID = route.params?.catID ? route.params.catID : null;
-    const name = route.params?.name ? route.params.name : "Select Cat";
-    const photoURL = route.params?.photoURL
-        ? route.params.photoURL
+    const cat = route.params?.cat ? route.params.cat : null;
+    const catID = cat ? cat.catID : null;
+    const name = cat ? cat.name : "Select Cat";
+    const photoURL = (cat && cat.photoURLs.length > 0)
+        ? cat.photoURLs[0]
         : require("../../../../assets/placeholder.png");
     
     return (
@@ -34,13 +35,19 @@ export default function Update() {
                 disabled={!catID}
                 label="Continue to Update"
                 onPress={() => {navigation.navigate("UpdateOptions", 
-                    { catID: catID, name: name, photoURL: photoURL })}}
+                    { ...cat })}}
             />
 
             <PillButton
-                label="New Cat"
+                label="Create New Profile"
                 onPress={() => navigation.navigate("Form", 
-                    { catID: 0, name: "New Cat", photoURL: require("../../../../assets/placeholder.png"), formType: "create" })}
+                    { catID: 0, name: "New Cat", photoURLs: [require("../../../../assets/placeholder.png")], formType: "create" })}
+            />
+
+            <PillButton
+                label="Report New Cat"
+                onPress={() => navigation.navigate("Form", 
+                    { catID: 0, name: "New Cat", photoURLs: [require("../../../../assets/placeholder.png")], formType: "report" })}
             />
         </View>
     );

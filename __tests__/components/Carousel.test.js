@@ -67,7 +67,7 @@ describe("getInfo1", () => {
     });
 
     test("unfed, valid lastFedTime", () => {
-        expect(getInfo1("unfed", {lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0)})).toBe("19/05, 20:01 (28d ago)");
+        expect(getInfo1("unfed", {lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0)})).toBe("19/05, 20:01 (28d)");
     });
 
     test("unfed, lastFedTime is null", () => {

@@ -714,7 +714,6 @@ exports[`<CatProfileScreen /> renders CatProfileScreen with cat correctly 1`] = 
         style={
           {
             "flexDirection": "row",
-            "justifyContent": "center",
           }
         }
       >

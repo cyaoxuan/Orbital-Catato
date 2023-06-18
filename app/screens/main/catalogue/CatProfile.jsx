@@ -28,6 +28,10 @@ export function CatProfileScreen({catID}) {
         );
     };
 
+    // Remove Date properties
+    const partialCat = (({catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, concernStatus, concernDesc}) => 
+        ({catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, concernStatus, concernDesc}))(cat); 
+
     return (
         <ScrollView testID="profile-container">
             
@@ -45,7 +49,7 @@ export function CatProfileScreen({catID}) {
                 <PillButton
                     label="Update Cat"
                     onPress={() => navigation.navigate("update", 
-                        { screen: "Update", params: {catID: cat.catID, name: cat.name, photoURL: cat.photoURLs[0]}})}
+                        { screen: "Update", params: {cat: partialCat}})}
                 />
             </View>
         </ScrollView>

@@ -118,9 +118,25 @@ describe("<CatProfileScreen />", () => {
         expect(mockNavigate).toHaveBeenCalledWith("update", {
         screen: "Update",
         params: {
-            catID: 1,
-            name: "Kitty",
-            photoURL: require("../../assets/cats/cat-1-1.jpg"),
+            cat: {
+                catID: 1,
+                name: "Kitty",
+                photoURLs: [
+                    require("../../assets/cats/cat-1-1.jpg"), 
+                    require("../../assets/cats/cat-1-2.jpg"),
+                    require("../../assets/cats/cat-1-3.jpg"),
+                    require("../../assets/cats/cat-1-4.jpg"),
+                    require("../../assets/cats/cat-1-5.jpg"),
+                    require("../../assets/cats/cat-1-6.jpg"),
+                    require("../../assets/cats/cat-1-7.jpg"),
+                ],
+                gender: "M",
+                birthYear: 2019,
+                sterilised: true,
+                keyFeatures: "Grey tabby and loves to sleep on his back",
+                concernStatus: ["Injured"], 
+                concernDesc: "Seen limping, possibly right front leg injured"
+            }
         },
         });
     });

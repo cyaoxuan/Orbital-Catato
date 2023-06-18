@@ -20,6 +20,10 @@ export default function SelectCat() {
             numColumns={2}
             data={getCats()}
             renderItem={({item}) => {
+                // Remove Date properties
+                const partialCat = (({catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, concernStatus, concernDesc}) => 
+                ({catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, concernStatus, concernDesc}))(item); 
+
                 return (
                     <View key={item.catId}>
                         <CatCardSimple
@@ -27,7 +31,7 @@ export default function SelectCat() {
                             photoURL={item.photoURLs[0]}
                             cardWidth={cardWidth}
                             onPress={() => {navigation.navigate("Update", 
-                                { catID: item.catID, name: item.name, photoURL: item.photoURLs[0] })
+                                { cat: partialCat })
                             }}/>
                     </View>
                 );

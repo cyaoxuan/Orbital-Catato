@@ -5,7 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 export default function MainLayout() {
     return (
         <AuthProvider>
-            <Tabs screenOptions={{ tabBarActiveTintColor: "plum" }
+            <Tabs screenOptions={{ tabBarActiveTintColor: "plum", tabBarHideOnKeyboard: true }
             }>
                 <Tabs.Screen name="Dashboard" options={{ tabBarLabel: "Dashboard", 
                     tabBarIcon: ({ color, focused }) => (

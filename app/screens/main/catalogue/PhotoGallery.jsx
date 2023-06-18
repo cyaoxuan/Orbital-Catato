@@ -33,35 +33,35 @@ export default function PhotoGallery() {
 
     return (
         <Provider>
-            <View>
-                <FlatList
-                    ListHeaderComponent={() => <Text variant="headlineMedium">{route.params.name} Meowmories</Text>}
-                    ListHeaderComponentStyle={{ alignItems: "center" }}
-                    numColumns={2}
-                    contentContainerStyle={{ justifyContent: "space-around" }}
-                    data={route.params.photoURLs}
-                    renderItem={({item, index}) => {
-                        return (
-                            <View key={index} testID="gallery-photo">
-                                <Image style={{ height: imageSize, width: imageSize, resizeMode: "cover", margin: 8 }} 
-                                source={item} />
-                            </View>
-                        );
-                    }}
+        <View>
+            <FlatList
+                ListHeaderComponent={() => <Text variant="headlineMedium">{route.params.name} Meowmories</Text>}
+                ListHeaderComponentStyle={{ alignItems: "center" }}
+                numColumns={2}
+                contentContainerStyle={{ justifyContent: "space-around" }}
+                data={route.params.photoURLs}
+                renderItem={({item, index}) => {
+                    return (
+                        <View key={index} testID="gallery-photo">
+                            <Image style={{ height: imageSize, width: imageSize, resizeMode: "cover", margin: 8 }} 
+                            source={item} />
+                        </View>
+                    );
+                }}
+            />
+            <Portal>
+                <FAB.Group testID="fab-group" 
+                    style={{ position: "absolute", bottom: 10, right: 10 }}
+                    open={open}
+                    icon={open ? "close" : "plus"}
+                    actions={[
+                        {icon: "camera", label: "Camera", onPress: handleAddImageFromCamera},
+                        {icon: "image", label: "Gallery", onPress: handleAddImageFromGallery}
+                    ]}
+                    onStateChange={() => setOpen((prev) => !prev)}
                 />
-                <Portal>
-                    <FAB.Group testID="fab-group" 
-                        style={{ position: "absolute", bottom: 10, right: 10 }}
-                        open={open}
-                        icon={open ? "close" : "plus"}
-                        actions={[
-                            {icon: "camera", label: "Camera", onPress: handleAddImageFromCamera},
-                            {icon: "image", label: "Gallery", onPress: handleAddImageFromGallery}
-                        ]}
-                        onStateChange={() => setOpen((prev) => !prev)}
-                    />
-                </Portal>
-            </View>
+            </Portal>
+        </View>
         </Provider>
     )
 }

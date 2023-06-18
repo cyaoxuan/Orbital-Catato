@@ -173,6 +173,5 @@ const styles = StyleSheet.create({
 
     previewContainer: {
         flexDirection: "row",
-        justifyContent: "center"
     }
 })

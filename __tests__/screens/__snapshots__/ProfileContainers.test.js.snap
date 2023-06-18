@@ -820,7 +820,6 @@ exports[`<PhotosContainer /> renders photos container correctly 1`] = `
     style={
       {
         "flexDirection": "row",
-        "justifyContent": "center",
       }
     }
   >
@@ -893,7 +892,6 @@ exports[`<PreviewPhotos /> renders photos container correctly photoURLs.length <
   style={
     {
       "flexDirection": "row",
-      "justifyContent": "center",
     }
   }
 >
