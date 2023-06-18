@@ -55,7 +55,7 @@ export default function Dashboard() {
             <CarouselContainer
                 titleText="Unfed Cats"
                 subtitleText="Not Fed in 12 Hours"
-                carouselType="unfed "
+                carouselType="unfed"
                 cats={getUnfedCats()}
                 cardWidth={cardWidth || 250}
                 iconName1="time-outline"

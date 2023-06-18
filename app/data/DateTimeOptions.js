@@ -6,3 +6,10 @@ export const dateTimeOptions = {
     minute: "2-digit",
     hour12: false
 }
+
+export const timeOptions = {
+    timeZone: "Asia/Singapore",
+    hour:"2-digit",
+    minute:"2-digit",
+    hour12: false
+}

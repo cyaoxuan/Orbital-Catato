@@ -1,5 +1,5 @@
 import { ScrollView, View } from "react-native";
-import { Text } from "react-native-paper";
+import { Provider, Text } from "react-native-paper";
 import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import * as FormTypes from "./FormType"
@@ -9,6 +9,8 @@ function getForm(userID, params) {
     switch(params.formType) {
         case "create":
             return <FormTypes.CreateProfile userID={userID} {...params} />;
+        case "report":
+            return <FormTypes.ReportCat userID={userID} {...params} />
         case "location":
             return <FormTypes.UpdateLocation userID={userID} {...params} />;
         case "concern":
@@ -35,17 +37,16 @@ export default function Form() {
     const route = useRoute();
     
     return (
-        <ScrollView contentContainerStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Provider>
+         <ScrollView contentContainerStyle={{ alignItems: "center", justifyContent: "center" }}>
             <CatAvatar 
-                photoURL={ route.params.photoURL }
+                photoURL={route.params.photoURLs[0]}
                 size={200}
                 variant="headlineLarge"
                 name={ route.params.name }
             />
-
             { getForm(1, route.params) }
-
          </ScrollView>
+        </Provider>
     )
-    
 }

@@ -1,7 +1,7 @@
 import { FlatList, View } from "react-native";
 import { useNavigation } from "expo-router";
 import { CatCard } from "./CatCard";
-import { formatLastFed, formatLastSeenSimple } from "../utils/formatDetails";
+import { formatLastFedSimple, formatLastSeenSimple } from "../utils/formatDetails";
 
 function getInfo1(carouselType, cat) {
     if (!cat || !carouselType) {
@@ -11,7 +11,7 @@ function getInfo1(carouselType, cat) {
     if (carouselType === "concern" && cat.concernStatus) {
         return cat.concernStatus.join(", ");
     } else if (carouselType === "unfed" && cat.lastFedTime) {
-        return formatLastFed(cat.lastFedTime);
+        return formatLastFedSimple(cat.lastFedTime);
     }
     return "Unknown";
 }

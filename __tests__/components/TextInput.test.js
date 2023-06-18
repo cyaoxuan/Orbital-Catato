@@ -1,4 +1,4 @@
-import { AuthInput, PasswordInput, FormInput } from "../../app/components/TextInput";
+import { AuthInput, PasswordInput } from "../../app/components/TextInput";
 import { cleanup, fireEvent, render } from "@testing-library/react-native";
 
 afterEach(cleanup)
@@ -71,23 +71,6 @@ describe("<PasswordInput />", () => {
 
     it("displays label prop", () => {
         const { queryAllByText } = render(<PasswordInput label="Meow!" />);
-        expect(queryAllByText("Meow!")).not.toBeNull();
-    });
-});
-
-describe("<FormInput />", () => {
-    it("renders successfully", () => {
-        const formInput = render(<FormInput />);
-        expect(formInput).toBeDefined();
-    });
-
-    it("renders correctly", () => {
-        const tree = render(<FormInput />).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    it("displays label prop", () => {
-        const { queryAllByText } = render(<FormInput label="Meow!" />);
         expect(queryAllByText("Meow!")).not.toBeNull();
     });
 });

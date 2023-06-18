@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import { TextInput, HelperText } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 import { useState } from "react";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -67,31 +67,7 @@ const PasswordInput = (props) => {
     );
 };
 
-// Required Input, need to pass in a 'value' prop for the error message to work correctly
-const FormInput = (props) => {
-    const [value, setValue] = useState("");
-
-    return (
-        <View style={{ width: "90%", height:100}}>
-            <TextInput style={styles.formInput}
-                disabled={props.disabled}
-                multiline={props.multiline}
-                label={props.label || "Label"}
-                placeholder={props.placeholder}
-            
-                value={props.value || value}
-                onChangeText={props.onChangeText || setValue}
-
-                error={!props.value || !value}
-            />
-            <HelperText type="error" padding="none" visible={!props.value || !value}>
-                Error: {props.errorText}
-            </HelperText>
-        </View>
-    );
-};
-
-export { AuthInput, PasswordInput, FormInput };
+export { AuthInput, PasswordInput };
 
 const styles = StyleSheet.create({
     inputContainer: {
@@ -111,7 +87,7 @@ const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: "transparent",
         paddingHorizontal: 0,
-        alignContent: "center"
+        alignContent: "center",
     },
 
     icon: {

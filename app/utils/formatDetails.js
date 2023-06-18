@@ -28,7 +28,7 @@ export function formatLastSeen(lastSeenLocation, lastSeenTime) {
     return `${lastSeenLocation}, ${lastSeenTimeString} (${durationString} ago)`;
 }
 
-// Format Last Seen Field - assumes arguments are not null since checks are done beforehand
+// Simpler format for dashboard
 export function formatLastSeenSimple(lastSeenLocation, lastSeenTime) {
     let today = new Date();
     // lastSeenTime.toDate() when using TimeStamp
@@ -60,3 +60,21 @@ export function formatLastFed(lastFedTime) {
 
     return `${lastFedTimeString} (${durationString} ago)`;
 }
+
+// Simpler format for dashboard
+export function formatLastFedSimple(lastFedTime) {
+    const lastFedTimeString = lastFedTime.toLocaleString("en-GB", dateTimeOptions);
+    let today = new Date();
+    // lastFedTime.toDate() when using TimeStamp
+    // duration in hours
+    let duration = (today - lastFedTime) / 3600000;
+    let durationString;
+    if (duration >= 24) {
+        durationString = Math.floor(duration / 24) + "d";
+    } else {
+        durationString = Math.floor(duration) + "h";
+    }
+
+    return `${lastFedTimeString} (${durationString})`;
+}
+
