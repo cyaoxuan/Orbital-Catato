@@ -1,21 +1,12 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { ActivityIndicator, Divider, Provider, Text } from "react-native-paper";
+import { ActivityIndicator, Divider, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { PillButton } from "../../../components/Button";
+import { DropdownList, FormInput, NumberSpinner, TimeInput, TwoRadioInput, UploadPhotos } from "../../../components/FormComponents";
 import { useUserUpdateCatConcern, useUserUpdateCatFed, useUserUpdateCatFoster, useUserUpdateCatLocation } from "../../../utils/db/cat";
 import { getImageFromCamera, getImageFromGallery } from "../../../utils/db/photo";
-import { DropdownList, FormInput, NumberSpinner, TimeInput, TwoRadioInput, UploadPhotos } from "../../../components/FormComponents";
-
-// TODO: put location data under data folder with geohashes, then just get from there
-const locations = [
-    { key: "1", value: "Use Current Location" },
-    { key: "2", value: "Utown" },
-    { key: "3", value: "Engineering" },
-    { key: "4", value: "Science" },
-    { key: "5", value: "BizCom" },
-    { key: "6", value: "Arts" },
-];
+import { locations } from "../../../data/locationData";
 
 const CreateProfile = (props) => {
     const navigation = useNavigation();
