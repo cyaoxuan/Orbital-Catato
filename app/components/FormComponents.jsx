@@ -91,7 +91,7 @@ const TimeInput = (props) => {
                 onPress={props.onPress ? props.onPress : setShow}
                 style={{ width: "50%", margin: 4 }}>
                 Pick Time </Button>
-            <Text>Selected Time: {props.displayTime 
+            <Text variant={bodyVariant}>Selected Time: {props.displayTime 
                 ? props.displayTime.toLocaleTimeString("en-GB", timeOptions) 
                 : date.toLocaleTimeString("en-GB", timeOptions)}</Text>
             { (props.show ? props.show : show) && (
@@ -153,6 +153,7 @@ const UploadPhotos = (props) => {
                     <Menu.Item leadingIcon="image" onPress={props.galleryOnPress} title="Gallery" />
                 </Menu>
             </View>
+            <Text variant={bodyVariant}>Image: {props.photoURI ? props.photoURI : ""}</Text>
         </View>
     )
 }
