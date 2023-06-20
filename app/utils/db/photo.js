@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 // which will catch the error and pass the state to the corresponding screens.
 export const getImageFromGallery = async () => {
     let uri;
-    let result = await ImagePicker.launchImageLibraryAsync({
+    await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [1, 1],
@@ -18,7 +18,7 @@ export const getImageFromGallery = async () => {
 
 export const getImageFromCamera = async () => {
     let uri;
-    let result = await ImagePicker.launchCameraAsync({
+    await ImagePicker.launchCameraAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [1, 1],
@@ -29,6 +29,10 @@ export const getImageFromCamera = async () => {
 };
 
 export const uploadImageToStorage = async (uri) => {
+    if (uri === null) {
+        throw new Error("Invalid uri (null)");
+    }
+    
     const storageRef = ref(storage, 'images/' + uri.split('/').pop());
     const response = await fetch(uri);
     const blob = await response.blob();

@@ -10,29 +10,115 @@ const catColl = collection(db, "Cat");
 const catUpdateColl = collection(db, "CatUpdate");
 
 const processLocation = async (location) => {
-    if (location == "Use Current Location") {
-        const { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== "granted") {
-            throw new Error("Locations permissions denied");
-        }
+    try {
+        if (location == "Use Current Location") {
+            const { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== "granted") {
+                throw new Error("Locations permissions denied");
+            }
 
-        const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
-        const geohash = Geohash.encode(loc.coords.latitude, loc.coords.longitude);
-        location = geohash;
+            const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
+            const geohash = Geohash.encode(loc.coords.latitude, loc.coords.longitude);
+            location = { latitude: loc.coords.latitude, longitude: loc.coords.longitude };
+        }
+        
+        return location;
+    } catch (error) {
+        console.error("Error in processLocation:", error);
+        throw error;
     }
-    
-    return location;
 };
 
 const processNewPhotoURLs = async (catID, photoURI) => {
-    // Upload to storage and get download URL
-    const downloadURL = await uploadImageToStorage(photoURI);
+    try {
+        // Upload to storage and get download URL
+        const downloadURL = await uploadImageToStorage(photoURI);
 
-    // Get old data from Firestore to append the download URL
-    const cat = (await getDoc(doc(db, "Cat", catID))).data();
-    const newPhotoURLs = [...cat.photoURLs, downloadURL];
+        // Get old data from Firestore to append the download URL
+        const cat = (await getDoc(doc(db, "Cat", catID))).data();
+        const newPhotoURLs = cat.photoURLs ? [...cat.photoURLs, downloadURL] : [downloadURL];
 
-    return newPhotoURLs;
+        return newPhotoURLs;    
+    } catch (error) {
+        console.error("Error in processNewPhotoURLs:", error);
+        throw error;
+    }
+};
+
+const autoProcessUnfed = async (cat) => {
+    try {
+        const currentTime = Date.now();
+        const twelveHoursAgo = sub(currentTime, { hours: 12 });
+        const oldConcernStatus = cat.concernStatus;
+        const lastFedTime = cat.lastFedTime;
+
+        const unfed = lastFedTime && lastFedTime.toMillis() <= twelveHoursAgo;
+        const updatedUnfed = oldConcernStatus && oldConcernStatus.includes("Unfed");
+
+        if (unfed && !updatedUnfed) {
+            // Should be unfed, but is not
+            await userUpdateCat("SYSTEM", cat.catID, "Update Concern (Unfed)", {
+                concernStatus: oldConcernStatus ? [...oldConcernStatus, "Unfed"] : ["Unfed"]
+            });
+        }
+
+        if (!unfed && updatedUnfed) {
+            // Should not be unfed, but is
+            const newConcernStatus = oldConcernStatus.filter((concern) => concern !== "Unfed");
+            await userUpdateCat("SYSTEM", cat.catID, "Update Concern (Unfed)", {
+                concernStatus: newConcernStatus
+            });
+        }
+    } catch (error) {
+        console.error("Error processing unfed status:", error);
+        throw error;
+    }
+};
+
+const autoProcessMissing = async (cat) => {
+    try {
+        const currentTime = Date.now();
+        const threeDaysAgo = sub(currentTime, { days: 3 }).getTime();
+        const oldConcernStatus = cat.concernStatus;
+        const lastSeenTime = cat.lastSeenTime;
+
+        const missing = lastSeenTime && lastSeenTime.toMillis() <= threeDaysAgo;
+        const updatedMissing = oldConcernStatus && oldConcernStatus.includes("Missing");
+        if (missing && !updatedMissing) {
+            // Should be missing, but is not
+            await userUpdateCat("SYSTEM", cat.catID, "Update Concern (Missing)", {
+                concernStatus: oldConcernStatus ? [...oldConcernStatus, "Missing"] : ["Missing"]
+            });
+        }
+
+        if (!missing && updatedMissing) {
+            // Should not be missing, but is
+            const newConcernStatus = oldConcernStatus.filter((concern) => concern !== "Missing");
+            await userUpdateCat("SYSTEM", cat.catID, "Update Concern (Missing)", {
+                concernStatus: newConcernStatus
+            });
+        }
+    } catch (error) {
+        console.error("Error processing missing status:", error);
+        throw error;
+    }
+};
+
+const autoProcessConcernStatus = async () => {
+    try {
+        console.log("start autoProcessConcernStatus");
+        const querySnapshot = await getDocs(catColl);
+        const cats = querySnapshot.docs.map((doc) => doc.data());
+
+        for (let i = 0; i < cats.length; i++) {
+            const cat = cats[i];
+            await autoProcessMissing(cat);
+            await autoProcessUnfed(cat);
+        }
+    } catch (error) {
+        console.error("Error in autoProcessConcernStatus:", error);
+        throw error;
+    }
 };
 
 // Note: Some functions are not exported as they are only used for testing / internal calls.
@@ -49,24 +135,24 @@ export const useCreateCat = () => {
             
             let downloadURL;
             if (data.photoURI) {
-                downloadURL = await uploadImageToStorage(data.photoURI);
+                downloadURL = [await uploadImageToStorage(data.photoURI)];
             }
 
             // TODO: Redefine default values
             const cat = await addDoc(catColl, {
-                name: data.name || "NONE",
-                photoURLs: downloadURL ? [downloadURL] : [],
-                gender: data.gender || "Unknown",
-                birthYear: data.birthYear || -1,
-                sterilised: data.sterilised || false,
-                keyFeatures: data.keyFeatures || "NONE",
-                lastSeenLocation: data.lastSeenLocation || "Unknown",
-                lastSeenTime: data.lastSeenTime || serverTimestamp(),
-                lastFedTime: data.lastFedTime || serverTimestamp(),
-                concernStatus: data.concernStatus || [],
-                concernDesc: data.concernDesc || "NONE",
-                isFostered: data.isFostered || false,
-                fosterReason: data.fosterReason || "NONE"
+                name: data.name,
+                photoURLs: downloadURL,
+                gender: data.gender,
+                birthYear: data.birthYear,
+                sterilised: data.sterilised,
+                keyFeatures: data.keyFeatures,
+                lastSeenLocation: data.lastSeenLocation,
+                lastSeenTime: data.lastSeenTime,
+                lastFedTime: data.lastFedTime,
+                concernStatus: data.concernStatus,
+                concernDesc: data.concernDesc,
+                isFostered: data.isFostered,
+                fosterReason: data.fosterReason
             });
 
             await updateDoc(doc(db, "Cat", cat.id), { "catID": cat.id });
@@ -92,17 +178,18 @@ export const useCreateTempCat = () => {
             
             let downloadURL;
             if (data.photoURI) {
-                downloadURL = await uploadImageToStorage(data.photoURI);
+                downloadURL = [await uploadImageToStorage(data.photoURI)];
             }
 
             // TODO: Redefine default values
             const cat = await addDoc(catColl, {
                 name: "Cat " + new Date().valueOf().toString(),
-                photoURLs: downloadURL ? [downloadURL] : [],
-                lastSeenLocation: data.lastSeenLocation || "Unknown",
-                lastSeenTime: data.lastSeenTime || serverTimestamp(),
-                concernDesc: data.concernDesc || "NONE",
-                isTemp: true
+                photoURLs: downloadURL,
+                lastSeenLocation: data.lastSeenLocation,
+                lastSeenTime: data.lastSeenTime,
+                concernStatus: data.concernStatus === "Healthy" ? ["New"] : ["Injured", "New"],
+                concernDesc: data.concernDesc,
+                sterilised: data.sterilised
             });
 
             await updateDoc(doc(db, "Cat", cat.id), { "catID": cat.id });
@@ -115,116 +202,107 @@ export const useCreateTempCat = () => {
     };
 
     return { createTempCat, loading, error };
-}
+};
 
 /* ----- READ OPERATIONS ----- */
-export const useAllCats = () => {
+export const useGetAllCats = () => {
     const [allCats, setAllCats] = useState([]);
-    const [loading, setLoading] = useState([true]);
+    const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
 
-    useEffect(() => {
-        const fetchAllCats = async () => {
-            try {
-                const querySnapshot = await getDocs(catColl);
-                const cats = querySnapshot.docs.map((doc) => doc.data());
-                setAllCats(cats);
-            } catch (error) {
-                console.error("Error fetching all cats:", error);
-                setError([error]);
-            } finally {
-                setLoading([false]);
-            }
-        };
+    const getAllCats = async () => {
+        try {
+            setLoading([true]);
+            setError([null]);
 
-        fetchAllCats();
-    }, []);
+            await autoProcessConcernStatus();
+            const querySnapshot = await getDocs(catColl);
+            const cats = querySnapshot.docs.map((doc) => doc.data());
+            setAllCats(cats);
+        } catch (error) {
+            console.error("Error fetching all cats:", error);
+            setError([error]);
+        } finally {
+            setLoading([false]);
+        }
+    };
 
-    return { allCats, loading, error };
+    return { getAllCats, allCats, loading, error };
 };
 
-export const useCat = (catID) => {
+export const useGetCat = () => {
     const [cat, setCat] = useState({});
-    const [loading, setLoading] = useState([true]);
+    const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
 
-    useEffect(() => {
-        const fetchCat = async () => {
-            try {
-                setLoading([true]);
-                setError([null]);
-                setCat((await getDoc(doc(db, "Cat", catID))).data());
-            } catch (error) {
-                console.error("Error fetching cat:", error);
-                setError([error]);
-            } finally {
-                setLoading([false]);
-            }
-        };
+    const getCat = async (catID) => {
+        try {
+            setLoading([true]);
+            setError([null]);
 
-        fetchCat();
-    }, [catID]);
+            await autoProcessConcernStatus();
+            setCat((await getDoc(doc(db, "Cat", catID))).data());
+        } catch (error) {
+            console.error("Error fetching cat:", error);
+            setError([error]);
+        } finally {
+            setLoading([false]);
+        }
+    };
 
-    return { cat, loading, error };
+    return { getCat, cat, loading, error };
 };
 
-export const useUnfedCats = () => {
+export const useGetUnfedCats = () => {
     const [unfedCats, setUnfedCats] = useState([]);
-    const [loading, setLoading] = useState([true]);
+    const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
 
-    useEffect(() => {
-        const fetchUnfedCats = async () => {
-            try {
-                setLoading([true]);
-                setError([null]);
-                
-                const twelveHoursAgo = Timestamp.fromDate(sub(Date.now(), { hours: 12 }));
-                const q = query(catColl, where("lastFedTime", "<", twelveHoursAgo));
-                const querySnapshot = await getDocs(q);
-                const cats = querySnapshot.docs.map((doc) => doc.data());
-                setUnfedCats(cats);
-            } catch (error) {
-                console.error("Error fetching unfed cats:", error);
-                setError([error]);
-            } finally {
-                setLoading([false]);
-            }
-        };
+    const getUnfedCats = async () => {
+        try {
+            setLoading([true]);
+            setError([null]);
 
-        fetchUnfedCats();
-    }, []);
+            await autoProcessConcernStatus();
+            const q = query(catColl, where("concernStatus", "array-contains", "Unfed"));
+            const querySnapshot = await getDocs(q);
+            const cats = querySnapshot.docs.map((doc) => doc.data());
+            setUnfedCats(cats);
+        } catch (error) {
+            console.error("Error fetching unfed cats:", error);
+            setError([error]);
+        } finally {
+            setLoading([false]);
+        }
+    };
 
-    return { unfedCats, loading, error };
+    return { getUnfedCats, unfedCats, loading, error };
 };
 
-export const useCatsofConcern = () => {
+export const useGetCatsofConcern = () => {
     const [catsOfConcern, setCatsofConcern] = useState([]);
-    const [loading, setLoading] = useState([true]);
+    const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
 
-    useEffect(() => {
-        const fetchCatsofConcern = async () => {
-            try {
-                setLoading([true]);
-                setError([null]);
-                
-                const q = query(catColl, where("concernStatus", "!=", []));
-                const querySnapshot = await getDocs(q);
-                const cats = querySnapshot.docs.map((doc) => doc.data());
-                setCatsofConcern(cats);
-            } catch (error) {
-                console.error("Error fetching unfed cats:", error);
-                setError([error]);
-            } finally {
-                setLoading([false]);
-            }
-        };
+    const getCatsofConcern = async () => {
+        try {
+            setLoading([true]);
+            setError([null]);
+            
+            await autoProcessConcernStatus();
+            const q = query(catColl, where("concernStatus", "array-contains-any", ["Injured", "Missing", "New"]));
+            const querySnapshot = await getDocs(q);
+            const cats = querySnapshot.docs.map((doc) => doc.data());
+            setCatsofConcern(cats);
+        } catch (error) {
+            console.error("Error fetching unfed cats:", error);
+            setError([error]);
+        } finally {
+            setLoading([false]);
+        }
+    };
 
-        fetchCatsofConcern();
-    }, []);
-
-    return { catsOfConcern, loading, error };
+    return { getCatsofConcern, catsOfConcern, loading, error };
 };
 
 /* ----- UPDATE OPERATIONS ----- */
@@ -271,6 +349,10 @@ export const useUserUpdateCatLocation = () => {
 
     const userUpdateCatLocation = async (userID, catID, location, time) => {
         try {
+            if (!(userID && catID && location && time)) {
+                throw new Error("Empty fields detected");
+            }
+
             setLoading([true]);
             setError([null]);
             setUserID(userID);
@@ -291,19 +373,22 @@ export const useUserUpdateCatLocation = () => {
     return { userUpdateCatLocation, loading, error };
 };
 
+// handle injured, healthy
 export const useUserUpdateCatConcern = () => {
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
+    const [processed, setProcessed] = useState(false);
     const [userID, setUserID] = useState("");
     const [catID, setCatID] = useState("");
-    const [concernStatus, setConcernStatus] = useState([]);
+    const [concernStatus, setConcernStatus] = useState("");
     const [concernDesc, setConcernDesc] = useState("");
     const [userLocation, setUserLocation] = useState("");
     const [seenTime, setSeenTime] = useState({});
     const [newPhotoURLs, setNewPhotoURLs] = useState([]);
+    const [newConcernStatus, setNewConcernStatus] = useState([]);
 
     useEffect(() => {
-        if (userLocation !== "" && newPhotoURLs !== []) {
+        if (processed && userLocation !== "" && newPhotoURLs !== [] && newConcernStatus !== []) {
             userUpdateCat(userID, catID, "Update Concern", {
                 concernStatus: concernStatus,
                 lastSeenLocation: userLocation,
@@ -317,15 +402,20 @@ export const useUserUpdateCatConcern = () => {
                 setLoading([false]);
             });
         }
-    }, [catID, concernDesc, concernStatus, newPhotoURLs, seenTime, userID, userLocation]);
+    }, [catID, concernDesc, concernStatus, newConcernStatus, newPhotoURLs, processed, seenTime, userID, userLocation]);
 
-    const userUpdateCatConcern = async (userID, catID, location, time, concernStatus, concernDesc, photoURI) => {
+    const userUpdateCatConcern = async (userID, catID, location, time, concernStatus, concernDesc, photoURI, oldConcernStatus) => {
         try {
+            console.log("updating cat concern");
+            if (!(userID && catID && location && time && concernStatus && concernDesc && photoURI)) {
+                throw new Error("Empty fields detected");
+            }
+
             setLoading([true]);
             setError([null]);
+            setProcessed(false);
             setUserID(userID);
             setCatID(catID);
-            setConcernStatus(concernStatus);
             setConcernDesc(concernDesc);
             
             const userLocation = await processLocation(location);
@@ -335,6 +425,24 @@ export const useUserUpdateCatConcern = () => {
 
             const newPhotoURLs = await processNewPhotoURLs(catID, photoURI);
             setNewPhotoURLs(newPhotoURLs);
+
+            let newConcernStatus;
+            if (concernStatus === "Healthy") {
+                newConcernStatus = oldConcernStatus.filter((status) => status !== "Injured");
+            } else {
+                if (!oldConcernStatus) {
+                    newConcernStatus = ["Injured"];
+                } else {
+                    if (oldConcernStatus.includes("Injured")) {
+                        newConcernStatus = oldConcernStatus;
+                    } else {
+                        newConcernStatus = [...oldConcernStatus, "Injured"];
+                    }
+                }
+            }
+            setConcernStatus(newConcernStatus);
+
+            setProcessed(true);
         } catch (error) {
             console.error("Error updating cat concern:", error);
             setError([error]);
@@ -371,6 +479,10 @@ export const useUserUpdateCatFed = () => {
 
     const userUpdateCatFed = async (userID, catID, time, location) => {
         try {
+            if (!(userID && catID && location && time)) {
+                throw new Error("Empty fields detected");
+            }
+
             setLoading([true]);
             setError([null]);
             setUserID(userID);
@@ -398,6 +510,10 @@ export const useUserUpdateCatFoster = () => {
 
     const userUpdateCatFoster = async (userID, catID, isFostered, fosterReason) => {
         try {
+            if (!(userID && catID && isFostered && fosterReason)) {
+                throw new Error("Empty fields detected");
+            }
+
             setLoading([true]);
             setError([null]);
 
@@ -422,18 +538,22 @@ export const useUserUpdateCatProfile = () => {
 
     const userUpdateCatProfile = async (userID, catID, data) => {
         try {
+            if (!(userID && catID && data)) {
+                throw new Error("Empty fields detected");
+            }
+
             setLoading([true]);
             setError([null]);
 
             if (data.photoURI) {
                 const newPhotoURLs = await processNewPhotoURLs(catID, data.photoURI);
                 await userUpdateCat(userID, catID, "Update Profile", {
-                    name: data.name || "NONE",
+                    name: data.name,
                     photoURLs: newPhotoURLs,
-                    gender: data.gender || "NONE",
-                    birthYear: data.birthYear || -1,
-                    sterilised: data.sterilised || false,
-                    keyFeatures: data.keyFeatures || "NONE"
+                    gender: data.gender,
+                    birthYear: data.birthYear,
+                    sterilised: data.sterilised,
+                    keyFeatures: data.keyFeatures
                 });
             } else {
                 await userUpdateCat(userID, catID, "Update Profile", {
@@ -462,6 +582,10 @@ export const useUserAddCatPicture = () => {
 
     const userAddCatPicture = async (userID, catID, photoURI) => {
         try {
+            if (!(userID && catID && photoURI)) {
+                throw new Error("Empty fields detected");
+            }
+
             setLoading([true]);
             setError([null]);
 
