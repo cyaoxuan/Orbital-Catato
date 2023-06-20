@@ -1,9 +1,11 @@
 import { ScrollView, View } from "react-native";
-import { Text } from "react-native-paper";
+import { ActivityIndicator, Text } from "react-native-paper";
 import { useAuth } from "../../utils/context/auth";
 import { getCardWidth } from "../../utils/calculateItemWidths";
 import { CardCarousel } from "../../components/Carousel";
 import { cats } from "../../data/CatTempData"
+// import { useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
+import { useEffect } from "react";
 
 
 // Eventual Call from DB
@@ -35,8 +37,19 @@ export const CarouselContainer = ({ titleText, subtitleText, ...carousel }) => {
 }
 
 export default function Dashboard() {
-    const { user } = useAuth();
-    const cardWidth = getCardWidth(2 / 3)
+    const cardWidth = getCardWidth(2 / 3);
+    // const { getCatsofConcern, catsOfConcern, loadingConcern, errorConcern } = useGetCatsofConcern();
+    // const { getUnfedCats, unfedCats, loadingUnfed, errorUnfed } = useGetUnfedCats();
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         await getCatsofConcern();
+    //         await getUnfedCats();
+    //     }
+        
+    //     fetchData();
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     return (
         <ScrollView>
@@ -44,7 +57,8 @@ export default function Dashboard() {
                 titleText="Cats of Concern"
                 subtitleText="New, Injured, Missing >3 Days"
                 carouselType="concern"
-                cats={getConcernCats()}
+                // cats={catsOfConcern}
+                cats={getConcernCats()} //
                 cardWidth={cardWidth || 250}
                 iconName1="alert-circle-outline"
                 field1="Status: "
@@ -56,7 +70,8 @@ export default function Dashboard() {
                 titleText="Unfed Cats"
                 subtitleText="Not Fed in 12 Hours"
                 carouselType="unfed"
-                cats={getUnfedCats()}
+                // cats={unfedCats}
+                cats={getUnfedCats()} // 
                 cardWidth={cardWidth || 250}
                 iconName1="time-outline"
                 field1="Last Fed: "

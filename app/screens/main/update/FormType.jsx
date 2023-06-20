@@ -64,7 +64,7 @@ const CreateProfile = (props) => {
             photoURI: photoURI,
             gender: newGender,
             birthYear: year,
-            sterilised: sterile,
+            sterilised: sterile === "Yes",
             keyFeatures: features
         });
         setProcessed(true);
@@ -164,8 +164,14 @@ const ReportCat = (props) => {
     // For Image Picker
     const [photoURI, setPhotoURI] = useState("");
 
+    // For Concern Radio
+    const [concern, setConcern] = useState("Healthy");
+
     // For ConcernDesc TextInput
     const [concernDescription, setConcernDescription] = useState("");
+
+    // For Sterilised Radio
+    const [sterile, setSterile] = useState("No");
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
@@ -189,7 +195,8 @@ const ReportCat = (props) => {
             lastSeenLocation: location,
             lastSeenTime: date,
             photoURI: photoURI,
-            concernDesc: concernDescription
+            concernDesc: concernDescription,
+            sterilised: sterile === "Yes",
         });
         setProcessed(true);
     };
@@ -218,6 +225,30 @@ const ReportCat = (props) => {
             <UploadPhotos
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
+            />
+
+            <Divider />
+
+            <TwoRadioInput
+                titleText="Sterilised"
+                value={sterile}
+                onValueChange={(value) => setSterile(value)}
+                firstText="Yes"
+                firstValue="Yes"
+                secondText="No"
+                secondValue="No"
+            />
+
+            <Divider />
+
+            <TwoRadioInput
+                titleText="Concern:"
+                value={concern}
+                onValueChange={(value) => setConcern(value)}
+                firstText="Healthy"
+                firstValue="Healthy"
+                secondText="Injured"
+                secondValue="Injured"
             />
 
             <Divider />
@@ -313,8 +344,7 @@ const UpdateConcern = (props) => {
     const [photoURI, setPhotoURI] = useState("");
 
     // For Concern Radio
-    const [concern, setConcern] = useState(concernStatus && concernStatus.find(x => x === "Injured")
-        ? "Injured" : "Healthy");
+    const [concern, setConcern] = useState(concernStatus && concernStatus.includes("Injured") ? "Injured" : "Healthy");
 
     // For Location Dropdown
     const [location, setLocation] = useState("");
@@ -350,7 +380,16 @@ const UpdateConcern = (props) => {
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to cat and userid
-        await userUpdateCatConcern("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", location, date, concernStatus, concernDesc, photoURI);
+        await userUpdateCatConcern(
+            "2nTIJgoSsSTWzspThZlaQJppKuk2",
+            "PMos9bF9blNkKCnGd4c6",
+            location,
+            date,
+            concern,
+            concernDesc,
+            photoURI,
+            concernStatus
+        );
         setProcessed(true);
     };
 
@@ -579,7 +618,7 @@ const UpdateProfile = (props) => {
             photoURI: photoURI,
             gender: newGender,
             birthYear: year,
-            sterilised: sterile,
+            sterilised: sterile === "Yes",
             keyFeatures: features
         })
         setProcessed(true);
