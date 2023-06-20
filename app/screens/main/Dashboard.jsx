@@ -63,7 +63,7 @@ export default function Dashboard() {
                 iconName1="alert-circle-outline"
                 field1="Status: "
                 iconName2="location"
-                field2="Last Seen: "
+                field2="Seen: "
                 loading={loadingConcern}
                 error={errorConcern}
             />
@@ -77,7 +77,7 @@ export default function Dashboard() {
                 iconName1="time-outline"
                 field1="Last Fed: "
                 iconName2="location"
-                field2="Last Seen: "
+                field2="Seen: "
                 loading={loadingUnfed}
                 error={errorUnfed}
             />
