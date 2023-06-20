@@ -70,7 +70,7 @@ const DetailsContainer = ({cat, ...rest}) => {
                 {...rest}
                 iconName="alert-circle-outline"
                 field="Concern Status: "
-                info={cat.concernStatus.length != 0
+                info={cat.concernStatus
                     ? cat.concernStatus.join(", ") 
                     : "Healthy"}
             />

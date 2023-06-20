@@ -10,6 +10,7 @@ import { getImageFromCamera, getImageFromGallery } from "../../../utils/db/photo
 export default function PhotoGallery() {
     const { user } = getAuth();
     const route = useRoute();
+    const { catID } = route.params;
     const { userAddCatPicture, loading, error } = useUserAddCatPicture();
 
     const [open, setOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function PhotoGallery() {
         const photoURI = await getImageFromGallery();
         if (photoURI !== null) {
             // TODO: change to cat and userid
-            await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", photoURI);
+            await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, photoURI);
         }
     };
 
@@ -27,7 +28,7 @@ export default function PhotoGallery() {
         const photoURI = await getImageFromCamera();
         if (photoURI !== null) {
             // TODO: change to cat and userid
-            await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", photoURI);
+            await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, photoURI);
         }
     };
 
