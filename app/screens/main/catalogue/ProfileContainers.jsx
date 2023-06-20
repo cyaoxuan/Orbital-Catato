@@ -56,7 +56,7 @@ const DetailsContainer = ({cat, ...rest}) => {
                 {...rest}
                 iconName="location-outline"
                 field="Last Seen: "
-                info={cat.lastSeenLocation && cat?.lastSeenTime 
+                info={cat.lastSeenLocation && cat.lastSeenTime 
                     ? formatLastSeen(cat.lastSeenLocation, cat.lastSeenTime)
                     : "Unknown"}
             />
