@@ -85,6 +85,7 @@ const CreateProfile = (props) => {
             <UploadPhotos
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
+                photoURI={photoURI}
             />
 
             <Divider />
@@ -225,6 +226,7 @@ const ReportCat = (props) => {
             <UploadPhotos
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
+                photoURI={photoURI}
             />
 
             <Divider />
@@ -300,7 +302,7 @@ const UpdateLocation = (props) => {
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to cat and userid
-        await userUpdateCatLocation("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", location, date);
+        await userUpdateCatLocation("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, location, date);
         setProcessed(true);
     };
 
@@ -382,7 +384,7 @@ const UpdateConcern = (props) => {
         // TODO: change to cat and userid
         await userUpdateCatConcern(
             "2nTIJgoSsSTWzspThZlaQJppKuk2",
-            "PMos9bF9blNkKCnGd4c6",
+            catID,
             location,
             date,
             concern,
@@ -429,6 +431,7 @@ const UpdateConcern = (props) => {
             <UploadPhotos
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
+                photoURI={photoURI}
             />
 
             <Divider />
@@ -480,7 +483,7 @@ const UpdateFed = (props) => {
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to cat and userid
-        await userUpdateCatFed("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", date, location);
+        await userUpdateCatFed("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, date, location);
         setProcessed(true);
     };
 
@@ -534,7 +537,7 @@ const UpdateFoster = (props) => {
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to cat and userid
-        await userUpdateCatFoster("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", isFostered, fosterReason);
+        await userUpdateCatFoster("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, isFostered, fosterReason);
         setProcessed(true);
     };
 
@@ -613,7 +616,7 @@ const UpdateProfile = (props) => {
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to cat and userid
-        await userUpdateCatProfile("2nTIJgoSsSTWzspThZlaQJppKuk2", "PMos9bF9blNkKCnGd4c6", {
+        await userUpdateCatProfile("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, {
             name: newName,
             photoURI: photoURI,
             gender: newGender,
@@ -639,6 +642,7 @@ const UpdateProfile = (props) => {
             <UploadPhotos
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
+                photoURI={photoURI}
             />
 
             <Divider />
@@ -705,6 +709,9 @@ const DeleteProfile = (props) => {
     const [processed, setProcessed] = useState(false);
     const { userDeleteCat, loading, error } = useUserDeleteCat();
 
+    // For Name TextInput
+    const [catName, setCatName] = useState("");
+
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
             navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
@@ -713,13 +720,9 @@ const DeleteProfile = (props) => {
 
     const handleDelete = async () => {
         setProcessed(false);
-        // TODO: change to cat and userid
-        await userDeleteCat("2nTIJgoSsSTWzspThZlaQJppKuk2", "1");
+        await userDeleteCat("2nTIJgoSsSTWzspThZlaQJppKuk2", catID);
         setProcessed(true);
     }
-
-    // For Name TextInput
-    const [catName, setCatName] = useState(name ? name : "");
 
     return (
         <View style={styles.formContainer}>
@@ -736,6 +739,7 @@ const DeleteProfile = (props) => {
             <PillButton
                 label="Delete Profile"
                 onPress={handleDelete}
+                disabled={catName !== name}
             />
             {(error[0]) && <Text>Error: {error[0].message}</Text>}
             {(loading[0]) && <ActivityIndicator />}

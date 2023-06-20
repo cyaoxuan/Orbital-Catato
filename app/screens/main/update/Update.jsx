@@ -13,9 +13,9 @@ export default function Update() {
     const cat = route.params?.cat ? route.params.cat : null;
     const catID = cat ? cat.catID : null;
     const name = cat ? cat.name : "Select Cat";
-    const photoURL = (cat && cat.photoURLs.length > 0)
+    const photoURL = (cat && cat.photoURLs)
         ? cat.photoURLs[0]
-        : require("../../../../assets/placeholder.png");
+        : null;
     
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -41,13 +41,13 @@ export default function Update() {
             <PillButton
                 label="Create New Profile"
                 onPress={() => navigation.navigate("Form", 
-                    { catID: 0, name: "New Cat", photoURLs: [require("../../../../assets/placeholder.png")], formType: "create" })}
+                    { catID: 0, name: "New Cat", photoURLs: null, formType: "create" })}
             />
 
             <PillButton
                 label="Report New Cat"
                 onPress={() => navigation.navigate("Form", 
-                    { catID: 0, name: "New Cat", photoURLs: [require("../../../../assets/placeholder.png")], formType: "report" })}
+                    { catID: 0, name: "New Cat", photoURLs: null, formType: "report" })}
             />
         </View>
     );

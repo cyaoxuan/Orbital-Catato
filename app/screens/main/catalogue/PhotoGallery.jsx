@@ -44,7 +44,7 @@ export default function PhotoGallery() {
                     return (
                         <View key={index} testID="gallery-photo">
                             <Image style={{ height: imageSize, width: imageSize, resizeMode: "cover", margin: 8 }} 
-                            source={item} />
+                                source={{ uri: item }} />
                         </View>
                     );
                 }}
