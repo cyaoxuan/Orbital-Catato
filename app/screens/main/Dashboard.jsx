@@ -4,7 +4,7 @@ import { useAuth } from "../../utils/context/auth";
 import { getCardWidth } from "../../utils/calculateItemWidths";
 import { CardCarousel } from "../../components/Carousel";
 import { cats } from "../../data/CatTempData"
-import { useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
+// import { useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
 import { useEffect } from "react";
 
 
