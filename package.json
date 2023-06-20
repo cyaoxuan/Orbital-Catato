@@ -7,10 +7,6 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "npx eslint app test",
-    "lint:fix": "npm run lint -- --fix",
-    "prettier": "npx prettier app test --check",
-    "prettier:fix": "npm run prettier -- --write",
     "test": "npm run test:local || npm run test:ci",
     "test:local": "SET TZ=\"Asia/Singapore\" && jest",
     "test:ci": "jest"
