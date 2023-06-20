@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { ActivityIndicator, Divider, Provider, Text } from "react-native-paper";
+import { ActivityIndicator, Divider, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { PillButton } from "../../../components/Button";
+import { DropdownList, FormInput, NumberSpinner, TimeInput, TwoRadioInput, UploadPhotos } from "../../../components/FormComponents";
 import {
     useCreateCat,
     useCreateTempCat,
@@ -14,21 +15,11 @@ import {
     useUserUpdateCatProfile
 } from "../../../utils/db/cat";
 import { getImageFromCamera, getImageFromGallery } from "../../../utils/db/photo";
-import { DropdownList, FormInput, NumberSpinner, TimeInput, TwoRadioInput, UploadPhotos } from "../../../components/FormComponents";
-
-// TODO: put location data under data folder with geohashes, then just get from there
-const locations = [
-    { key: "1", value: "Use Current Location" },
-    { key: "2", value: "Utown" },
-    { key: "3", value: "Engineering" },
-    { key: "4", value: "Science" },
-    { key: "5", value: "BizCom" },
-    { key: "6", value: "Arts" },
-];
+import { locations } from "../../../data/locationData";
 
 const CreateProfile = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURL, birthYear, formType } = props;
+    const { catID, name, photoURLs, birthYear, formType } = props;
     const [processed, setProcessed] = useState(false);
     const { createCat, loading, error } = useCreateCat();
 
@@ -52,9 +43,9 @@ const CreateProfile = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
         }
-    }, [loading, processed, error, navigation, name, photoURL, formType]);
+    }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleImageFromGallery = async () => {
         const photoURI = await getImageFromGallery();
@@ -154,7 +145,7 @@ const CreateProfile = (props) => {
 
 const ReportCat = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURL, formType } = props;
+    const { catID, name, photoURLs, formType } = props;
     const [processed, setProcessed] = useState(false);
     const { createTempCat, loading, error } = useCreateTempCat();
 
@@ -178,9 +169,9 @@ const ReportCat = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
         }
-    }, [loading, processed, error, navigation, name, photoURL, formType]);
+    }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleImageFromGallery = async () => {
         const photoURI = await getImageFromGallery();
@@ -253,7 +244,7 @@ const ReportCat = (props) => {
 
 const UpdateLocation = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURL, formType, userID } = props;
+    const { catID, name, photoURLs, formType, userID } = props;
     const [processed, setProcessed] = useState(false);
     const { userUpdateCatLocation, loading, error } = useUserUpdateCatLocation();
 
@@ -271,9 +262,9 @@ const UpdateLocation = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
         }
-    }, [loading, processed, error, navigation, name, photoURL, formType]);
+    }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleUpdate = async () => {
         setProcessed(false);
@@ -314,7 +305,7 @@ const UpdateLocation = (props) => {
 
 const UpdateConcern = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURL, concernStatus, concernDesc, formType } = props;
+    const { catID, name, photoURLs, concernStatus, concernDesc, formType } = props;
     const [processed, setProcessed] = useState(false);
     const { userUpdateCatConcern, loading, error } = useUserUpdateCatConcern();
 
@@ -342,9 +333,9 @@ const UpdateConcern = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
         }
-    }, [loading, processed, error, navigation, name, photoURL, formType]);
+    }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleImageFromGallery = async () => {
         const photoURI = await getImageFromGallery();
@@ -425,7 +416,7 @@ const UpdateConcern = (props) => {
 
 const UpdateFed = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURL, formType } = props;
+    const { catID, name, photoURLs, formType } = props;
     const [processed, setProcessed] = useState(false);
     const { userUpdateCatFed, loading, error } = useUserUpdateCatFed();
 
@@ -443,9 +434,9 @@ const UpdateFed = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
         }
-    }, [loading, processed, error, navigation, name, photoURL, formType]);
+    }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleUpdate = async () => {
         setProcessed(false);
@@ -485,7 +476,7 @@ const UpdateFed = (props) => {
 
 const UpdateFoster = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURL, isFostered, fosterReason, formType } = props;
+    const { catID, name, photoURLs, isFostered, fosterReason, formType } = props;
     const [processed, setProcessed] = useState(false);
     const { userUpdateCatFoster, loading, error } = useUserUpdateCatFoster();
 
@@ -497,9 +488,9 @@ const UpdateFoster = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs[0], formType: formType });
         }
-    }, [loading, processed, error, navigation, name, photoURL, formType]);
+    }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleUpdate = async () => {
         setProcessed(false);
@@ -542,7 +533,7 @@ const UpdateFoster = (props) => {
 
 const UpdateProfile = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURL, gender, birthYear, sterilised, keyFeatures, formType } = props;
+    const { catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, formType } = props;
     const [processed, setProcessed] = useState(false);
     const { userUpdateCatProfile, loading, error } = useUserUpdateCatProfile();
 
@@ -566,9 +557,9 @@ const UpdateProfile = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
         }
-    }, [loading, processed, error, navigation, name, photoURL, formType]);
+    }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleImageFromGallery = async () => {
         const photoURI = await getImageFromGallery();
@@ -671,15 +662,15 @@ const UpdateProfile = (props) => {
 // Note: does not delete any profile, should throw error for now to avoid deleting data for now
 const DeleteProfile = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURL, formType } = props;
+    const { catID, name, photoURLs, formType } = props;
     const [processed, setProcessed] = useState(false);
     const { userDeleteCat, loading, error } = useUserDeleteCat();
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURL: photoURL, formType: formType });
+            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
         }
-    }, [loading, processed, error, navigation, name, photoURL, formType]);
+    }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleDelete = async () => {
         setProcessed(false);
@@ -688,9 +679,21 @@ const DeleteProfile = (props) => {
         setProcessed(true);
     }
 
+    // For Name TextInput
+    const [catName, setCatName] = useState(name ? name : "");
+
     return (
         <View style={styles.formContainer}>
             <Text>Deleted Profiles cannot be recovered!</Text>
+
+            <FormInput
+                multiline={true}
+                label="Cat's Name:"
+                placeholder="Name"
+                value={catName}
+                onChangeText={setCatName}
+                errorText="Please enter the cat's name to confirm deletion"
+            />
             <PillButton
                 label="Delete Profile"
                 onPress={handleDelete}

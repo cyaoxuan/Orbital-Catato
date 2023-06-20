@@ -13,7 +13,7 @@ export default function ConfirmUpdate() {
     return (
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <CatAvatar 
-            photoURL={ route.params.photoURL }
+            photoURL={ route.params.photoURLs[0] }
             size={200}
             variant="headlineLarge"
             name={ route.params.name }
