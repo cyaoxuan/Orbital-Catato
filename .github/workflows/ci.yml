@@ -29,10 +29,10 @@ jobs:
               run: npm ci
 
             - name: ESLint
-              run: yarn run fix .
+              run: npm run lint
 
             - name: Prettier
-              run: yarn prettier --write
+              run: npm run prettier
 
             - name: Run Jest Tests
               run: npm run test:ci
