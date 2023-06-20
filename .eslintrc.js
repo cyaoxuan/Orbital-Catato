@@ -4,7 +4,12 @@ module.exports = {
         node: true,
         jest: true,
     },
-    extends: ["eslint:recommended", "plugin:react/recommended", "plugin:react/jsx-runtime", "prettier"],
+    extends: [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "prettier",
+    ],
     overrides: [],
     parserOptions: {
         ecmaVersion: "latest",
