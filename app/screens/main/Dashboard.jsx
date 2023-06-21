@@ -1,11 +1,11 @@
-import { ScrollView, View } from "react-native";
+import { RefreshControl, ScrollView, View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 import { useAuth } from "../../utils/context/auth";
 import { getCardWidth } from "../../utils/calculateItemWidths";
 import { CardCarousel } from "../../components/Carousel";
 import { cats } from "../../data/CatTempData"
 // import { useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 
 // Eventual Call from DB
@@ -37,7 +37,16 @@ export const CarouselContainer = ({ titleText, subtitleText, ...carousel }) => {
 }
 
 export default function Dashboard() {
-    const cardWidth = getCardWidth(2 / 3);
+    const [refreshing, setRefreshing] = useState(false);
+    const cardWidth = getCardWidth(3 / 4);
+
+    const onRefresh = useCallback(() => {
+        setRefreshing(true);
+        setTimeout(() => {
+          setRefreshing(false);
+        }, 2000);
+      }, []);
+
     // const { getCatsofConcern, catsOfConcern, loadingConcern, errorConcern } = useGetCatsofConcern();
     // const { getUnfedCats, unfedCats, loadingUnfed, errorUnfed } = useGetUnfedCats();
 
@@ -52,7 +61,9 @@ export default function Dashboard() {
     // }, []);
 
     return (
-        <ScrollView>
+        <ScrollView
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
             <CarouselContainer
                 titleText="Cats of Concern"
                 subtitleText="New, Injured, Missing >3 Days"

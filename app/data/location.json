@@ -1,0 +1,930 @@
+{
+    "User Location": {
+        "key": "1",
+        "value": "Use Current Location"
+    },
+    "The Deck": {
+        "key": "2",
+        "value": "The Deck",
+        "location": {"latitude": 1.2945075717691477, "longitude": 103.77256063897944},
+        "zone": "Arts"
+    },
+    "AS1": {
+        "key": "3",
+        "value": "AS1",
+        "location": {"latitude": 1.2951454107251619, "longitude": 103.77213443414018},
+        "zone": "Arts"
+    },
+    "AS2": {
+        "key": "4",
+        "value": "AS2",
+        "location": {"latitude": 1.295392557788155, "longitude": 103.77107192717496},
+        "zone": "Arts"
+    },
+    "AS3": {
+        "key": "5",
+        "value": "AS3",
+        "location": {"latitude": 1.2947436290248615, "longitude": 103.77129186830834},
+        "zone": "Arts"
+    },
+    "AS4": {
+        "key": "6",
+        "value": "AS4",
+        "location": {"latitude": 1.2946122343358146, "longitude": 103.77184172114285},
+        "zone": "Arts"
+    },
+    "AS5": {
+        "key": "7",
+        "value": "AS5",
+        "location": {"latitude": 1.2942502285298074, "longitude": 103.77189268311278},
+        "zone": "Arts"
+    },
+    "AS6": {
+        "key": "8",
+        "value": "AS6",
+        "location": {"latitude": 1.2958358075778347, "longitude": 103.77318262146107},
+        "zone": "Arts"
+    },
+    "AS7": {
+        "key": "9",
+        "value": "AS7",
+        "location": {"latitude": 1.2945381847573538, "longitude": 103.771038408851718},
+        "zone": "Arts"
+    },
+    "AS8": {
+        "key": "10",
+        "value": "AS8",
+        "location": {"latitude": 1.2960962640792453, "longitude": 103.77231368185093},
+        "zone": "Arts"
+    },
+    "LT8": {
+        "key": "11",
+        "value": "LT8",
+        "location": {"latitude": 1.2941501676582645, "longitude": 103.77196522904283},
+        "zone": "Arts"
+    },
+    "LT9": {
+        "key": "12",
+        "value": "LT9",
+        "location": {"latitude": 1.2950017223226313, "longitude": 103.77232311298053},
+        "zone": "Arts"
+    },
+    "LT10": {
+        "key": "13",
+        "value": "LT10",
+        "location": {"latitude": 1.2949128575652404, "longitude": 103.7721220418638},
+        "zone": "Arts"
+    },
+    "LT11": {
+        "key": "14",
+        "value": "LT11",
+        "location": {"latitude": 1.2954946747063592, "longitude": 103.77141177741221},
+        "zone": "Arts"
+    },
+    "LT12": {
+        "key": "15",
+        "value": "LT12",
+        "location": {"latitude": 1.2950120004529415, "longitude": 103.77114087429293},
+        "zone": "Arts"
+    },
+    "LT13": {
+        "key": "16",
+        "value": "LT13",
+        "location": {"latitude": 1.2951568027380225, "longitude": 103.77092629757743},
+        "zone": "Arts"
+    },
+    "LT14": {
+        "key": "17",
+        "value": "LT14",
+        "location": {"latitude": 1.2957578972283554, "longitude": 103.77338477808745},
+        "zone": "Arts"
+    },
+    "LT15": {
+        "key": "18",
+        "value": "LT15",
+        "location": {"latitude": 1.2955865261031805, "longitude": 103.77344793096424},
+        "zone": "Arts"
+    },
+    "Ventus": {
+        "key": "19",
+        "value": "Ventus",
+        "location": {"latitude": 1.2955561307197347, "longitude": 103.77020825588058},
+        "zone": "Arts"
+    },
+    "Eusoff Hall": {
+        "key": "21",
+        "value": "Eusoff Hall",
+        "location": {"latitude": 1.2941828827527924, "longitude": 103.77115106162734},
+        "zone": "Arts"
+    },
+    "Temasek Hall": {
+        "key": "22",
+        "value": "Temasek Hall",
+        "location": {"latitude": 1.2929571914918683, "longitude": 103.77143034886456},
+        "zone": "Arts"
+    },
+    "KR Bus Terminal": {
+        "key": "23",
+        "value": "KR Bus Terminal",
+        "location": {"latitude": 1.2943191420530757, "longitude": 103.76977033038865},
+        "zone": "Arts"
+    },
+    "Central Library": {
+        "key": "24",
+        "value": "Central Library",
+        "location": {"latitude": 1.2964665024080928, "longitude": 103.77299636082128},
+        "zone": "Arts"
+    },
+    "Chinese Library": {
+        "key": "25",
+        "value": "Chinese Library",
+        "location": {"latitude": 1.296942351536165, "longitude": 103.77332569085588},
+        "zone": "Arts"
+    },
+    "BIZ1": {
+        "key": "26",
+        "value": "BIZ1",
+        "location": {"latitude": 1.292619828536144, "longitude": 103.7742013865073},
+        "zone": "Biz/Com"
+    },
+    "BIZ2": {
+        "key": "27",
+        "value": "BIZ2",
+        "location": {"latitude": 1.293477601111824, "longitude": 103.77513146778115},
+        "zone": "Biz/Com"
+    },
+    "HSSML": {
+        "key": "28",
+        "value": "HSSML",
+        "location": {"latitude": 1.2931082051623113, "longitude": 103.7744189352086},
+        "zone": "Biz/Com"
+    },
+    "I3": {
+        "key": "29",
+        "value": "I3",
+        "location": {"latitude": 1.2925026330526588, "longitude": 103.77566377185111},
+        "zone": "Biz/Com"
+    },
+    "COM1": {
+        "key": "30",
+        "value": "COM1",
+        "location": {"latitude": 1.2950571001707223, "longitude": 103.77388436475647},
+        "zone": "Biz/Com"
+    },
+    "COM2": {
+        "key": "31",
+        "value": "COM2",
+        "location": {"latitude": 1.294300471493926, "longitude": 103.77410288452451},
+        "zone": "Biz/Com"
+    },
+    "COM3": {
+        "key": "32",
+        "value": "COM3",
+        "location": {"latitude": 1.294914540560788, "longitude": 103.77457495330813},
+        "zone": "Biz/Com"
+    },
+    "LT16": {
+        "key": "33",
+        "value": "LT16",
+        "location": {"latitude": 1.2940442218410626, "longitude": 103.77388329234876},
+        "zone": "Biz/Com"
+    },
+    "LT17": {
+        "key": "34",
+        "value": "LT17",
+        "location": {"latitude": 1.293631577912106, "longitude": 103.77398704350513},
+        "zone": "Biz/Com"
+    },
+    "LT18": {
+        "key": "35",
+        "value": "LT18",
+        "location": {"latitude": 1.293572950899235, "longitude": 103.77451707658794},
+        "zone": "Biz/Com"
+    },
+    "LT19": {
+        "key": "36",
+        "value": "LT19",
+        "location": {"latitude": 1.293730792850846, "longitude": 103.77443136911093},
+        "zone": "Biz/Com"
+    },
+    "Shaw Foundation AH": {
+        "key": "37",
+        "value": "Shaw Foundation AH",
+        "location": {"latitude": 1.29255572456866, "longitude": 103.77567135828376},
+        "zone": "Biz/Com"
+    },
+    "KR Guild House": {
+        "key": "38",
+        "value": "KR Guild House",
+        "location": {"latitude": 1.2934734402819719, "longitude": 103.77298775224953},
+        "zone": "Biz/Com"
+    },
+    "Kent Ridge Hall": {
+        "key": "39",
+        "value": "Kent Ridge Hall",
+        "location": {"latitude": 1.291858006182682, "longitude": 103.77477519880419},
+        "zone": "Biz/Com"
+    },
+    "Sheares Hall": {
+        "key": "40",
+        "value": "Sheares Hall",
+        "location": {"latitude": 1.2914870350963503, "longitude": 103.77567086677011},
+        "zone": "Biz/Com"
+    },
+    "SDE1": {
+        "key": "41",
+        "value": "SDE1",
+        "location": {"latitude": 1.2974325503103152, "longitude": 103.77061855678437},
+        "zone": "CDE"
+    }, 
+    "SDE2": {
+        "key": "42",
+        "value": "SDE2",
+        "location": {"latitude": 1.2974175392080718, "longitude": 103.77113774038406},
+        "zone": "CDE"
+    },
+    "SDE3": {
+        "key": "43",
+        "value": "SDE3",
+        "location": {"latitude": 1.2979076473840199, "longitude": 103.77060282074271},
+        "zone": "CDE"
+    },
+    "SDE4": {
+        "key": "44",
+        "value": "SDE4",
+        "location": {"latitude": 1.2969180241649483, "longitude": 103.77029285462979},
+        "zone": "CDE"
+    },
+    "CELC": {
+        "key": "45",
+        "value": "CELC",
+        "location": {"latitude": 1.2970366346811808, "longitude": 103.77147646614802},
+        "zone": "CDE"
+    },
+    "Information Technology": {
+        "key": "46",
+        "value": "Information Technology",
+        "location": {"latitude": 1.297625865049686, "longitude": 103.77251016091172},
+        "zone": "CDE"
+    },
+    "Techno Edge": {
+        "key": "47",
+        "value": "Information Technology",
+        "location": {"latitude": 1.2980586492854946, "longitude": 103.77174175129106},
+        "zone": "CDE"
+    },
+    "E1": {
+        "key": "48",
+        "value": "E1",
+        "location": {"latitude": 1.298904345603232, "longitude": 103.77104748039862},
+        "zone": "CDE"
+    },
+    "E1A": {
+        "key": "49",
+        "value": "E1A",
+        "location": {"latitude": 1.2994080693195487, "longitude": 103.77083301312511},
+        "zone": "CDE"
+    },
+    "E2": {
+        "key": "50",
+        "value": "E2",
+        "location": {"latitude": 1.2991675954046296, "longitude": 103.77125857861166},
+        "zone": "CDE"
+    },
+    "E2A": {
+        "key": "51",
+        "value": "E2A",
+        "location": {"latitude": 1.2988551983669434, "longitude": 103.77135513813516},
+        "zone": "CDE"
+    },
+    "E3": {
+        "key": "52",
+        "value": "E3",
+        "location": {"latitude": 1.2995589792832356, "longitude": 103.77168540975603},
+        "zone": "CDE"
+    },
+    "E3A": {
+        "key": "53",
+        "value": "E3A",
+        "location": {"latitude": 1.3003536288649884, "longitude": 103.77141436565512},
+        "zone": "CDE"
+    },
+    "E4": {
+        "key": "54",
+        "value": "E4",
+        "location": {"latitude": 1.2984627266752033, "longitude": 103.77234771567335},
+        "zone": "CDE"
+    },
+    "E4A": {
+        "key": "55",
+        "value": "E4A",
+        "location": {"latitude": 1.298628339861265, "longitude": 103.77261785911433},
+        "zone": "CDE"
+    },
+    "E5": {
+        "key": "56",
+        "value": "E5",
+        "location": {"latitude": 1.2981184119329074, "longitude": 103.77237488157469},
+        "zone": "CDE"
+    },
+    "E6": {
+        "key": "57",
+        "value": "E6",
+        "location": {"latitude": 1.2992896708898778, "longitude": 103.77305768156624},
+        "zone": "CDE"
+    },
+    "E7": {
+        "key": "58",
+        "value": "E7",
+        "location": {"latitude": 1.2986170010658777, "longitude": 103.77353652837644},
+        "zone": "CDE"
+    },
+    "E8": {
+        "key": "58",
+        "value": "E8",
+        "location": {"latitude": 1.299178509646601, "longitude": 103.77266907339668},
+        "zone": "CDE"
+    },
+    "EA": {
+        "key": "59",
+        "value": "EA",
+        "location": {"latitude": 1.3002571384755814, "longitude": 103.77075297766517},
+        "zone": "CDE"
+    },
+    "Eng Auditorium": {
+        "key": "60",
+        "value": "ENG-AUD",
+        "location": {"latitude": 1.300604726451327, "longitude": 103.7705472418854},
+        "zone": "CDE"
+    },
+    "EW1": {
+        "key": "61",
+        "value": "EW1",
+        "location": {"latitude": 1.2983043736544841, "longitude": 103.77094286097078},
+        "zone": "CDE"
+    },
+    "T-Lab": {
+        "key": "62",
+        "value": "T-Lab",
+        "location": {"latitude": 1.2997981956737272, "longitude": 103.77209757208799},
+        "zone": "CDE"
+    },
+    "LT1": {
+        "key": "63",
+        "value": "LT1",
+        "location": {"latitude": 1.2994861278797212, "longitude": 103.77113847747844},
+        "zone": "CDE"
+    },
+    "LT2": {
+        "key": "64",
+        "value": "LT2",
+        "location": {"latitude": 1.2993697688192691, "longitude": 103.77118503927123},
+        "zone": "CDE"
+    },
+    "LT3": {
+        "key": "65",
+        "value": "LT3",
+        "location": {"latitude": 1.297598498112306, "longitude": 103.77333516111737},
+        "zone": "CDE"
+    },
+    "LT4": {
+        "key": "66",
+        "value": "LT4",
+        "location": {"latitude": 1.2975101916095368, "longitude": 103.77349432674849},
+        "zone": "CDE"
+    },
+    "LT6": {
+        "key": "67",
+        "value": "LT6",
+        "location": {"latitude": 1.2987269950904958, "longitude": 103.77197562210098},
+        "zone": "CDE"
+    },
+    "LT7": {
+        "key": "68",
+        "value": "LT7",
+        "location": {"latitude": 1.3002446615040966, "longitude": 103.7710893535163},
+        "zone": "CDE"
+    },  
+    "LT7A": {
+        "key": "69",
+        "value": "LT7A",
+        "location": {"latitude": 1.3005181763586482, "longitude": 103.7709163510367},
+        "zone": "CDE"
+    },
+    "Raffles Hall": {
+        "key": "70",
+        "value": "Raffles Hall",
+        "location": {"latitude": 1.2999040088500309, "longitude": 103.77347365322353},
+        "zone": "CDE"
+    },
+    "Frontier": {
+        "key": "71",
+        "value": "Frontier",
+        "location": {"latitude": 1.2964584984106637, "longitude": 103.78037388616781},
+        "zone": "Sci/Med"
+    },
+    "CELS": {
+        "key": "72",
+        "value": "CELS",
+        "location": {"latitude": 1.2945172896290895, "longitude": 103.7809153888126},
+        "zone": "Sci/Med"
+    },
+    "Science Library": {
+        "key": "73",
+        "value": "CELS",
+        "location": {"latitude": 1.2952546645945286, "longitude": 103.78014373712219},
+        "zone": "Sci/Med"
+    },
+    "S1": {
+        "key": "74",
+        "value": "S1",
+        "location": {"latitude": 1.2957682730535118, "longitude": 103.7779980740915},
+        "zone": "Sci/Med"
+    },
+    "S1A": {
+        "key": "75",
+        "value": "S1A",
+        "location": {"latitude": 1.2960981387746224, "longitude": 103.77836579224872},
+        "zone": "Sci/Med"
+    },
+    "S2": {
+        "key": "76",
+        "value": "S2",
+        "location": {"latitude": 1.2955337059046887, "longitude": 103.7782956188038},
+        "zone": "Sci/Med"
+    },
+    "S3": {
+        "key": "77",
+        "value": "S3",
+        "location": {"latitude": 1.2955847326298828, "longitude": 103.77868011815816},
+        "zone": "Sci/Med"
+    },
+    "S4": {
+        "key": "78",
+        "value": "S4",
+        "location": {"latitude": 1.2955480125597176, "longitude": 103.77909965427925},
+        "zone": "Sci/Med"
+    },
+    "S4A": {
+        "key": "79",
+        "value": "S4A",
+        "location": {"latitude": 1.2958513922718815, "longitude": 103.77917741521391},
+        "zone": "Sci/Med"
+    },
+    "S5": {
+        "key": "80",
+        "value": "S5",
+        "location": {"latitude": 1.295529650536114, "longitude": 103.77970728679786},
+        "zone": "Sci/Med"
+    },
+    "S6": {
+        "key": "81",
+        "value": "S6",
+        "location": {"latitude": 1.295138984998467, "longitude": 103.78030501778129},
+        "zone": "Sci/Med"
+    },
+    "S7": {
+        "key": "82",
+        "value": "S7",
+        "location": {"latitude": 1.296307292341967, "longitude": 103.77884164481361},
+        "zone": "Sci/Med"
+    },
+    "S8": {
+        "key": "83",
+        "value": "S8",
+        "location": {"latitude": 1.2961307415985852, "longitude": 103.7792346188556},
+        "zone": "Sci/Med"
+    },
+    "S9": {
+        "key": "84",
+        "value": "S9",
+        "location": {"latitude": 1.2959048081281273, "longitude": 103.78013578983246},
+        "zone": "Sci/Med"
+    },
+    "S10": {
+        "key": "85",
+        "value": "S10",
+        "location": {"latitude": 1.296315377454049, "longitude": 103.77965428206848},
+        "zone": "Sci/Med"
+    },
+    "S11": {
+        "key": "86",
+        "value": "S11",
+        "location": {"latitude": 1.2968541326402099, "longitude": 103.7787831932396},
+        "zone": "Sci/Med"
+    },
+    "S12": {
+        "key": "87",
+        "value": "S12",
+        "location": {"latitude": 1.296950238078038, "longitude": 103.77884126200252},
+        "zone": "Sci/Med"
+    },
+    "S13": {
+        "key": "88",
+        "value": "S13",
+        "location": {"latitude": 1.2967558277345357, "longitude": 103.77928114428022},
+        "zone": "Sci/Med"
+    },
+    "S14": {
+        "key": "89",
+        "value": "S14",
+        "location": {"latitude": 1.296792427557979, "longitude": 103.779775146938},
+        "zone": "Sci/Med"
+    },
+    "S15": {
+        "key": "90",
+        "value": "S15",
+        "location": {"latitude": 1.2971464661304615, "longitude": 103.78031436106225},
+        "zone": "Sci/Med"
+    },
+    "S16": {
+        "key": "91",
+        "value": "S16",
+        "location": {"latitude": 1.2967579687209374, "longitude": 103.78034951203036},
+        "zone": "Sci/Med"
+    },
+    "S17": {
+        "key": "92",
+        "value": "S17",
+        "location": {"latitude": 1.2977141048305756, "longitude": 103.7806099797294},
+        "zone": "Sci/Med"
+    },
+    "LT20": {
+        "key": "93",
+        "value": "LT20",
+        "location": {"latitude": 1.2959779761476544, "longitude": 103.77883659323997},
+        "zone": "Sci/Med"
+    },
+    "LT21": {
+        "key": "94",
+        "value": "LT21",
+        "location": {"latitude": 1.2955337805559457, "longitude": 103.7794938220668},
+        "zone": "Sci/Med"
+    },
+    "LT26": {
+        "key": "95",
+        "value": "LT26",
+        "location": {"latitude": 1.2964762931252043, "longitude": 103.78109634331143},
+        "zone": "Sci/Med"
+    },
+    "LT27": {
+        "key": "96",
+        "value": "LT27",
+        "location": {"latitude": 1.2970300413098785, "longitude": 103.78090656440027},
+        "zone": "Sci/Med"
+    },
+    "LT28": {
+        "key": "97",
+        "value": "LT28",
+        "location": {"latitude": 1.2972578774832455, "longitude": 103.78115399736863},
+        "zone": "Sci/Med"
+    },
+    "LT29": {
+        "key": "98",
+        "value": "LT29",
+        "location": {"latitude": 1.2970526222157979, "longitude": 103.78122234941324},
+        "zone": "Sci/Med"
+    },
+    "LT31": {
+        "key": "99",
+        "value": "LT31",
+        "location": {"latitude": 1.2969327195740996, "longitude": 103.78036677789427},
+        "zone": "Sci/Med"
+    },
+    "LT32": {
+        "key": "100",
+        "value": "LT32",
+        "location": {"latitude": 1.2962098195927265, "longitude": 103.77828074231321},
+        "zone": "Sci/Med"
+    },
+    "LT33": {
+        "key": "101",
+        "value": "LT33",
+        "location": {"latitude": 1.297856823875978, "longitude": 103.78079614720573},
+        "zone": "Sci/Med"
+    },
+    "LT34": {
+        "key": "102",
+        "value": "LT34",
+        "location": {"latitude": 1.297917206463217, "longitude": 103.78080094906706},
+        "zone": "Sci/Med"
+    },
+    "LT35": {
+        "key": "103",
+        "value": "LT35",
+        "location": {"latitude": 1.2954107681991316, "longitude": 103.78141337458135},
+        "zone": "Sci/Med"
+    },
+    "LT37": {
+        "key": "104",
+        "value": "LT37",
+        "location": {"latitude": 1.295640667287593, "longitude": 103.78029781129935},
+        "zone": "Sci/Med"
+    },
+    "MD1": {
+        "key": "105",
+        "value": "MD1",
+        "location": {"latitude": 1.295538814062613, "longitude": 103.78046183815181},
+        "zone": "Sci/Med"
+    },
+    "MD2": {
+        "key": "106",
+        "value": "MD2",
+        "location": {"latitude": 1.2950234986869904, "longitude": 103.78112294435026},
+        "zone": "Sci/Med"
+    },
+    "MD3": {
+        "key": "107",
+        "value": "MD3",
+        "location": {"latitude": 1.2954263976153013, "longitude": 103.78123559712658},
+        "zone": "Sci/Med"
+    },
+    "MD4": {
+        "key": "108",
+        "value": "MD4",
+        "location": {"latitude": 1.2958180190707191, "longitude": 103.78086083167014},
+        "zone": "Sci/Med"
+    },
+    "MD6": {
+        "key": "110",
+        "value": "MD6",
+        "location": {"latitude": 1.2953991204244217, "longitude": 103.78184061114558},
+        "zone": "Sci/Med"
+    },
+    "MD7": {
+        "key": "111",
+        "value": "MD7",
+        "location": {"latitude": 1.296101233302704, "longitude": 103.78118958363326},
+        "zone": "Sci/Med"
+    },
+    "MD9": {
+        "key": "112",
+        "value": "MD9",
+        "location": {"latitude": 1.2967301334439036, "longitude": 103.78135735422092},
+        "zone": "Sci/Med"
+    },
+    "MD10": {
+        "key": "113",
+        "value": "MD10",
+        "location": {"latitude": 1.296558210460546, "longitude": 103.7817968304833},
+        "zone": "Sci/Med"
+    },
+    "MD11": {
+        "key": "114",
+        "value": "MD11",
+        "location": {"latitude": 1.2961253863562046, "longitude": 103.78171447952354},
+        "zone": "Sci/Med"
+    },
+    "Medical Library": {
+        "key": "115",
+        "value": "Medical Library",
+        "location": {"latitude": 1.2952795219602993, "longitude": 103.78188409319357},
+        "zone": "Sci/Med"
+    },
+    "NUH Main": {
+        "key": "116",
+        "value": "NUH Main",
+        "location": {"latitude": 1.2944630996395872, "longitude": 103.78346331978409},
+        "zone": "Sci/Med"
+    },
+    "NUH KR Wing": {
+        "key": "117",
+        "value": "NUH KR Wing",
+        "location": {"latitude": 1.2931681573444738, "longitude": 103.78347086596705},
+        "zone": "Sci/Med"
+    },
+    "NUCOHS": {
+        "key": "118",
+        "value": "NUCOHS",
+        "location": {"latitude": 1.2960072609213025, "longitude": 103.78323810515978},
+        "zone": "Sci/Med"
+    },
+    "KR MRT": {
+        "key": "119",
+        "value": "KR MRT",
+        "location": {"latitude": 1.293464670248864, "longitude": 103.78462626535074},
+        "zone": "Sci/Med"
+    },
+    "PGPR": {
+        "key": "120",
+        "value": "KR MRT",
+        "location": {"latitude": 1.290823484769731, "longitude": 103.78116482073736},
+        "zone": "KE/PGPR"
+    },
+    "KE VII Hall": {
+        "key": "121",
+        "value": "KR MRT",
+        "location": {"latitude": 1.292447288339472, "longitude": 103.78111015960754},
+        "zone": "KE/PGPR"
+    },
+    "MP Fields": {
+        "key": "122",
+        "value": "MP Fields",
+        "location": {"latitude": 1.2980564420990912, "longitude": 103.7794097024153},
+        "zone": "Culture/Recreation"
+    },
+    "MP Courts": {
+        "key": "123",
+        "value": "MP Courts",
+        "location": {"latitude": 1.299422619158618, "longitude": 103.7772818229201},
+        "zone": "Culture/Recreation"
+    },
+    "NUS Field": {
+        "key": "124",
+        "value": "NUS Field",
+        "location": {"latitude": 1.2987070072854012, "longitude": 103.77833846670367},
+        "zone": "Culture/Recreation"
+    },
+    "UHall": {
+        "key": "125",
+        "value": "UHall",
+        "location": {"latitude": 1.2972246082519092, "longitude": 103.77776243161146},
+        "zone": "Culture/Recreation"
+    },
+    "RVRC": {
+        "key": "126",
+        "value": "RVRC",
+        "location": {"latitude": 1.2979702215910351, "longitude": 103.77664267985887},
+        "zone": "Culture/Recreation"
+    },
+    "Yusok Ishak House": {
+        "key": "127",
+        "value": "Yusok Ishak House",
+        "location": {"latitude": 1.2985725530356347, "longitude": 103.77494540332658},
+        "zone": "Culture/Recreation"
+    },
+    "UHC": {
+        "key": "128",
+        "value": "UHC",
+        "location": {"latitude": 1.2991228846689535, "longitude": 103.77639959561648},
+        "zone": "Culture/Recreation"
+    },
+    "USC": {
+        "key": "129",
+        "value": "USC",
+        "location": {"latitude": 1.2998942149142998, "longitude": 103.77528260230184},
+        "zone": "Culture/Recreation"
+    },
+    "MPSH1-4": {
+        "key": "130",
+        "value": "MPSH1-4",
+        "location": {"latitude": 1.300758364379703, "longitude": 103.77607659576475},
+        "zone": "Culture/Recreation"
+    },
+    "MPSH5": {
+        "key": "131",
+        "value": "MPSH5",
+        "location": {"latitude": 1.300360911066702, "longitude": 103.77633611131687},
+        "zone": "Culture/Recreation"
+    },
+    "MPSH6": {
+        "key": "134",
+        "value": "MPSH6",
+        "location": {"latitude": 1.300272588099855, "longitude": 103.77568456165329},
+        "zone": "Culture/Recreation"
+    },
+    "LKC Museum": {
+        "key": "135",
+        "value": "LKC Museum",
+        "location": {"latitude": 1.3016242116430825, "longitude": 103.77349003037865},
+        "zone": "Culture/Recreation"
+    },
+    "NUS Museum": {
+        "key": "136",
+        "value": "NUS Museum",
+        "location": {"latitude": 1.3013588636588573, "longitude": 103.77270836897085},
+        "zone": "Culture/Recreation"
+    },
+    "UCC": {
+        "key": "137",
+        "value": "UCC",
+        "location": {"latitude": 1.301618166976659, "longitude": 103.77217977900551},
+        "zone": "Culture/Recreation"
+    },
+    "YSTCM": {
+        "key": "138",
+        "value": "YSTCM",
+        "location": {"latitude": 1.3022481963442956, "longitude": 103.7728318891104},
+        "zone": "Culture/Recreation"
+    },
+    "CREATE": {
+        "key": "139",
+        "value": "CREATE",
+        "location": {"latitude": 1.3041502299227108, "longitude": 103.7743488013014},
+        "zone": "UTown"
+    },
+    "Town Plaza": {
+        "key": "140",
+        "value": "Town Plaza",
+        "location": {"latitude": 1.303995604112117, "longitude": 103.77389399347052},
+        "zone": "UTown"
+    },
+    "Town Green": {
+        "key": "141",
+        "value": "Town Green",
+        "location": {"latitude": 1.304926554089299, "longitude": 103.77315021173708},
+        "zone": "UTown"
+    },
+    "UTown Residence": {
+        "key": "142",
+        "value": "Utown Residence",
+        "location": {"latitude": 1.3052442855137305, "longitude": 103.77390950968264},
+        "zone": "UTown"
+    },
+    "SRC": {
+        "key": "143",
+        "value": "SRC",
+        "location": {"latitude": 1.304869234889229, "longitude": 103.77235414413339},
+        "zone": "UTown"
+    },
+    "ERC": {
+        "key": "144",
+        "value": "ERC",
+        "location": {"latitude": 1.3058234345528048, "longitude": 103.77292010093264},
+        "zone": "UTown"
+    },
+    "UT-AUD1": {
+        "key": "145",
+        "value": "UT-AUD1",
+        "location": {"latitude": 1.3039419072238916, "longitude": 103.7734720859646},
+        "zone": "UTown"
+    },
+    "UT-AUD2": {
+        "key": "146",
+        "value": "UT-AUD2",
+        "location": {"latitude": 1.304334955367899, "longitude": 103.7726396193302},
+        "zone": "UTown"
+    },
+    "UT-AUD3": {
+        "key": "147",
+        "value": "UT-AUD3",
+        "location": {"latitude": 1.3073531066780422, "longitude": 103.77312819207788},
+        "zone": "UTown"
+    },
+    "Saga College": {
+        "key": "148",
+        "value": "Saga College",
+        "location": {"latitude": 1.3057120770072326, "longitude": 103.77204369256071},
+        "zone": "UTown"
+    },
+    "Elm College": {
+        "key": "149",
+        "value": "Elm College",
+        "location": {"latitude": 1.3063229515618673, "longitude": 103.77221158030247},
+        "zone": "UTown"
+    },
+    "Cendana College": {
+        "key": "150",
+        "value": "Cendana College",
+        "location": {"latitude": 1.3079818753201116, "longitude": 103.77230138072088},
+        "zone": "UTown"
+    },
+    "Yale-NUS": {
+        "key": "151",
+        "value": "Yale-NUS",
+        "location": {"latitude": 1.3071095023237163, "longitude": 103.77225340748554},
+        "zone": "UTown"
+    },
+    "Tembusu College": {
+        "key": "152",
+        "value": "Tembusu College",
+        "location": {"latitude": 1.3062070877473657, "longitude": 103.77374359092005},
+        "zone": "UTown"
+    },
+    "Cinnamon College": {
+        "key": "153",
+        "value": "Cinnamon College",
+        "location": {"latitude": 1.306701143139086, "longitude": 103.77354205225294},
+        "zone": "UTown"
+    },
+    "CAPT": {
+        "key": "154",
+        "value": "CAPT",
+        "location": {"latitude": 1.3078564283935188, "longitude": 103.77325467168649},
+        "zone": "UTown"
+    },
+    "RC4": {
+        "key": "155",
+        "value": "RC4",
+        "location": {"latitude": 1.3082409082264421, "longitude": 103.77340694195964},
+        "zone": "UTown"
+    },
+    "TCOMS": {
+        "key": "156",
+        "value": "TCOMS",
+        "location": {"latitude": 1.2936000788613897, "longitude": 103.77689442977055},
+        "zone": "R&D"
+    },
+    "Enterprise Incubator": {
+        "key": "157",
+        "value": "Enterprise Incubator",
+        "location": {"latitude": 1.2933114433482258, "longitude": 103.77796699003498},
+        "zone": "R&D"
+    },
+    "HMK Terrace": {
+        "key": "159",
+        "value": "HMK Terrace",
+        "location": {"latitude": 1.2909181723225671, "longitude": 103.77758552450405},
+        "zone": "R&D"
+    }
+}
