@@ -10,7 +10,7 @@ const CatCard = (props) => {
             mode="elevated">
             <Card.Cover style={{ height: cardWidth / 2, width: cardWidth, resizeMode: "cover"}}
                 testID="cover-image"
-                source={props.photoURL || require("../../assets/placeholder.png")} 
+                source={props.photoURL ? {uri: props.photoURL} : require("../../assets/placeholder.png")}
             />
             <Card.Title title={props.name || "Name"} titleVariant="headlineSmall"/>
             <Card.Content style={{ paddingBottom: 0, paddingHorizontal: 4 }}>
@@ -40,7 +40,7 @@ const CatCardSimple = (props) => {
             mode="elevated">
             <Card.Cover style={{ height: 3 * props.cardWidth / 4, width: props.cardWidth, resizeMode: "cover"}}
                 testID="cover-image"
-                source={props.photoURL || require("../../assets/placeholder.png")} 
+                source={props.photoURL ? {uri: props.photoURL} : require("../../assets/placeholder.png")}
             />
             <Card.Title title={props.name || "Name"} titleVariant="headlineMedium"/>
         </Card>

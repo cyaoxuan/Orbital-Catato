@@ -38,7 +38,7 @@ const CardCarousel = ({cats, cardWidth, carouselType, ...card}) => {
                 return (
                     <CatCard 
                         name={item.name}
-                        photoURL={item.photoURLs[0]}
+                        photoURL={item.photoURLs ? item.photoURLs[0] : null}
                         cardWidth={cardWidth}
                         onPress={() => navigation.navigate("catalogue", 
                             { screen: "CatProfile", initial: false, params: { catID: item.catID }})}

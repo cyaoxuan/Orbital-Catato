@@ -5,7 +5,7 @@ const CatAvatar = (props) => {
     return (
         <View style={styles.avatarContainer}>
             <Avatar.Image testID="avatar-image"
-                source={props.photoURL || require("../../assets/placeholder.png")}
+                source={props.photoURL ? {uri: props.photoURL} : require("../../assets/placeholder.png")}
                 size={props.size || 100}
             />
             <Text variant={props.variant}>{props.name || "Name"}</Text>
@@ -20,7 +20,7 @@ const TouchableCatAvatar = (props) => {
                 activeOpacity={0.7}
                 onPress={props.onPress}>
                 <Avatar.Image testID="avatar-image"
-                    source={props.photoURL || require("../../assets/placeholder.png")}
+                    source={props.photoURL ? {uri: props.photoURL} : require("../../assets/placeholder.png")}
                     size={props.size || 100}
                 />
                 <Text variant={props.variant}>{props.name || "Name"}</Text>

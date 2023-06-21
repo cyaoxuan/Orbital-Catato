@@ -70,7 +70,7 @@ const DetailsContainer = ({cat, ...rest}) => {
                 {...rest}
                 iconName="alert-circle-outline"
                 field="Concern Status: "
-                info={cat.concernStatus.length != 0
+                info={cat.concernStatus
                     ? cat.concernStatus.join(", ") 
                     : "Healthy"}
             />
@@ -88,7 +88,7 @@ const DetailsContainer = ({cat, ...rest}) => {
 const PreviewPhotos = ({photoURLs}) => {
     let previewPhotos;
 
-    if (!photoURLs || photoURLs.length === 0) {
+    if (photoURLs === null) {
         return (
             <View style={styles.previewContainer}>
                 <Text style={{ marginTop: 20 }}>This cat has no photos!</Text>
@@ -108,7 +108,7 @@ const PreviewPhotos = ({photoURLs}) => {
                 return (
                     <View key={index} testID="preview-photo">
                         <Image style={{ height: imageSize, width: imageSize, resizeMode: "cover", margin: 4 }} 
-                            source={photoURL} />
+                            source={{ uri: photoURL }} />
                     </View>
                 )
             })}
@@ -131,7 +131,7 @@ const PhotosContainer = ({photoURLs, variant, iconSize, onPress}) => {
                 </TouchableOpacity>
             </View>
             <Divider />
-            <PreviewPhotos photoURLs={photoURLs} />
+            <PreviewPhotos photoURLs={photoURLs ? photoURLs : null} />
         </View>
     )
 }

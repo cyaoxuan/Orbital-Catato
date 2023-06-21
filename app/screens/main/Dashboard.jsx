@@ -4,8 +4,8 @@ import { useAuth } from "../../utils/context/auth";
 import { getCardWidth } from "../../utils/calculateItemWidths";
 import { CardCarousel } from "../../components/Carousel";
 import { cats } from "../../data/CatTempData"
-// import { useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
 import { useCallback, useEffect, useState } from "react";
+import { useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
 
 
 // Eventual Call from DB
@@ -24,13 +24,15 @@ function getUnfedCats() {
 }
 
 
-export const CarouselContainer = ({ titleText, subtitleText, ...carousel }) => {
+export const CarouselContainer = ({ titleText, subtitleText, loading, error, ...carousel }) => {
     return (
         <View>
             <View style={{ margin: 8 }}>
                 <Text variant="headlineMedium">{titleText || "Title"}</Text>
                 <Text variant="headlineSmall">{subtitleText || "Subtitle"}</Text>
             </View>
+            {(error[0]) && <Text>Error: {error[0].message}</Text>}
+            {(loading[0]) && <ActivityIndicator />}
             <CardCarousel {...carousel} />
         </View>
     );
@@ -46,19 +48,18 @@ export default function Dashboard() {
           setRefreshing(false);
         }, 2000);
       }, []);
+  
+    const { getCatsofConcern, catsOfConcern, loading: loadingConcern, error: errorConcern } = useGetCatsofConcern();
+    const { getUnfedCats, unfedCats, loading: loadingUnfed, error: errorUnfed } = useGetUnfedCats();
 
-    // const { getCatsofConcern, catsOfConcern, loadingConcern, errorConcern } = useGetCatsofConcern();
-    // const { getUnfedCats, unfedCats, loadingUnfed, errorUnfed } = useGetUnfedCats();
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         await getCatsofConcern();
-    //         await getUnfedCats();
-    //     }
+    useEffect(() => {
+        const fetchData = async () => {
+            await Promise.all([getCatsofConcern(), getUnfedCats()])
+        }
         
-    //     fetchData();
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
+        fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <ScrollView
@@ -68,26 +69,28 @@ export default function Dashboard() {
                 titleText="Cats of Concern"
                 subtitleText="New, Injured, Missing >3 Days"
                 carouselType="concern"
-                // cats={catsOfConcern}
-                cats={getConcernCats()} //
+                cats={catsOfConcern}
                 cardWidth={cardWidth || 250}
                 iconName1="alert-circle-outline"
                 field1="Status: "
                 iconName2="location"
                 field2="Seen: "
+                loading={loadingConcern}
+                error={errorConcern}
             />
 
             <CarouselContainer
                 titleText="Unfed Cats"
                 subtitleText="Not Fed in 12 Hours"
                 carouselType="unfed"
-                // cats={unfedCats}
-                cats={getUnfedCats()} // 
+                cats={unfedCats}
                 cardWidth={cardWidth || 250}
                 iconName1="time-outline"
                 field1="Last Fed: "
                 iconName2="location"
                 field2="Seen: "
+                loading={loadingUnfed}
+                error={errorUnfed}
             />
         </ScrollView>
     );

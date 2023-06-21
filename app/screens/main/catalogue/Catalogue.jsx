@@ -3,16 +3,22 @@ import { Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { cats } from "../../../data/CatTempData";
 import { TouchableCatAvatar } from "../../../components/CatAvatar";
-import { useCallback, useState } from "react";
-
-// Eventual Call from DB
-function getCats() {
-    return cats;
-}
+import { useCallback, useEffect , useState } from "react";
+import { useGetAllCats } from "../../../utils/db/cat";
 
 export default function Catalogue() {
     const [refreshing, setRefreshing] = useState(false);
     const navigation = useNavigation();
+    const { getAllCats, allCats, loading, error } = useGetAllCats();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await getAllCats();
+        }
+        
+        fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);
@@ -30,15 +36,14 @@ export default function Catalogue() {
             ItemSeparatorComponent={() => <View style={{height: 20}} />}
             ListHeaderComponent={ <Text variant="headlineLarge" style={{ textAlign:"center", margin: 8 }}>Meet the Cats!</Text>}
             
-            data={getCats()}
+            data={allCats}
             renderItem={({item}) => {
                 return (
                     <TouchableCatAvatar
                         size={200}
-                        photoURL={item.photoURLs[0]}
+                        photoURL={item.photoURLs ? item.photoURLs[0] : null}
                         variant="headlineLarge"
                         name={item.name}
-                        // 
                         onPress={() => {
                             navigation.navigate("CatProfile", { catID: item.catID })
                         }}

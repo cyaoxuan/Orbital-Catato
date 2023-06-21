@@ -40,7 +40,7 @@ export default function Form() {
         <Provider>
          <ScrollView contentContainerStyle={{ alignItems: "center", justifyContent: "center" }}>
             <CatAvatar 
-                photoURL={route.params.photoURLs[0]}
+                photoURL={route.params.photoURLs ? route.params.photoURLs[0] : null}
                 size={200}
                 variant="headlineLarge"
                 name={ route.params.name }
