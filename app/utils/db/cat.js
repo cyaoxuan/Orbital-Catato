@@ -106,7 +106,6 @@ const autoProcessMissing = async (cat) => {
 
 const autoProcessConcernStatus = async () => {
     try {
-        console.log("start autoProcessConcernStatus");
         const querySnapshot = await getDocs(catColl);
         const cats = querySnapshot.docs.map((doc) => doc.data());
 
@@ -231,7 +230,7 @@ export const useGetAllCats = () => {
 };
 
 export const useGetCat = () => {
-    const [cat, setCat] = useState({});
+    const [cat, setCat] = useState(null);
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
 
@@ -241,7 +240,9 @@ export const useGetCat = () => {
             setError([null]);
 
             await autoProcessConcernStatus();
-            setCat((await getDoc(doc(db, "Cat", catID))).data());
+            const catDoc = await getDoc(doc(db, "Cat", catID));
+            const catData = catDoc.data();
+            setCat(catData);
         } catch (error) {
             console.error("Error fetching cat:", error);
             setError([error]);
@@ -406,7 +407,6 @@ export const useUserUpdateCatConcern = () => {
 
     const userUpdateCatConcern = async (userID, catID, location, time, concernStatus, concernDesc, photoURI, oldConcernStatus) => {
         try {
-            console.log("updating cat concern");
             if (!(userID && catID && location && time && concernStatus && concernDesc && photoURI)) {
                 throw new Error("Empty fields detected");
             }

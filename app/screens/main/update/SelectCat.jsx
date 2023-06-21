@@ -3,14 +3,21 @@ import { useNavigation } from "expo-router";
 import { cats } from "../../../data/CatTempData";
 import { CatCardSimple } from "../../../components/CatCard";
 import { getItemWidth } from "../../../utils/calculateItemWidths";
-
-// Eventual Call from DB
-function getCats() {
-    return cats;
-}
+import { useGetAllCats } from "../../../utils/db/cat";
+import { useEffect } from "react";
 
 export default function SelectCat() {
     const navigation = useNavigation();
+    const { getAllCats, allCats, loading, error } = useGetAllCats();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await getAllCats();
+        }
+        
+        fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const cardWidth = getItemWidth(2, 8);
     return (
@@ -18,7 +25,7 @@ export default function SelectCat() {
             contentContainerStyle={{ justifyContent: "space-around" }}
             columnWrapperStyle={{ flexShrink: 1 }}
             numColumns={2}
-            data={getCats()}
+            data={allCats}
             renderItem={({item}) => {
                 // Remove Date properties
                 const partialCat = (({catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, concernStatus, concernDesc}) => 
@@ -28,7 +35,7 @@ export default function SelectCat() {
                     <View key={item.catId}>
                         <CatCardSimple
                             name={item.name}
-                            photoURL={item.photoURLs[0]}
+                            photoURL={item.photoURLs ? item.photoURLs[0] : null}
                             cardWidth={cardWidth}
                             onPress={() => {navigation.navigate("Update", 
                                 { cat: partialCat })
