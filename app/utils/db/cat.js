@@ -85,6 +85,7 @@ const autoProcessMissing = async (cat) => {
 
 const autoProcessConcernStatus = async () => {
     try {
+        // console.log("calling autoProcessConcernStatus");
         const querySnapshot = await getDocs(catColl);
         const cats = querySnapshot.docs.map((doc) => doc.data());
 
