@@ -6,7 +6,7 @@ import { cats } from "../../../data/CatTempData";
 import { PillButton } from "../../../components/Button";
 import { AvatarContainer, KeyInfoContainer, DetailsContainer, PhotosContainer } from "./ProfileContainers";
 import { useEffect, useState } from "react";
-import { useGetCat } from "../../../utils/db/cat";
+import { autoProcessMissing, autoProcessUnfed, useGetCat } from "../../../utils/db/cat";
 
 export default function CatProfile() {
     const route = useRoute();
@@ -26,6 +26,11 @@ export default function CatProfile() {
 
     useEffect(() => {
         if (cat) {
+            const processData = async () => {
+                await Promise.all([autoProcessMissing(cat), autoProcessUnfed(cat)]);
+            };
+            processData();
+
             const partialCatTemp = (({catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, concernStatus, concernDesc}) => 
                 ({ catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, concernStatus, concernDesc }))(cat); 
             setPartialCat(partialCatTemp);
@@ -35,7 +40,8 @@ export default function CatProfile() {
     if (!cat) {
         return (
             <ScrollView>
-                <Text>No cat (yet)</Text>
+                {(error[0]) && <Text>Error: {error[0].message}</Text>}
+                {(loading[0]) && <ActivityIndicator />}
             </ScrollView>
         );
     }

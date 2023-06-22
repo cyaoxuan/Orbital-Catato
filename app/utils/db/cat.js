@@ -24,7 +24,7 @@ const processNewPhotoURLs = async (catID, photoURI) => {
     }
 };
 
-const autoProcessUnfed = async (cat) => {
+export const autoProcessUnfed = async (cat) => {
     try {
         const currentTime = Date.now();
         const twelveHoursAgo = sub(currentTime, { hours: 12 });
@@ -54,7 +54,7 @@ const autoProcessUnfed = async (cat) => {
     }
 };
 
-const autoProcessMissing = async (cat) => {
+export const autoProcessMissing = async (cat) => {
     try {
         const currentTime = Date.now();
         const threeDaysAgo = sub(currentTime, { days: 3 }).getTime();
@@ -83,9 +83,9 @@ const autoProcessMissing = async (cat) => {
     }
 };
 
-const autoProcessConcernStatus = async () => {
+export const autoProcessConcernStatus = async () => {
     try {
-        // console.log("calling autoProcessConcernStatus");
+        console.log("calling autoProcessConcernStatus");
         const querySnapshot = await getDocs(catColl);
         const cats = querySnapshot.docs.map((doc) => doc.data());
 
@@ -194,7 +194,6 @@ export const useGetAllCats = () => {
             setLoading([true]);
             setError([null]);
 
-            await autoProcessConcernStatus();
             const querySnapshot = await getDocs(catColl);
             const cats = querySnapshot.docs.map((doc) => doc.data());
             setAllCats(cats);
@@ -219,7 +218,6 @@ export const useGetCat = () => {
             setLoading([true]);
             setError([null]);
 
-            await autoProcessConcernStatus();
             const catDoc = await getDoc(doc(db, "Cat", catID));
             const catData = catDoc.data();
             setCat(catData);
@@ -244,7 +242,6 @@ export const useGetUnfedCats = () => {
             setLoading([true]);
             setError([null]);
 
-            // await autoProcessConcernStatus();
             const q = query(catColl, where("concernStatus", "array-contains", "Unfed"));
             const querySnapshot = await getDocs(q);
             const cats = querySnapshot.docs.map((doc) => doc.data());
@@ -270,7 +267,6 @@ export const useGetCatsofConcern = () => {
             setLoading([true]);
             setError([null]);
             
-            await autoProcessConcernStatus();
             const q = query(catColl, where("concernStatus", "array-contains-any", ["Injured", "Missing", "New"]));
             const querySnapshot = await getDocs(q);
             const cats = querySnapshot.docs.map((doc) => doc.data());
