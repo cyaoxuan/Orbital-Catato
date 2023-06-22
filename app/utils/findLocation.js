@@ -1,4 +1,5 @@
-import { locations, zonejson } from "../data/locationData";
+import { locationjson, locations, zonejson } from "../data/locationData";
+import * as Location from 'expo-location';
 
 // proccesses long/lat/alt format from kml file to {lat: , long: }, [lat, long] or [[long], [lat]]
 function processPolygonCoordinates(polygon) {
@@ -145,3 +146,41 @@ export function getRandomBuilding(zone) {
     const randNum = Math.floor(Math.random() * locationsInZone.length);
     return locationsInZone[randNum].value;
 }
+
+// Given user input from form, { coords, locationName, locationZone } is returned
+export const processLocation = async (locationStr) => {
+    try {
+        let coords, locationName, locationZone;
+        if (locationStr == "Use Current Location") {
+            const { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== "granted") {
+                throw new Error("Locations permissions denied");
+            }
+
+            const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
+            coords = { latitude: loc.coords.latitude, longitude: loc.coords.longitude };
+
+            // Check if user is in NUS
+            if (isInZone("NUS", coords)) {
+                // Get nearest building and zone user is in
+                const locationObj = getNearestBuilding(coords);
+                locationName = locationObj.value;
+                locationZone = locationObj.zone;
+            } else {
+                locationName = "Outside NUS";
+                locationZone = "Outside NUS";
+            }
+        } else {
+            // get coords of building
+            const locationObj = locationjson[locationStr];
+            coords = locationObj.location;
+            locationName = locationObj.value;
+            locationZone = locationObj.zone;
+        }
+        
+        return { coords, locationName, locationZone };
+    } catch (error) {
+        console.error("Error in processLocation:", error);
+        throw error;
+    }
+};

@@ -5,7 +5,7 @@ import { getCardWidth } from "../../utils/calculateItemWidths";
 import { CardCarousel } from "../../components/Carousel";
 import { cats } from "../../data/CatTempData"
 import { useCallback, useEffect, useState } from "react";
-import { useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
+import { autoProcessConcernStatus, useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
 
 
 // Eventual Call from DB
@@ -54,6 +54,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
+            await autoProcessConcernStatus();
             await Promise.all([getCatsofConcern(), getUnfedCats()])
         }
         

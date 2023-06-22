@@ -1,33 +1,12 @@
 import { db } from "../../config/firebase";
-import { Timestamp, addDoc, collection, doc, getDoc, getDocs, query, serverTimestamp, updateDoc, where, writeBatch } from "firebase/firestore";
+import { Timestamp, addDoc, collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where, writeBatch } from "firebase/firestore";
 import { sub } from "date-fns";
 import { useEffect, useState } from "react";
 import { uploadImageToStorage } from "./photo"
-import * as Location from 'expo-location';
-import Geohash from "latlon-geohash";
+import { processLocation } from "../findLocation";
 
 const catColl = collection(db, "Cat");
 const catUpdateColl = collection(db, "CatUpdate");
-
-const processLocation = async (location) => {
-    try {
-        if (location == "Use Current Location") {
-            const { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== "granted") {
-                throw new Error("Locations permissions denied");
-            }
-
-            const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
-            const geohash = Geohash.encode(loc.coords.latitude, loc.coords.longitude);
-            location = { latitude: loc.coords.latitude, longitude: loc.coords.longitude };
-        }
-        
-        return location;
-    } catch (error) {
-        console.error("Error in processLocation:", error);
-        throw error;
-    }
-};
 
 const processNewPhotoURLs = async (catID, photoURI) => {
     try {
@@ -45,7 +24,7 @@ const processNewPhotoURLs = async (catID, photoURI) => {
     }
 };
 
-const autoProcessUnfed = async (cat) => {
+export const autoProcessUnfed = async (cat) => {
     try {
         const currentTime = Date.now();
         const twelveHoursAgo = sub(currentTime, { hours: 12 });
@@ -75,7 +54,7 @@ const autoProcessUnfed = async (cat) => {
     }
 };
 
-const autoProcessMissing = async (cat) => {
+export const autoProcessMissing = async (cat) => {
     try {
         const currentTime = Date.now();
         const threeDaysAgo = sub(currentTime, { days: 3 }).getTime();
@@ -104,8 +83,9 @@ const autoProcessMissing = async (cat) => {
     }
 };
 
-const autoProcessConcernStatus = async () => {
+export const autoProcessConcernStatus = async () => {
     try {
+        console.log("calling autoProcessConcernStatus");
         const querySnapshot = await getDocs(catColl);
         const cats = querySnapshot.docs.map((doc) => doc.data());
 
@@ -123,38 +103,75 @@ const autoProcessConcernStatus = async () => {
 // Note: Some functions are not exported as they are only used for testing / internal calls.
 // This is to ensure that all changes to the database is logged and attributed to a user for accountability.
 /* ----- CREATE OPERATIONS ----- */
-export const useCreateCat = () => {
+export const useUserCreateCat = () => {
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
 
-    const createCat = async (data) => {
+    const userCreateCat = async (userID, data, isTemp) => {
         try {
             setLoading([true]);
             setError([null]);
-            
-            let downloadURL;
-            if (data.photoURI) {
-                downloadURL = [await uploadImageToStorage(data.photoURI)];
-            }
 
-            // TODO: Redefine default values
-            const cat = await addDoc(catColl, {
-                name: data.name,
-                photoURLs: downloadURL,
-                gender: data.gender,
-                birthYear: data.birthYear,
-                sterilised: data.sterilised,
-                keyFeatures: data.keyFeatures,
-                lastSeenLocation: data.lastSeenLocation,
-                lastSeenTime: data.lastSeenTime,
-                lastFedTime: data.lastFedTime,
-                concernStatus: data.concernStatus,
-                concernDesc: data.concernDesc,
-                isFostered: data.isFostered,
-                fosterReason: data.fosterReason
+            const batch = writeBatch(db);
+
+            // Add the cat document
+            const catDoc = doc(catColl);
+            const downloadURL = [await uploadImageToStorage(data.photoURI)];
+            let processedData;
+            // TODO: redefine default values
+            if (isTemp) {
+                const { coords, locationName, locationZone } = await processLocation(data.lastSeenLocation);
+                processedData = {
+                    catID: catDoc.id,
+                    name: "Cat " + new Date().valueOf().toString(),
+                    photoURLs: downloadURL,
+                    gender: null,
+                    birthYear: null,
+                    sterilised: data.sterilised,
+                    keyFeatures: null,
+                    lastSeenLocation: coords,
+                    locationName: locationName,
+                    locationZone: locationZone,
+                    lastSeenTime: Timestamp.fromDate(data.lastSeenTime),
+                    lastFedTime: null,
+                    concernStatus: data.concernStatus === "Healthy" ? ["New"] : ["Injured", "New"],
+                    concernDesc: data.concernDesc,
+                    isFostered: false,
+                    fosterReason: null
+                };
+            } else {
+                processedData = {
+                    catID: catDoc.id,
+                    name: data.name,
+                    photoURLs: downloadURL,
+                    gender: data.gender,
+                    birthYear: data.birthYear,
+                    sterilised: data.sterilised,
+                    keyFeatures: data.keyFeatures,
+                    lastSeenLocation: null,
+                    locationName: null,
+                    locationZone: null,
+                    lastSeenTime: null,
+                    lastFedTime: null,
+                    concernStatus: null,
+                    concernDesc: null,
+                    isFostered: false,
+                    fosterReason: null
+                };
+            }
+            batch.set(catDoc, processedData);
+
+            // Add the cat update document
+            batch.set(doc(catUpdateColl), {
+                updateType: isTemp ? "Create Cat Temp" : "CreateCat",
+                userID: userID,
+                catID: catDoc.id,
+                updateFields: processedData,
+                createTime: serverTimestamp(),
             });
 
-            await updateDoc(doc(db, "Cat", cat.id), { "catID": cat.id });
+            // Commit the batched operations
+            await batch.commit();
         } catch (error) {
             console.error("Error creating cat:", error);
             setError([error]);
@@ -163,44 +180,7 @@ export const useCreateCat = () => {
         }
     };
     
-    return { createCat, loading, error };
-};
-
-export const useCreateTempCat = () => {
-    const [loading, setLoading] = useState([false]);
-    const [error, setError] = useState([null]);
-
-    const createTempCat = async (data) => {
-        try {
-            setLoading([true]);
-            setError([null]);
-            
-            let downloadURL;
-            if (data.photoURI) {
-                downloadURL = [await uploadImageToStorage(data.photoURI)];
-            }
-
-            // TODO: Redefine default values
-            const cat = await addDoc(catColl, {
-                name: "Cat " + new Date().valueOf().toString(),
-                photoURLs: downloadURL,
-                lastSeenLocation: data.lastSeenLocation,
-                lastSeenTime: data.lastSeenTime,
-                concernStatus: data.concernStatus === "Healthy" ? ["New"] : ["Injured", "New"],
-                concernDesc: data.concernDesc,
-                sterilised: data.sterilised
-            });
-
-            await updateDoc(doc(db, "Cat", cat.id), { "catID": cat.id });
-        } catch (error) {
-            console.error("Error creating cat:", error);
-            setError([error]);
-        } finally {
-            setLoading([false]);
-        }
-    };
-
-    return { createTempCat, loading, error };
+    return { userCreateCat, loading, error };
 };
 
 /* ----- READ OPERATIONS ----- */
@@ -214,7 +194,6 @@ export const useGetAllCats = () => {
             setLoading([true]);
             setError([null]);
 
-            await autoProcessConcernStatus();
             const querySnapshot = await getDocs(catColl);
             const cats = querySnapshot.docs.map((doc) => doc.data());
             setAllCats(cats);
@@ -239,7 +218,6 @@ export const useGetCat = () => {
             setLoading([true]);
             setError([null]);
 
-            await autoProcessConcernStatus();
             const catDoc = await getDoc(doc(db, "Cat", catID));
             const catData = catDoc.data();
             setCat(catData);
@@ -264,7 +242,6 @@ export const useGetUnfedCats = () => {
             setLoading([true]);
             setError([null]);
 
-            await autoProcessConcernStatus();
             const q = query(catColl, where("concernStatus", "array-contains", "Unfed"));
             const querySnapshot = await getDocs(q);
             const cats = querySnapshot.docs.map((doc) => doc.data());
@@ -290,7 +267,6 @@ export const useGetCatsofConcern = () => {
             setLoading([true]);
             setError([null]);
             
-            await autoProcessConcernStatus();
             const q = query(catColl, where("concernStatus", "array-contains-any", ["Injured", "Missing", "New"]));
             const querySnapshot = await getDocs(q);
             const cats = querySnapshot.docs.map((doc) => doc.data());
@@ -331,13 +307,15 @@ export const useUserUpdateCatLocation = () => {
     const [error, setError] = useState([null]);
     const [userID, setUserID] = useState("");
     const [catID, setCatID] = useState("");
-    const [userLocation, setUserLocation] = useState("");
-    const [seenTime, setSeenTime] = useState({});
+    const [userLocation, setUserLocation] = useState(null);
+    const [seenTime, setSeenTime] = useState(null);
 
     useEffect(() => {
-        if (userLocation !== "" && seenTime != {}) {
+        if (userLocation !== null && seenTime != null) {
             userUpdateCat(userID, catID, "Update Location", {
-                lastSeenLocation: userLocation,
+                lastSeenLocation: userLocation.coords,
+                locationName: userLocation.locationName,
+                locationZone: userLocation.locationZone,
                 lastSeenTime: seenTime
             }).catch(error => {
                 console.error("Error updating cat location:", error);
@@ -358,10 +336,11 @@ export const useUserUpdateCatLocation = () => {
             setError([null]);
             setUserID(userID);
             setCatID(catID);
-            setUserLocation("");
+            setUserLocation(null);
+            setSeenTime(null);
             
-            const userLocation = await processLocation(location);
-            setUserLocation(userLocation);
+            const { coords, locationName, locationZone } = await processLocation(location);
+            setUserLocation({ coords, locationName, locationZone });
 
             setSeenTime(Timestamp.fromDate(time));
         } catch (error) {
@@ -374,7 +353,6 @@ export const useUserUpdateCatLocation = () => {
     return { userUpdateCatLocation, loading, error };
 };
 
-// handle injured, healthy
 export const useUserUpdateCatConcern = () => {
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
@@ -383,16 +361,17 @@ export const useUserUpdateCatConcern = () => {
     const [catID, setCatID] = useState("");
     const [concernStatus, setConcernStatus] = useState("");
     const [concernDesc, setConcernDesc] = useState("");
-    const [userLocation, setUserLocation] = useState("");
+    const [userLocation, setUserLocation] = useState({});
     const [seenTime, setSeenTime] = useState({});
     const [newPhotoURLs, setNewPhotoURLs] = useState([]);
-    const [newConcernStatus, setNewConcernStatus] = useState([]);
 
     useEffect(() => {
-        if (processed && userLocation !== "" && newPhotoURLs !== [] && newConcernStatus !== []) {
+        if (processed && userLocation !== {} && newPhotoURLs !== [] && concernStatus !== []) {
             userUpdateCat(userID, catID, "Update Concern", {
                 concernStatus: concernStatus,
-                lastSeenLocation: userLocation,
+                lastSeenLocation: userLocation.coords,
+                locationName: userLocation.locationName,
+                locationZone: userLocation.locationZone,
                 concernDesc: concernDesc,
                 photoURLs: newPhotoURLs,
                 lastSeenTime: seenTime,
@@ -403,7 +382,7 @@ export const useUserUpdateCatConcern = () => {
                 setLoading([false]);
             });
         }
-    }, [catID, concernDesc, concernStatus, newConcernStatus, newPhotoURLs, processed, seenTime, userID, userLocation]);
+    }, [catID, concernDesc, concernStatus, newPhotoURLs, processed, seenTime, userID, userLocation]);
 
     const userUpdateCatConcern = async (userID, catID, location, time, concernStatus, concernDesc, photoURI, oldConcernStatus) => {
         try {
@@ -416,10 +395,11 @@ export const useUserUpdateCatConcern = () => {
             setProcessed(false);
             setUserID(userID);
             setCatID(catID);
+            setUserLocation({});
             setConcernDesc(concernDesc);
             
-            const userLocation = await processLocation(location);
-            setUserLocation(userLocation);
+            const { coords, locationName, locationZone } = await processLocation(location);
+            setUserLocation({ coords, locationName, locationZone });
 
             setSeenTime(Timestamp.fromDate(time));
 
@@ -459,14 +439,16 @@ export const useUserUpdateCatFed = () => {
     const [error, setError] = useState([null]);
     const [userID, setUserID] = useState("");
     const [catID, setCatID] = useState("");
-    const [fedTime, setFedTime] = useState({});
-    const [userLocation, setUserLocation] = useState("");
+    const [fedTime, setFedTime] = useState(null);
+    const [userLocation, setUserLocation] = useState(null);
 
     useEffect(() => {
-        if (fedTime !== {} && userLocation !== "") {
+        if (fedTime !== null && userLocation !== null) {
             userUpdateCat(userID, catID, "Update Fed", {
                 lastFedTime: fedTime,
-                lastSeenLocation: userLocation,
+                lastSeenLocation: userLocation.coords,
+                locationName: userLocation.locationName,
+                locationZone: userLocation.locationZone,
                 lastSeenTime: fedTime,
             }).catch(error => {
                 console.error("Error updating cat fed:", error);
@@ -487,12 +469,14 @@ export const useUserUpdateCatFed = () => {
             setError([null]);
             setUserID(userID);
             setCatID(catID);
+            setUserLocation(null);
+            setFedTime(null);
             
             const fedTime = Timestamp.fromDate(time);
             setFedTime(fedTime);
 
-            const userLocation = await processLocation(location);
-            setUserLocation(userLocation);
+            const { coords, locationName, locationZone } = await processLocation(location);
+            setUserLocation({ coords, locationName, locationZone });
         } catch (error) {
             console.error("Error updating cat fed:", error);
             setError([error]);
@@ -518,8 +502,8 @@ export const useUserUpdateCatFoster = () => {
             setError([null]);
 
             await userUpdateCat(userID, catID, "Update Foster", {
-                isFostered: isFostered,
-                fosterReason: fosterReason || "NONE"
+                isFostered: isFostered === "Yes",
+                fosterReason: fosterReason
             });
         } catch (error) {
             console.error("Error updating cat foster:", error);
