@@ -74,6 +74,7 @@ const NumberSpinner = (props) => {
 
 // For time
 const TimeInput = (props) => {
+    const today = new Date();
     const [date, setDate] = useState(new Date());
     const [show, setShow] = useState(false);
 
@@ -94,7 +95,10 @@ const TimeInput = (props) => {
             <Text variant={bodyVariant}>Selected Time: {props.displayTime 
                 ? props.displayTime.toLocaleTimeString("en-GB", timeOptions) 
                 : date.toLocaleTimeString("en-GB", timeOptions)}</Text>
-            { (props.show ? props.show : show) && (
+            {(props.displayTime ? props.displayTime > today : date > today) && (
+                <Text variant={bodyVariant} style={ {color: "crimson" }}>Error: Selected future time! Are you a time traveller?</Text>
+            )}
+            {(props.show ? props.show : show) && (
                 <RNDateTimePicker
                     mode="time"
                     display="spinner"
