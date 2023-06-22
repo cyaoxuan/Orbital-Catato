@@ -4,7 +4,7 @@ import { ActivityIndicator, Text } from "react-native-paper";
 import { useRouter } from "expo-router";
 import { auth } from "../../utils/context/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { AuthInput, PasswordInput } from "../../components/TextInput"
+import { AuthInput, PasswordInput } from "../../components/TextInput";
 import { PillButton } from "../../components/Button";
 
 export default function LoginScreen() {
@@ -20,7 +20,7 @@ export default function LoginScreen() {
             setError(null);
 
             await signInWithEmailAndPassword(auth, email, password);
-            
+
             setLoading(false);
             router.replace("/screens/main/Dashboard");
         } catch (error) {
@@ -28,15 +28,18 @@ export default function LoginScreen() {
             setError(error);
             setLoading(false);
         }
-    }
+    };
 
     return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
             <Text variant="displayMedium">Login</Text>
             <Text variant="displaySmall">Sign in to continue</Text>
 
             <View style={{ justifyContent: "space-between" }}>
-                <AuthInput label="Email"
+                <AuthInput
+                    label="Email"
                     iconName="mail"
                     placeholder="orbitee@kitty.xyz"
                     textContentType="emailAddress"
@@ -49,20 +52,20 @@ export default function LoginScreen() {
                     label="Password"
                     textContentType="password"
                     value={password}
-                    onChangeText={setPassword} 
+                    onChangeText={setPassword}
                 />
             </View>
-            
-            <PillButton
-                label="Log In"
-                onPress={handleLoginWithEmail} />
+
+            <PillButton label="Log In" onPress={handleLoginWithEmail} />
 
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}
-            
-            <PillButton mode="text"
+
+            <PillButton
+                mode="text"
                 label="Forgot Password?"
-                onPress={() => router.push("./ForgotPassword")} />
+                onPress={() => router.push("./ForgotPassword")}
+            />
         </View>
     );
 }

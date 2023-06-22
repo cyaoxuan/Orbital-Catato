@@ -1,11 +1,11 @@
 import { CatCard, CatCardSimple } from "../../app/components/CatCard";
 import { cleanup, fireEvent, render } from "@testing-library/react-native";
 
-afterEach(cleanup)
+afterEach(cleanup);
 
 describe("<CatCard />", () => {
     it("renders successfully", () => {
-        const catCard = render(<CatCard/>);
+        const catCard = render(<CatCard />);
         expect(catCard).toBeDefined();
     });
 
@@ -24,8 +24,12 @@ describe("<CatCard />", () => {
     it("calls onPress callback when card is pressed", () => {
         const onPressMock = jest.fn();
         const { getByTestId } = render(<CatCard onPress={onPressMock} />);
-        const cardContainerOuterLayer = getByTestId("card-container-outer-layer");
-        const cardContainer = cardContainerOuterLayer.findByProps({ testID: "card-container" });
+        const cardContainerOuterLayer = getByTestId(
+            "card-container-outer-layer"
+        );
+        const cardContainer = cardContainerOuterLayer.findByProps({
+            testID: "card-container",
+        });
         const card = cardContainer.findByProps({ testID: "card" });
         fireEvent.press(card);
         expect(onPressMock).toHaveBeenCalled();
@@ -59,8 +63,12 @@ describe("<CatCardSimple />", () => {
     it("calls onPress callback when card is pressed", () => {
         const onPressMock = jest.fn();
         const { getByTestId } = render(<CatCardSimple onPress={onPressMock} />);
-        const cardContainerOuterLayer = getByTestId("card-container-outer-layer");
-        const cardContainer = cardContainerOuterLayer.findByProps({ testID: "card-container" });
+        const cardContainerOuterLayer = getByTestId(
+            "card-container-outer-layer"
+        );
+        const cardContainer = cardContainerOuterLayer.findByProps({
+            testID: "card-container",
+        });
         const card = cardContainer.findByProps({ testID: "card" });
         fireEvent.press(card);
         expect(onPressMock).toHaveBeenCalled();

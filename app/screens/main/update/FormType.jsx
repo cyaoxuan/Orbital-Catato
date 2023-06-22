@@ -3,7 +3,14 @@ import { StyleSheet, View } from "react-native";
 import { ActivityIndicator, Divider, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { PillButton } from "../../../components/Button";
-import { DropdownList, FormInput, NumberSpinner, TimeInput, TwoRadioInput, UploadPhotos } from "../../../components/FormComponents";
+import {
+    DropdownList,
+    FormInput,
+    NumberSpinner,
+    TimeInput,
+    TwoRadioInput,
+    UploadPhotos,
+} from "../../../components/FormComponents";
 import {
     useUserCreateCat,
     useUserDeleteCat,
@@ -11,9 +18,12 @@ import {
     useUserUpdateCatFed,
     useUserUpdateCatFoster,
     useUserUpdateCatLocation,
-    useUserUpdateCatProfile
+    useUserUpdateCatProfile,
 } from "../../../utils/db/cat";
-import { getImageFromCamera, getImageFromGallery } from "../../../utils/db/photo";
+import {
+    getImageFromCamera,
+    getImageFromGallery,
+} from "../../../utils/db/photo";
 import { locations } from "../../../data/locationData";
 
 const today = new Date();
@@ -45,7 +55,11 @@ const CreateProfile = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: newName, photoURLs: [photoURI], formType: formType });
+            navigation.navigate("ConfirmUpdate", {
+                name: newName,
+                photoURLs: [photoURI],
+                formType: formType,
+            });
         }
     }, [loading, processed, error, navigation, newName, formType, photoURI]);
 
@@ -74,14 +88,18 @@ const CreateProfile = (props) => {
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to userid
-        await userCreateCat("2nTIJgoSsSTWzspThZlaQJppKuk2", {
-            name: newName,
-            photoURI: photoURI,
-            gender: newGender,
-            birthYear: year,
-            sterilised: sterile === "Yes",
-            keyFeatures: features
-        }, false);
+        await userCreateCat(
+            "2nTIJgoSsSTWzspThZlaQJppKuk2",
+            {
+                name: newName,
+                photoURI: photoURI,
+                gender: newGender,
+                birthYear: year,
+                sterilised: sterile === "Yes",
+                keyFeatures: features,
+            },
+            false
+        );
         setProcessed(true);
     };
 
@@ -123,7 +141,9 @@ const CreateProfile = (props) => {
                 min={new Date().getFullYear() - 30}
                 max={new Date().getFullYear()}
                 value={year}
-                onChange={(num) => { setYear(num) }}
+                onChange={(num) => {
+                    setYear(num);
+                }}
             />
 
             <Divider />
@@ -151,13 +171,17 @@ const CreateProfile = (props) => {
             <PillButton
                 label="Create Profile"
                 onPress={handleUpdate}
-                disabled={name.trim() === "" || features.trim() === "" || photoURI === ""}
+                disabled={
+                    name.trim() === "" ||
+                    features.trim() === "" ||
+                    photoURI === ""
+                }
             />
-            {(error[0]) && <Text>Error: {error[0].message}</Text>}
-            {(loading[0]) && <ActivityIndicator />}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {loading[0] && <ActivityIndicator />}
         </View>
     );
-}
+};
 
 const ReportCat = (props) => {
     const navigation = useNavigation();
@@ -175,8 +199,8 @@ const ReportCat = (props) => {
         const currentDate = selectedDate;
         setShowTime(false);
         setDate(currentDate);
-    }
-    
+    };
+
     // For Image Picker
     const [photoURI, setPhotoURI] = useState("");
     const [photoError, setPhotoError] = useState(null);
@@ -192,7 +216,11 @@ const ReportCat = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: "New Cat Reported", photoURLs: [photoURI], formType: formType });
+            navigation.navigate("ConfirmUpdate", {
+                name: "New Cat Reported",
+                photoURLs: [photoURI],
+                formType: formType,
+            });
         }
     }, [loading, processed, error, navigation, name, photoURI, formType]);
 
@@ -221,13 +249,17 @@ const ReportCat = (props) => {
     const handleReport = async () => {
         setProcessed(false);
         // TODO: change to userid
-        await userCreateCat("2nTIJgoSsSTWzspThZlaQJppKuk2", {
-            lastSeenLocation: location,
-            lastSeenTime: date,
-            photoURI: photoURI,
-            concernDesc: concernDescription,
-            sterilised: sterile === "Yes",
-        }, true);
+        await userCreateCat(
+            "2nTIJgoSsSTWzspThZlaQJppKuk2",
+            {
+                lastSeenLocation: location,
+                lastSeenTime: date,
+                photoURI: photoURI,
+                concernDesc: concernDescription,
+                sterilised: sterile === "Yes",
+            },
+            true
+        );
         setProcessed(true);
     };
 
@@ -296,19 +328,25 @@ const ReportCat = (props) => {
             <PillButton
                 label="Report"
                 onPress={handleReport}
-                disabled={location==="" || concernDescription.trim() === "" || photoURI === "" || date > today}
+                disabled={
+                    location === "" ||
+                    concernDescription.trim() === "" ||
+                    photoURI === "" ||
+                    date > today
+                }
             />
-            {(error[0]) && <Text>Error: {error[0].message}</Text>}
-            {(loading[0]) && <ActivityIndicator />}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {loading[0] && <ActivityIndicator />}
         </View>
     );
-}
+};
 
 const UpdateLocation = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURLs, formType, userID } = props;
     const [processed, setProcessed] = useState(false);
-    const { userUpdateCatLocation, loading, error } = useUserUpdateCatLocation();
+    const { userUpdateCatLocation, loading, error } =
+        useUserUpdateCatLocation();
 
     // For Location Dropdown
     const [location, setLocation] = useState("");
@@ -320,18 +358,27 @@ const UpdateLocation = (props) => {
         const currentDate = selectedDate;
         setShowTime(false);
         setDate(currentDate);
-    }
+    };
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
+            navigation.navigate("ConfirmUpdate", {
+                name: name,
+                photoURLs: photoURLs,
+                formType: formType,
+            });
         }
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to cat and userid
-        await userUpdateCatLocation("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, location, date);
+        await userUpdateCatLocation(
+            "2nTIJgoSsSTWzspThZlaQJppKuk2",
+            catID,
+            location,
+            date
+        );
         setProcessed(true);
     };
 
@@ -359,15 +406,16 @@ const UpdateLocation = (props) => {
                 onPress={handleUpdate}
                 disabled={location === "" || date > today}
             />
-            {(error[0]) && <Text>Error: {error[0].message}</Text>}
-            {(loading[0]) && <ActivityIndicator />}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {loading[0] && <ActivityIndicator />}
         </View>
     );
-}
+};
 
 const UpdateConcern = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURLs, concernStatus, concernDesc, formType } = props;
+    const { catID, name, photoURLs, concernStatus, concernDesc, formType } =
+        props;
     const [processed, setProcessed] = useState(false);
     const { userUpdateCatConcern, loading, error } = useUserUpdateCatConcern();
 
@@ -376,13 +424,19 @@ const UpdateConcern = (props) => {
     const [photoError, setPhotoError] = useState(null);
 
     // For Concern Radio
-    const [concern, setConcern] = useState(concernStatus && concernStatus.includes("Injured") ? "Injured" : "Healthy");
+    const [concern, setConcern] = useState(
+        concernStatus && concernStatus.includes("Injured")
+            ? "Injured"
+            : "Healthy"
+    );
 
     // For Location Dropdown
     const [location, setLocation] = useState("");
 
     // For ConcernDesc TextInput
-    const [concernDescription, setConcernDescription] = useState(concernDesc ? concernDesc : "");
+    const [concernDescription, setConcernDescription] = useState(
+        concernDesc ? concernDesc : ""
+    );
 
     // For RNDateTimePicker
     const [date, setDate] = useState(new Date());
@@ -391,11 +445,15 @@ const UpdateConcern = (props) => {
         const currentDate = selectedDate;
         setShowTime(false);
         setDate(currentDate);
-    }
+    };
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
+            navigation.navigate("ConfirmUpdate", {
+                name: name,
+                photoURLs: photoURLs,
+                formType: formType,
+            });
         }
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
@@ -490,13 +548,18 @@ const UpdateConcern = (props) => {
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
-                disabled={location === "" || concernDescription.trim() === "" || photoURI === "" || date > today}
+                disabled={
+                    location === "" ||
+                    concernDescription.trim() === "" ||
+                    photoURI === "" ||
+                    date > today
+                }
             />
-            {(error[0]) && <Text>Error: {error[0].message}</Text>}
-            {(loading[0]) && <ActivityIndicator />}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {loading[0] && <ActivityIndicator />}
         </View>
     );
-}
+};
 
 const UpdateFed = (props) => {
     const navigation = useNavigation();
@@ -514,18 +577,27 @@ const UpdateFed = (props) => {
         const currentDate = selectedDate;
         setShowTime(false);
         setDate(currentDate);
-    }
+    };
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
+            navigation.navigate("ConfirmUpdate", {
+                name: name,
+                photoURLs: photoURLs,
+                formType: formType,
+            });
         }
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to cat and userid
-        await userUpdateCatFed("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, date, location);
+        await userUpdateCatFed(
+            "2nTIJgoSsSTWzspThZlaQJppKuk2",
+            catID,
+            date,
+            location
+        );
         setProcessed(true);
     };
 
@@ -548,7 +620,6 @@ const UpdateFed = (props) => {
                 onPress={setShowTime}
             />
 
-
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
@@ -556,11 +627,12 @@ const UpdateFed = (props) => {
             />
         </View>
     );
-}
+};
 
 const UpdateFoster = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURLs, isFostered, fosterReason, formType } = props;
+    const { catID, name, photoURLs, isFostered, fosterReason, formType } =
+        props;
     const [processed, setProcessed] = useState(false);
     const { userUpdateCatFoster, loading, error } = useUserUpdateCatFoster();
 
@@ -568,18 +640,29 @@ const UpdateFoster = (props) => {
     const [fostered, setFostered] = useState(isFostered ? "Yes" : "No");
 
     // For FosterReason TextInput
-    const [fosterDesc, setFosterDesc] = useState(fosterReason ? fosterReason : "");
+    const [fosterDesc, setFosterDesc] = useState(
+        fosterReason ? fosterReason : ""
+    );
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs[0], formType: formType });
+            navigation.navigate("ConfirmUpdate", {
+                name: name,
+                photoURLs: photoURLs[0],
+                formType: formType,
+            });
         }
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to cat and userid
-        await userUpdateCatFoster("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, fostered, fosterDesc);
+        await userUpdateCatFoster(
+            "2nTIJgoSsSTWzspThZlaQJppKuk2",
+            catID,
+            fostered,
+            fosterDesc
+        );
         setProcessed(true);
     };
 
@@ -613,11 +696,20 @@ const UpdateFoster = (props) => {
             />
         </View>
     );
-}
+};
 
 const UpdateProfile = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, formType } = props;
+    const {
+        catID,
+        name,
+        photoURLs,
+        gender,
+        birthYear,
+        sterilised,
+        keyFeatures,
+        formType,
+    } = props;
     const [processed, setProcessed] = useState(false);
     const { userUpdateCatProfile, loading, error } = useUserUpdateCatProfile();
 
@@ -632,7 +724,9 @@ const UpdateProfile = (props) => {
     const [newGender, setNewGender] = useState(gender ? gender : "F");
 
     // For BirthYear Spinner
-    const [year, setYear] = useState(birthYear ? birthYear : new Date().getFullYear());
+    const [year, setYear] = useState(
+        birthYear ? birthYear : new Date().getFullYear()
+    );
 
     // For Sterilised Radio
     const [sterile, setSterile] = useState(sterilised ? "Yes" : "No");
@@ -642,7 +736,11 @@ const UpdateProfile = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
+            navigation.navigate("ConfirmUpdate", {
+                name: name,
+                photoURLs: photoURLs,
+                formType: formType,
+            });
         }
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
@@ -677,8 +775,8 @@ const UpdateProfile = (props) => {
             gender: newGender,
             birthYear: year,
             sterilised: sterile === "Yes",
-            keyFeatures: features
-        })
+            keyFeatures: features,
+        });
         setProcessed(true);
     };
 
@@ -720,7 +818,9 @@ const UpdateProfile = (props) => {
                 min={new Date().getFullYear() - 30}
                 max={new Date().getFullYear()}
                 value={year}
-                onChange={(num) => { setYear(num) }}
+                onChange={(num) => {
+                    setYear(num);
+                }}
             />
 
             <Divider />
@@ -749,13 +849,17 @@ const UpdateProfile = (props) => {
             <PillButton
                 label="Update Profile"
                 onPress={handleUpdate}
-                disabled={name.trim() === "" || features.trim() === "" || photoURI === ""}
+                disabled={
+                    name.trim() === "" ||
+                    features.trim() === "" ||
+                    photoURI === ""
+                }
             />
-            {(error[0]) && <Text>Error: {error[0].message}</Text>}
-            {(loading[0]) && <ActivityIndicator />}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {loading[0] && <ActivityIndicator />}
         </View>
     );
-}
+};
 
 const DeleteProfile = (props) => {
     const navigation = useNavigation();
@@ -768,7 +872,11 @@ const DeleteProfile = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
+            navigation.navigate("ConfirmUpdate", {
+                name: name,
+                photoURLs: photoURLs,
+                formType: formType,
+            });
         }
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
@@ -776,7 +884,7 @@ const DeleteProfile = (props) => {
         setProcessed(false);
         await userDeleteCat("2nTIJgoSsSTWzspThZlaQJppKuk2", catID);
         setProcessed(true);
-    }
+    };
 
     return (
         <View style={styles.formContainer}>
@@ -795,21 +903,27 @@ const DeleteProfile = (props) => {
                 onPress={handleDelete}
                 disabled={catName !== name}
             />
-            {(error[0]) && <Text>Error: {error[0].message}</Text>}
-            {(loading[0]) && <ActivityIndicator />}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {loading[0] && <ActivityIndicator />}
         </View>
     );
-}
+};
 
 export {
-    CreateProfile, ReportCat, UpdateConcern, UpdateFed,
-    UpdateFoster, UpdateLocation, UpdateProfile, DeleteProfile
+    CreateProfile,
+    ReportCat,
+    UpdateConcern,
+    UpdateFed,
+    UpdateFoster,
+    UpdateLocation,
+    UpdateProfile,
+    DeleteProfile,
 };
 
 const styles = StyleSheet.create({
     formContainer: {
         alignItems: "center",
-        width: "100%"
+        width: "100%",
     },
     dropdownContainer: {
         width: "90%",
@@ -820,9 +934,9 @@ const styles = StyleSheet.create({
         margin: 4,
     },
     radioButtonContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
         paddingHorizontal: 4,
     },
-})
+});

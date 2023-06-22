@@ -35,27 +35,34 @@ export default function WelcomeScreen() {
             setError(error);
             setLoading(false);
         }
-    }
+    };
 
     return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "white" }}>
+        <View
+            style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "white",
+            }}
+        >
             <Text variant="displayMedium">Welcome</Text>
 
-            <Avatar.Image style={{ backgroundColor: "transparent", margin: 20 }}
+            <Avatar.Image
+                style={{ backgroundColor: "transparent", margin: 20 }}
                 source={require("../../../assets/catato-logo.png")}
-                size={350} />
-          
+                size={350}
+            />
+
+            <PillButton label="Log In" onPress={onLoginPressed} />
+
+            <PillButton label="Sign Up" onPress={onSignUpPressed} />
+
             <PillButton
-                label="Log In" 
-                onPress={onLoginPressed} />
-            
-            <PillButton
-                label="Sign Up" 
-                onPress={onSignUpPressed} />
-            
-            <PillButton mode="text"
+                mode="text"
                 label="Continue as Guest"
-                onPress={handleLoginAnonymously} />
+                onPress={handleLoginAnonymously}
+            />
 
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}

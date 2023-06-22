@@ -1,60 +1,78 @@
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Divider, List }  from "react-native-paper";
+import { Divider, List } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 
-const UpdateOptionList = ({cat}) => {
+const UpdateOptionList = ({ cat }) => {
     const navigation = useNavigation();
 
     return (
         <List.Section>
-            <List.Item  
+            <List.Item
                 title="Update Location"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { ...cat, formType: "location" })}}
+                onPress={() => {
+                    navigation.navigate("Form", {
+                        ...cat,
+                        formType: "location",
+                    });
+                }}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
-            <List.Item 
+            <List.Item
                 title="Update Concern"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { ...cat, formType: "concern" })}}
+                onPress={() => {
+                    navigation.navigate("Form", {
+                        ...cat,
+                        formType: "concern",
+                    });
+                }}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
-            <List.Item 
+            <List.Item
                 bottomDivider
                 title="Update Fed Status"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { ...cat, formType: "fed" })}}
+                onPress={() => {
+                    navigation.navigate("Form", { ...cat, formType: "fed" });
+                }}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
-            <List.Item 
+            <List.Item
                 title="Temporarily Foster"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { ...cat, formType: "foster" })}}
+                onPress={() => {
+                    navigation.navigate("Form", { ...cat, formType: "foster" });
+                }}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
-            <List.Item 
+            <List.Item
                 title="Update Profile"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { ...cat, formType: "update" })}}
+                onPress={() => {
+                    navigation.navigate("Form", { ...cat, formType: "update" });
+                }}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
-            <List.Item 
+            <List.Item
                 title="Remove Cat Profile"
                 titleStyle={styles.title}
-                onPress={() => {navigation.navigate("Form", { ...cat, formType: "delete" })}}
+                onPress={() => {
+                    navigation.navigate("Form", { ...cat, formType: "delete" });
+                }}
                 right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
         </List.Section>
     );
-}
+};
 
 export default function UpdateOptions() {
     const route = useRoute();
@@ -62,15 +80,15 @@ export default function UpdateOptions() {
     return (
         <ScrollView>
             <View style={{ margin: 8 }}>
-                <CatAvatar 
+                <CatAvatar
                     photoURL={route.params.photoURLs[0]}
                     size={200}
                     variant="headlineLarge"
-                    name={ route.params.name }
+                    name={route.params.name}
                 />
             </View>
             <View>
-                <UpdateOptionList cat={route.params}/>
+                <UpdateOptionList cat={route.params} />
             </View>
         </ScrollView>
     );
@@ -78,6 +96,6 @@ export default function UpdateOptions() {
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 20
-    }
-})
+        fontSize: 20,
+    },
+});

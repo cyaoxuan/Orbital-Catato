@@ -25,8 +25,8 @@ module.exports = {
         "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
     },
     settings: {
-        "react": {
-            "version": "detect"
-        }
-    }
+        react: {
+            version: "detect",
+        },
+    },
 };

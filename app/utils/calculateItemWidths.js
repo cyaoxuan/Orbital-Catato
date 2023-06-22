@@ -11,9 +11,9 @@ export function getItemWidth(noOfColumns, margin) {
 }
 
 // Calculate card width in Carousel in Dashboard
-export function getCardWidth(frac) { 
+export function getCardWidth(frac) {
     // Card is fraction the width of a screen
-    const {height, width} = Dimensions.get("window");
-    const cardWidth = (width) * frac;
+    const { height, width } = Dimensions.get("window");
+    const cardWidth = width * frac;
     return cardWidth;
 }

@@ -1,4 +1,4 @@
-import { FlatList, View } from "react-native"
+import { FlatList, View } from "react-native";
 import { useNavigation } from "expo-router";
 import { CatCardSimple } from "../../../components/CatCard";
 import { getItemWidth } from "../../../utils/calculateItemWidths";
@@ -12,23 +12,43 @@ export default function SelectCat() {
     useEffect(() => {
         const fetchData = async () => {
             await getAllCats();
-        }
-        
+        };
+
         fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const cardWidth = getItemWidth(2, 8);
     return (
-        <FlatList style={{ flex: 1 }}
+        <FlatList
+            style={{ flex: 1 }}
             contentContainerStyle={{ justifyContent: "space-around" }}
             columnWrapperStyle={{ flexShrink: 1 }}
             numColumns={2}
             data={allCats}
-            renderItem={({item}) => {
+            renderItem={({ item }) => {
                 // Remove Date properties
-                const partialCat = (({catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, concernStatus, concernDesc}) => 
-                ({catID, name, photoURLs, gender, birthYear, sterilised, keyFeatures, concernStatus, concernDesc}))(item); 
+                const partialCat = (({
+                    catID,
+                    name,
+                    photoURLs,
+                    gender,
+                    birthYear,
+                    sterilised,
+                    keyFeatures,
+                    concernStatus,
+                    concernDesc,
+                }) => ({
+                    catID,
+                    name,
+                    photoURLs,
+                    gender,
+                    birthYear,
+                    sterilised,
+                    keyFeatures,
+                    concernStatus,
+                    concernDesc,
+                }))(item);
 
                 return (
                     <View key={item.catId}>
@@ -36,12 +56,15 @@ export default function SelectCat() {
                             name={item.name}
                             photoURL={item.photoURLs ? item.photoURLs[0] : null}
                             cardWidth={cardWidth}
-                            onPress={() => {navigation.navigate("Update", 
-                                { cat: partialCat })
-                            }}/>
+                            onPress={() => {
+                                navigation.navigate("Update", {
+                                    cat: partialCat,
+                                });
+                            }}
+                        />
                     </View>
                 );
             }}
         />
-    )
+    );
 }

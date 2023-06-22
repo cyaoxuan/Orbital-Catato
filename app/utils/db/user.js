@@ -14,7 +14,7 @@ export const createUser = async (userID, isGuestUser) => {
 /* ----- READ OPERATIONS ----- */
 export const getUser = async (userID) => {
     return (await getDoc(doc(db, "User", userID))).data();
-}
+};
 
 /* ----- UPDATE OPERATIONS ----- */
 // export const updateUser = async (userID, updateFields) => {

@@ -17,8 +17,8 @@ const firebaseConfig = {
     projectId: "catato-ea64f",
     storageBucket: "catato-ea64f.appspot.com",
     messagingSenderId: "312029122334",
-    appId: "1:312029122334:web:910e9e8dc26a5ec02d030f",    
-}
+    appId: "1:312029122334:web:910e9e8dc26a5ec02d030f",
+};
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);

@@ -4,7 +4,7 @@ import { ActivityIndicator, Text } from "react-native-paper";
 import { auth } from "../../utils/context/auth";
 import { useRouter } from "expo-router";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { AuthInput, PasswordInput } from "../../components/TextInput"
+import { AuthInput, PasswordInput } from "../../components/TextInput";
 import { PillButton } from "../../components/Button";
 import { createUser } from "../../utils/db/user";
 
@@ -32,15 +32,18 @@ export default function SignUpScreen() {
             setError(error);
             setLoading(false);
         }
-    }
+    };
 
     return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
             <Text variant="displayMedium">Sign Up</Text>
             <Text variant="displaySmall">Create an account</Text>
 
             <View style={{ justifyContent: "space-between" }}>
-                <AuthInput label="Username"
+                <AuthInput
+                    label="Username"
                     iconName="person"
                     placeholder="orbitee"
                     textContentType="username"
@@ -48,7 +51,8 @@ export default function SignUpScreen() {
                     onChangeText={setUsername}
                 />
 
-                <AuthInput label="Email"
+                <AuthInput
+                    label="Email"
                     iconName="mail"
                     placeholder="orbitee@kitty.xyz"
                     textContentType="emailAddress"
@@ -61,13 +65,11 @@ export default function SignUpScreen() {
                     label="Password"
                     textContentType="password"
                     value={password}
-                    onChangeText={setPassword} 
+                    onChangeText={setPassword}
                 />
             </View>
-            
-            <PillButton
-                label="Sign Up" 
-                onPress={handleSignUp} />
+
+            <PillButton label="Sign Up" onPress={handleSignUp} />
 
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}

@@ -39,7 +39,9 @@ describe("<TouchableCatAvatar />", () => {
 
     it("renders TouchableOpacity with correct onPress callback", () => {
         const onPressMock = jest.fn();
-        const { queryByText } = render(<TouchableCatAvatar name="Kitty" onPress={onPressMock} />);
+        const { queryByText } = render(
+            <TouchableCatAvatar name="Kitty" onPress={onPressMock} />
+        );
         const touchableOpacity = queryByText("Kitty");
         fireEvent.press(touchableOpacity);
         expect(onPressMock).toHaveBeenCalled();

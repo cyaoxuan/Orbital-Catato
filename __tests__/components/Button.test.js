@@ -1,7 +1,7 @@
 import { PillButton } from "../../app/components/Button";
 import { cleanup, fireEvent, render } from "@testing-library/react-native";
 
-afterEach(cleanup)
+afterEach(cleanup);
 
 describe("<PillButton />", () => {
     it("renders successfully", () => {
@@ -17,8 +17,12 @@ describe("<PillButton />", () => {
     it("calls onPress callback when button is pressed", () => {
         const onPressMock = jest.fn();
         const { getByTestId } = render(<PillButton onPress={onPressMock} />);
-        const buttonContainerOuterLayer = getByTestId("button-container-outer-layer");
-        const buttonContainer = buttonContainerOuterLayer.findByProps({ testID: "button-container" });
+        const buttonContainerOuterLayer = getByTestId(
+            "button-container-outer-layer"
+        );
+        const buttonContainer = buttonContainerOuterLayer.findByProps({
+            testID: "button-container",
+        });
         const button = buttonContainer.findByProps({ testID: "button" });
         fireEvent.press(button);
         expect(onPressMock).toHaveBeenCalled();
@@ -26,8 +30,12 @@ describe("<PillButton />", () => {
 
     it("renders disabled button correctly", () => {
         const { getByTestId } = render(<PillButton disabled={true} />);
-        const buttonContainerOuterLayer = getByTestId("button-container-outer-layer");
-        const buttonContainer = buttonContainerOuterLayer.findByProps({ testID: "button-container" });
+        const buttonContainerOuterLayer = getByTestId(
+            "button-container-outer-layer"
+        );
+        const buttonContainer = buttonContainerOuterLayer.findByProps({
+            testID: "button-container",
+        });
         const button = buttonContainer.findByProps({ testID: "button" });
         expect(button.props.disabled).toBe(true);
     });

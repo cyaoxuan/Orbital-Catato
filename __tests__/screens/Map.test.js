@@ -5,9 +5,9 @@ jest.mock("react-native-maps", () => {
     const { View } = require("react-native");
 
     const MockMapView = (props) => {
-        const {testID, children, ...rest} = props;
-        return <View {...{...rest, testID}}>{children}</View>;
-    }
+        const { testID, children, ...rest } = props;
+        return <View {...{ ...rest, testID }}>{children}</View>;
+    };
     const MockMarker = (props) => {
         return <View>{props.children}</View>;
     };
@@ -19,7 +19,7 @@ jest.mock("react-native-maps", () => {
     };
 });
 
-describe('Map Screen', () => {
+describe("Map Screen", () => {
     it("renders MapView successfully", () => {
         const { getByTestId } = render(<Map />);
         expect(getByTestId("map")).toBeDefined();

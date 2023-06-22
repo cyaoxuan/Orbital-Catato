@@ -4,7 +4,7 @@ import { useState } from "react";
 import { View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 import { auth } from "../../utils/context/auth";
-import { AuthInput } from "../../components/TextInput"
+import { AuthInput } from "../../components/TextInput";
 import { PillButton } from "../../components/Button";
 
 export default function ForgotPasswordScreen() {
@@ -21,7 +21,7 @@ export default function ForgotPasswordScreen() {
             setEmailSent(false);
 
             await sendPasswordResetEmail(auth, email);
-            
+
             setEmailSent(true);
             setLoading(false);
         } catch (error) {
@@ -29,25 +29,31 @@ export default function ForgotPasswordScreen() {
             setError(error);
             setLoading(false);
         }
-    }
+    };
 
     return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
             <Text variant="displayMedium">Forgot Password</Text>
-            <Text variant="titleMedium">Please enter your email to reset your password</Text>
+            <Text variant="titleMedium">
+                Please enter your email to reset your password
+            </Text>
             <Text></Text>
 
-            <AuthInput label="Email"
-                    iconName="mail"
-                    placeholder="orbitee@kitty.xyz"
-                    textContentType="emailAddress"
-                    value={email}
-                    onChangeText={setEmail}
-                />
-            
+            <AuthInput
+                label="Email"
+                iconName="mail"
+                placeholder="orbitee@kitty.xyz"
+                textContentType="emailAddress"
+                value={email}
+                onChangeText={setEmail}
+            />
+
             <PillButton
-                label="Request Password Reset" 
-                onPress={handlePasswordReset} />
+                label="Request Password Reset"
+                onPress={handlePasswordReset}
+            />
 
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}
