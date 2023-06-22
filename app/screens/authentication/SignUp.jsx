@@ -23,7 +23,7 @@ export default function SignUpScreen() {
 
             await createUserWithEmailAndPassword(auth, email, password); // Firebase Auth
             await updateProfile(auth.currentUser, { displayName: username }); // Set display name
-            await createUser(auth.currentUser.uid, false); // Write to db
+            // await createUser(auth.currentUser.uid, false); // Write to db
 
             setLoading(false);
             router.replace("/screens/main/Dashboard");

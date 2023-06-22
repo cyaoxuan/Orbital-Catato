@@ -15,20 +15,33 @@ export default function PhotoGallery() {
 
     const [open, setOpen] = useState(false);
     const imageSize = getItemWidth(2, 8);
+    const [photoError, setPhotoError] = useState(null);
 
     const handleAddImageFromGallery = async () => {
-        const photoURI = await getImageFromGallery();
-        if (photoURI !== null) {
-            // TODO: change to cat and userid
-            await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, photoURI);
+        try {
+            setPhotoError(null);
+            const photoURI = await getImageFromGallery();
+            if (photoURI !== null) {
+                // TODO: change to cat and userid
+                await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, photoURI);
+            }
+        } catch (error) {
+            console.error(error);
+            setPhotoError(null);
         }
     };
 
     const handleAddImageFromCamera = async () => {
-        const photoURI = await getImageFromCamera();
-        if (photoURI !== null) {
-            // TODO: change to cat and userid
-            await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, photoURI);
+        try {
+            setPhotoError(null);
+            const photoURI = await getImageFromCamera();
+            if (photoURI !== null) {
+                // TODO: change to cat and userid
+                await userAddCatPicture("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, photoURI);
+            }
+        } catch (error) {
+            console.error(error);
+            setPhotoError(null);
         }
     };
 

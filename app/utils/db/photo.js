@@ -5,6 +5,11 @@ import * as ImagePicker from 'expo-image-picker';
 // Error handling is not done in functions here as they will only be called with other db utils,
 // which will catch the error and pass the state to the corresponding screens.
 export const getImageFromGallery = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+        throw new Error("Gallery permissions denied");
+    }
+
     let uri;
     await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -17,6 +22,16 @@ export const getImageFromGallery = async () => {
 }
 
 export const getImageFromCamera = async () => {
+    const { statusCamera } = await ImagePicker.requestCameraPermissionsAsync();
+    if (statusCamera !== "granted") {
+        throw new Error("Camera permissions denied");
+    }
+
+    const { statusGallery } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (statusGallery !== "granted") {
+        throw new Error("Gallery permissions denied");
+    }
+
     let uri;
     await ImagePicker.launchCameraAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
