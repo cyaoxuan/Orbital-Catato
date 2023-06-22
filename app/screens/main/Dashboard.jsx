@@ -3,26 +3,8 @@ import { ActivityIndicator, Text } from "react-native-paper";
 import { useAuth } from "../../utils/context/auth";
 import { getCardWidth } from "../../utils/calculateItemWidths";
 import { CardCarousel } from "../../components/Carousel";
-import { cats } from "../../data/CatTempData"
 import { useCallback, useEffect, useState } from "react";
 import { useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
-
-
-// Eventual Call from DB
-function getConcernCats() {
-    const concernCats = cats.filter(cat => cat.concernStatus && cat.concernStatus.length != 0);
-    return concernCats;
-}
-
-// Eventual Call from DB
-function getUnfedCats() {
-    const unfedCats = cats.filter(cat => {
-        let today = new Date(2023, 5, 20, 13, 12, 0, 0);
-        return cat.lastFedTime && ((today - cat.lastFedTime) / 3600000 > 12);
-    })
-    return unfedCats;
-}
-
 
 export const CarouselContainer = ({ titleText, subtitleText, loading, error, ...carousel }) => {
     return (
@@ -46,7 +28,7 @@ export default function Dashboard() {
         setRefreshing(true);
         setTimeout(() => {
           setRefreshing(false);
-        }, 2000);
+        }, 500);
       }, []);
   
     const { getCatsofConcern, catsOfConcern, loading: loadingConcern, error: errorConcern } = useGetCatsofConcern();
@@ -59,7 +41,7 @@ export default function Dashboard() {
         
         fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [refreshing]);
 
     return (
         <ScrollView

@@ -17,6 +17,8 @@ import {
 import { getImageFromCamera, getImageFromGallery } from "../../../utils/db/photo";
 import { locations } from "../../../data/locationData";
 
+const today = new Date();
+
 const CreateProfile = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURLs, birthYear, formType } = props;
@@ -267,7 +269,7 @@ const ReportCat = (props) => {
             <PillButton
                 label="Report"
                 onPress={handleReport}
-                disabled={location==="" || concernDescription.trim() === ""}
+                disabled={location==="" || concernDescription.trim() === "" || date > today}
             />
             {(error[0]) && <Text>Error: {error[0].message}</Text>}
             {(loading[0]) && <ActivityIndicator />}
@@ -328,7 +330,7 @@ const UpdateLocation = (props) => {
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
-                disabled={location === ""}
+                disabled={location === "" || date > today}
             />
             {(error[0]) && <Text>Error: {error[0].message}</Text>}
             {(loading[0]) && <ActivityIndicator />}
@@ -448,7 +450,7 @@ const UpdateConcern = (props) => {
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
-                disabled={location === "" || concernDescription.trim() === ""}
+                disabled={location === "" || concernDescription.trim() === "" || date > today}
             />
             {(error[0]) && <Text>Error: {error[0].message}</Text>}
             {(loading[0]) && <ActivityIndicator />}
@@ -510,7 +512,7 @@ const UpdateFed = (props) => {
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
-                disabled={location === ""}
+                disabled={location === "" || date > today}
             />
         </View>
     );

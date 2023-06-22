@@ -2,7 +2,6 @@ import { ScrollView, View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
-import { cats } from "../../../data/CatTempData";
 import { PillButton } from "../../../components/Button";
 import { AvatarContainer, KeyInfoContainer, DetailsContainer, PhotosContainer } from "./ProfileContainers";
 import { useEffect, useState } from "react";
@@ -34,9 +33,10 @@ export default function CatProfile() {
     
     if (!cat) {
         return (
-            <ScrollView>
-                <Text>No cat (yet)</Text>
-            </ScrollView>
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                {(loading[0]) && <ActivityIndicator />}
+                {(error[0]) && <Text>Error: {error[0].message}</Text>}
+            </View>
         );
     }
 

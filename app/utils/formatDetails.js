@@ -1,11 +1,12 @@
+import { Timestamp } from "firebase/firestore";
 import { dateTimeOptions } from "../data/DateTimeOptions";
 
 // Format Age Field
 export function formatAge(birthYear) {
     const currYear = new Date().getFullYear();
 
-    if (currYear < birthYear) {
-        return "0y";
+    if (!birthYear || birthYear < 0 || currYear < birthYear) {
+        throw new Error("Invalid birthYear");
     } else {
         return currYear - birthYear + "y";
     }
@@ -13,8 +14,16 @@ export function formatAge(birthYear) {
 
 // Format Last Seen Field - assumes arguments are not null since checks are done beforehand
 export function formatLastSeen(locationName, lastSeenTime) {
+    if (!locationName || !lastSeenTime) {
+        throw new Error("Missing locationName or lastSeenTime");
+    } else if (!(lastSeenTime instanceof Timestamp)) {
+        throw new Error("lastSeenTime is not a TimeStamp object");
+    }
     const lastSeenTimeDate = lastSeenTime.toDate();
-    const lastSeenTimeString = lastSeenTimeDate.toLocaleString("en-GB", dateTimeOptions);
+    const lastSeenTimeString = lastSeenTimeDate.toLocaleString(
+        "en-GB",
+        dateTimeOptions
+    );
     let today = new Date();
     // duration in hours
     let duration = (today - lastSeenTimeDate) / 3600000;
@@ -30,6 +39,11 @@ export function formatLastSeen(locationName, lastSeenTime) {
 
 // Simpler format for dashboard
 export function formatLastSeenSimple(locationName, lastSeenTime) {
+    if (!locationName || !lastSeenTime) {
+        throw new Error("Missing locationName or lastSeenTime");
+    } else if (!(lastSeenTime instanceof Timestamp)) {
+        throw new Error("lastSeenTime is not a TimeStamp object");
+    }
     const lastSeenTimeDate = lastSeenTime.toDate();
     let today = new Date();
     // duration in hours
@@ -46,8 +60,16 @@ export function formatLastSeenSimple(locationName, lastSeenTime) {
 
 // Format Last Fed Field
 export function formatLastFed(lastFedTime) {
+    if (!lastFedTime) {
+        throw new Error("Missing lastFedTime");
+    } else if (!(lastFedTime instanceof Timestamp)) {
+        throw new Error("lastFedTime is not a TimeStamp object");
+    }
     const lastFedTimeDate = lastFedTime.toDate();
-    const lastFedTimeString = lastFedTimeDate.toLocaleString("en-GB", dateTimeOptions);
+    const lastFedTimeString = lastFedTimeDate.toLocaleString(
+        "en-GB",
+        dateTimeOptions
+    );
     let today = new Date();
     // duration in hours
     let duration = (today - lastFedTimeDate) / 3600000;
@@ -63,8 +85,16 @@ export function formatLastFed(lastFedTime) {
 
 // Simpler format for dashboard
 export function formatLastFedSimple(lastFedTime) {
+    if (!lastFedTime) {
+        throw new Error("Missing lastFedTime");
+    } else if (!(lastFedTime instanceof Timestamp)) {
+        throw new Error("lastFedTime is not a TimeStamp object");
+    }
     const lastFedTimeDate = lastFedTime.toDate();
-    const lastFedTimeString = lastFedTimeDate.toLocaleString("en-GB", dateTimeOptions);
+    const lastFedTimeString = lastFedTimeDate.toLocaleString(
+        "en-GB",
+        dateTimeOptions
+    );
     let today = new Date();
     // lastFedTime.toDate() when using TimeStamp
     // duration in hours

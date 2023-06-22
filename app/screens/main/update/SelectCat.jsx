@@ -1,6 +1,5 @@
 import { FlatList, View } from "react-native"
 import { useNavigation } from "expo-router";
-import { cats } from "../../../data/CatTempData";
 import { CatCardSimple } from "../../../components/CatCard";
 import { getItemWidth } from "../../../utils/calculateItemWidths";
 import { useGetAllCats } from "../../../utils/db/cat";
