@@ -4,7 +4,7 @@ import { useAuth } from "../../utils/context/auth";
 import { getCardWidth } from "../../utils/calculateItemWidths";
 import { CardCarousel } from "../../components/Carousel";
 import { useCallback, useEffect, useState } from "react";
-import { useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
+import { autoProcessConcernStatus, useGetCatsofConcern, useGetUnfedCats } from "../../utils/db/cat";
 
 export const CarouselContainer = ({ titleText, subtitleText, loading, error, ...carousel }) => {
     return (
@@ -36,6 +36,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
+            await autoProcessConcernStatus();
             await Promise.all([getCatsofConcern(), getUnfedCats()])
         }
         

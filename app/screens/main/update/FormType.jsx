@@ -5,8 +5,7 @@ import { useNavigation } from "expo-router";
 import { PillButton } from "../../../components/Button";
 import { DropdownList, FormInput, NumberSpinner, TimeInput, TwoRadioInput, UploadPhotos } from "../../../components/FormComponents";
 import {
-    useCreateCat,
-    useCreateTempCat,
+    useUserCreateCat,
     useUserDeleteCat,
     useUserUpdateCatConcern,
     useUserUpdateCatFed,
@@ -23,13 +22,14 @@ const CreateProfile = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURLs, birthYear, formType } = props;
     const [processed, setProcessed] = useState(false);
-    const { createCat, loading, error } = useCreateCat();
+    const { userCreateCat, loading, error } = useUserCreateCat();
 
     // For Name TextInput
     const [newName, setNewName] = useState("");
 
     // For Image Picker
     const [photoURI, setPhotoURI] = useState("");
+    const [photoError, setPhotoError] = useState(null);
 
     // For Gender Radio
     const [newGender, setNewGender] = useState("F");
@@ -45,30 +45,43 @@ const CreateProfile = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
+            navigation.navigate("ConfirmUpdate", { name: newName, photoURLs: [photoURI], formType: formType });
         }
-    }, [loading, processed, error, navigation, name, photoURLs, formType]);
+    }, [loading, processed, error, navigation, newName, formType, photoURI]);
 
     const handleImageFromGallery = async () => {
-        const photoURI = await getImageFromGallery();
-        setPhotoURI(photoURI);
+        try {
+            setPhotoError(null);
+            const photoURI = await getImageFromGallery();
+            setPhotoURI(photoURI);
+        } catch (error) {
+            console.error(error);
+            setPhotoError(error);
+        }
     };
 
     const handleImageFromCamera = async () => {
-        const photoURI = await getImageFromCamera();
-        setPhotoURI(photoURI);
+        try {
+            setPhotoError(null);
+            const photoURI = await getImageFromCamera();
+            setPhotoURI(photoURI);
+        } catch (error) {
+            console.error(error);
+            setPhotoError(error);
+        }
     };
 
     const handleUpdate = async () => {
         setProcessed(false);
-        await createCat({
+        // TODO: change to userid
+        await userCreateCat("2nTIJgoSsSTWzspThZlaQJppKuk2", {
             name: newName,
             photoURI: photoURI,
             gender: newGender,
             birthYear: year,
             sterilised: sterile === "Yes",
             keyFeatures: features
-        });
+        }, false);
         setProcessed(true);
     };
 
@@ -138,7 +151,7 @@ const CreateProfile = (props) => {
             <PillButton
                 label="Create Profile"
                 onPress={handleUpdate}
-                disabled={name.trim() === "" || features.trim() === ""}
+                disabled={name.trim() === "" || features.trim() === "" || photoURI === ""}
             />
             {(error[0]) && <Text>Error: {error[0].message}</Text>}
             {(loading[0]) && <ActivityIndicator />}
@@ -150,7 +163,7 @@ const ReportCat = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURLs, formType } = props;
     const [processed, setProcessed] = useState(false);
-    const { createTempCat, loading, error } = useCreateTempCat();
+    const { userCreateCat, loading, error } = useUserCreateCat();
 
     // For Location Dropdown
     const [location, setLocation] = useState("");
@@ -166,6 +179,7 @@ const ReportCat = (props) => {
     
     // For Image Picker
     const [photoURI, setPhotoURI] = useState("");
+    const [photoError, setPhotoError] = useState(null);
 
     // For Concern Radio
     const [concern, setConcern] = useState("Healthy");
@@ -178,29 +192,42 @@ const ReportCat = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", { name: name, photoURLs: photoURLs, formType: formType });
+            navigation.navigate("ConfirmUpdate", { name: "New Cat Reported", photoURLs: [photoURI], formType: formType });
         }
-    }, [loading, processed, error, navigation, name, photoURLs, formType]);
+    }, [loading, processed, error, navigation, name, photoURI, formType]);
 
     const handleImageFromGallery = async () => {
-        const photoURI = await getImageFromGallery();
-        setPhotoURI(photoURI);
+        try {
+            setPhotoError(null);
+            const photoURI = await getImageFromGallery();
+            setPhotoURI(photoURI);
+        } catch (error) {
+            console.error(error);
+            setPhotoError(error);
+        }
     };
 
     const handleImageFromCamera = async () => {
-        const photoURI = await getImageFromCamera();
-        setPhotoURI(photoURI);
+        try {
+            setPhotoError(null);
+            const photoURI = await getImageFromCamera();
+            setPhotoURI(photoURI);
+        } catch (error) {
+            console.error(error);
+            setPhotoError(error);
+        }
     };
 
     const handleReport = async () => {
         setProcessed(false);
-        await createTempCat({
+        // TODO: change to userid
+        await userCreateCat("2nTIJgoSsSTWzspThZlaQJppKuk2", {
             lastSeenLocation: location,
             lastSeenTime: date,
             photoURI: photoURI,
             concernDesc: concernDescription,
             sterilised: sterile === "Yes",
-        });
+        }, true);
         setProcessed(true);
     };
 
@@ -269,7 +296,7 @@ const ReportCat = (props) => {
             <PillButton
                 label="Report"
                 onPress={handleReport}
-                disabled={location==="" || concernDescription.trim() === "" || date > today}
+                disabled={location==="" || concernDescription.trim() === "" || photoURI === "" || date > today}
             />
             {(error[0]) && <Text>Error: {error[0].message}</Text>}
             {(loading[0]) && <ActivityIndicator />}
@@ -346,6 +373,7 @@ const UpdateConcern = (props) => {
 
     // For ImagePicker
     const [photoURI, setPhotoURI] = useState("");
+    const [photoError, setPhotoError] = useState(null);
 
     // For Concern Radio
     const [concern, setConcern] = useState(concernStatus && concernStatus.includes("Injured") ? "Injured" : "Healthy");
@@ -372,13 +400,25 @@ const UpdateConcern = (props) => {
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleImageFromGallery = async () => {
-        const photoURI = await getImageFromGallery();
-        setPhotoURI(photoURI);
+        try {
+            setPhotoError(null);
+            const photoURI = await getImageFromGallery();
+            setPhotoURI(photoURI);
+        } catch (error) {
+            console.error(error);
+            setPhotoError(error);
+        }
     };
 
     const handleImageFromCamera = async () => {
-        const photoURI = await getImageFromCamera();
-        setPhotoURI(photoURI);
+        try {
+            setPhotoError(null);
+            const photoURI = await getImageFromCamera();
+            setPhotoURI(photoURI);
+        } catch (error) {
+            console.error(error);
+            setPhotoError(error);
+        }
     };
 
     const handleUpdate = async () => {
@@ -450,7 +490,7 @@ const UpdateConcern = (props) => {
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
-                disabled={location === "" || concernDescription.trim() === "" || date > today}
+                disabled={location === "" || concernDescription.trim() === "" || photoURI === "" || date > today}
             />
             {(error[0]) && <Text>Error: {error[0].message}</Text>}
             {(loading[0]) && <ActivityIndicator />}
@@ -539,7 +579,7 @@ const UpdateFoster = (props) => {
     const handleUpdate = async () => {
         setProcessed(false);
         // TODO: change to cat and userid
-        await userUpdateCatFoster("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, isFostered, fosterReason);
+        await userUpdateCatFoster("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, fostered, fosterDesc);
         setProcessed(true);
     };
 
@@ -586,6 +626,7 @@ const UpdateProfile = (props) => {
 
     // For Image Picker
     const [photoURI, setPhotoURI] = useState("");
+    const [photoError, setPhotoError] = useState(null);
 
     // For Gender Radio
     const [newGender, setNewGender] = useState(gender ? gender : "F");
@@ -606,13 +647,25 @@ const UpdateProfile = (props) => {
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleImageFromGallery = async () => {
-        const photoURI = await getImageFromGallery();
-        setPhotoURI(photoURI);
+        try {
+            setPhotoError(null);
+            const photoURI = await getImageFromGallery();
+            setPhotoURI(photoURI);
+        } catch (error) {
+            console.error(error);
+            setPhotoError(error);
+        }
     };
 
     const handleImageFromCamera = async () => {
-        const photoURI = await getImageFromCamera();
-        setPhotoURI(photoURI);
+        try {
+            setPhotoError(null);
+            const photoURI = await getImageFromCamera();
+            setPhotoURI(photoURI);
+        } catch (error) {
+            console.error(error);
+            setPhotoError(error);
+        }
     };
 
     const handleUpdate = async () => {
@@ -696,7 +749,7 @@ const UpdateProfile = (props) => {
             <PillButton
                 label="Update Profile"
                 onPress={handleUpdate}
-                disabled={name.trim() === "" || features.trim() === ""}
+                disabled={name.trim() === "" || features.trim() === "" || photoURI === ""}
             />
             {(error[0]) && <Text>Error: {error[0].message}</Text>}
             {(loading[0]) && <ActivityIndicator />}
@@ -704,7 +757,6 @@ const UpdateProfile = (props) => {
     );
 }
 
-// Note: does not delete any profile, should throw error for now to avoid deleting data for now
 const DeleteProfile = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURLs, formType } = props;
