@@ -9,7 +9,13 @@
     "web": "expo start --web",
     "test": "npm run test:local || npm run test:ci",
     "test:local": "SET TZ=\"Asia/Singapore\" && jest",
-    "test:ci": "jest"
+    "test:ci": "jest",
+    "lint": "eslint --ext .js,.jsx ./app",
+    "fix": "npx format && npx lint:fix",
+    "format": "prettier --write 'app/**/*.{js,jsx}'",
+    "lint:fix": "eslint --fix 'app/**/*.{js,jsx}'",
+    "fix:eslint": "eslint app --ext .js,.jsx --fix",
+    "fix:prettier": "prettier --write app"
   },
   "jest": {
     "preset": "jest-expo",
