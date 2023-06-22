@@ -161,13 +161,14 @@ export const processLocation = async (locationStr) => {
             coords = { latitude: loc.coords.latitude, longitude: loc.coords.longitude };
 
             // Check if user is in NUS
-            if (!isInZone("NUS", coords)) {
-                locationName, locationZone = "Outside NUS";
-            } else {
+            if (isInZone("NUS", coords)) {
                 // Get nearest building and zone user is in
                 const locationObj = getNearestBuilding(coords);
                 locationName = locationObj.value;
                 locationZone = locationObj.zone;
+            } else {
+                locationName = "Outside NUS";
+                locationZone = "Outside NUS";
             }
         } else {
             // get coords of building
