@@ -7,12 +7,12 @@ export function formatAge(birthYear) {
     if (currYear < birthYear) {
         return "0y";
     } else {
-        return (currYear - birthYear) + "y";
+        return currYear - birthYear + "y";
     }
 }
 
 // Format Last Seen Field - assumes arguments are not null since checks are done beforehand
-export function formatLastSeen(lastSeenLocation, lastSeenTime) {
+export function formatLastSeen(locationName, lastSeenTime) {
     const lastSeenTimeDate = lastSeenTime.toDate();
     const lastSeenTimeString = lastSeenTimeDate.toLocaleString("en-GB", dateTimeOptions);
     let today = new Date();
@@ -25,11 +25,11 @@ export function formatLastSeen(lastSeenLocation, lastSeenTime) {
         durationString = Math.floor(duration) + "h";
     }
 
-    return `${lastSeenLocation}, ${lastSeenTimeString} (${durationString} ago)`;
+    return `${locationName}, ${lastSeenTimeString} (${durationString} ago)`;
 }
 
 // Simpler format for dashboard
-export function formatLastSeenSimple(lastSeenLocation, lastSeenTime) {
+export function formatLastSeenSimple(locationName, lastSeenTime) {
     const lastSeenTimeDate = lastSeenTime.toDate();
     let today = new Date();
     // duration in hours
@@ -41,7 +41,7 @@ export function formatLastSeenSimple(lastSeenLocation, lastSeenTime) {
         durationString = Math.floor(duration) + "h";
     }
 
-    return `${lastSeenLocation} (${durationString})`;
+    return `${locationName} (${durationString})`;
 }
 
 // Format Last Fed Field
@@ -78,4 +78,3 @@ export function formatLastFedSimple(lastFedTime) {
 
     return `${lastFedTimeString} (${durationString})`;
 }
-

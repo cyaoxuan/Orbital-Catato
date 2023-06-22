@@ -44,8 +44,8 @@ const CardCarousel = ({cats, cardWidth, carouselType, ...card}) => {
                             { screen: "CatProfile", initial: false, params: { catID: item.catID }})}
                         {...card}
                         info1={getInfo1(carouselType, item)}
-                        info2={item.lastSeenLocation 
-                            ? formatLastSeenSimple(item.lastSeenLocation, item.lastSeenTime)
+                        info2={item.locationName
+                            ? formatLastSeenSimple(item.locationName, item.lastSeenTime)
                             : "Unknown"}
                     />
                 );
