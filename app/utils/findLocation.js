@@ -91,7 +91,7 @@ export function isInZone(zoneName, currLocation) {
     }
 
     // gets zone from zonejson
-    const zone = processPolygonCoordinates(zonejson[zoneName]);
+    const zone = processPolygonCoordinates(zonejson[zoneName])[0];
     return checkInside(zone, currLocation);
 }
 
@@ -159,7 +159,7 @@ export const processLocation = async (locationStr) => {
             }
 
             const loc = await Location.getCurrentPositionAsync({
-                accuracy: Location.Accuracy.Balanced,
+                accuracy: Location.Accuracy.Low,
             });
             coords = {
                 latitude: loc.coords.latitude,
