@@ -1,11 +1,15 @@
-import { Timestamp } from "firebase/firestore";
 import { dateTimeOptions } from "../data/DateTimeOptions";
 
 // Format Age Field
 export function formatAge(birthYear) {
     const currYear = new Date().getFullYear();
 
-    if (!birthYear || birthYear < 0 || currYear < birthYear) {
+    if (
+        !birthYear ||
+        isNaN(birthYear) ||
+        birthYear < 0 ||
+        currYear < birthYear
+    ) {
         throw new Error("Invalid birthYear");
     } else {
         return currYear - birthYear + "y";
@@ -16,8 +20,8 @@ export function formatAge(birthYear) {
 export function formatLastSeen(locationName, lastSeenTime) {
     if (!locationName || !lastSeenTime) {
         throw new Error("Missing locationName or lastSeenTime");
-    } else if (!(lastSeenTime instanceof Timestamp)) {
-        throw new Error("lastSeenTime is not a TimeStamp object");
+    } else if (!(typeof locationName === "string")) {
+        throw new Error("locationName is not String");
     }
     const lastSeenTimeDate = lastSeenTime.toDate();
     const lastSeenTimeString = lastSeenTimeDate.toLocaleString(
@@ -41,8 +45,8 @@ export function formatLastSeen(locationName, lastSeenTime) {
 export function formatLastSeenSimple(locationName, lastSeenTime) {
     if (!locationName || !lastSeenTime) {
         throw new Error("Missing locationName or lastSeenTime");
-    } else if (!(lastSeenTime instanceof Timestamp)) {
-        throw new Error("lastSeenTime is not a TimeStamp object");
+    } else if (!(typeof locationName === "string")) {
+        throw new Error("locationName is not String");
     }
     const lastSeenTimeDate = lastSeenTime.toDate();
     let today = new Date();
@@ -62,8 +66,6 @@ export function formatLastSeenSimple(locationName, lastSeenTime) {
 export function formatLastFed(lastFedTime) {
     if (!lastFedTime) {
         throw new Error("Missing lastFedTime");
-    } else if (!(lastFedTime instanceof Timestamp)) {
-        throw new Error("lastFedTime is not a TimeStamp object");
     }
     const lastFedTimeDate = lastFedTime.toDate();
     const lastFedTimeString = lastFedTimeDate.toLocaleString(
@@ -87,8 +89,6 @@ export function formatLastFed(lastFedTime) {
 export function formatLastFedSimple(lastFedTime) {
     if (!lastFedTime) {
         throw new Error("Missing lastFedTime");
-    } else if (!(lastFedTime instanceof Timestamp)) {
-        throw new Error("lastFedTime is not a TimeStamp object");
     }
     const lastFedTimeDate = lastFedTime.toDate();
     const lastFedTimeString = lastFedTimeDate.toLocaleString(

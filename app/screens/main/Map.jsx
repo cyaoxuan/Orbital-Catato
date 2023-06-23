@@ -112,7 +112,7 @@ export default function Map() {
 
     useEffect(() => {
         if (allCats) {
-            setSearchCats([...allCats]);
+            setSearchCats([...allCats.filter((cat) => cat.name)]);
         }
     }, [allCats]);
 

@@ -1,7 +1,7 @@
 import { RefreshControl, ScrollView, View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 import { useAuth } from "../../utils/context/auth";
-import { getCardWidth } from "../../utils/calculateItemWidths";
+import { getItemWidthFrac } from "../../utils/calculateItemWidths";
 import { CardCarousel } from "../../components/Carousel";
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -34,7 +34,7 @@ export const CarouselContainer = ({
 
 export default function Dashboard() {
     const [refreshing, setRefreshing] = useState(false);
-    const cardWidth = getCardWidth(3 / 4);
+    const cardWidth = getItemWidthFrac(3 / 4);
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);

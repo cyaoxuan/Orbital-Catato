@@ -18,28 +18,53 @@ const cats = [
         name: "Kitty",
         photoURLs: [
             require("../../assets/cats/cat-2-1.jpg"),
-            require("../../assets/catato-logo.png"),
+            require("../../assets/cats/cat-2-1.jpg"),
         ],
-        lastSeenLocation: "Engineering",
-        lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0),
+        locationName: "Engineering",
+        lastSeenTime: {
+            toDate() {
+                return new Date(2023, 4, 20, 10, 53, 0, 0);
+            },
+        },
+        lastFedTime: {
+            toDate() {
+                return new Date(2023, 4, 19, 12, 1, 0, 0);
+            },
+        },
         concernStatus: ["Injured"],
     },
     {
         catID: 2,
         name: "Skitty",
         photoURLs: [require("../../assets/cats/cat-2-1.jpg")],
-        lastSeenLocation: "Utown",
-        lastSeenTime: new Date(2023, 4, 20, 10, 53, 0, 0),
-        lastFedTime: null,
+        locationName: "Utown",
+        lastSeenTime: {
+            toDate() {
+                return new Date(2023, 4, 20, 10, 53, 0, 0);
+            },
+        },
+        lastFedTime: {
+            toDate() {
+                return new Date(2023, 4, 20, 10, 53, 0, 0);
+            },
+        },
         concernStatus: ["New", "Injured"],
     },
     {
         catID: 3,
         name: "Mitty",
         photoURLs: [require("../../assets/cats/cat-2-1.jpg")],
-        lastSeenLocation: "Science",
-        lastSeenTime: new Date(2023, 4, 15, 18, 34, 0, 0),
-        lastFedTime: new Date(2023, 4, 15, 18, 34, 0, 0),
+        locationName: "Science",
+        lastSeenTime: {
+            toDate() {
+                new Date(2023, 4, 15, 18, 34, 0, 0);
+            },
+        },
+        lastFedTime: {
+            toDate() {
+                new Date(2023, 4, 15, 18, 34, 0, 0);
+            },
+        },
         concernStatus: ["Missing"],
     },
 ];
@@ -79,7 +104,11 @@ describe("getInfo1", () => {
         expect(
             getInfo1(null, {
                 concernStatus: [],
-                lastFedTime: new Date(2023, 4, 15, 18, 34, 0, 0),
+                lastFedTime: {
+                    toDate() {
+                        return new Date(2023, 4, 15, 18, 34, 0, 0);
+                    },
+                },
             })
         ).toBe("Unknown");
     });
@@ -87,7 +116,11 @@ describe("getInfo1", () => {
     test("unfed, valid lastFedTime", () => {
         expect(
             getInfo1("unfed", {
-                lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0),
+                lastFedTime: {
+                    toDate() {
+                        return new Date(2023, 4, 19, 12, 1, 0, 0);
+                    },
+                },
             })
         ).toBe("19/05, 20:01 (28d)");
     });
