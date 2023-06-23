@@ -15,6 +15,7 @@ export const CarouselContainer = ({
     subtitleText,
     loading,
     error,
+    cats,
     ...carousel
 }) => {
     return (
@@ -26,8 +27,12 @@ export const CarouselContainer = ({
                 </Text>
             </View>
             {error[0] && <Text>Error: {error[0].message}</Text>}
-            {loading[0] && <ActivityIndicator />}
-            <CardCarousel {...carousel} />
+            {loading[0] ? (
+                <ActivityIndicator />
+            ) : (
+                cats.length === 0 && <Text>No cats in this category! :D</Text>
+            )}
+            <CardCarousel {...carousel} cats={cats} />
         </View>
     );
 };
