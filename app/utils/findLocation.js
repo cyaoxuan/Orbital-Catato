@@ -1,5 +1,5 @@
 import { locationjson, locations, zonejson } from "../data/locationData";
-import * as Location from 'expo-location';
+import * as Location from "expo-location";
 
 // proccesses long/lat/alt format from kml file to {lat: , long: }, [lat, long] or [[long], [lat]]
 function processPolygonCoordinates(polygon) {
@@ -152,13 +152,19 @@ export const processLocation = async (locationStr) => {
     try {
         let coords, locationName, locationZone;
         if (locationStr == "Use Current Location") {
-            const { status } = await Location.requestForegroundPermissionsAsync();
+            const { status } =
+                await Location.requestForegroundPermissionsAsync();
             if (status !== "granted") {
                 throw new Error("Locations permissions denied");
             }
 
-            const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
-            coords = { latitude: loc.coords.latitude, longitude: loc.coords.longitude };
+            const loc = await Location.getCurrentPositionAsync({
+                accuracy: Location.Accuracy.Balanced,
+            });
+            coords = {
+                latitude: loc.coords.latitude,
+                longitude: loc.coords.longitude,
+            };
 
             // Check if user is in NUS
             if (isInZone("NUS", coords)) {
@@ -177,7 +183,7 @@ export const processLocation = async (locationStr) => {
             locationName = locationObj.value;
             locationZone = locationObj.zone;
         }
-        
+
         return { coords, locationName, locationZone };
     } catch (error) {
         console.error("Error in processLocation:", error);

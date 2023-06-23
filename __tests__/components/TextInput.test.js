@@ -1,7 +1,7 @@
 import { AuthInput, PasswordInput } from "../../app/components/TextInput";
 import { cleanup, fireEvent, render } from "@testing-library/react-native";
 
-afterEach(cleanup)
+afterEach(cleanup);
 
 describe("<AuthInput />", () => {
     it("renders successfully", () => {
@@ -21,11 +21,11 @@ describe("<AuthInput />", () => {
     });
 
     it("apply value when changing text", () => {
-        const { getByTestId } = render(<AuthInput /> );
+        const { getByTestId } = render(<AuthInput />);
         const authInput = getByTestId("input");
         fireEvent.changeText(authInput, "hello");
         expect(authInput.props.value).toBe("hello");
-    })
+    });
 
     it("displays label prop", () => {
         const { queryAllByText } = render(<AuthInput label="Meow!" />);
@@ -51,14 +51,14 @@ describe("<PasswordInput />", () => {
     });
 
     it("apply value when changing text", () => {
-        const { getByTestId } = render(<PasswordInput /> );
+        const { getByTestId } = render(<PasswordInput />);
         const passwordInput = getByTestId("input");
         fireEvent.changeText(passwordInput, "hello");
         expect(passwordInput.props.value).toBe("hello");
-    })
+    });
 
     it("reveal hidden text when click eye icon", () => {
-        const { getByTestId } = render(<PasswordInput /> );
+        const { getByTestId } = render(<PasswordInput />);
         const passwordInput = getByTestId("input");
         const hideIcon = getByTestId("hide-icon");
 
@@ -67,7 +67,7 @@ describe("<PasswordInput />", () => {
 
         fireEvent.press(hideIcon);
         expect(passwordInput.props.secureTextEntry).toBe(true);
-    })
+    });
 
     it("displays label prop", () => {
         const { queryAllByText } = render(<PasswordInput label="Meow!" />);

@@ -1,7 +1,7 @@
 import { FormInput } from "../../app/components/FormComponents";
 import { cleanup, render } from "@testing-library/react-native";
 
-afterEach(cleanup)
+afterEach(cleanup);
 
 describe("<FormInput />", () => {
     it("renders successfully", () => {

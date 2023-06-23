@@ -11,7 +11,7 @@ import { storage } from "../../app/config/firebase";
 jest.mock("firebase/storage", () => ({
     ref: jest.fn(),
     getDownloadURL: jest.fn(),
-    uploadBytes: jest.fn()
+    uploadBytes: jest.fn(),
 }));
 
 jest.mock("expo-image-picker", () => ({
@@ -19,11 +19,11 @@ jest.mock("expo-image-picker", () => ({
     requestMediaLibraryPermissionsAsync: jest.fn(),
     requestCameraPermissionsAsync: jest.fn(),
     launchImageLibraryAsync: jest.fn(),
-    launchCameraAsync: jest.fn()
-}))
+    launchCameraAsync: jest.fn(),
+}));
 
 jest.mock("../../app/config/firebase", () => ({
-    storage: jest.fn()
+    storage: jest.fn(),
 }));
 
 // Tests
@@ -31,7 +31,7 @@ describe("getImageFromGallery", () => {
     it("throws an error when storage access is not given", async () => {
         // Mock the permission denied for media library
         ImagePicker.requestMediaLibraryPermissionsAsync.mockResolvedValueOnce({
-            status: "denied"
+            status: "denied",
         });
 
         // Assert that an error is thrown
@@ -43,7 +43,7 @@ describe("getImageFromGallery", () => {
     it("returns null when no image is selected in gallery", async () => {
         // Mock the permission granted for media library
         ImagePicker.requestMediaLibraryPermissionsAsync.mockResolvedValueOnce({
-            status: "granted"
+            status: "granted",
         });
 
         // Mock the canceled value for image picker
@@ -59,7 +59,7 @@ describe("getImageFromGallery", () => {
     it("returns the correct URI when an image is selected and edited", async () => {
         // Mock the permission granted for media library
         ImagePicker.requestMediaLibraryPermissionsAsync.mockResolvedValueOnce({
-            status: "granted"
+            status: "granted",
         });
 
         const selectedImageUri = "example-uri";
@@ -79,7 +79,7 @@ describe("getImageFromCamera", () => {
     it("throws an error when camera access is not given", async () => {
         // Mock the permission denied for camera
         ImagePicker.requestCameraPermissionsAsync.mockResolvedValueOnce({
-            statusCamera: "denied"
+            statusCamera: "denied",
         });
 
         // Assert that an error is thrown
@@ -91,11 +91,11 @@ describe("getImageFromCamera", () => {
     it("throws an error when storage access is not given", async () => {
         // Mock the permission granted for camera and denied for media library
         ImagePicker.requestCameraPermissionsAsync.mockResolvedValueOnce({
-            statusCamera: "granted"
+            statusCamera: "granted",
         });
 
         ImagePicker.requestMediaLibraryPermissionsAsync.mockResolvedValueOnce({
-            statusGallery: "denied"
+            statusGallery: "denied",
         });
 
         // Assert that an error is thrown
@@ -107,11 +107,11 @@ describe("getImageFromCamera", () => {
     it("returns null when no image is taken", async () => {
         // Mock the permission granted for camera and media library
         ImagePicker.requestCameraPermissionsAsync.mockResolvedValueOnce({
-            statusCamera: "granted"
+            statusCamera: "granted",
         });
 
         ImagePicker.requestMediaLibraryPermissionsAsync.mockResolvedValueOnce({
-            statusGallery: "granted"
+            statusGallery: "granted",
         });
 
         // Mock the canceled value for image picker
@@ -127,11 +127,11 @@ describe("getImageFromCamera", () => {
     it("returns the correct URI when an image is taken and edited", async () => {
         // Mock the permission granted for camera and media library
         ImagePicker.requestCameraPermissionsAsync.mockResolvedValueOnce({
-            statusCamera: "granted"
+            statusCamera: "granted",
         });
 
         ImagePicker.requestMediaLibraryPermissionsAsync.mockResolvedValueOnce({
-            statusGallery: "granted"
+            statusGallery: "granted",
         });
 
         const takenImageUri = "example-uri";

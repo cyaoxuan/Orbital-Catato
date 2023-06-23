@@ -1,7 +1,7 @@
 import { IconTextField, KeyTextField } from "../../app/components/InfoText";
 import { cleanup, render } from "@testing-library/react-native";
 
-afterEach(cleanup)
+afterEach(cleanup);
 
 describe("<IconTextField />", () => {
     it("renders successfully", () => {
@@ -21,7 +21,9 @@ describe("<IconTextField />", () => {
     });
 
     it("displays field and info prop", () => {
-        const { queryByText } = render(<IconTextField field="Hello: " info="World!" />);
+        const { queryByText } = render(
+            <IconTextField field="Hello: " info="World!" />
+        );
         expect(queryByText("Hello: World!")).not.toBeNull();
     });
 });

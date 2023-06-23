@@ -14,14 +14,15 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         // Subscribe to auth state changes
-        const unsubscribeFromAuthStatusChanged = onAuthStateChanged(auth, (user) => setUser(user));
+        const unsubscribeFromAuthStatusChanged = onAuthStateChanged(
+            auth,
+            (user) => setUser(user)
+        );
         // Unsubscribe from auth state changes when component unmounts
         return unsubscribeFromAuthStatusChanged;
     }, []);
 
     return (
-        <AuthContext.Provider value={{user}}>
-            {children}
-        </AuthContext.Provider>
+        <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
     );
 }

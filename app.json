@@ -1,43 +1,41 @@
 {
-  "expo": {
-    "name": "Catato",
-    "scheme": "myapp",
-    "slug": "Catato",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/catato-logo.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/catato-logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "package": "com.yxsandpie.Catato",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/catato-logo.png",
-        "backgroundColor": "#ffffff"
-      },
-      "config": {
-        "googleMaps": {
-          "apiKey": "AIzaSyDAXfc3zGF-e5b891L3-NhFG0L3wPZfkrI"
-        }
-      }
-    },
-    "web": {
-      "favicon": "./assets/catato-logo.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "9167ec75-117b-4ce7-b0fb-c3f82a4e8929"
-      }
-    },
-    "plugins": ["expo-location", "expo-image-picker"]
-  }
+    "expo": {
+        "name": "Catato",
+        "scheme": "myapp",
+        "slug": "Catato",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/catato-logo.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/catato-logo.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "package": "com.yxsandpie.Catato",
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/catato-logo.png",
+                "backgroundColor": "#ffffff"
+            },
+            "config": {
+                "googleMaps": {
+                    "apiKey": "AIzaSyDAXfc3zGF-e5b891L3-NhFG0L3wPZfkrI"
+                }
+            }
+        },
+        "web": {
+            "favicon": "./assets/catato-logo.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "9167ec75-117b-4ce7-b0fb-c3f82a4e8929"
+            }
+        },
+        "plugins": ["expo-location", "expo-image-picker"]
+    }
 }

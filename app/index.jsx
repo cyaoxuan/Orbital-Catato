@@ -1,5 +1,5 @@
 import { AuthProvider, useAuth } from "./utils/context/auth";
-import Dashboard from "./screens/main/Dashboard"
+import Dashboard from "./screens/main/Dashboard";
 import WelcomeScreen from "./screens/authentication/Welcome";
 
 export const unstable_settings = {
@@ -11,8 +11,6 @@ export default function RootNavigation() {
     const { user } = useAuth();
 
     return (
-        <AuthProvider>
-            {user ? <Dashboard /> : <WelcomeScreen />}
-        </AuthProvider>
+        <AuthProvider>{user ? <Dashboard /> : <WelcomeScreen />}</AuthProvider>
     );
 }
