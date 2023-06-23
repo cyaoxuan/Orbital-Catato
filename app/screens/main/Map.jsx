@@ -82,8 +82,10 @@ export default function Map() {
     const [searchQuery, setSearchQuery] = useState("");
     const onChangeSearch = (query) => {
         setSearchQuery(query);
-        let filteredCats = allCats.filter((item) =>
-            item.name.toLowerCase().includes(query.toLowerCase())
+        let filteredCats = allCats.filter(
+            (item) =>
+                item.name !== null &&
+                item.name.toLowerCase().includes(query.toLowerCase())
         );
         setSearchCats(filteredCats);
     };

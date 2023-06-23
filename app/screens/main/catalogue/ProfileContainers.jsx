@@ -93,8 +93,8 @@ const DetailsContainer = ({ cat, ...rest }) => {
                 iconName="information-circle-outline"
                 field="Concerns: "
                 info={
-                    cat.concernDesc
-                        ? cat.concernDesc
+                    cat.concernStatus
+                        ? cat.concernDesc || "This cat requires attention!"
                         : "The cat is happy and healthy!"
                 }
             />

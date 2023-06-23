@@ -27,7 +27,7 @@ export default function SignUpScreen() {
 
             setLoading(false);
             router.replace("/screens/main/Dashboard");
-        } catch (errror) {
+        } catch (error) {
             console.error(error);
             setError(error);
             setLoading(false);
