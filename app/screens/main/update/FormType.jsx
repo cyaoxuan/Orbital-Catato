@@ -488,7 +488,7 @@ const UpdateConcern = (props) => {
             location,
             date,
             concern,
-            concernDesc,
+            concernDescription,
             photoURI,
             concernStatus
         );
