@@ -180,7 +180,7 @@ export const processLocation = async (locationStr) => {
             }
 
             const loc = await Location.getCurrentPositionAsync({
-                accuracy: Location.Accuracy.Balanced,
+                accuracy: Location.Accuracy.Low,
             });
             coords = {
                 latitude: loc.coords.latitude,

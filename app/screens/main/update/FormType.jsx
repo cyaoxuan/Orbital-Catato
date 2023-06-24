@@ -736,13 +736,14 @@ const UpdateProfile = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
+            console.log(newName);
             navigation.navigate("ConfirmUpdate", {
-                name: name,
+                name: newName,
                 photoURLs: photoURLs,
                 formType: formType,
             });
         }
-    }, [loading, processed, error, navigation, name, photoURLs, formType]);
+    }, [loading, processed, error, navigation, newName, photoURLs, formType]);
 
     const handleImageFromGallery = async () => {
         try {

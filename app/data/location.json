@@ -1058,7 +1058,7 @@
     },
     "PGPR": {
         "key": "120",
-        "value": "KR MRT",
+        "value": "PGPR",
         "location": {
             "latitude": 1.290823484769731,
             "longitude": 103.78116482073736
@@ -1067,7 +1067,7 @@
     },
     "KE VII Hall": {
         "key": "121",
-        "value": "KR MRT",
+        "value": "KE VII Hall",
         "location": {
             "latitude": 1.292447288339472,
             "longitude": 103.78111015960754
