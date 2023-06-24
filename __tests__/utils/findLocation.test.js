@@ -282,6 +282,7 @@ describe("getRandomBuilding", () => {
     });
 });
 
+
 describe("processLocation", () => {
     afterEach(() => {
         jest.resetAllMocks();
@@ -343,7 +344,6 @@ describe("processLocation", () => {
 
     it("returns coordinates, locationName, and locationZone correctly when 'Use Current Location' is selected outside NUS", async () => {
         jest.spyOn(locUtils, "isInZone").mockReturnValue(false);
-
         Location.requestForegroundPermissionsAsync.mockResolvedValueOnce({
             status: "granted",
         });
@@ -363,7 +363,7 @@ describe("processLocation", () => {
             longitude: 2,
         });
     });
-
+  
     it("returns coordinates, locationName, and locationZone correctly when other locations are used", async () => {
         const result = await processLocation("The Deck");
 

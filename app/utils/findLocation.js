@@ -106,6 +106,12 @@ export function isInZone(zoneName, currLocation) {
         throw new Error("No latitude or longitude in currLocation");
     }
 
+    if (!currLocation) {
+        throw new Error("Missing currLocation");
+    } else if (!currLocation.latitude || !currLocation.longitude) {
+        throw new Error("No latitude or longitude in currLocation");
+    }
+
     // gets zone from zonejson
     const zone = exports.processPolygonCoordinates(zonejson[zoneName])[0];
     return checkInside(zone, currLocation);
