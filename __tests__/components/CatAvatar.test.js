@@ -16,7 +16,7 @@ describe("<CatAvatar />", () => {
         const photoURL = require("../../assets/cats/cat-2-1.jpg");
         const { getByTestId } = render(<CatAvatar photoURL={photoURL} />);
         const avatar = getByTestId("avatar-image");
-        expect(avatar.props.source).toBe(photoURL);
+        expect(avatar.props.source.uri).toBe(photoURL);
     });
 
     it("displays name prop", () => {

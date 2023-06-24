@@ -18,7 +18,7 @@ describe("<CatCard />", () => {
         const photoURL = require("../../assets/cats/cat-2-1.jpg");
         const { getByTestId } = render(<CatCard photoURL={photoURL} />);
         const cover = getByTestId("cover-image");
-        expect(cover.props.source).toBe(photoURL);
+        expect(cover.props.source.uri).toBe(photoURL);
     });
 
     it("calls onPress callback when card is pressed", () => {
@@ -54,10 +54,10 @@ describe("<CatCardSimple />", () => {
     });
 
     it("renders the cover image with the correct photoURL", () => {
-        const photoURL = require("../../assets/cats/cat-2-1.jpg");
+        const photoURL = "https://picsum.photos/id/237/400/400";
         const { getByTestId } = render(<CatCardSimple photoURL={photoURL} />);
         const cover = getByTestId("cover-image");
-        expect(cover.props.source).toBe(photoURL);
+        expect(cover.props.source.uri).toBe(photoURL);
     });
 
     it("calls onPress callback when card is pressed", () => {
