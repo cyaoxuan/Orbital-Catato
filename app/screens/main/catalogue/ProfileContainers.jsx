@@ -7,7 +7,7 @@ import {
     formatLastSeen,
     formatLastFed,
 } from "../../../utils/formatDetails";
-import { getItemWidth } from "../../../utils/calculateItemWidths";
+import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 // Avatar Container
@@ -118,7 +118,7 @@ const PreviewPhotos = ({ photoURLs }) => {
         previewPhotos = photoURLs;
     }
 
-    const imageSize = getItemWidth(4, 8);
+    const imageSize = getItemWidthCols(4, 8);
 
     return (
         <View style={styles.previewContainer}>

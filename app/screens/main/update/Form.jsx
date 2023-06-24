@@ -1,9 +1,15 @@
 import { ScrollView, View } from "react-native";
-import { Provider, Text } from "react-native-paper";
+import { DefaultTheme, Provider, Text } from "react-native-paper";
 import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import * as FormTypes from "./FormType";
 import { useAuth } from "../../../utils/context/auth";
+
+const lightTheme = {
+    ...DefaultTheme,
+    mode: 'light',
+    dark: false
+};
 
 function getForm(userID, params) {
     switch (params.formType) {
@@ -37,7 +43,7 @@ export default function Form() {
     const route = useRoute();
 
     return (
-        <Provider>
+        <Provider theme={lightTheme}>
             <ScrollView
                 contentContainerStyle={{
                     alignItems: "center",

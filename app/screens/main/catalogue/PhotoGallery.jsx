@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FlatList, Image, View } from "react-native";
-import { FAB, Portal, Provider, Text } from "react-native-paper";
-import { getItemWidth } from "../../../utils/calculateItemWidths";
+import { DefaultTheme, FAB, Portal, Provider, Text } from "react-native-paper";
+import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import { useRoute } from "@react-navigation/native";
 import { useUserAddCatPicture } from "../../../utils/db/cat";
 import { getAuth } from "firebase/auth";
@@ -10,6 +10,12 @@ import {
     getImageFromGallery,
 } from "../../../utils/db/photo";
 
+const lightTheme = {
+    ...DefaultTheme,
+    mode: 'light',
+    dark: false
+};
+
 export default function PhotoGallery() {
     const { user } = getAuth();
     const route = useRoute();
@@ -17,7 +23,7 @@ export default function PhotoGallery() {
     const { userAddCatPicture, loading, error } = useUserAddCatPicture();
 
     const [open, setOpen] = useState(false);
-    const imageSize = getItemWidth(2, 8);
+    const imageSize = getItemWidthCols(2, 8);
     const [photoError, setPhotoError] = useState(null);
 
     const handleAddImageFromGallery = async () => {
@@ -57,7 +63,7 @@ export default function PhotoGallery() {
     };
 
     return (
-        <Provider>
+        <Provider theme={lightTheme}>
             <View>
                 <FlatList
                     ListHeaderComponent={() => (

@@ -95,11 +95,13 @@ export function isInZone(zoneName, currLocation) {
         } while (i != 0);
 
         // When count is odd
-        return count & 1;
+        return count % 2 !== 0;
     }
 
-    if (!currLocation) {
-        throw new Error("Missing currLocation");
+    if (!zoneName || !currLocation) {
+        throw new Error("Missing zoneName or currLocation");
+    } else if (!Object.prototype.hasOwnProperty.call(zonejson, zoneName)) {
+        throw new Error("zoneName not in zonejson");
     } else if (!currLocation.latitude || !currLocation.longitude) {
         throw new Error("No latitude or longitude in currLocation");
     }
@@ -139,7 +141,7 @@ export function getNearestBuilding(currLocation) {
         throw new Error("No latitude or longitude in currLocation");
     }
 
-    const nearestLocations = [...locations.splice(1, locations.length)];
+    const nearestLocations = [...locations].splice(1, locations.length);
     let minDistance = Infinity;
     let minLoc = 0;
     let currDistance;
@@ -159,10 +161,14 @@ export function getNearestBuilding(currLocation) {
 
 // Return name of randomised location in a zone
 export function getRandomBuilding(zoneName) {
+    if (!zoneName) {
+        throw new Error("Missing zoneName");
+    } else if (!Object.prototype.hasOwnProperty.call(zonejson, zoneName)) {
+        throw new Error("zoneName not in zonejson");
+    }
+
     const locationsInZone = [
-        ...locations
-            .splice(1, locations.length)
-            .filter((loc) => loc.zone === zoneName),
+        ...locations.filter((loc) => loc.key !== "1" && loc.zone === zoneName),
     ];
     const randNum = Math.floor(Math.random() * locationsInZone.length);
     return locationsInZone[randNum].value;
