@@ -77,7 +77,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
   scrollEventThrottle={4}
   showsHorizontalScrollIndicator={false}
   snapToAlignment="center"
-  snapToInterval={324}
+  snapToInterval={316}
   stickyHeaderIndices={[]}
   style={
     {
@@ -430,7 +430,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
       <View
         style={
           {
-            "width": 24,
+            "width": 16,
           }
         }
       />
@@ -777,7 +777,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
       <View
         style={
           {
-            "width": 24,
+            "width": 16,
           }
         }
       />
