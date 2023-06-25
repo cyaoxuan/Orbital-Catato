@@ -268,6 +268,7 @@ const ReportCat = (props) => {
                     lastSeenLocation: location,
                     lastSeenTime: date,
                     photoURI: photoURI,
+                    concernStatus: concern,
                     concernDesc: concernDescription,
                     sterilised: sterile === "Yes",
                 },

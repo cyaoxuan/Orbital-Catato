@@ -401,7 +401,7 @@
     },
     "Techno Edge": {
         "key": "47",
-        "value": "Information Technology",
+        "value": "Techno Edge",
         "location": {
             "latitude": 1.2980586492854946,
             "longitude": 103.77174175129106
@@ -644,7 +644,7 @@
     },
     "Science Library": {
         "key": "73",
-        "value": "CELS",
+        "value": "Science Library",
         "location": {
             "latitude": 1.2952546645945286,
             "longitude": 103.78014373712219
