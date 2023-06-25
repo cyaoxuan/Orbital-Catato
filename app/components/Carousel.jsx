@@ -22,7 +22,7 @@ function getInfo1(carouselType, cat) {
 // Card Carousel used in Dashboard
 const CardCarousel = ({ cats, cardWidth, carouselType, ...card }) => {
     const navigation = useNavigation();
-    const spaceBetweenCards = 24;
+    const spaceBetweenCards = 16;
 
     return (
         <FlatList

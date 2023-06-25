@@ -39,7 +39,7 @@ export const CarouselContainer = ({
 
 export default function Dashboard() {
     const [refreshing, setRefreshing] = useState(false);
-    const cardWidth = getItemWidthFrac(3 / 4);
+    const cardWidth = getItemWidthFrac(7 / 8);
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);

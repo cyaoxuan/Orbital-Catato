@@ -32,6 +32,7 @@ const CreateProfile = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURLs, birthYear, formType } = props;
     const [processed, setProcessed] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
     const { userCreateCat, loading, error } = useUserCreateCat();
 
     // For Name TextInput
@@ -86,21 +87,27 @@ const CreateProfile = (props) => {
     };
 
     const handleUpdate = async () => {
-        setProcessed(false);
-        // TODO: change to userid
-        await userCreateCat(
-            "2nTIJgoSsSTWzspThZlaQJppKuk2",
-            {
-                name: newName,
-                photoURI: photoURI,
-                gender: newGender,
-                birthYear: year,
-                sterilised: sterile === "Yes",
-                keyFeatures: features,
-            },
-            false
-        );
-        setProcessed(true);
+        if (!inProgress) {
+            setInProgress(true);
+            setProcessed(false);
+            // TODO: change to userid
+            await userCreateCat(
+                "2nTIJgoSsSTWzspThZlaQJppKuk2",
+                {
+                    name: newName,
+                    photoURI: photoURI,
+                    gender: newGender,
+                    birthYear: year,
+                    sterilised: sterile === "Yes",
+                    keyFeatures: features,
+                },
+                false
+            );
+            setProcessed(true);
+            setInProgress(false);
+        } else {
+            setInProgress(true);
+        }
     };
 
     return (
@@ -174,10 +181,13 @@ const CreateProfile = (props) => {
                 disabled={
                     name.trim() === "" ||
                     features.trim() === "" ||
-                    photoURI === ""
+                    photoURI === "" ||
+                    inProgress
                 }
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -187,6 +197,7 @@ const ReportCat = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURLs, formType } = props;
     const [processed, setProcessed] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
     const { userCreateCat, loading, error } = useUserCreateCat();
 
     // For Location Dropdown
@@ -247,20 +258,26 @@ const ReportCat = (props) => {
     };
 
     const handleReport = async () => {
-        setProcessed(false);
-        // TODO: change to userid
-        await userCreateCat(
-            "2nTIJgoSsSTWzspThZlaQJppKuk2",
-            {
-                lastSeenLocation: location,
-                lastSeenTime: date,
-                photoURI: photoURI,
-                concernDesc: concernDescription,
-                sterilised: sterile === "Yes",
-            },
-            true
-        );
-        setProcessed(true);
+        if (!inProgress) {
+            setInProgress(true);
+            setProcessed(false);
+            // TODO: change to userid
+            await userCreateCat(
+                "2nTIJgoSsSTWzspThZlaQJppKuk2",
+                {
+                    lastSeenLocation: location,
+                    lastSeenTime: date,
+                    photoURI: photoURI,
+                    concernDesc: concernDescription,
+                    sterilised: sterile === "Yes",
+                },
+                true
+            );
+            setProcessed(true);
+            setInProgress(false);
+        } else {
+            setInProgress(true);
+        }
     };
 
     return (
@@ -332,10 +349,13 @@ const ReportCat = (props) => {
                     location === "" ||
                     concernDescription.trim() === "" ||
                     photoURI === "" ||
-                    date > today
+                    date > today ||
+                    inProgress
                 }
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -345,6 +365,7 @@ const UpdateLocation = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURLs, formType, userID } = props;
     const [processed, setProcessed] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
     const { userUpdateCatLocation, loading, error } =
         useUserUpdateCatLocation();
 
@@ -371,15 +392,21 @@ const UpdateLocation = (props) => {
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleUpdate = async () => {
-        setProcessed(false);
-        // TODO: change to cat and userid
-        await userUpdateCatLocation(
-            "2nTIJgoSsSTWzspThZlaQJppKuk2",
-            catID,
-            location,
-            date
-        );
-        setProcessed(true);
+        if (!inProgress) {
+            setInProgress(true);
+            setProcessed(false);
+            // TODO: change to cat and userid
+            await userUpdateCatLocation(
+                "2nTIJgoSsSTWzspThZlaQJppKuk2",
+                catID,
+                location,
+                date
+            );
+            setProcessed(true);
+            setInProgress(false);
+        } else {
+            setInProgress(true);
+        }
     };
 
     return (
@@ -404,9 +431,11 @@ const UpdateLocation = (props) => {
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
-                disabled={location === "" || date > today}
+                disabled={location === "" || date > today || inProgress}
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -417,6 +446,7 @@ const UpdateConcern = (props) => {
     const { catID, name, photoURLs, concernStatus, concernDesc, formType } =
         props;
     const [processed, setProcessed] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
     const { userUpdateCatConcern, loading, error } = useUserUpdateCatConcern();
 
     // For ImagePicker
@@ -480,19 +510,25 @@ const UpdateConcern = (props) => {
     };
 
     const handleUpdate = async () => {
-        setProcessed(false);
-        // TODO: change to cat and userid
-        await userUpdateCatConcern(
-            "2nTIJgoSsSTWzspThZlaQJppKuk2",
-            catID,
-            location,
-            date,
-            concern,
-            concernDescription,
-            photoURI,
-            concernStatus
-        );
-        setProcessed(true);
+        if (!inProgress) {
+            setInProgress(true);
+            setProcessed(false);
+            // TODO: change to cat and userid
+            await userUpdateCatConcern(
+                "2nTIJgoSsSTWzspThZlaQJppKuk2",
+                catID,
+                location,
+                date,
+                concern,
+                concernDescription,
+                photoURI,
+                concernStatus
+            );
+            setProcessed(true);
+            setInProgress(false);
+        } else {
+            setInProgress(true);
+        }
     };
 
     return (
@@ -552,10 +588,13 @@ const UpdateConcern = (props) => {
                     location === "" ||
                     concernDescription.trim() === "" ||
                     photoURI === "" ||
-                    date > today
+                    date > today ||
+                    inProgress
                 }
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -565,6 +604,7 @@ const UpdateFed = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURLs, formType } = props;
     const [processed, setProcessed] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
     const { userUpdateCatFed, loading, error } = useUserUpdateCatFed();
 
     // For Location Dropdown
@@ -590,15 +630,21 @@ const UpdateFed = (props) => {
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleUpdate = async () => {
-        setProcessed(false);
-        // TODO: change to cat and userid
-        await userUpdateCatFed(
-            "2nTIJgoSsSTWzspThZlaQJppKuk2",
-            catID,
-            date,
-            location
-        );
-        setProcessed(true);
+        if (!inProgress) {
+            setInProgress(true);
+            setProcessed(false);
+            // TODO: change to cat and userid
+            await userUpdateCatFed(
+                "2nTIJgoSsSTWzspThZlaQJppKuk2",
+                catID,
+                date,
+                location
+            );
+            setProcessed(true);
+            setInProgress(false);
+        } else {
+            setInProgress(true);
+        }
     };
 
     return (
@@ -623,8 +669,12 @@ const UpdateFed = (props) => {
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
-                disabled={location === "" || date > today}
+                disabled={location === "" || date > today || inProgress}
             />
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
+            {loading[0] && <ActivityIndicator />}
         </View>
     );
 };
@@ -634,6 +684,7 @@ const UpdateFoster = (props) => {
     const { catID, name, photoURLs, isFostered, fosterReason, formType } =
         props;
     const [processed, setProcessed] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
     const { userUpdateCatFoster, loading, error } = useUserUpdateCatFoster();
 
     // For Foster Radio
@@ -655,15 +706,21 @@ const UpdateFoster = (props) => {
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleUpdate = async () => {
-        setProcessed(false);
-        // TODO: change to cat and userid
-        await userUpdateCatFoster(
-            "2nTIJgoSsSTWzspThZlaQJppKuk2",
-            catID,
-            fostered,
-            fosterDesc
-        );
-        setProcessed(true);
+        if (!inProgress) {
+            setInProgress(true);
+            setProcessed(false);
+            // TODO: change to cat and userid
+            await userUpdateCatFoster(
+                "2nTIJgoSsSTWzspThZlaQJppKuk2",
+                catID,
+                fostered,
+                fosterDesc
+            );
+            setProcessed(true);
+            setInProgress(false);
+        } else {
+            setInProgress(true);
+        }
     };
 
     return (
@@ -692,8 +749,12 @@ const UpdateFoster = (props) => {
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
-                disabled={fosterDesc.trim() === ""}
+                disabled={fosterDesc.trim() === "" || inProgress}
             />
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
+            {loading[0] && <ActivityIndicator />}
         </View>
     );
 };
@@ -711,6 +772,7 @@ const UpdateProfile = (props) => {
         formType,
     } = props;
     const [processed, setProcessed] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
     const { userUpdateCatProfile, loading, error } = useUserUpdateCatProfile();
 
     // For Name TextInput
@@ -768,17 +830,23 @@ const UpdateProfile = (props) => {
     };
 
     const handleUpdate = async () => {
-        setProcessed(false);
-        // TODO: change to cat and userid
-        await userUpdateCatProfile("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, {
-            name: newName,
-            photoURI: photoURI,
-            gender: newGender,
-            birthYear: year,
-            sterilised: sterile === "Yes",
-            keyFeatures: features,
-        });
-        setProcessed(true);
+        if (!inProgress) {
+            setInProgress(true);
+            setProcessed(false);
+            // TODO: change to cat and userid
+            await userUpdateCatProfile("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, {
+                name: newName,
+                photoURI: photoURI,
+                gender: newGender,
+                birthYear: year,
+                sterilised: sterile === "Yes",
+                keyFeatures: features,
+            });
+            setProcessed(true);
+            setInProgress(false);
+        } else {
+            setInProgress(true);
+        }
     };
 
     return (
@@ -853,10 +921,13 @@ const UpdateProfile = (props) => {
                 disabled={
                     name.trim() === "" ||
                     features.trim() === "" ||
-                    photoURI === ""
+                    photoURI === "" ||
+                    inProgress
                 }
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -866,6 +937,7 @@ const DeleteProfile = (props) => {
     const navigation = useNavigation();
     const { catID, name, photoURLs, formType } = props;
     const [processed, setProcessed] = useState(false);
+    const [inProgress, setInProgress] = useState(false);
     const { userDeleteCat, loading, error } = useUserDeleteCat();
 
     // For Name TextInput
@@ -882,9 +954,15 @@ const DeleteProfile = (props) => {
     }, [loading, processed, error, navigation, name, photoURLs, formType]);
 
     const handleDelete = async () => {
-        setProcessed(false);
-        await userDeleteCat("2nTIJgoSsSTWzspThZlaQJppKuk2", catID);
-        setProcessed(true);
+        if (!inProgress) {
+            setInProgress(true);
+            setProcessed(false);
+            await userDeleteCat("2nTIJgoSsSTWzspThZlaQJppKuk2", catID);
+            setProcessed(true);
+            setInProgress(false);
+        } else {
+            setInProgress(true);
+        }
     };
 
     return (
@@ -902,9 +980,11 @@ const DeleteProfile = (props) => {
             <PillButton
                 label="Delete Profile"
                 onPress={handleDelete}
-                disabled={catName !== name}
+                disabled={catName !== name || inProgress}
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );

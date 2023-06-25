@@ -78,29 +78,8 @@ jest.mock("expo-router", () => ({
 }));
 
 describe("getInfo1", () => {
-    test("concern, cat concern array with one element", () => {
-        expect(getInfo1("concern", { concernStatus: ["Injured"] })).toBe(
-            "Injured"
-        );
-    });
-
-    test("concern, cat concern array with more than one element", () => {
-        expect(
-            getInfo1("concern", {
-                concernStatus: ["Injured", "Missing", "New"],
-            })
-        ).toBe("Injured, Missing, New");
-    });
-
-    test("concern, cat concern array is empty", () => {
-        expect(getInfo1("concern", { concernStatus: [] })).toBe("");
-    });
-
-    test("concern, cat is null", () => {
-        expect(getInfo1("concern", null)).toBe("Unknown");
-    });
-
-    test("carouselType is null, cat is present", () => {
+    test("Return Unknown when carouselType and cat are null", () => {
+        expect(getInfo1(null, null)).toBe("Unknown");
         expect(
             getInfo1(null, {
                 concernStatus: [],
@@ -111,9 +90,32 @@ describe("getInfo1", () => {
                 },
             })
         ).toBe("Unknown");
+        expect(getInfo1("concern", null)).toBe("Unknown");
     });
 
-    test("unfed, valid lastFedTime", () => {
+    test("Return empty string when carouselType is concern, concernStatus is empty", () => {
+        expect(getInfo1("concern", { concernStatus: [] })).toBe("");
+    });
+
+    test("Return Unknown when carouselType is unfed, lastFedTime is null", () => {
+        expect(getInfo1("unfed", { lastFedTime: null })).toBe("Unknown");
+    });
+
+    test("Return correct string when carouselType is concern, concernStatus array with one element", () => {
+        expect(getInfo1("concern", { concernStatus: ["Injured"] })).toBe(
+            "Injured"
+        );
+    });
+
+    test("Return correct string when carouselType is concern, concernStatus array with more than one element", () => {
+        expect(
+            getInfo1("concern", {
+                concernStatus: ["Injured", "Missing", "New"],
+            })
+        ).toBe("Injured, Missing, New");
+    });
+
+    test("Return correct string when carouselType is unfed, valid lastFedTime", () => {
         expect(
             getInfo1("unfed", {
                 lastFedTime: {
@@ -123,10 +125,6 @@ describe("getInfo1", () => {
                 },
             })
         ).toBe("19/05, 20:01 (28d)");
-    });
-
-    test("unfed, lastFedTime is null", () => {
-        expect(getInfo1("unfed", { lastFedTime: null })).toBe("Unknown");
     });
 });
 

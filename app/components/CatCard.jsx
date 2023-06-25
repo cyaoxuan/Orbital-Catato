@@ -75,7 +75,8 @@ const CatCardSimple = (props) => {
             />
             <Card.Title
                 title={props.name || "Name"}
-                titleVariant="headlineMedium"
+                titleVariant="bodyLarge"
+                titleNumberOfLines={2}
             />
         </Card>
     );
