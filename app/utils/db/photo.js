@@ -22,12 +22,13 @@ export const getImageFromGallery = async () => {
 };
 
 export const getImageFromCamera = async () => {
-    const { statusCamera } = await ImagePicker.requestCameraPermissionsAsync();
+    const { status: statusCamera } =
+        await ImagePicker.requestCameraPermissionsAsync();
     if (statusCamera !== "granted") {
         throw new Error("Camera permissions denied");
     }
 
-    const { statusGallery } =
+    const { status: statusGallery } =
         await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (statusGallery !== "granted") {
         throw new Error("Gallery permissions denied");
