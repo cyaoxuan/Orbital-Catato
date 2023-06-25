@@ -12,8 +12,8 @@ import {
 
 const lightTheme = {
     ...DefaultTheme,
-    mode: 'light',
-    dark: false
+    mode: "light",
+    dark: false,
 };
 
 export default function PhotoGallery() {

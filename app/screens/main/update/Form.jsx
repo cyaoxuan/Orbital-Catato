@@ -7,8 +7,8 @@ import { useAuth } from "../../../utils/context/auth";
 
 const lightTheme = {
     ...DefaultTheme,
-    mode: 'light',
-    dark: false
+    mode: "light",
+    dark: false,
 };
 
 function getForm(userID, params) {

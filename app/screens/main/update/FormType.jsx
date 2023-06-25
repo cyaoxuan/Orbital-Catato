@@ -181,10 +181,13 @@ const CreateProfile = (props) => {
                 disabled={
                     name.trim() === "" ||
                     features.trim() === "" ||
-                    photoURI === "" || inProgress
+                    photoURI === "" ||
+                    inProgress
                 }
             />
-            {error[0] && (inProgress || setInProgress(false)) && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -346,10 +349,13 @@ const ReportCat = (props) => {
                     location === "" ||
                     concernDescription.trim() === "" ||
                     photoURI === "" ||
-                    date > today || inProgress
+                    date > today ||
+                    inProgress
                 }
             />
-            {error[0] && (inProgress || setInProgress(false)) && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -427,7 +433,9 @@ const UpdateLocation = (props) => {
                 onPress={handleUpdate}
                 disabled={location === "" || date > today || inProgress}
             />
-            {error[0] && (inProgress || setInProgress(false)) && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -580,10 +588,13 @@ const UpdateConcern = (props) => {
                     location === "" ||
                     concernDescription.trim() === "" ||
                     photoURI === "" ||
-                    date > today || inProgress
+                    date > today ||
+                    inProgress
                 }
             />
-            {error[0] && (inProgress || setInProgress(false)) && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -660,7 +671,9 @@ const UpdateFed = (props) => {
                 onPress={handleUpdate}
                 disabled={location === "" || date > today || inProgress}
             />
-            {error[0] && (inProgress || setInProgress(false)) && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -738,7 +751,9 @@ const UpdateFoster = (props) => {
                 onPress={handleUpdate}
                 disabled={fosterDesc.trim() === "" || inProgress}
             />
-            {error[0] && (inProgress || setInProgress(false)) && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -906,10 +921,13 @@ const UpdateProfile = (props) => {
                 disabled={
                     name.trim() === "" ||
                     features.trim() === "" ||
-                    photoURI === "" || inProgress
+                    photoURI === "" ||
+                    inProgress
                 }
             />
-            {error[0] && (inProgress || setInProgress(false)) && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -964,7 +982,9 @@ const DeleteProfile = (props) => {
                 onPress={handleDelete}
                 disabled={catName !== name || inProgress}
             />
-            {error[0] && (inProgress || setInProgress(false)) && <Text>Error: {error[0].message}</Text>}
+            {error[0] && (inProgress || setInProgress(false)) && (
+                <Text>Error: {error[0].message}</Text>
+            )}
             {loading[0] && <ActivityIndicator />}
         </View>
     );

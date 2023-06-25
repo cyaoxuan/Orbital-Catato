@@ -282,7 +282,6 @@ describe("getRandomBuilding", () => {
     });
 });
 
-
 describe("processLocation", () => {
     afterEach(() => {
         jest.resetAllMocks();
@@ -363,7 +362,7 @@ describe("processLocation", () => {
             longitude: 2,
         });
     });
-  
+
     it("returns coordinates, locationName, and locationZone correctly when other locations are used", async () => {
         const result = await processLocation("The Deck");
 
