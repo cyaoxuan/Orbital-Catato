@@ -2,7 +2,15 @@ import { locationjson, locations, zonejson } from "../data/locationData";
 import * as Location from "expo-location";
 
 // proccesses long/lat/alt format from kml file to {lat: , long: }, [lat, long] or [[long], [lat]]
-function processPolygonCoordinates(polygon) {
+export function processPolygonCoordinates(polygon) {
+    if (!polygon) {
+        throw new Error("Missing polygon");
+    } else if (polygon.length < 9) {
+        throw new Error(
+            "Incomplete coordinates or less than two coordinates given"
+        );
+    }
+
     var i = polygon.length;
     while (i--) {
         (i + 1) % 3 === 0 && polygon.splice(i, 1);
@@ -87,38 +95,59 @@ export function isInZone(zoneName, currLocation) {
         } while (i != 0);
 
         // When count is odd
-        return count & 1;
+        return count % 2 !== 0;
+    }
+
+    if (!zoneName || !currLocation) {
+        throw new Error("Missing zoneName or currLocation");
+    } else if (!Object.prototype.hasOwnProperty.call(zonejson, zoneName)) {
+        throw new Error("zoneName not in zonejson");
+    } else if (!currLocation.latitude || !currLocation.longitude) {
+        throw new Error("No latitude or longitude in currLocation");
+    }
+
+    if (!currLocation) {
+        throw new Error("Missing currLocation");
+    } else if (!currLocation.latitude || !currLocation.longitude) {
+        throw new Error("No latitude or longitude in currLocation");
     }
 
     // gets zone from zonejson
-    const zone = processPolygonCoordinates(zonejson[zoneName])[0];
+    const zone = exports.processPolygonCoordinates(zonejson[zoneName])[0];
     return checkInside(zone, currLocation);
-}
-
-// Uses Haversine formula
-function calcGreatCircle(loc1, loc2) {
-    const meanEarthRadius = 6371e3; // metres
-    const latRadians1 = (loc1.latitude * Math.PI) / 180;
-    const latRadians2 = (loc2.latitude * Math.PI) / 180;
-    const latDiffRadians = ((loc2.latitude - loc1.latitude) * Math.PI) / 180;
-    const longDiffRadians = ((loc2.longitude - loc1.longitude) * Math.PI) / 180;
-
-    const a =
-        Math.sin(latDiffRadians / 2) * Math.sin(latDiffRadians / 2) +
-        Math.cos(latRadians1) *
-            Math.cos(latRadians2) *
-            Math.sin(longDiffRadians / 2) *
-            Math.sin(longDiffRadians / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    const d = meanEarthRadius * c; // in metres
-
-    return d;
 }
 
 // Returns the location object (key, value, location, zone) of the nearest location to currLocation
 export function getNearestBuilding(currLocation) {
-    const nearestLocations = [...locations.splice(1, locations.length)];
+    // Uses Haversine formula
+    function calcGreatCircle(loc1, loc2) {
+        const meanEarthRadius = 6371e3; // metres
+        const latRadians1 = (loc1.latitude * Math.PI) / 180;
+        const latRadians2 = (loc2.latitude * Math.PI) / 180;
+        const latDiffRadians =
+            ((loc2.latitude - loc1.latitude) * Math.PI) / 180;
+        const longDiffRadians =
+            ((loc2.longitude - loc1.longitude) * Math.PI) / 180;
+
+        const a =
+            Math.sin(latDiffRadians / 2) * Math.sin(latDiffRadians / 2) +
+            Math.cos(latRadians1) *
+                Math.cos(latRadians2) *
+                Math.sin(longDiffRadians / 2) *
+                Math.sin(longDiffRadians / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        const d = meanEarthRadius * c; // in metres
+
+        return d;
+    }
+    if (!currLocation) {
+        throw new Error("Missing currLocation");
+    } else if (!currLocation.latitude || !currLocation.longitude) {
+        throw new Error("No latitude or longitude in currLocation");
+    }
+
+    const nearestLocations = [...locations].splice(1, locations.length);
     let minDistance = Infinity;
     let minLoc = 0;
     let currDistance;
@@ -137,11 +166,15 @@ export function getNearestBuilding(currLocation) {
 }
 
 // Return name of randomised location in a zone
-export function getRandomBuilding(zone) {
+export function getRandomBuilding(zoneName) {
+    if (!zoneName) {
+        throw new Error("Missing zoneName");
+    } else if (!Object.prototype.hasOwnProperty.call(zonejson, zoneName)) {
+        throw new Error("zoneName not in zonejson");
+    }
+
     const locationsInZone = [
-        ...locations
-            .splice(1, locations.length)
-            .filter((loc) => loc.zone === zone),
+        ...locations.filter((loc) => loc.key !== "1" && loc.zone === zoneName),
     ];
     const randNum = Math.floor(Math.random() * locationsInZone.length);
     return locationsInZone[randNum].value;
@@ -167,9 +200,9 @@ export const processLocation = async (locationStr) => {
             };
 
             // Check if user is in NUS
-            if (isInZone("NUS", coords)) {
+            if (exports.isInZone("NUS", coords)) {
                 // Get nearest building and zone user is in
-                const locationObj = getNearestBuilding(coords);
+                const locationObj = exports.getNearestBuilding(coords);
                 locationName = locationObj.value;
                 locationZone = locationObj.zone;
             } else {

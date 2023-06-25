@@ -1,7 +1,7 @@
 import { FlatList, View } from "react-native";
 import { useNavigation } from "expo-router";
 import { CatCardSimple } from "../../../components/CatCard";
-import { getItemWidth } from "../../../utils/calculateItemWidths";
+import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import { useGetAllCats } from "../../../utils/db/cat";
 import { useEffect } from "react";
 
@@ -18,7 +18,7 @@ export default function SelectCat() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const cardWidth = getItemWidth(2, 8);
+    const cardWidth = getItemWidthCols(2, 8);
     return (
         <FlatList
             style={{ flex: 1 }}

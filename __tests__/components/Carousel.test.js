@@ -18,28 +18,53 @@ const cats = [
         name: "Kitty",
         photoURLs: [
             require("../../assets/cats/cat-2-1.jpg"),
-            require("../../assets/catato-logo.png"),
+            require("../../assets/cats/cat-2-1.jpg"),
         ],
-        lastSeenLocation: "Engineering",
-        lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0),
+        locationName: "Engineering",
+        lastSeenTime: {
+            toDate() {
+                return new Date(2023, 4, 20, 10, 53, 0, 0);
+            },
+        },
+        lastFedTime: {
+            toDate() {
+                return new Date(2023, 4, 19, 12, 1, 0, 0);
+            },
+        },
         concernStatus: ["Injured"],
     },
     {
         catID: 2,
         name: "Skitty",
         photoURLs: [require("../../assets/cats/cat-2-1.jpg")],
-        lastSeenLocation: "Utown",
-        lastSeenTime: new Date(2023, 4, 20, 10, 53, 0, 0),
-        lastFedTime: null,
+        locationName: "Utown",
+        lastSeenTime: {
+            toDate() {
+                return new Date(2023, 4, 20, 10, 53, 0, 0);
+            },
+        },
+        lastFedTime: {
+            toDate() {
+                return new Date(2023, 4, 20, 10, 53, 0, 0);
+            },
+        },
         concernStatus: ["New", "Injured"],
     },
     {
         catID: 3,
         name: "Mitty",
         photoURLs: [require("../../assets/cats/cat-2-1.jpg")],
-        lastSeenLocation: "Science",
-        lastSeenTime: new Date(2023, 4, 15, 18, 34, 0, 0),
-        lastFedTime: new Date(2023, 4, 15, 18, 34, 0, 0),
+        locationName: "Science",
+        lastSeenTime: {
+            toDate() {
+                new Date(2023, 4, 15, 18, 34, 0, 0);
+            },
+        },
+        lastFedTime: {
+            toDate() {
+                new Date(2023, 4, 15, 18, 34, 0, 0);
+            },
+        },
         concernStatus: ["Missing"],
     },
 ];
@@ -53,13 +78,36 @@ jest.mock("expo-router", () => ({
 }));
 
 describe("getInfo1", () => {
-    test("concern, cat concern array with one element", () => {
+    test("Return Unknown when carouselType and cat are null", () => {
+        expect(getInfo1(null, null)).toBe("Unknown");
+        expect(
+            getInfo1(null, {
+                concernStatus: [],
+                lastFedTime: {
+                    toDate() {
+                        return new Date(2023, 4, 15, 18, 34, 0, 0);
+                    },
+                },
+            })
+        ).toBe("Unknown");
+        expect(getInfo1("concern", null)).toBe("Unknown");
+    });
+
+    test("Return empty string when carouselType is concern, concernStatus is empty", () => {
+        expect(getInfo1("concern", { concernStatus: [] })).toBe("");
+    });
+
+    test("Return Unknown when carouselType is unfed, lastFedTime is null", () => {
+        expect(getInfo1("unfed", { lastFedTime: null })).toBe("Unknown");
+    });
+
+    test("Return correct string when carouselType is concern, concernStatus array with one element", () => {
         expect(getInfo1("concern", { concernStatus: ["Injured"] })).toBe(
             "Injured"
         );
     });
 
-    test("concern, cat concern array with more than one element", () => {
+    test("Return correct string when carouselType is concern, concernStatus array with more than one element", () => {
         expect(
             getInfo1("concern", {
                 concernStatus: ["Injured", "Missing", "New"],
@@ -67,33 +115,16 @@ describe("getInfo1", () => {
         ).toBe("Injured, Missing, New");
     });
 
-    test("concern, cat concern array is empty", () => {
-        expect(getInfo1("concern", { concernStatus: [] })).toBe("");
-    });
-
-    test("concern, cat is null", () => {
-        expect(getInfo1("concern", null)).toBe("Unknown");
-    });
-
-    test("carouselType is null, cat is present", () => {
-        expect(
-            getInfo1(null, {
-                concernStatus: [],
-                lastFedTime: new Date(2023, 4, 15, 18, 34, 0, 0),
-            })
-        ).toBe("Unknown");
-    });
-
-    test("unfed, valid lastFedTime", () => {
+    test("Return correct string when carouselType is unfed, valid lastFedTime", () => {
         expect(
             getInfo1("unfed", {
-                lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0),
+                lastFedTime: {
+                    toDate() {
+                        return new Date(2023, 4, 19, 12, 1, 0, 0);
+                    },
+                },
             })
         ).toBe("19/05, 20:01 (28d)");
-    });
-
-    test("unfed, lastFedTime is null", () => {
-        expect(getInfo1("unfed", { lastFedTime: null })).toBe("Unknown");
     });
 });
 

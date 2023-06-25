@@ -10,8 +10,13 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         "concernStatus": [
           "Injured",
         ],
-        "lastFedTime": 2023-05-19T12:01:00.000Z,
-        "lastSeenLocation": "Engineering",
+        "lastFedTime": {
+          "toDate": [Function],
+        },
+        "lastSeenTime": {
+          "toDate": [Function],
+        },
+        "locationName": "Engineering",
         "name": "Kitty",
         "photoURLs": [
           1,
@@ -24,9 +29,13 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
           "New",
           "Injured",
         ],
-        "lastFedTime": null,
-        "lastSeenLocation": "Utown",
-        "lastSeenTime": 2023-05-20T10:53:00.000Z,
+        "lastFedTime": {
+          "toDate": [Function],
+        },
+        "lastSeenTime": {
+          "toDate": [Function],
+        },
+        "locationName": "Utown",
         "name": "Skitty",
         "photoURLs": [
           1,
@@ -37,9 +46,13 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         "concernStatus": [
           "Missing",
         ],
-        "lastFedTime": 2023-05-15T18:34:00.000Z,
-        "lastSeenLocation": "Science",
-        "lastSeenTime": 2023-05-15T18:34:00.000Z,
+        "lastFedTime": {
+          "toDate": [Function],
+        },
+        "lastSeenTime": {
+          "toDate": [Function],
+        },
+        "locationName": "Science",
         "name": "Mitty",
         "photoURLs": [
           1,
@@ -64,7 +77,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
   scrollEventThrottle={4}
   showsHorizontalScrollIndicator={false}
   snapToAlignment="center"
-  snapToInterval={324}
+  snapToInterval={316}
   stickyHeaderIndices={[]}
   style={
     {
@@ -183,7 +196,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     "Card.Content",
                   ]
                 }
-                source={1}
+                source={
+                  {
+                    "uri": 1,
+                  }
+                }
                 style={
                   [
                     {
@@ -402,7 +419,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       ]
                     }
                   >
-                    Engineering (NaNh)
+                    Engineering (27d)
                   </Text>
                 </Text>
               </View>
@@ -413,7 +430,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
       <View
         style={
           {
-            "width": 24,
+            "width": 16,
           }
         }
       />
@@ -526,7 +543,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     "Card.Content",
                   ]
                 }
-                source={1}
+                source={
+                  {
+                    "uri": 1,
+                  }
+                }
                 style={
                   [
                     {
@@ -756,7 +777,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
       <View
         style={
           {
-            "width": 24,
+            "width": 16,
           }
         }
       />
@@ -869,7 +890,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     "Card.Content",
                   ]
                 }
-                source={1}
+                source={
+                  {
+                    "uri": 1,
+                  }
+                }
                 style={
                   [
                     {
@@ -1088,7 +1113,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       ]
                     }
                   >
-                    Science (31d)
+                    Science (NaNh)
                   </Text>
                 </Text>
               </View>

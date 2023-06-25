@@ -22,7 +22,7 @@ exports[`<PillButton /> renders correctly 1`] = `
         },
         "shadowOpacity": 0,
         "shadowRadius": 0,
-        "width": "60%",
+        "width": "80%",
       }
     }
     testID="button-container-outer-layer"

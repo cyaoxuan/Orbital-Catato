@@ -477,15 +477,15 @@ exports[`<CatCardSimple /> renders correctly 1`] = `
           }
         >
           <Text
-            numberOfLines={1}
+            numberOfLines={2}
             style={
               [
                 {
                   "fontFamily": "System",
-                  "fontSize": 28,
+                  "fontSize": 16,
                   "fontWeight": "400",
-                  "letterSpacing": 0,
-                  "lineHeight": 36,
+                  "letterSpacing": 0.15,
+                  "lineHeight": 24,
                 },
                 {
                   "textAlign": "left",
