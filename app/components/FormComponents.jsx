@@ -13,9 +13,6 @@ import NumericInput from "react-native-numeric-input";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { timeOptions } from "../data/DateTimeOptions";
 
-const titleVariant = "titleMedium";
-const bodyVariant = "bodyMedium";
-
 // For Location
 const DropdownList = (props) => {
     const [selected, setSelected] = useState("");
@@ -220,6 +217,9 @@ export {
     TwoRadioInput,
     UploadPhotos,
 };
+
+const titleVariant = "titleMedium";
+const bodyVariant = "bodyMedium";
 
 const styles = StyleSheet.create({
     formInput: {

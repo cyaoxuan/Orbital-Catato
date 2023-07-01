@@ -1,7 +1,7 @@
-import { RefreshControl, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
-import { useRoute } from "@react-navigation/native";
+import { useIsFocused, useRoute } from "@react-navigation/native";
 import { PillButton } from "../../../components/Button";
 import {
     AvatarContainer,
@@ -9,7 +9,7 @@ import {
     DetailsContainer,
     PhotosContainer,
 } from "./ProfileContainers";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
     autoProcessMissing,
     autoProcessUnfed,
@@ -20,16 +20,10 @@ export default function CatProfile() {
     const route = useRoute();
     const catID = route.params.catID;
     const navigation = useNavigation();
-    const [refreshing, setRefreshing] = useState(false);
+    const isFocused = useIsFocused();
+
     const { getCat, cat, loading, error } = useGetCat();
     const [partialCat, setPartialCat] = useState(null);
-
-    const onRefresh = useCallback(() => {
-        setRefreshing(true);
-        setTimeout(() => {
-            setRefreshing(false);
-        }, 500);
-    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -38,7 +32,7 @@ export default function CatProfile() {
 
         fetchData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [catID, refreshing]);
+    }, [catID, isFocused]);
 
     useEffect(() => {
         if (cat) {
@@ -93,9 +87,6 @@ export default function CatProfile() {
     return (
         <ScrollView
             testID="profile-container"
-            refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-            }
         >
             <AvatarContainer name={cat.name} photoURL={cat.photoURLs[0]} />
 

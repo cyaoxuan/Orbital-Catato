@@ -112,6 +112,7 @@ const CreateProfile = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Create Profile</Text>
             <FormInput
                 label="Name"
                 placeholder="Kitty's Name"
@@ -283,6 +284,7 @@ const ReportCat = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Report Cat</Text>
             <DropdownList
                 titleText="Seen at:"
                 setSelected={(val) => setLocation(val)}
@@ -412,6 +414,7 @@ const UpdateLocation = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Update Location</Text>
             <DropdownList
                 titleText="Seen at:"
                 setSelected={(val) => setLocation(val)}
@@ -534,6 +537,7 @@ const UpdateConcern = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Update Concern</Text>
             <DropdownList
                 titleText="Seen at:"
                 setSelected={(val) => setLocation(val)}
@@ -650,6 +654,7 @@ const UpdateFed = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Update Fed</Text>
             <DropdownList
                 titleText="Seen at:"
                 setSelected={(val) => setLocation(val)}
@@ -726,6 +731,7 @@ const UpdateFoster = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Update Foster</Text>
             <TwoRadioInput
                 titleText="Fostering?"
                 value={fostered}
@@ -852,6 +858,7 @@ const UpdateProfile = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Update Profile</Text>
             <FormInput
                 label="Name"
                 placeholder="Kitty's Name"
@@ -968,7 +975,8 @@ const DeleteProfile = (props) => {
 
     return (
         <View style={styles.formContainer}>
-            <Text>Deleted Profiles cannot be recovered!</Text>
+            <Text variant={titleVariant}>Delete Profile</Text>
+            <Text variant="bodyMedium">Deleted Profiles cannot be recovered!</Text>
 
             <FormInput
                 multiline={true}
@@ -1001,6 +1009,8 @@ export {
     UpdateProfile,
     DeleteProfile,
 };
+
+const titleVariant = "titleMedium";
 
 const styles = StyleSheet.create({
     formContainer: {
