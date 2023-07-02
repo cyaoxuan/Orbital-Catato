@@ -1,5 +1,5 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Divider, Text } from "react-native-paper";
+import { Button, Divider, Text } from "react-native-paper";
 import { IconTextField, KeyTextField } from "../../../components/InfoText";
 import { CatAvatar } from "../../../components/CatAvatar";
 import {
@@ -11,7 +11,7 @@ import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 // Avatar Container
-const AvatarContainer = ({ name, photoURL }) => {
+const AvatarContainer = ({ name, photoURL, value, onPress }) => {
     return (
         <View style={styles.avatarContainer}>
             <CatAvatar
@@ -20,6 +20,14 @@ const AvatarContainer = ({ name, photoURL }) => {
                 variant="headlineLarge"
                 name={name}
             />
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Button style={{}}
+                    mode="outlined" 
+                    icon={value ? "bell" : "bell-outline"} 
+                    onPress={onPress}>
+                    {value ? "Followed" : "Follow for Notifications"}
+                </Button>
+            </View>
         </View>
     );
 };

@@ -98,7 +98,41 @@ const SettingsOptionList = () => {
                 onPress={() => {}}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="paper-plane-outline" size={24} />}
+                        icon={() => <Ionicons name="document-outline" size={24} />}
+                    />
+                )}
+                right={() => (
+                    <List.Icon 
+                        icon={() => <Ionicons name="chevron-forward" size={24} />}
+                    />
+                )}
+            />
+            <Divider />
+            <List.Item
+                title="Admin Panel"
+                style={styles.listView}
+                titleStyle={styles.listTitle}
+                onPress={() => {}}
+                left={() => (
+                    <List.Icon
+                        icon={() => <Ionicons name="build-outline" size={24} />}
+                    />
+                )}
+                right={() => (
+                    <List.Icon 
+                        icon={() => <Ionicons name="chevron-forward" size={24} />}
+                    />
+                )}
+            />
+            <Divider />
+            <List.Item
+                title="Request Caretaker Tier"
+                style={styles.listView}
+                titleStyle={styles.listTitle}
+                onPress={() => {}}
+                left={() => (
+                    <List.Icon
+                        icon={() => <Ionicons name="create-outline" size={24} />}
                     />
                 )}
                 right={() => (
@@ -133,7 +167,7 @@ export default function Settings() {
     };
 
     return (
-        <ScrollView style={{ padding: 16 }}>
+        <ScrollView style={{ margin: 16 }}>
             <View>
                 <Text variant={titleVariant}>User</Text>
                 <Text variant={bodyVariant} style={styles.userDetails}>
@@ -155,8 +189,7 @@ export default function Settings() {
                 </Text>
             </View>
             <Divider />
-            <View paddingTop={16}>
-                <Text variant={titleVariant}>Settings</Text>
+            <View marginTop={4}>
                 <SettingsOptionList />
             </View>
 

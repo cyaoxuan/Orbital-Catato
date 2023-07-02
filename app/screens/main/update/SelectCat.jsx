@@ -57,8 +57,8 @@ export default function SelectCat() {
                             photoURL={item.photoURLs ? item.photoURLs[0] : null}
                             cardWidth={cardWidth}
                             onPress={() => {
-                                navigation.navigate("Update", {
-                                    cat: partialCat,
+                                navigation.navigate("UpdateOptions", {
+                                    ...partialCat
                                 });
                             }}
                         />

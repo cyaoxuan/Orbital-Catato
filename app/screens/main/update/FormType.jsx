@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { ActivityIndicator, Divider, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
@@ -25,8 +25,6 @@ import {
     getImageFromGallery,
 } from "../../../utils/db/photo";
 import { locations } from "../../../data/locationData";
-
-const today = new Date();
 
 const CreateProfile = (props) => {
     const navigation = useNavigation();
@@ -205,6 +203,7 @@ const ReportCat = (props) => {
     const [location, setLocation] = useState("");
 
     // For RNDateTimePicker
+    const [today, setToday] = useState(new Date());
     const [date, setDate] = useState(new Date());
     const [showTime, setShowTime] = useState(false);
     const onTimeChange = (event, selectedDate) => {
@@ -212,6 +211,10 @@ const ReportCat = (props) => {
         setShowTime(false);
         setDate(currentDate);
     };
+    // To keep updating current time every second
+    useEffect(() => {
+        setInterval(() => setToday(new Date()), 1000);
+      }, []);
 
     // For Image Picker
     const [photoURI, setPhotoURI] = useState("");
@@ -295,6 +298,7 @@ const ReportCat = (props) => {
 
             <TimeInput
                 titleText="Last Seen Time:"
+                today={today}
                 displayTime={date}
                 value={date}
                 onChange={onTimeChange}
@@ -376,6 +380,7 @@ const UpdateLocation = (props) => {
     const [location, setLocation] = useState("");
 
     // For RNDateTimePicker
+    const [today, setToday] = useState(new Date());
     const [date, setDate] = useState(new Date());
     const [showTime, setShowTime] = useState(false);
     const onTimeChange = (event, selectedDate) => {
@@ -383,6 +388,10 @@ const UpdateLocation = (props) => {
         setShowTime(false);
         setDate(currentDate);
     };
+    // To keep updating current time every second
+    useEffect(() => {
+        setInterval(() => setToday(new Date()), 1000);
+      }, []);
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
@@ -425,6 +434,7 @@ const UpdateLocation = (props) => {
 
             <TimeInput
                 titleText="Last Seen Time:"
+                today={today}
                 displayTime={date}
                 value={date}
                 onChange={onTimeChange}
@@ -473,6 +483,7 @@ const UpdateConcern = (props) => {
     );
 
     // For RNDateTimePicker
+    const [today, setToday] = useState(new Date());
     const [date, setDate] = useState(new Date());
     const [showTime, setShowTime] = useState(false);
     const onTimeChange = (event, selectedDate) => {
@@ -480,6 +491,10 @@ const UpdateConcern = (props) => {
         setShowTime(false);
         setDate(currentDate);
     };
+    // To keep updating current time every second
+    useEffect(() => {
+        setInterval(() => setToday(new Date()), 1000);
+      }, []);
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
@@ -548,6 +563,7 @@ const UpdateConcern = (props) => {
 
             <TimeInput
                 titleText="Last Seen Time:"
+                today={today}
                 displayTime={date}
                 value={date}
                 onChange={onTimeChange}
@@ -616,6 +632,8 @@ const UpdateFed = (props) => {
     const [location, setLocation] = useState("");
 
     // For RNDateTimePicker
+    const todayRef = useRef(new Date());
+    const today = todayRef.current;
     const [date, setDate] = useState(new Date());
     const [showTime, setShowTime] = useState(false);
     const onTimeChange = (event, selectedDate) => {
@@ -623,6 +641,14 @@ const UpdateFed = (props) => {
         setShowTime(false);
         setDate(currentDate);
     };
+    // To keep updating current time every second
+    useEffect(() => {
+        const interval = setInterval(() => {
+          todayRef.current = new Date();
+        }, 1000);
+    
+        return () => clearInterval(interval);
+      }, []);
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
@@ -665,6 +691,7 @@ const UpdateFed = (props) => {
 
             <TimeInput
                 titleText="Last Fed Time:"
+                today={today}
                 displayTime={date}
                 value={date}
                 onChange={onTimeChange}

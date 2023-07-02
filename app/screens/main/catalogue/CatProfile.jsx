@@ -25,6 +25,9 @@ export default function CatProfile() {
     const { getCat, cat, loading, error } = useGetCat();
     const [partialCat, setPartialCat] = useState(null);
 
+    const [favourite, setFavourite] = useState(false);
+    const changeFavourite = () => setFavourite((prev) => !prev);
+
     useEffect(() => {
         const fetchData = async () => {
             await getCat(catID);
@@ -88,7 +91,7 @@ export default function CatProfile() {
         <ScrollView
             testID="profile-container"
         >
-            <AvatarContainer name={cat.name} photoURL={cat.photoURLs[0]} />
+            <AvatarContainer name={cat.name} photoURL={cat.photoURLs[0]} value={favourite} onPress={changeFavourite}/>
 
             <KeyInfoContainer cat={cat} variant="bodyMedium" />
 
@@ -112,8 +115,8 @@ export default function CatProfile() {
                     label="Update Cat"
                     onPress={() =>
                         navigation.navigate("update", {
-                            screen: "Update",
-                            params: { cat: partialCat },
+                            screen: "UpdateOptions",
+                            params: { ...partialCat },
                         })
                     }
                 />

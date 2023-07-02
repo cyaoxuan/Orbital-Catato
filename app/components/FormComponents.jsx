@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import {
     Button,
@@ -93,44 +93,32 @@ const NumberSpinner = (props) => {
 
 // For time
 const TimeInput = (props) => {
-    const today = new Date();
-    const [date, setDate] = useState(new Date());
-    const [show, setShow] = useState(false);
-
-    const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate;
-        setShow(false);
-        setDate(currentDate);
-    };
-
     return (
         <View style={styles.container}>
             <Text variant={titleVariant}>{props.titleText}</Text>
             <Button
                 mode="contained-tonal"
-                onPress={props.onPress ? props.onPress : setShow}
+                onPress={props.onPress}
                 style={{ width: "50%", margin: 4 }}
             >
                 Pick Time{" "}
             </Button>
             <Text variant={bodyVariant}>
                 Selected Time:{" "}
-                {props.displayTime
-                    ? props.displayTime.toLocaleTimeString("en-GB", timeOptions)
-                    : date.toLocaleTimeString("en-GB", timeOptions)}
+                {props.displayTime.toLocaleTimeString("en-GB", timeOptions)}
             </Text>
-            {(props.displayTime ? props.displayTime > today : date > today) && (
+            {(props.displayTime > props.today) && (
                 <Text variant={bodyVariant} style={{ color: "crimson" }}>
                     Error: Selected future time! Are you a time traveller?
                 </Text>
             )}
-            {(props.show ? props.show : show) && (
+            {props.show && (
                 <RNDateTimePicker
                     mode="time"
                     display="spinner"
                     is24Hour={true}
-                    value={props.value ? props.value : date}
-                    onChange={props.onChange ? props.onChange : onChange}
+                    value={props.value}
+                    onChange={props.onChange}
                 />
             )}
         </View>
