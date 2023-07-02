@@ -38,6 +38,8 @@ export default function SelectCat() {
                     keyFeatures,
                     concernStatus,
                     concernDesc,
+                    isFostered,
+                    fosterReason,
                 }) => ({
                     catID,
                     name,
@@ -48,6 +50,8 @@ export default function SelectCat() {
                     keyFeatures,
                     concernStatus,
                     concernDesc,
+                    isFostered,
+                    fosterReason,
                 }))(item);
 
                 return (
@@ -58,7 +62,7 @@ export default function SelectCat() {
                             cardWidth={cardWidth}
                             onPress={() => {
                                 navigation.navigate("UpdateOptions", {
-                                    ...partialCat
+                                    ...partialCat,
                                 });
                             }}
                         />

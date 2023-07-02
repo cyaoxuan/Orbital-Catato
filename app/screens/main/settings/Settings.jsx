@@ -26,12 +26,16 @@ const SettingsOptionList = () => {
                 onPress={() => {}}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="lock-closed-outline" size={24} />}
+                        icon={() => (
+                            <Ionicons name="lock-closed-outline" size={24} />
+                        )}
                     />
                 )}
                 right={() => (
-                    <List.Icon 
-                        icon={() => <Ionicons name="chevron-forward" size={24} />}
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
                     />
                 )}
             />
@@ -43,7 +47,9 @@ const SettingsOptionList = () => {
                 titleStyle={styles.listTitle}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="notifications-outline" size={24} />}
+                        icon={() => (
+                            <Ionicons name="notifications-outline" size={24} />
+                        )}
                     />
                 )}
                 right={() => (
@@ -64,12 +70,19 @@ const SettingsOptionList = () => {
                 onPress={() => {}}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="information-circle-outline" size={24} />}
+                        icon={() => (
+                            <Ionicons
+                                name="information-circle-outline"
+                                size={24}
+                            />
+                        )}
                     />
                 )}
                 right={() => (
-                    <List.Icon 
-                        icon={() => <Ionicons name="chevron-forward" size={24} />}
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
                     />
                 )}
             />
@@ -81,12 +94,16 @@ const SettingsOptionList = () => {
                 onPress={() => {}}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="help-circle-outline" size={24} />}
+                        icon={() => (
+                            <Ionicons name="help-circle-outline" size={24} />
+                        )}
                     />
                 )}
                 right={() => (
-                    <List.Icon 
-                        icon={() => <Ionicons name="chevron-forward" size={24} />}
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
                     />
                 )}
             />
@@ -98,12 +115,16 @@ const SettingsOptionList = () => {
                 onPress={() => {}}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="document-outline" size={24} />}
+                        icon={() => (
+                            <Ionicons name="document-outline" size={24} />
+                        )}
                     />
                 )}
                 right={() => (
-                    <List.Icon 
-                        icon={() => <Ionicons name="chevron-forward" size={24} />}
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
                     />
                 )}
             />
@@ -119,8 +140,10 @@ const SettingsOptionList = () => {
                     />
                 )}
                 right={() => (
-                    <List.Icon 
-                        icon={() => <Ionicons name="chevron-forward" size={24} />}
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
                     />
                 )}
             />
@@ -132,12 +155,16 @@ const SettingsOptionList = () => {
                 onPress={() => {}}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="create-outline" size={24} />}
+                        icon={() => (
+                            <Ionicons name="create-outline" size={24} />
+                        )}
                     />
                 )}
                 right={() => (
-                    <List.Icon 
-                        icon={() => <Ionicons name="chevron-forward" size={24} />}
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
                     />
                 )}
             />
@@ -182,10 +209,16 @@ export default function Settings() {
                     User ID: {user ? user.uid : "None"}
                 </Text>
                 <Text variant={bodyVariant} style={styles.userDetails}>
-                    Email: {user ? user.isAnonymous ? "No Email" : user.email : "None"}
+                    Email:{" "}
+                    {user
+                        ? user.isAnonymous
+                            ? "No Email"
+                            : user.email
+                        : "None"}
                 </Text>
                 <Text variant={bodyVariant} style={styles.userDetails}>
-                    User Tier: {user ? user.isAnonymous ? "Guest" : "Account" : "None"}
+                    User Tier:{" "}
+                    {user ? (user.isAnonymous ? "Guest" : "Account") : "None"}
                 </Text>
             </View>
             <Divider />
@@ -212,10 +245,10 @@ const styles = StyleSheet.create({
     },
     listView: {
         justifyContent: "center",
-        height: 65
+        height: 65,
     },
     userDetails: {
         paddingVertical: 8,
-        paddingHorizontal: 4
-    }
+        paddingHorizontal: 4,
+    },
 });

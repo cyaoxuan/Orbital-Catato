@@ -57,6 +57,8 @@ export default function CatProfile() {
                 keyFeatures,
                 concernStatus,
                 concernDesc,
+                isFostered,
+                fosterReason,
             }) => ({
                 catID,
                 name,
@@ -67,6 +69,8 @@ export default function CatProfile() {
                 keyFeatures,
                 concernStatus,
                 concernDesc,
+                isFostered,
+                fosterReason,
             }))(cat);
             setPartialCat(partialCatTemp);
         }
@@ -88,10 +92,26 @@ export default function CatProfile() {
     }
 
     return (
-        <ScrollView
-            testID="profile-container"
-        >
-            <AvatarContainer name={cat.name} photoURL={cat.photoURLs[0]} value={favourite} onPress={changeFavourite}/>
+        <ScrollView testID="profile-container">
+            <AvatarContainer
+                name={cat.name}
+                photoURL={cat.photoURLs[0]}
+                followValue={favourite}
+                followOnPress={changeFavourite}
+                updateValue={true}
+                updateOnPress={() =>
+                    navigation.navigate("update", {
+                        screen: "UpdateOptions",
+                        params: { ...partialCat },
+                    })
+                }
+                locationValue={cat.lastSeenLocation}
+                locationOnPress={() => {
+                    navigation.navigate("Map", {
+                        location: cat.lastSeenLocation,
+                    });
+                }}
+            />
 
             <KeyInfoContainer cat={cat} variant="bodyMedium" />
 
@@ -109,18 +129,6 @@ export default function CatProfile() {
                     });
                 }}
             />
-
-            <View style={{ alignItems: "center" }}>
-                <PillButton
-                    label="Update Cat"
-                    onPress={() =>
-                        navigation.navigate("update", {
-                            screen: "UpdateOptions",
-                            params: { ...partialCat },
-                        })
-                    }
-                />
-            </View>
         </ScrollView>
     );
 }

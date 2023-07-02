@@ -1,9 +1,10 @@
-import { ScrollView, View } from "react-native";
+import { KeyboardAvoidingView, ScrollView, View } from "react-native";
 import { DefaultTheme, Provider, Text } from "react-native-paper";
 import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import * as FormTypes from "./FormType";
 import { useAuth } from "../../../utils/context/auth";
+import { Platform } from "react-native";
 
 const lightTheme = {
     ...DefaultTheme,
@@ -44,24 +45,28 @@ export default function Form() {
 
     return (
         <Provider theme={lightTheme}>
-            <ScrollView
-                contentContainerStyle={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : ""}
             >
-                <CatAvatar
-                    photoURL={
-                        route.params.photoURLs
-                            ? route.params.photoURLs[0]
-                            : null
-                    }
-                    size={200}
-                    variant="headlineLarge"
-                    name={route.params.name}
-                />
-                {getForm(1, route.params)}
-            </ScrollView>
+                <ScrollView
+                    contentContainerStyle={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <CatAvatar
+                        photoURL={
+                            route.params.photoURLs
+                                ? route.params.photoURLs[0]
+                                : null
+                        }
+                        size={200}
+                        variant="headlineLarge"
+                        name={route.params.name}
+                    />
+                    {getForm(1, route.params)}
+                </ScrollView>
+            </KeyboardAvoidingView>
         </Provider>
     );
 }

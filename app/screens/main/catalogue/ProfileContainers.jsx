@@ -1,5 +1,5 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Button, Divider, Text } from "react-native-paper";
+import { Button, Divider, IconButton, Text } from "react-native-paper";
 import { IconTextField, KeyTextField } from "../../../components/InfoText";
 import { CatAvatar } from "../../../components/CatAvatar";
 import {
@@ -11,7 +11,18 @@ import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 // Avatar Container
-const AvatarContainer = ({ name, photoURL, value, onPress }) => {
+const AvatarContainer = ({
+    name,
+    photoURL,
+    followValue,
+    followOnPress,
+    updateValue,
+    updateOnPress,
+    locationValue,
+    locationOnPress,
+}) => {
+    const buttonColor = "#663399";
+
     return (
         <View style={styles.avatarContainer}>
             <CatAvatar
@@ -20,13 +31,65 @@ const AvatarContainer = ({ name, photoURL, value, onPress }) => {
                 variant="headlineLarge"
                 name={name}
             />
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Button style={{}}
-                    mode="outlined" 
-                    icon={value ? "bell" : "bell-outline"} 
-                    onPress={onPress}>
-                    {value ? "Followed" : "Follow for Notifications"}
+            <View style={{ alignItems: "center", marginVertical: 4 }}>
+                <Button
+                    style={{ width: "70%" }}
+                    mode="outlined"
+                    icon={
+                        followValue
+                            ? () => (
+                                  <Ionicons
+                                      name="notifications"
+                                      size={20}
+                                      color={buttonColor}
+                                  />
+                              )
+                            : () => (
+                                  <Ionicons
+                                      name="notifications-outline"
+                                      size={24}
+                                      color={buttonColor}
+                                  />
+                              )
+                    }
+                    onPress={followOnPress}
+                >
+                    {followValue ? "Followed" : "Follow for Notifications"}
                 </Button>
+            </View>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+                {updateValue && (
+                    <Button
+                        style={{ width: "40%", margin: 4 }}
+                        mode="outlined"
+                        icon={() => (
+                            <Ionicons
+                                name="create-outline"
+                                size={20}
+                                color={buttonColor}
+                            />
+                        )}
+                        onPress={updateOnPress}
+                    >
+                        Update
+                    </Button>
+                )}
+                {locationValue && (
+                    <Button
+                        style={{ width: "40%", margin: 4 }}
+                        mode="outlined"
+                        icon={() => (
+                            <Ionicons
+                                name="location-outline"
+                                size={20}
+                                color={buttonColor}
+                            />
+                        )}
+                        onPress={locationOnPress}
+                    >
+                        Locate
+                    </Button>
+                )}
             </View>
         </View>
     );

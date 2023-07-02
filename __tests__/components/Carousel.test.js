@@ -20,6 +20,7 @@ const cats = [
             require("../../assets/cats/cat-2-1.jpg"),
             require("../../assets/cats/cat-2-1.jpg"),
         ],
+        lastSeenLocation: { latitude: 1, longitude: 1 },
         locationName: "Engineering",
         lastSeenTime: {
             toDate() {
@@ -150,7 +151,7 @@ describe("<CardCarousel />", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("navigates to correct cat profile when card is pressed", () => {
+    it("renders correct number of cards", () => {
         const cardWidth = 200;
         const carouselType = "concern";
 
@@ -164,13 +165,51 @@ describe("<CardCarousel />", () => {
 
         const catCards = getAllByTestId("card");
         expect(catCards).toHaveLength(cats.length);
+    });
 
-        fireEvent.press(catCards[0]);
+    it("navigates to correct cat profile when profile button is pressed", () => {
+        const cardWidth = 200;
+        const carouselType = "concern";
+
+        const { getAllByTestId } = render(
+            <CardCarousel
+                cats={cats}
+                cardWidth={cardWidth}
+                carouselType={carouselType}
+            />
+        );
+
+        const catCards = getAllByTestId("card");
+        const buttons = catCards[0].findAllByProps({ testID: "button" });
+
+        fireEvent.press(buttons[0]);
 
         expect(mockNavigate).toHaveBeenCalledWith("catalogue", {
             screen: "CatProfile",
             initial: false,
             params: { catID: cats[0].catID },
+        });
+    });
+
+    it("navigates to map when locate button is pressed", () => {
+        const cardWidth = 200;
+        const carouselType = "concern";
+
+        const { getAllByTestId } = render(
+            <CardCarousel
+                cats={cats.splice(0, 1)}
+                cardWidth={cardWidth}
+                carouselType={carouselType}
+            />
+        );
+
+        const catCards = getAllByTestId("card");
+        const buttons = catCards[0].findAllByProps({ testID: "button" });
+
+        fireEvent.press(buttons[6]);
+
+        expect(mockNavigate).toHaveBeenCalledWith("Map", {
+            location: { latitude: 1, longitude: 1 },
         });
     });
 });

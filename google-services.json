@@ -1,0 +1,47 @@
+{
+    "project_info": {
+        "project_number": "312029122334",
+        "firebase_url": "https://catato-ea64f-default-rtdb.asia-southeast1.firebasedatabase.app",
+        "project_id": "catato-ea64f",
+        "storage_bucket": "catato-ea64f.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:312029122334:android:d82a22e3b6d698d92d030f",
+                "android_client_info": {
+                    "package_name": "com.catato"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "312029122334-vt5pbc38qfcfk0s3iuq92bpcatdicmat.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyD2pu5LzN_aGdMOtHQLae8WcE2j0W3xwa8"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "312029122334-vt5pbc38qfcfk0s3iuq92bpcatdicmat.apps.googleusercontent.com",
+                            "client_type": 3
+                        },
+                        {
+                            "client_id": "312029122334-n67vsn1sblpjjmds4hmn9lvcob9k164o.apps.googleusercontent.com",
+                            "client_type": 2,
+                            "ios_info": {
+                                "bundle_id": "com.catato"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}

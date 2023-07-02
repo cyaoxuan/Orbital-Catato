@@ -1,5 +1,6 @@
-import { Card } from "react-native-paper";
+import { Button, Card, IconButton } from "react-native-paper";
 import { IconTextField } from "./InfoText";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const CatCard = (props) => {
     const cardWidth = props.cardWidth ? props.cardWidth : 300;
@@ -7,16 +8,15 @@ const CatCard = (props) => {
     return (
         <Card
             style={{
-                height: (cardWidth * 11) / 12,
+                height: (cardWidth * 11) / 10,
                 width: cardWidth,
                 margin: 4,
             }}
-            onPress={props.onPress}
             mode="elevated"
         >
             <Card.Cover
                 style={{
-                    height: cardWidth / 2,
+                    height: (cardWidth * 7) / 12,
                     width: cardWidth,
                     resizeMode: "cover",
                 }}
@@ -29,9 +29,9 @@ const CatCard = (props) => {
             />
             <Card.Title
                 title={props.name || "Name"}
-                titleVariant="headlineSmall"
+                titleVariant="titleLarge"
             />
-            <Card.Content style={{ paddingBottom: 0, paddingHorizontal: 4 }}>
+            <Card.Content style={{ paddingHorizontal: 4 }}>
                 <IconTextField
                     testID="infoText1"
                     iconName={props.iconName1}
@@ -49,6 +49,27 @@ const CatCard = (props) => {
                     info={props.info2}
                 />
             </Card.Content>
+            <Card.Actions>
+                <Button
+                    onPress={props.profileOnPress}
+                    icon={() => (
+                        <Ionicons name="heart" size={20} color="#663399" />
+                    )}
+                >
+                    Profile
+                </Button>
+                <Button
+                    disabled={
+                        props.showFindLocation === undefined ? true : false
+                    }
+                    onPress={props.locationOnPress}
+                    icon={() => (
+                        <Ionicons name="location" size={20} color="white" />
+                    )}
+                >
+                    Locate
+                </Button>
+            </Card.Actions>
         </Card>
     );
 };

@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { FlatList, Image, View } from "react-native";
-import { Button, DefaultTheme, Dialog, FAB, Portal, Provider, Text } from "react-native-paper";
+import {
+    Button,
+    DefaultTheme,
+    Dialog,
+    FAB,
+    Portal,
+    Provider,
+    Text,
+} from "react-native-paper";
 import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import { useRoute } from "@react-navigation/native";
 import { useUserAddCatPicture } from "../../../utils/db/cat";
@@ -26,12 +34,12 @@ export default function PhotoGallery() {
 
     // For Confirm Image Upload Dialog
     const [dialogVisible, setDialogVisible] = useState(false);
-    const [dialogText, setDialogText] = useState("")
+    const [dialogText, setDialogText] = useState("");
     const showDialog = () => setDialogVisible(true);
     const hideDialog = () => {
         setDialogVisible(false);
-        navigation.navigate("CatProfile", {catID: catID});
-    }
+        navigation.navigate("CatProfile", { catID: catID });
+    };
 
     // For image FAB
     const [open, setOpen] = useState(false);
@@ -49,8 +57,10 @@ export default function PhotoGallery() {
                     catID,
                     photoURI
                 );
-                setDialogText("Image upload from gallery confirmed! Thank you for your contribution!");
-            } 
+                setDialogText(
+                    "Image upload from gallery confirmed! Thank you for your contribution!"
+                );
+            }
         } catch (error) {
             console.error(error);
             setPhotoError(null);
@@ -69,7 +79,9 @@ export default function PhotoGallery() {
                     catID,
                     photoURI
                 );
-                setDialogText("Image upload from camera confirmed! Thank you for your contribution!");
+                setDialogText(
+                    "Image upload from camera confirmed! Thank you for your contribution!"
+                );
             }
         } catch (error) {
             console.error(error);
@@ -82,7 +94,7 @@ export default function PhotoGallery() {
         if (dialogText !== "") {
             showDialog();
         }
-    }, [dialogText])
+    }, [dialogText]);
 
     return (
         <Provider theme={lightTheme}>

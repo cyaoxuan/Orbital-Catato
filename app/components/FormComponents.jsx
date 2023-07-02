@@ -107,7 +107,7 @@ const TimeInput = (props) => {
                 Selected Time:{" "}
                 {props.displayTime.toLocaleTimeString("en-GB", timeOptions)}
             </Text>
-            {(props.displayTime > props.today) && (
+            {props.displayTime > props.today && (
                 <Text variant={bodyVariant} style={{ color: "crimson" }}>
                     Error: Selected future time! Are you a time traveller?
                 </Text>
@@ -142,11 +142,13 @@ const TwoRadioInput = (props) => {
             >
                 <View style={styles.radioButtonContainer}>
                     <Text variant={bodyVariant}>{props.firstText}</Text>
-                    <RadioButton value={props.firstValue || "First"} />
+                    <RadioButton.Android value={props.firstValue || "First"} />
                 </View>
                 <View style={styles.radioButtonContainer}>
                     <Text variant={bodyVariant}>{props.secondText}</Text>
-                    <RadioButton value={props.secondValue || "Second"} />
+                    <RadioButton.Android
+                        value={props.secondValue || "Second"}
+                    />
                 </View>
             </RadioButton.Group>
         </View>

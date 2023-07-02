@@ -27,7 +27,7 @@ const CardCarousel = ({ cats, cardWidth, carouselType, ...card }) => {
     return (
         <FlatList
             testID="card-carousel"
-            style={{ height: cardWidth }}
+            style={{ height: (cardWidth * 6) / 5 }}
             horizontal
             snapToAlignment="center"
             decelerationRate="normal"
@@ -45,7 +45,7 @@ const CardCarousel = ({ cats, cardWidth, carouselType, ...card }) => {
                         name={item.name}
                         photoURL={item.photoURLs ? item.photoURLs[0] : null}
                         cardWidth={cardWidth}
-                        onPress={() =>
+                        profileOnPress={() =>
                             navigation.navigate("catalogue", {
                                 screen: "CatProfile",
                                 initial: false,
@@ -62,6 +62,12 @@ const CardCarousel = ({ cats, cardWidth, carouselType, ...card }) => {
                                   )
                                 : "Unknown"
                         }
+                        showFindLocation={item.lastSeenLocation}
+                        locationOnPress={() => {
+                            navigation.navigate("Map", {
+                                location: item.lastSeenLocation,
+                            });
+                        }}
                     />
                 );
             }}
