@@ -295,6 +295,7 @@ const ReportCat = (props) => {
             <Text variant={titleVariant}>Report Cat</Text>
             <DropdownList
                 titleText="Seen at:"
+                selected={location}
                 setSelected={(val) => setLocation(val)}
                 data={locations}
             />
@@ -476,6 +477,7 @@ const UpdateLocation = (props) => {
             <Text variant={titleVariant}>Update Location</Text>
             <DropdownList
                 titleText="Seen at:"
+                selected={location}
                 setSelected={(val) => setLocation(val)}
                 data={locations}
             />
@@ -575,11 +577,11 @@ const UpdateConcern = (props) => {
                 keyFeatures: keyFeatures,
                 photoURLs: photoURLs,
                 concernStatus:
-                    (concern === "injured" &&
+                    (concern === "Injured" &&
                         concernStatus.includes(concern)) ||
                     (concern === "healthy" && !concernStatus.includes(concern))
                         ? concernStatus
-                        : concern === "injured"
+                        : concern === "Injured"
                         ? concernStatus.push(concern)
                         : concernStatus.filter(
                               (status) => status !== "Injured"
@@ -659,6 +661,7 @@ const UpdateConcern = (props) => {
             <Text variant={titleVariant}>Update Concern</Text>
             <DropdownList
                 titleText="Seen at:"
+                selected={location}
                 setSelected={(val) => setLocation(val)}
                 data={locations}
             />
@@ -828,6 +831,7 @@ const UpdateFed = (props) => {
             <Text variant={titleVariant}>Update Fed</Text>
             <DropdownList
                 titleText="Seen at:"
+                selected={location}
                 setSelected={(val) => setLocation(val)}
                 data={locations}
             />

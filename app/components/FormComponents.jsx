@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import {
     Button,
@@ -29,6 +29,8 @@ const DropdownList = (props) => {
                 data={props.data || [{ key: "1", value: "value" }]}
                 save="value"
             />
+            {selected === "" && props.selected === "" && 
+                <Text variant={bodyVariant} style={styles.errorText}>Please select an option before continuing!</Text>}
         </View>
     );
 };
@@ -108,7 +110,7 @@ const TimeInput = (props) => {
                 {props.displayTime.toLocaleTimeString("en-GB", timeOptions)}
             </Text>
             {props.displayTime > props.today && (
-                <Text variant={bodyVariant} style={{ color: "crimson" }}>
+                <Text variant={bodyVariant} style={styles.errorText}>
                     Error: Selected future time! Are you a time traveller?
                 </Text>
             )}
@@ -194,6 +196,7 @@ const UploadPhotos = (props) => {
             </View>
             <Text variant={bodyVariant}>
                 Image: {props.photoURI ? props.photoURI : ""}
+                {!props.photoURI && <Text variant={bodyVariant} style={styles.errorText}>Upload before continuing!</Text>}
             </Text>
         </View>
     );
@@ -212,6 +215,9 @@ const titleVariant = "titleMedium";
 const bodyVariant = "bodyMedium";
 
 const styles = StyleSheet.create({
+    errorText: {
+        color: "#BA1A1A"
+    },
     formInput: {
         fontSize: 16,
         width: "100%",
