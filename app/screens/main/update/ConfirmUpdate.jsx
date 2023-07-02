@@ -35,25 +35,25 @@ export default function ConfirmUpdate() {
                 route.params.formType !== "report" &&
                 route.params.formType !== "delete" && (
                     <>
-                    <PillButton
-                        label="Go to Profile"
-                        onPress={() => {
-                            navigation.navigate("catalogue", {
-                                screen: "CatProfile",
-                                initial: false,
-                                params: { catID: route.params.catID },
-                            })
-                        }}
-                    />
+                        <PillButton
+                            label="Go to Profile"
+                            onPress={() => {
+                                navigation.navigate("catalogue", {
+                                    screen: "CatProfile",
+                                    initial: false,
+                                    params: { catID: route.params.catID },
+                                });
+                            }}
+                        />
 
-                    <PillButton
-                        label={"Continue Updating"}
-                        onPress={() => {
-                            navigation.navigate("UpdateOptions", {
-                                ...route.params,
-                            });
-                        }}
-                    />
+                        <PillButton
+                            label={"Continue Updating"}
+                            onPress={() => {
+                                navigation.navigate("UpdateOptions", {
+                                    ...route.params,
+                                });
+                            }}
+                        />
                     </>
                 )}
             <PillButton

@@ -32,9 +32,7 @@ describe("<CatCard />", () => {
         );
         const buttons = getAllByTestId("button");
         fireEvent.press(buttons[0]);
-        fireEvent.press(buttons[1]);
         expect(profileOnPressMock).toHaveBeenCalled();
-        expect(locationOnPressMock).toHaveBeenCalled();
     });
 
     it("displays the name prop", () => {

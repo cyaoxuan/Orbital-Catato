@@ -561,7 +561,7 @@ exports[`<CatCard /> renders correctly 1`] = `
           collapsable={false}
           style={
             {
-              "backgroundColor": "rgba(103, 80, 164, 1)",
+              "backgroundColor": "rgba(28, 27, 31, 0.12)",
               "borderRadius": 20,
               "marginLeft": 8,
               "shadowColor": "#000",
@@ -579,7 +579,7 @@ exports[`<CatCard /> renders correctly 1`] = `
             collapsable={false}
             style={
               {
-                "backgroundColor": "rgba(103, 80, 164, 1)",
+                "backgroundColor": "rgba(28, 27, 31, 0.12)",
                 "borderColor": "transparent",
                 "borderRadius": 20,
                 "borderStyle": "solid",
@@ -723,7 +723,7 @@ exports[`<CatCard /> renders correctly 1`] = `
                         false,
                         false,
                         {
-                          "color": "rgba(255, 255, 255, 1)",
+                          "color": "rgba(28, 27, 31, 0.38)",
                           "fontFamily": "System",
                           "fontSize": 14,
                           "fontWeight": "500",

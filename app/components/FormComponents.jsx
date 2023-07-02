@@ -29,8 +29,11 @@ const DropdownList = (props) => {
                 data={props.data || [{ key: "1", value: "value" }]}
                 save="value"
             />
-            {selected === "" && props.selected === "" && 
-                <Text variant={bodyVariant} style={styles.errorText}>Please select an option before continuing!</Text>}
+            {selected === "" && props.selected === "" && (
+                <Text variant={bodyVariant} style={styles.errorText}>
+                    Please select an option before continuing!
+                </Text>
+            )}
         </View>
     );
 };
@@ -196,7 +199,11 @@ const UploadPhotos = (props) => {
             </View>
             <Text variant={bodyVariant}>
                 Image: {props.photoURI ? props.photoURI : ""}
-                {!props.photoURI && <Text variant={bodyVariant} style={styles.errorText}>Upload before continuing!</Text>}
+                {!props.photoURI && (
+                    <Text variant={bodyVariant} style={styles.errorText}>
+                        Upload before continuing!
+                    </Text>
+                )}
             </Text>
         </View>
     );
@@ -216,7 +223,7 @@ const bodyVariant = "bodyMedium";
 
 const styles = StyleSheet.create({
     errorText: {
-        color: "#BA1A1A"
+        color: "#BA1A1A",
     },
     formInput: {
         fontSize: 16,
