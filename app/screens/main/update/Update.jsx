@@ -8,22 +8,15 @@ import { PillButton } from "../../../components/Button";
 export default function Update() {
     const navigation = useNavigation();
 
-    const route = useRoute();
-    // Check if there are route params from SelectCat, if not ask user to Select Cat
-    const cat = route.params?.cat ? route.params.cat : null;
-    const catID = cat ? cat.catID : null;
-    const name = cat ? cat.name : "Select Cat";
-    const photoURL = cat && cat.photoURLs ? cat.photoURLs[0] : null;
-
     return (
         <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
             <CatAvatar
-                photoURL={photoURL}
+                photoURL={null}
                 size={200}
                 variant="headlineLarge"
-                name={name}
+                name="Select Cat"
             />
             <PillButton
                 label="Select Cat"
@@ -40,13 +33,6 @@ export default function Update() {
             >
                 Please ensure you have selected the right cat before proceeding
             </Text>
-            <PillButton
-                disabled={!catID}
-                label="Continue to Update"
-                onPress={() => {
-                    navigation.navigate("UpdateOptions", { ...cat });
-                }}
-            />
 
             <PillButton
                 label="Create New Profile"

@@ -13,9 +13,6 @@ import NumericInput from "react-native-numeric-input";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { timeOptions } from "../data/DateTimeOptions";
 
-const titleVariant = "titleMedium";
-const bodyVariant = "bodyMedium";
-
 // For Location
 const DropdownList = (props) => {
     const [selected, setSelected] = useState("");
@@ -32,6 +29,11 @@ const DropdownList = (props) => {
                 data={props.data || [{ key: "1", value: "value" }]}
                 save="value"
             />
+            {selected === "" && props.selected === "" && (
+                <Text variant={bodyVariant} style={styles.errorText}>
+                    Please select an option before continuing!
+                </Text>
+            )}
         </View>
     );
 };
@@ -96,44 +98,32 @@ const NumberSpinner = (props) => {
 
 // For time
 const TimeInput = (props) => {
-    const today = new Date();
-    const [date, setDate] = useState(new Date());
-    const [show, setShow] = useState(false);
-
-    const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate;
-        setShow(false);
-        setDate(currentDate);
-    };
-
     return (
         <View style={styles.container}>
             <Text variant={titleVariant}>{props.titleText}</Text>
             <Button
                 mode="contained-tonal"
-                onPress={props.onPress ? props.onPress : setShow}
+                onPress={props.onPress}
                 style={{ width: "50%", margin: 4 }}
             >
                 Pick Time{" "}
             </Button>
             <Text variant={bodyVariant}>
                 Selected Time:{" "}
-                {props.displayTime
-                    ? props.displayTime.toLocaleTimeString("en-GB", timeOptions)
-                    : date.toLocaleTimeString("en-GB", timeOptions)}
+                {props.displayTime.toLocaleTimeString("en-GB", timeOptions)}
             </Text>
-            {(props.displayTime ? props.displayTime > today : date > today) && (
-                <Text variant={bodyVariant} style={{ color: "crimson" }}>
+            {props.displayTime > props.today && (
+                <Text variant={bodyVariant} style={styles.errorText}>
                     Error: Selected future time! Are you a time traveller?
                 </Text>
             )}
-            {(props.show ? props.show : show) && (
+            {props.show && (
                 <RNDateTimePicker
                     mode="time"
                     display="spinner"
                     is24Hour={true}
-                    value={props.value ? props.value : date}
-                    onChange={props.onChange ? props.onChange : onChange}
+                    value={props.value}
+                    onChange={props.onChange}
                 />
             )}
         </View>
@@ -157,11 +147,13 @@ const TwoRadioInput = (props) => {
             >
                 <View style={styles.radioButtonContainer}>
                     <Text variant={bodyVariant}>{props.firstText}</Text>
-                    <RadioButton value={props.firstValue || "First"} />
+                    <RadioButton.Android value={props.firstValue || "First"} />
                 </View>
                 <View style={styles.radioButtonContainer}>
                     <Text variant={bodyVariant}>{props.secondText}</Text>
-                    <RadioButton value={props.secondValue || "Second"} />
+                    <RadioButton.Android
+                        value={props.secondValue || "Second"}
+                    />
                 </View>
             </RadioButton.Group>
         </View>
@@ -207,6 +199,11 @@ const UploadPhotos = (props) => {
             </View>
             <Text variant={bodyVariant}>
                 Image: {props.photoURI ? props.photoURI : ""}
+                {!props.photoURI && (
+                    <Text variant={bodyVariant} style={styles.errorText}>
+                        Upload before continuing!
+                    </Text>
+                )}
             </Text>
         </View>
     );
@@ -221,7 +218,13 @@ export {
     UploadPhotos,
 };
 
+const titleVariant = "titleMedium";
+const bodyVariant = "bodyMedium";
+
 const styles = StyleSheet.create({
+    errorText: {
+        color: "#BA1A1A",
+    },
     formInput: {
         fontSize: 16,
         width: "100%",

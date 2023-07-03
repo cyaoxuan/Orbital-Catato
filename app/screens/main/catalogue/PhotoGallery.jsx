@@ -1,6 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, Image, View } from "react-native";
-import { DefaultTheme, FAB, Portal, Provider, Text } from "react-native-paper";
+import {
+    Button,
+    DefaultTheme,
+    Dialog,
+    FAB,
+    Portal,
+    Provider,
+    Text,
+} from "react-native-paper";
 import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import { useRoute } from "@react-navigation/native";
 import { useUserAddCatPicture } from "../../../utils/db/cat";
@@ -9,6 +17,7 @@ import {
     getImageFromCamera,
     getImageFromGallery,
 } from "../../../utils/db/photo";
+import { useNavigation } from "expo-router";
 
 const lightTheme = {
     ...DefaultTheme,
@@ -18,10 +27,21 @@ const lightTheme = {
 
 export default function PhotoGallery() {
     const { user } = getAuth();
+    const navigation = useNavigation();
     const route = useRoute();
     const { catID } = route.params;
     const { userAddCatPicture, loading, error } = useUserAddCatPicture();
 
+    // For Confirm Image Upload Dialog
+    const [dialogVisible, setDialogVisible] = useState(false);
+    const [dialogText, setDialogText] = useState("");
+    const showDialog = () => setDialogVisible(true);
+    const hideDialog = () => {
+        setDialogVisible(false);
+        navigation.navigate("CatProfile", { catID: catID });
+    };
+
+    // For image FAB
     const [open, setOpen] = useState(false);
     const imageSize = getItemWidthCols(2, 8);
     const [photoError, setPhotoError] = useState(null);
@@ -37,10 +57,14 @@ export default function PhotoGallery() {
                     catID,
                     photoURI
                 );
+                setDialogText(
+                    "Image upload from gallery confirmed! Thank you for your contribution!"
+                );
             }
         } catch (error) {
             console.error(error);
             setPhotoError(null);
+            setDialogText("Error uploading image from gallery :(");
         }
     };
 
@@ -55,12 +79,22 @@ export default function PhotoGallery() {
                     catID,
                     photoURI
                 );
+                setDialogText(
+                    "Image upload from camera confirmed! Thank you for your contribution!"
+                );
             }
         } catch (error) {
             console.error(error);
             setPhotoError(null);
+            setDialogText("Error uploading image from camera :(");
         }
     };
+
+    useEffect(() => {
+        if (dialogText !== "") {
+            showDialog();
+        }
+    }, [dialogText]);
 
     return (
         <Provider theme={lightTheme}>
@@ -111,6 +145,17 @@ export default function PhotoGallery() {
                         ]}
                         onStateChange={() => setOpen((prev) => !prev)}
                     />
+                </Portal>
+                <Portal>
+                    <Dialog visible={dialogVisible} onDismiss={hideDialog}>
+                        <Dialog.Title>Image Upload</Dialog.Title>
+                        <Dialog.Content>
+                            <Text variant="bodyMedium">{dialogText}</Text>
+                        </Dialog.Content>
+                        <Dialog.Actions>
+                            <Button onPress={hideDialog}>Done</Button>
+                        </Dialog.Actions>
+                    </Dialog>
                 </Portal>
             </View>
         </Provider>

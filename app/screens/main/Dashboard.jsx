@@ -22,9 +22,7 @@ export const CarouselContainer = ({
         <View>
             <View style={{ margin: 8 }}>
                 <Text variant="headlineMedium">{titleText || "Title"}</Text>
-                <Text variant="headlineSmall">
-                    {subtitleText || "Subtitle"}
-                </Text>
+                <Text variant="bodyLarge">{subtitleText || "Subtitle"}</Text>
             </View>
             {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] ? (
@@ -39,7 +37,7 @@ export const CarouselContainer = ({
 
 export default function Dashboard() {
     const [refreshing, setRefreshing] = useState(false);
-    const cardWidth = getItemWidthFrac(7 / 8);
+    const cardWidth = getItemWidthFrac(5 / 6);
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);

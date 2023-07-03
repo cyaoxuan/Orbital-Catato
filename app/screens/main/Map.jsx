@@ -11,7 +11,7 @@ import {
 import { ActivityIndicator, Searchbar, Text } from "react-native-paper";
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { WebView } from "react-native-webview";
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocused, useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useGetAllCats } from "../../utils/db/cat";
 
@@ -70,6 +70,22 @@ const RenderPredictionRow = ({ item, onPress }) => {
 };
 
 export default function Map() {
+    // For map animation
+    const mapRef = useRef(null);
+
+    const animateToRegion = (location) => {
+        mapRef.current?.animateToRegion(
+            { ...location, latitudeDelta: 0.005, longitudeDelta: 0.005 },
+            1000
+        );
+    };
+
+    // Uses route params to bring user to location
+    const route = useRoute();
+    if (route.params?.location) {
+        animateToRegion(route.params.location);
+    }
+
     // For navigating to profile
     const navigation = useNavigation();
 
@@ -88,16 +104,6 @@ export default function Map() {
                 item.name.toLowerCase().includes(query.toLowerCase())
         );
         setSearchCats(filteredCats);
-    };
-
-    // For map animation
-    const mapRef = useRef(null);
-
-    const animateToRegion = (location) => {
-        mapRef.current?.animateToRegion(
-            { ...location, latitudeDelta: 0.01, longitudeDelta: 0.01 },
-            1000
-        );
     };
 
     // Fetch from DB
@@ -119,10 +125,7 @@ export default function Map() {
     }, [allCats]);
 
     return (
-        <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            enabled={false}
-        >
+        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : ""}>
             {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] && <ActivityIndicator />}
 

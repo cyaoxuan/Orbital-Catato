@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import {
     ActivityIndicator,
     Divider,
@@ -11,68 +11,162 @@ import { useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { PillButton } from "../../../components/Button";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { Ionicons } from "@expo/vector-icons";
 
 const SettingsOptionList = () => {
-    const [valueNotif, setValueNotif] = useState(false);
+    const [notifOn, setNotifOn] = useState(false);
     const navigation = useNavigation();
 
     return (
         <List.Section>
             <List.Item
                 title="Reset Password"
-                titleStyle={styles.title}
+                style={styles.listView}
+                titleStyle={styles.listTitle}
                 onPress={() => {}}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="lock-closed" size={24} />}
+                        icon={() => (
+                            <Ionicons name="lock-closed-outline" size={24} />
+                        )}
                     />
                 )}
-                right={() => <List.Icon icon="arrow-right" />}
-            />
-            <Divider />
-            <List.Item
-                title="FAQs"
-                titleStyle={styles.title}
-                onPress={() => {}}
-                left={() => (
+                right={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="help-circle" size={24} />}
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
                     />
                 )}
-                right={() => <List.Icon icon="arrow-right" />}
             />
             <Divider />
             <List.Item
                 bottomDivider
                 title="Notifications"
-                titleStyle={styles.title}
+                style={styles.listView}
+                titleStyle={styles.listTitle}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="notifications" size={24} />}
+                        icon={() => (
+                            <Ionicons name="notifications-outline" size={24} />
+                        )}
                     />
                 )}
                 right={() => (
                     <Switch
                         style={{
-                            transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }],
+                            transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
                         }}
-                        value={valueNotif}
-                        onValueChange={setValueNotif}
+                        value={notifOn}
+                        onValueChange={setNotifOn}
+                    />
+                )}
+            />
+            <Divider />
+            <List.Item
+                title="About"
+                style={styles.listView}
+                titleStyle={styles.listTitle}
+                onPress={() => {}}
+                left={() => (
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons
+                                name="information-circle-outline"
+                                size={24}
+                            />
+                        )}
+                    />
+                )}
+                right={() => (
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
+                    />
+                )}
+            />
+            <Divider />
+            <List.Item
+                title="FAQs"
+                style={styles.listView}
+                titleStyle={styles.listTitle}
+                onPress={() => {}}
+                left={() => (
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="help-circle-outline" size={24} />
+                        )}
+                    />
+                )}
+                right={() => (
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
                     />
                 )}
             />
             <Divider />
             <List.Item
                 title="Documentation"
-                titleStyle={styles.title}
+                style={styles.listView}
+                titleStyle={styles.listTitle}
                 onPress={() => {}}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="paper-plane" size={24} />}
+                        icon={() => (
+                            <Ionicons name="document-outline" size={24} />
+                        )}
                     />
                 )}
-                right={() => <List.Icon icon="arrow-right" />}
+                right={() => (
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
+                    />
+                )}
+            />
+            <Divider />
+            <List.Item
+                title="Admin Panel"
+                style={styles.listView}
+                titleStyle={styles.listTitle}
+                onPress={() => {}}
+                left={() => (
+                    <List.Icon
+                        icon={() => <Ionicons name="build-outline" size={24} />}
+                    />
+                )}
+                right={() => (
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
+                    />
+                )}
+            />
+            <Divider />
+            <List.Item
+                title="Request Caretaker Tier"
+                style={styles.listView}
+                titleStyle={styles.listTitle}
+                onPress={() => {}}
+                left={() => (
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="create-outline" size={24} />
+                        )}
+                    />
+                )}
+                right={() => (
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={24} />
+                        )}
+                    />
+                )}
             />
             <Divider />
         </List.Section>
@@ -100,25 +194,35 @@ export default function Settings() {
     };
 
     return (
-        <View style={{ flex: 1 }}>
-            <View style={{ flex: 1 }}>
-                <Text variant="titleMedium" style={{ padding: 8 }}>
+        <ScrollView style={{ margin: 16 }}>
+            <View>
+                <Text variant={titleVariant}>User</Text>
+                <Text variant={bodyVariant} style={styles.userDetails}>
                     Username:{" "}
                     {user
                         ? user.displayName
                             ? user.displayName
-                            : "__GUEST__"
+                            : "__GUEST USER__"
                         : "None"}
                 </Text>
-                <Text variant="titleMedium" style={{ padding: 8 }}>
+                <Text variant={bodyVariant} style={styles.userDetails}>
                     User ID: {user ? user.uid : "None"}
                 </Text>
-                <Text variant="titleMedium" style={{ padding: 8 }}>
-                    Is Guest: {user ? String(user.isAnonymous) : "None"}
+                <Text variant={bodyVariant} style={styles.userDetails}>
+                    Email:{" "}
+                    {user
+                        ? user.isAnonymous
+                            ? "No Email"
+                            : user.email
+                        : "None"}
+                </Text>
+                <Text variant={bodyVariant} style={styles.userDetails}>
+                    User Tier:{" "}
+                    {user ? (user.isAnonymous ? "Guest" : "Account") : "None"}
                 </Text>
             </View>
-
-            <View style={{ flex: 2, margin: 16 }}>
+            <Divider />
+            <View marginTop={4}>
                 <SettingsOptionList />
             </View>
 
@@ -128,12 +232,23 @@ export default function Settings() {
 
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}
-        </View>
+        </ScrollView>
     );
 }
 
+const titleVariant = "titleLarge";
+const bodyVariant = "bodyLarge";
+
 const styles = StyleSheet.create({
-    title: {
+    listTitle: {
         fontSize: 24,
+    },
+    listView: {
+        justifyContent: "center",
+        height: 65,
+    },
+    userDetails: {
+        paddingVertical: 8,
+        paddingHorizontal: 4,
     },
 });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { ActivityIndicator, Divider, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
@@ -26,11 +26,9 @@ import {
 } from "../../../utils/db/photo";
 import { locations } from "../../../data/locationData";
 
-const today = new Date();
-
 const CreateProfile = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURLs, birthYear, formType } = props;
+    const { name, birthYear, formType } = props;
     const [processed, setProcessed] = useState(false);
     const [inProgress, setInProgress] = useState(false);
     const { userCreateCat, loading, error } = useUserCreateCat();
@@ -112,6 +110,7 @@ const CreateProfile = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Create Profile</Text>
             <FormInput
                 label="Name"
                 placeholder="Kitty's Name"
@@ -195,7 +194,7 @@ const CreateProfile = (props) => {
 
 const ReportCat = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURLs, formType } = props;
+    const { name, formType } = props;
     const [processed, setProcessed] = useState(false);
     const [inProgress, setInProgress] = useState(false);
     const { userCreateCat, loading, error } = useUserCreateCat();
@@ -204,6 +203,8 @@ const ReportCat = (props) => {
     const [location, setLocation] = useState("");
 
     // For RNDateTimePicker
+    const todayRef = useRef(new Date());
+    const today = todayRef.current;
     const [date, setDate] = useState(new Date());
     const [showTime, setShowTime] = useState(false);
     const onTimeChange = (event, selectedDate) => {
@@ -211,6 +212,14 @@ const ReportCat = (props) => {
         setShowTime(false);
         setDate(currentDate);
     };
+    // To keep updating current time every second
+    useEffect(() => {
+        const interval = setInterval(() => {
+            todayRef.current = new Date();
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     // For Image Picker
     const [photoURI, setPhotoURI] = useState("");
@@ -283,8 +292,10 @@ const ReportCat = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Report Cat</Text>
             <DropdownList
                 titleText="Seen at:"
+                selected={location}
                 setSelected={(val) => setLocation(val)}
                 data={locations}
             />
@@ -293,6 +304,7 @@ const ReportCat = (props) => {
 
             <TimeInput
                 titleText="Last Seen Time:"
+                today={today}
                 displayTime={date}
                 value={date}
                 onChange={onTimeChange}
@@ -364,7 +376,21 @@ const ReportCat = (props) => {
 
 const UpdateLocation = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURLs, formType, userID } = props;
+    const {
+        catID,
+        name,
+        photoURLs,
+        gender,
+        birthYear,
+        sterilised,
+        keyFeatures,
+        concernStatus,
+        concernDesc,
+        isFostered,
+        fosterReason,
+        formType,
+        userID,
+    } = props;
     const [processed, setProcessed] = useState(false);
     const [inProgress, setInProgress] = useState(false);
     const { userUpdateCatLocation, loading, error } =
@@ -374,6 +400,8 @@ const UpdateLocation = (props) => {
     const [location, setLocation] = useState("");
 
     // For RNDateTimePicker
+    const todayRef = useRef(new Date());
+    const today = todayRef.current;
     const [date, setDate] = useState(new Date());
     const [showTime, setShowTime] = useState(false);
     const onTimeChange = (event, selectedDate) => {
@@ -381,16 +409,50 @@ const UpdateLocation = (props) => {
         setShowTime(false);
         setDate(currentDate);
     };
+    // To keep updating current time every second
+    useEffect(() => {
+        const interval = setInterval(() => {
+            todayRef.current = new Date();
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
             navigation.navigate("ConfirmUpdate", {
+                catID: catID,
                 name: name,
+                gender: gender,
+                birthYear: birthYear,
+                sterilised: sterilised,
+                keyFeatures: keyFeatures,
                 photoURLs: photoURLs,
+                concernStatus: concernStatus,
+                concernDesc: concernDesc,
+                isFostered: isFostered,
+                fosterReason: fosterReason,
                 formType: formType,
             });
         }
-    }, [loading, processed, error, navigation, name, photoURLs, formType]);
+    }, [
+        loading,
+        processed,
+        error,
+        navigation,
+        catID,
+        name,
+        gender,
+        birthYear,
+        sterilised,
+        keyFeatures,
+        photoURLs,
+        formType,
+        isFostered,
+        fosterReason,
+        concernStatus,
+        concernDesc,
+    ]);
 
     const handleUpdate = async () => {
         if (!inProgress) {
@@ -412,8 +474,10 @@ const UpdateLocation = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Update Location</Text>
             <DropdownList
                 titleText="Seen at:"
+                selected={location}
                 setSelected={(val) => setLocation(val)}
                 data={locations}
             />
@@ -422,6 +486,7 @@ const UpdateLocation = (props) => {
 
             <TimeInput
                 titleText="Last Seen Time:"
+                today={today}
                 displayTime={date}
                 value={date}
                 onChange={onTimeChange}
@@ -444,8 +509,21 @@ const UpdateLocation = (props) => {
 
 const UpdateConcern = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURLs, concernStatus, concernDesc, formType } =
-        props;
+    const {
+        catID,
+        name,
+        photoURLs,
+        gender,
+        birthYear,
+        sterilised,
+        keyFeatures,
+        concernStatus,
+        concernDesc,
+        isFostered,
+        fosterReason,
+        formType,
+        userID,
+    } = props;
     const [processed, setProcessed] = useState(false);
     const [inProgress, setInProgress] = useState(false);
     const { userUpdateCatConcern, loading, error } = useUserUpdateCatConcern();
@@ -470,6 +548,8 @@ const UpdateConcern = (props) => {
     );
 
     // For RNDateTimePicker
+    const todayRef = useRef(new Date());
+    const today = todayRef.current;
     const [date, setDate] = useState(new Date());
     const [showTime, setShowTime] = useState(false);
     const onTimeChange = (event, selectedDate) => {
@@ -477,16 +557,60 @@ const UpdateConcern = (props) => {
         setShowTime(false);
         setDate(currentDate);
     };
+    // To keep updating current time every second
+    useEffect(() => {
+        const interval = setInterval(() => {
+            todayRef.current = new Date();
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
             navigation.navigate("ConfirmUpdate", {
+                catID: catID,
                 name: name,
+                gender: gender,
+                birthYear: birthYear,
+                sterilised: sterilised,
+                keyFeatures: keyFeatures,
                 photoURLs: photoURLs,
+                concernStatus:
+                    (concern === "Injured" &&
+                        concernStatus.includes(concern)) ||
+                    (concern === "healthy" && !concernStatus.includes(concern))
+                        ? concernStatus
+                        : concern === "Injured"
+                        ? concernStatus.push(concern)
+                        : concernStatus.filter(
+                              (status) => status !== "Injured"
+                          ),
+                concernDesc: concernDescription,
+                isFostered: isFostered,
+                fosterReason: fosterReason,
                 formType: formType,
             });
         }
-    }, [loading, processed, error, navigation, name, photoURLs, formType]);
+    }, [
+        loading,
+        processed,
+        error,
+        navigation,
+        catID,
+        name,
+        gender,
+        birthYear,
+        sterilised,
+        keyFeatures,
+        photoURLs,
+        concern,
+        concernDescription,
+        isFostered,
+        fosterReason,
+        formType,
+        concernStatus,
+    ]);
 
     const handleImageFromGallery = async () => {
         try {
@@ -534,8 +658,10 @@ const UpdateConcern = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Update Concern</Text>
             <DropdownList
                 titleText="Seen at:"
+                selected={location}
                 setSelected={(val) => setLocation(val)}
                 data={locations}
             />
@@ -544,6 +670,7 @@ const UpdateConcern = (props) => {
 
             <TimeInput
                 titleText="Last Seen Time:"
+                today={today}
                 displayTime={date}
                 value={date}
                 onChange={onTimeChange}
@@ -603,7 +730,21 @@ const UpdateConcern = (props) => {
 
 const UpdateFed = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURLs, formType } = props;
+    const {
+        catID,
+        name,
+        photoURLs,
+        gender,
+        birthYear,
+        sterilised,
+        keyFeatures,
+        concernStatus,
+        concernDesc,
+        isFostered,
+        fosterReason,
+        formType,
+        userID,
+    } = props;
     const [processed, setProcessed] = useState(false);
     const [inProgress, setInProgress] = useState(false);
     const { userUpdateCatFed, loading, error } = useUserUpdateCatFed();
@@ -612,6 +753,8 @@ const UpdateFed = (props) => {
     const [location, setLocation] = useState("");
 
     // For RNDateTimePicker
+    const todayRef = useRef(new Date());
+    const today = todayRef.current;
     const [date, setDate] = useState(new Date());
     const [showTime, setShowTime] = useState(false);
     const onTimeChange = (event, selectedDate) => {
@@ -619,16 +762,51 @@ const UpdateFed = (props) => {
         setShowTime(false);
         setDate(currentDate);
     };
+    // To keep updating current time every second
+    useEffect(() => {
+        const interval = setInterval(() => {
+            todayRef.current = new Date();
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
             navigation.navigate("ConfirmUpdate", {
+                catID: catID,
                 name: name,
+                gender: gender,
+                birthYear: birthYear,
+                sterilised: sterilised,
+                keyFeatures: keyFeatures,
                 photoURLs: photoURLs,
+                concernStatus: concernStatus,
+                concernDesc: concernDesc,
+                isFostered: isFostered,
+                fosterReason: fosterReason,
                 formType: formType,
             });
         }
-    }, [loading, processed, error, navigation, name, photoURLs, formType]);
+    }, [
+        loading,
+        processed,
+        error,
+        navigation,
+        props,
+        catID,
+        name,
+        gender,
+        birthYear,
+        sterilised,
+        keyFeatures,
+        photoURLs,
+        concernStatus,
+        concernDesc,
+        isFostered,
+        fosterReason,
+        formType,
+    ]);
 
     const handleUpdate = async () => {
         if (!inProgress) {
@@ -650,8 +828,10 @@ const UpdateFed = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Update Fed</Text>
             <DropdownList
                 titleText="Seen at:"
+                selected={location}
                 setSelected={(val) => setLocation(val)}
                 data={locations}
             />
@@ -660,6 +840,7 @@ const UpdateFed = (props) => {
 
             <TimeInput
                 titleText="Last Fed Time:"
+                today={today}
                 displayTime={date}
                 value={date}
                 onChange={onTimeChange}
@@ -682,8 +863,21 @@ const UpdateFed = (props) => {
 
 const UpdateFoster = (props) => {
     const navigation = useNavigation();
-    const { catID, name, photoURLs, isFostered, fosterReason, formType } =
-        props;
+    const {
+        catID,
+        name,
+        photoURLs,
+        gender,
+        birthYear,
+        sterilised,
+        keyFeatures,
+        concernStatus,
+        concernDesc,
+        isFostered,
+        fosterReason,
+        formType,
+        userID,
+    } = props;
     const [processed, setProcessed] = useState(false);
     const [inProgress, setInProgress] = useState(false);
     const { userUpdateCatFoster, loading, error } = useUserUpdateCatFoster();
@@ -699,12 +893,39 @@ const UpdateFoster = (props) => {
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
             navigation.navigate("ConfirmUpdate", {
+                catID: catID,
                 name: name,
-                photoURLs: photoURLs[0],
+                gender: gender,
+                birthYear: birthYear,
+                sterilised: sterilised,
+                keyFeatures: keyFeatures,
+                photoURLs: photoURLs,
+                concernStatus: concernStatus,
+                concernDesc: concernDesc,
+                isFostered: fostered,
+                fosterReason: fosterDesc,
                 formType: formType,
             });
         }
-    }, [loading, processed, error, navigation, name, photoURLs, formType]);
+    }, [
+        loading,
+        processed,
+        error,
+        navigation,
+        props,
+        catID,
+        name,
+        gender,
+        birthYear,
+        sterilised,
+        keyFeatures,
+        photoURLs,
+        concernStatus,
+        concernDesc,
+        fostered,
+        fosterDesc,
+        formType,
+    ]);
 
     const handleUpdate = async () => {
         if (!inProgress) {
@@ -726,6 +947,7 @@ const UpdateFoster = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Update Foster</Text>
             <TwoRadioInput
                 titleText="Fostering?"
                 value={fostered}
@@ -771,6 +993,8 @@ const UpdateProfile = (props) => {
         sterilised,
         keyFeatures,
         formType,
+        isFostered,
+        fosterReason,
     } = props;
     const [processed, setProcessed] = useState(false);
     const [inProgress, setInProgress] = useState(false);
@@ -801,12 +1025,34 @@ const UpdateProfile = (props) => {
         if (!loading[0] && processed && error[0] === null) {
             console.log(newName);
             navigation.navigate("ConfirmUpdate", {
+                catID: catID,
                 name: newName,
+                gender: newGender,
+                birthYear: year,
+                sterilised: sterile === "Yes",
+                keyFeatures: features,
                 photoURLs: photoURLs,
+                isFostered: isFostered,
+                fosterReason: fosterReason,
                 formType: formType,
             });
         }
-    }, [loading, processed, error, navigation, newName, photoURLs, formType]);
+    }, [
+        loading,
+        processed,
+        error,
+        navigation,
+        catID,
+        newName,
+        newGender,
+        year,
+        sterile,
+        features,
+        photoURLs,
+        formType,
+        isFostered,
+        fosterReason,
+    ]);
 
     const handleImageFromGallery = async () => {
         try {
@@ -852,6 +1098,7 @@ const UpdateProfile = (props) => {
 
     return (
         <View style={styles.formContainer}>
+            <Text variant={titleVariant}>Update Profile</Text>
             <FormInput
                 label="Name"
                 placeholder="Kitty's Name"
@@ -968,7 +1215,10 @@ const DeleteProfile = (props) => {
 
     return (
         <View style={styles.formContainer}>
-            <Text>Deleted Profiles cannot be recovered!</Text>
+            <Text variant={titleVariant}>Delete Profile</Text>
+            <Text variant="bodyMedium">
+                Deleted Profiles cannot be recovered!
+            </Text>
 
             <FormInput
                 multiline={true}
@@ -1001,6 +1251,8 @@ export {
     UpdateProfile,
     DeleteProfile,
 };
+
+const titleVariant = "titleMedium";
 
 const styles = StyleSheet.create({
     formContainer: {

@@ -640,7 +640,7 @@ exports[`<TimeInput /> renders correctly 1`] = `
           {
             "busy": undefined,
             "checked": undefined,
-            "disabled": false,
+            "disabled": true,
             "expanded": undefined,
             "selected": undefined,
           }
@@ -765,7 +765,7 @@ exports[`<TimeInput /> renders correctly 1`] = `
   >
     Selected Time:
      
-    20:00
+    07:00
   </Text>
 </View>
 `;
@@ -873,54 +873,57 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
             },
             {
               "borderRadius": 18,
-              "padding": 6,
             },
           ]
         }
       >
         <View
+          collapsable={false}
           style={
             {
-              "opacity": 1,
+              "borderColor": "rgba(103, 80, 164, 1)",
+              "borderRadius": 10,
+              "borderWidth": 2,
+              "height": 20,
+              "margin": 8,
+              "width": 20,
             }
           }
         >
-          <Text
-            accessibilityElementsHidden={true}
-            allowFontScaling={false}
-            importantForAccessibility="no-hide-descendants"
-            pointerEvents="none"
-            selectable={false}
+          <View
             style={
               [
                 {
-                  "color": "rgba(103, 80, 164, 1)",
-                  "fontSize": 24,
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 },
-                [
-                  {
-                    "lineHeight": 24,
-                    "transform": [
-                      {
-                        "scaleX": 1,
-                      },
-                    ],
-                  },
-                  {
-                    "backgroundColor": "transparent",
-                  },
-                ],
                 {
-                  "fontFamily": "material-community",
-                  "fontStyle": "normal",
-                  "fontWeight": "normal",
+                  "alignItems": "center",
+                  "justifyContent": "center",
                 },
-                {},
               ]
             }
           >
-            󰄬
-          </Text>
+            <View
+              collapsable={false}
+              style={
+                {
+                  "backgroundColor": "rgba(103, 80, 164, 1)",
+                  "borderRadius": 5,
+                  "height": 10,
+                  "transform": [
+                    {
+                      "scale": 1,
+                    },
+                  ],
+                  "width": 10,
+                }
+              }
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -994,55 +997,23 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
             },
             {
               "borderRadius": 18,
-              "padding": 6,
             },
           ]
         }
       >
         <View
+          collapsable={false}
           style={
             {
-              "opacity": 0,
+              "borderColor": "rgba(73, 69, 79, 1)",
+              "borderRadius": 10,
+              "borderWidth": 2,
+              "height": 20,
+              "margin": 8,
+              "width": 20,
             }
           }
-        >
-          <Text
-            accessibilityElementsHidden={true}
-            allowFontScaling={false}
-            importantForAccessibility="no-hide-descendants"
-            pointerEvents="none"
-            selectable={false}
-            style={
-              [
-                {
-                  "color": "rgba(103, 80, 164, 1)",
-                  "fontSize": 24,
-                },
-                [
-                  {
-                    "lineHeight": 24,
-                    "transform": [
-                      {
-                        "scaleX": 1,
-                      },
-                    ],
-                  },
-                  {
-                    "backgroundColor": "transparent",
-                  },
-                ],
-                {
-                  "fontFamily": "material-community",
-                  "fontStyle": "normal",
-                  "fontWeight": "normal",
-                },
-                {},
-              ]
-            }
-          >
-            󰄬
-          </Text>
-        </View>
+        />
       </View>
     </View>
   </View>
@@ -1311,6 +1282,31 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
     }
   >
     Image: 
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 14,
+            "fontWeight": "400",
+            "letterSpacing": 0.25,
+            "lineHeight": 20,
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "writingDirection": "ltr",
+          },
+          {
+            "color": "#BA1A1A",
+          },
+        ]
+      }
+    >
+      Upload before continuing!
+    </Text>
   </Text>
 </View>
 `;

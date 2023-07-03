@@ -98,12 +98,22 @@ describe("<NumberSpinner />", () => {
 
 describe("<TimeInput />", () => {
     it("renders successfully", () => {
-        const timeInput = render(<TimeInput />);
+        const timeInput = render(
+            <TimeInput
+                displayTime={new Date(23, 6, 2)}
+                today={new Date(23, 6, 3)}
+            />
+        );
         expect(timeInput).toBeDefined();
     });
 
     it("renders correctly", () => {
-        const tree = render(<TimeInput />).toJSON();
+        const tree = render(
+            <TimeInput
+                displayTime={new Date(23, 6, 2)}
+                today={new Date(23, 6, 3)}
+            />
+        ).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

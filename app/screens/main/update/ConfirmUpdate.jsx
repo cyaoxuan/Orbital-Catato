@@ -31,11 +31,36 @@ export default function ConfirmUpdate() {
                 Thank you for your contribution!
             </Text>
 
+            {route.params.formType !== "create" &&
+                route.params.formType !== "report" &&
+                route.params.formType !== "delete" && (
+                    <>
+                        <PillButton
+                            label="Go to Profile"
+                            onPress={() => {
+                                navigation.navigate("catalogue", {
+                                    screen: "CatProfile",
+                                    initial: false,
+                                    params: { catID: route.params.catID },
+                                });
+                            }}
+                        />
+
+                        <PillButton
+                            label={"Continue Updating"}
+                            onPress={() => {
+                                navigation.navigate("UpdateOptions", {
+                                    ...route.params,
+                                });
+                            }}
+                        />
+                    </>
+                )}
             <PillButton
-                label="Make More Updates"
+                label="Update Other Cats"
                 onPress={() => {
                     navigation.navigate("Update");
-                }} // send param of current cat, send back to prev page unless proceed
+                }}
             />
         </View>
     );

@@ -38,6 +38,8 @@ export default function SelectCat() {
                     keyFeatures,
                     concernStatus,
                     concernDesc,
+                    isFostered,
+                    fosterReason,
                 }) => ({
                     catID,
                     name,
@@ -48,6 +50,8 @@ export default function SelectCat() {
                     keyFeatures,
                     concernStatus,
                     concernDesc,
+                    isFostered,
+                    fosterReason,
                 }))(item);
 
                 return (
@@ -57,8 +61,8 @@ export default function SelectCat() {
                             photoURL={item.photoURLs ? item.photoURLs[0] : null}
                             cardWidth={cardWidth}
                             onPress={() => {
-                                navigation.navigate("Update", {
-                                    cat: partialCat,
+                                navigation.navigate("UpdateOptions", {
+                                    ...partialCat,
                                 });
                             }}
                         />

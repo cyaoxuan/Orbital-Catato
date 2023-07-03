@@ -21,18 +21,18 @@ describe("<CatCard />", () => {
         expect(cover.props.source.uri).toBe(photoURL);
     });
 
-    it("calls onPress callback when card is pressed", () => {
-        const onPressMock = jest.fn();
-        const { getByTestId } = render(<CatCard onPress={onPressMock} />);
-        const cardContainerOuterLayer = getByTestId(
-            "card-container-outer-layer"
+    it("calls onPress callback when card action is pressed", () => {
+        const profileOnPressMock = jest.fn();
+        const locationOnPressMock = jest.fn();
+        const { getAllByTestId } = render(
+            <CatCard
+                profileOnPress={profileOnPressMock}
+                locationOnPress={locationOnPressMock}
+            />
         );
-        const cardContainer = cardContainerOuterLayer.findByProps({
-            testID: "card-container",
-        });
-        const card = cardContainer.findByProps({ testID: "card" });
-        fireEvent.press(card);
-        expect(onPressMock).toHaveBeenCalled();
+        const buttons = getAllByTestId("button");
+        fireEvent.press(buttons[0]);
+        expect(profileOnPressMock).toHaveBeenCalled();
     });
 
     it("displays the name prop", () => {

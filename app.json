@@ -5,7 +5,7 @@
         "slug": "Catato",
         "version": "1.0.0",
         "orientation": "portrait",
-        "icon": "./assets/catato-logo.png",
+        "icon": "./assets/catato-icon.png",
         "userInterfaceStyle": "light",
         "splash": {
             "image": "./assets/catato-logo.png",
@@ -26,7 +26,8 @@
                 "googleMaps": {
                     "apiKey": "AIzaSyDAXfc3zGF-e5b891L3-NhFG0L3wPZfkrI"
                 }
-            }
+            },
+            "googleServicesFile": "./google-services.json"
         },
         "web": {
             "favicon": "./assets/catato-logo.png"
