@@ -47,6 +47,8 @@ export default function Form() {
         <Provider theme={lightTheme}>
             <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "padding" : ""}
+                style={{ flex: 1 }}
+                keyboardVerticalOffset={100}
             >
                 <ScrollView
                     contentContainerStyle={{

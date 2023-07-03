@@ -110,7 +110,7 @@ const TimeInput = (props) => {
             </Button>
             <Text variant={bodyVariant}>
                 Selected Time:{" "}
-                {props.displayTime.toLocaleTimeString("en-GB", timeOptions)}
+                {props.displayTime.toLocaleTimeString("en-GB", timeOptions)} {"(SGT, GMT+8)"}
             </Text>
             {props.displayTime > props.today && (
                 <Text variant={bodyVariant} style={styles.errorText}>
@@ -126,6 +126,7 @@ const TimeInput = (props) => {
                     onChange={props.onChange}
                 />
             )}
+            <Text variant={bodyVariant}>*Time Picker uses device local time, which may cause discrepancies with selected time</Text>
         </View>
     );
 };
@@ -199,7 +200,7 @@ const UploadPhotos = (props) => {
             </View>
             <Text variant={bodyVariant}>
                 Image: {props.photoURI ? props.photoURI : ""}
-                {!props.photoURI && (
+                {props.showError && !props.photoURI && (
                     <Text variant={bodyVariant} style={styles.errorText}>
                         Upload before continuing!
                     </Text>
