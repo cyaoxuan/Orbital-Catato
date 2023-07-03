@@ -1170,9 +1170,7 @@ const UpdateProfile = (props) => {
                 label="Update Profile"
                 onPress={handleUpdate}
                 disabled={
-                    name.trim() === "" ||
-                    features.trim() === "" ||
-                    inProgress
+                    name.trim() === "" || features.trim() === "" || inProgress
                 }
             />
             {error[0] && (inProgress || setInProgress(false)) && (

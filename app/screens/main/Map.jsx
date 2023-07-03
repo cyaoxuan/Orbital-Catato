@@ -129,8 +129,10 @@ export default function Map() {
     }, [allCats]);
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : ""}
-            style={{ flex: 1 }}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : ""}
+            style={{ flex: 1 }}
+        >
             {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] && <ActivityIndicator />}
 
@@ -223,6 +225,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     map: {
-        ...StyleSheet.absoluteFillObject
-    }
+        ...StyleSheet.absoluteFillObject,
+    },
 });
