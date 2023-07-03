@@ -1023,7 +1023,6 @@ const UpdateProfile = (props) => {
 
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
-            console.log(newName);
             navigation.navigate("ConfirmUpdate", {
                 catID: catID,
                 name: newName,

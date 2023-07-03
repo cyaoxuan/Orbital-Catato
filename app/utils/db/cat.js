@@ -32,7 +32,6 @@ const processNewPhotoURLs = async (catID, photoURI, isProfilePic) => {
                 : [...cat.photoURLs, downloadURL] // just a new pic, appended at the end
             : [downloadURL];
 
-        console.log(isProfilePic, newPhotoURLs);
         return newPhotoURLs;
     } catch (error) {
         console.error("Error in processNewPhotoURLs:", error);
