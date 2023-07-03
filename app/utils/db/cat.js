@@ -1,15 +1,12 @@
 import { db } from "../../config/firebase";
 import {
     Timestamp,
-    addDoc,
     collection,
     doc,
     getDoc,
     getDocs,
     query,
     serverTimestamp,
-    setDoc,
-    updateDoc,
     where,
     writeBatch,
 } from "firebase/firestore";
@@ -21,7 +18,8 @@ import { processLocation } from "../findLocation";
 const catColl = collection(db, "Cat");
 const catUpdateColl = collection(db, "CatUpdate");
 
-const processNewPhotoURLs = async (catID, photoURI) => {
+// Get new array of photo URLs, where profile pic is at the start
+const processNewPhotoURLs = async (catID, photoURI, isProfilePic) => {
     try {
         // Upload to storage and get download URL
         const downloadURL = await uploadImageToStorage(photoURI);
@@ -29,9 +27,12 @@ const processNewPhotoURLs = async (catID, photoURI) => {
         // Get old data from Firestore to append the download URL
         const cat = (await getDoc(doc(db, "Cat", catID))).data();
         const newPhotoURLs = cat.photoURLs
-            ? [...cat.photoURLs, downloadURL]
+            ? isProfilePic
+                ? [downloadURL, ...cat.photoURLs] // new profile pic, appended at the start
+                : [...cat.photoURLs, downloadURL] // just a new pic, appended at the end
             : [downloadURL];
 
+        console.log(isProfilePic, newPhotoURLs);
         return newPhotoURLs;
     } catch (error) {
         console.error("Error in processNewPhotoURLs:", error);
@@ -39,6 +40,8 @@ const processNewPhotoURLs = async (catID, photoURI) => {
     }
 };
 
+// Ensures cat's unfed status is correctly updated (unfed iff last fed >12h ago)
+// Called in Cat Profile
 export const autoProcessUnfed = async (cat) => {
     try {
         const currentTime = Date.now();
@@ -76,6 +79,8 @@ export const autoProcessUnfed = async (cat) => {
     }
 };
 
+// Ensures cat's missing status is correctly updated (missing iff last seen >3 days ago)
+// Called in Cat Profile
 export const autoProcessMissing = async (cat) => {
     try {
         const currentTime = Date.now();
@@ -122,6 +127,9 @@ export const autoProcessMissing = async (cat) => {
     }
 };
 
+// Ensures ALL cats have their unfed and missing status correctly updated
+// Called in Dashboard
+// Given there are n cats, this takes n reads for all cases and 2n writes for worst case
 export const autoProcessConcernStatus = async () => {
     try {
         const querySnapshot = await getDocs(catColl);
@@ -156,7 +164,6 @@ export const useUserCreateCat = () => {
             const catDoc = doc(catColl);
             const downloadURL = [await uploadImageToStorage(data.photoURI)];
             let processedData;
-            // TODO: redefine default values
             if (isTemp) {
                 const { coords, locationName, locationZone } =
                     await processLocation(data.lastSeenLocation);
@@ -494,7 +501,11 @@ export const useUserUpdateCatConcern = () => {
 
             setSeenTime(Timestamp.fromDate(time));
 
-            const newPhotoURLs = await processNewPhotoURLs(catID, photoURI);
+            const newPhotoURLs = await processNewPhotoURLs(
+                catID,
+                photoURI,
+                false
+            );
             setNewPhotoURLs(newPhotoURLs);
 
             let newConcernStatus;
@@ -635,7 +646,8 @@ export const useUserUpdateCatProfile = () => {
             if (data.photoURI) {
                 const newPhotoURLs = await processNewPhotoURLs(
                     catID,
-                    data.photoURI
+                    data.photoURI,
+                    true
                 );
                 await userUpdateCat(userID, catID, "Update Profile", {
                     name: data.name,
@@ -678,7 +690,11 @@ export const useUserAddCatPicture = () => {
             setLoading([true]);
             setError([null]);
 
-            const newPhotoURLs = await processNewPhotoURLs(catID, photoURI);
+            const newPhotoURLs = await processNewPhotoURLs(
+                catID,
+                photoURI,
+                false
+            );
             await userUpdateCat(userID, catID, "Add Picture", {
                 photoURLs: newPhotoURLs,
             });

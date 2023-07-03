@@ -1169,7 +1169,7 @@ const UpdateProfile = (props) => {
                 disabled={
                     name.trim() === "" ||
                     features.trim() === "" ||
-                    photoURI === "" ||
+                    // photoURI === "" ||
                     inProgress
                 }
             />
