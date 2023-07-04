@@ -15,8 +15,10 @@ import {
     autoProcessUnfed,
     useGetCat,
 } from "../../../utils/db/cat";
+import { useAuth } from "../../../utils/context/auth";
 
 export default function CatProfile() {
+    const { userRole } = useAuth();
     const route = useRoute();
     const catID = route.params.catID;
     const navigation = useNavigation();
@@ -76,7 +78,7 @@ export default function CatProfile() {
         }
     }, [cat]);
 
-    if (!cat) {
+    if (!cat || !userRole) {
         return (
             <View
                 style={{

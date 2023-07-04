@@ -1,12 +1,21 @@
 import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { ActivityIndicator, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import { PillButton } from "../../../components/Button";
+import { useAuth } from "../../../utils/context/auth";
 
 export default function Update() {
+    const { userRole } = useAuth();
     const navigation = useNavigation();
+
+    if (!userRole) {
+        return <ActivityIndicator />;
+    }
+    if (userRole && !userRole.isUser) {
+        return <Text>Guest, no updating</Text>;
+    }
 
     return (
         <View
@@ -34,17 +43,19 @@ export default function Update() {
                 Please ensure you have selected the right cat before proceeding
             </Text>
 
-            <PillButton
-                label="Create New Profile"
-                onPress={() =>
-                    navigation.navigate("Form", {
-                        catID: 0,
-                        name: "New Cat",
-                        photoURLs: null,
-                        formType: "create",
-                    })
-                }
-            />
+            {userRole && userRole.isAdmin && (
+                <PillButton
+                    label="Create New Profile"
+                    onPress={() =>
+                        navigation.navigate("Form", {
+                            catID: 0,
+                            name: "New Cat",
+                            photoURLs: null,
+                            formType: "create",
+                        })
+                    }
+                />
+            )}
 
             <PillButton
                 label="Report New Cat"
