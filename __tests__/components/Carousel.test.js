@@ -209,6 +209,7 @@ describe("<CardCarousel />", () => {
         fireEvent.press(buttons[6]);
 
         expect(mockNavigate).toHaveBeenCalledWith("Map", {
+            catID: 1,
             location: { latitude: 1, longitude: 1 },
         });
     });

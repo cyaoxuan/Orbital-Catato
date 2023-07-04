@@ -122,6 +122,7 @@ const CreateProfile = (props) => {
             <Divider />
 
             <UploadPhotos
+                titleText="Upload photo:"
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
@@ -175,6 +176,7 @@ const CreateProfile = (props) => {
                 onChangeText={setFeatures}
                 errorText="Please describe your favourite things about the cat!"
             />
+
             <PillButton
                 label="Create Profile"
                 onPress={handleUpdate}
@@ -316,6 +318,7 @@ const ReportCat = (props) => {
             <Divider />
 
             <UploadPhotos
+                titleText="Upload photo:"
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
@@ -695,6 +698,7 @@ const UpdateConcern = (props) => {
             <Divider />
 
             <UploadPhotos
+                titleText="Upload photo:"
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
@@ -963,19 +967,24 @@ const UpdateFoster = (props) => {
 
             <Divider />
 
-            <FormInput
-                multiline={true}
-                label="Reasons:"
-                placeholder="Reasons for fostering..."
-                value={fosterDesc}
-                onChangeText={setFosterDesc}
-                errorText="Please give reasons for fostering!"
-            />
+            {fostered === "Yes" && (
+                <FormInput
+                    multiline={true}
+                    label="Reasons:"
+                    placeholder="Reasons for fostering..."
+                    value={fosterDesc}
+                    onChangeText={setFosterDesc}
+                    errorText="Please give reasons for fostering!"
+                />
+            )}
 
             <PillButton
                 label="Update"
                 onPress={handleUpdate}
-                disabled={fosterDesc.trim() === "" || inProgress}
+                disabled={
+                    inProgress ||
+                    (fostered === "Yes" && fosterDesc.trim() === "")
+                }
             />
             {error[0] && (inProgress || setInProgress(false)) && (
                 <Text>Error: {error[0].message}</Text>
@@ -1112,6 +1121,7 @@ const UpdateProfile = (props) => {
             <Divider />
 
             <UploadPhotos
+                titleText="Change profile photo:"
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}

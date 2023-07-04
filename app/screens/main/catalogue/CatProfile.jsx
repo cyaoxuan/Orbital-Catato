@@ -108,6 +108,7 @@ export default function CatProfile() {
                 locationValue={cat.lastSeenLocation}
                 locationOnPress={() => {
                     navigation.navigate("Map", {
+                        catID: cat.catID,
                         location: cat.lastSeenLocation,
                     });
                 }}

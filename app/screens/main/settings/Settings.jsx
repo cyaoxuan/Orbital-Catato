@@ -16,6 +16,7 @@ import { Ionicons } from "@expo/vector-icons";
 const SettingsOptionList = () => {
     const [notifOn, setNotifOn] = useState(false);
     const navigation = useNavigation();
+    const iconSize = 20;
 
     return (
         <List.Section>
@@ -27,14 +28,17 @@ const SettingsOptionList = () => {
                 left={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="lock-closed-outline" size={24} />
+                            <Ionicons
+                                name="lock-closed-outline"
+                                size={iconSize}
+                            />
                         )}
                     />
                 )}
                 right={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="chevron-forward" size={24} />
+                            <Ionicons name="chevron-forward" size={iconSize} />
                         )}
                     />
                 )}
@@ -48,7 +52,10 @@ const SettingsOptionList = () => {
                 left={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="notifications-outline" size={24} />
+                            <Ionicons
+                                name="notifications-outline"
+                                size={iconSize}
+                            />
                         )}
                     />
                 )}
@@ -73,7 +80,7 @@ const SettingsOptionList = () => {
                         icon={() => (
                             <Ionicons
                                 name="information-circle-outline"
-                                size={24}
+                                size={iconSize}
                             />
                         )}
                     />
@@ -81,7 +88,7 @@ const SettingsOptionList = () => {
                 right={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="chevron-forward" size={24} />
+                            <Ionicons name="chevron-forward" size={iconSize} />
                         )}
                     />
                 )}
@@ -95,14 +102,17 @@ const SettingsOptionList = () => {
                 left={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="help-circle-outline" size={24} />
+                            <Ionicons
+                                name="help-circle-outline"
+                                size={iconSize}
+                            />
                         )}
                     />
                 )}
                 right={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="chevron-forward" size={24} />
+                            <Ionicons name="chevron-forward" size={iconSize} />
                         )}
                     />
                 )}
@@ -116,14 +126,14 @@ const SettingsOptionList = () => {
                 left={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="document-outline" size={24} />
+                            <Ionicons name="document-outline" size={iconSize} />
                         )}
                     />
                 )}
                 right={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="chevron-forward" size={24} />
+                            <Ionicons name="chevron-forward" size={iconSize} />
                         )}
                     />
                 )}
@@ -136,13 +146,15 @@ const SettingsOptionList = () => {
                 onPress={() => {}}
                 left={() => (
                     <List.Icon
-                        icon={() => <Ionicons name="build-outline" size={24} />}
+                        icon={() => (
+                            <Ionicons name="build-outline" size={iconSize} />
+                        )}
                     />
                 )}
                 right={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="chevron-forward" size={24} />
+                            <Ionicons name="chevron-forward" size={iconSize} />
                         )}
                     />
                 )}
@@ -156,14 +168,14 @@ const SettingsOptionList = () => {
                 left={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="create-outline" size={24} />
+                            <Ionicons name="create-outline" size={iconSize} />
                         )}
                     />
                 )}
                 right={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="chevron-forward" size={24} />
+                            <Ionicons name="chevron-forward" size={iconSize} />
                         )}
                     />
                 )}
@@ -237,15 +249,15 @@ export default function Settings() {
 }
 
 const titleVariant = "titleLarge";
-const bodyVariant = "bodyLarge";
+const bodyVariant = "bodyMedium";
 
 const styles = StyleSheet.create({
     listTitle: {
-        fontSize: 24,
+        fontSize: 20,
     },
     listView: {
         justifyContent: "center",
-        height: 65,
+        height: 50,
     },
     userDetails: {
         paddingVertical: 8,

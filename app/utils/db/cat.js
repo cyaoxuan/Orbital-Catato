@@ -607,7 +607,7 @@ export const useUserUpdateCatFoster = () => {
         fosterReason
     ) => {
         try {
-            if (!(userID && catID && isFostered && fosterReason)) {
+            if (!(userID && catID && isFostered)) {
                 throw new Error("Empty fields detected");
             }
 
@@ -616,7 +616,7 @@ export const useUserUpdateCatFoster = () => {
 
             await userUpdateCat(userID, catID, "Update Foster", {
                 isFostered: isFostered === "Yes",
-                fosterReason: fosterReason,
+                fosterReason: isFostered === "No" ? null : fosterReason,
             });
         } catch (error) {
             console.error("Error updating cat foster:", error);

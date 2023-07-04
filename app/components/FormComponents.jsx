@@ -19,7 +19,9 @@ const DropdownList = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text variant={titleVariant}>{props.titleText}</Text>
+            <Text variant={titleVariant} style={styles.errorText}>
+                *<Text variant={titleVariant}>{props.titleText}</Text>
+            </Text>
             <SelectList
                 setSelected={
                     props.setSelected
@@ -74,7 +76,9 @@ const NumberSpinner = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text variant={titleVariant}>{props.titleText}</Text>
+            <Text variant={titleVariant} style={styles.errorText}>
+                *<Text variant={titleVariant}>{props.titleText}</Text>
+            </Text>
             <NumericInput
                 type="up-down"
                 rounded
@@ -100,7 +104,9 @@ const NumberSpinner = (props) => {
 const TimeInput = (props) => {
     return (
         <View style={styles.container}>
-            <Text variant={titleVariant}>{props.titleText}</Text>
+            <Text variant={titleVariant} style={styles.errorText}>
+                *<Text variant={titleVariant}>{props.titleText}</Text>
+            </Text>
             <Button
                 mode="contained-tonal"
                 onPress={props.onPress}
@@ -128,8 +134,7 @@ const TimeInput = (props) => {
                 />
             )}
             <Text variant={bodyVariant}>
-                *Time Picker uses device local time, which may cause
-                discrepancies with selected time
+                *Selected Time may be different if your device is not in SGT!
             </Text>
         </View>
     );
@@ -141,7 +146,9 @@ const TwoRadioInput = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text variant={titleVariant}>{props.titleText}</Text>
+            <Text variant={titleVariant} style={styles.errorText}>
+                *<Text variant={titleVariant}>{props.titleText}</Text>
+            </Text>
             <RadioButton.Group
                 value={props.value ? props.value : selected}
                 onValueChange={
@@ -173,7 +180,10 @@ const UploadPhotos = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text variant={titleVariant}>Upload Photos:</Text>
+            <Text variant={titleVariant} style={styles.errorText}>
+                {props.showError ? "*" : ""}
+                <Text variant={titleVariant}>{props.titleText}</Text>
+            </Text>
             <View>
                 <Menu
                     style={{ marginTop: -50 }}

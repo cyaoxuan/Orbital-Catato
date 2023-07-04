@@ -36,6 +36,7 @@ export const CarouselContainer = ({
 };
 
 export default function Dashboard() {
+    const [updateTime, setUpdateTime] = useState(new Date());
     const [refreshing, setRefreshing] = useState(false);
     const cardWidth = getItemWidthFrac(5 / 6);
 
@@ -43,6 +44,7 @@ export default function Dashboard() {
         setRefreshing(true);
         setTimeout(() => {
             setRefreshing(false);
+            setUpdateTime(new Date());
         }, 500);
     }, []);
 
@@ -102,6 +104,15 @@ export default function Dashboard() {
                 loading={loadingUnfed}
                 error={errorUnfed}
             />
+
+            <View style={{ margin: 8 }}>
+                <Text variant="bodyMedium" style={{ color: "grey" }}>
+                    Scroll Up to Refresh
+                </Text>
+                <Text variant="bodyMedium" style={{ color: "grey" }}>
+                    Last Updated: {updateTime.toLocaleString()}
+                </Text>
+            </View>
         </ScrollView>
     );
 }
