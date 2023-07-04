@@ -26,10 +26,35 @@ exports[`<DropdownList /> renders correctly 1`] = `
           "color": "rgba(28, 27, 31, 1)",
           "writingDirection": "ltr",
         },
-        undefined,
+        {
+          "color": "#BA1A1A",
+        },
       ]
     }
-  />
+  >
+    *
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "writingDirection": "ltr",
+          },
+          undefined,
+        ]
+      }
+    />
+  </Text>
   <View>
     <View
       accessibilityState={
@@ -354,10 +379,35 @@ exports[`<NumberSpinner /> renders correctly 1`] = `
           "color": "rgba(28, 27, 31, 1)",
           "writingDirection": "ltr",
         },
-        undefined,
+        {
+          "color": "#BA1A1A",
+        },
       ]
     }
-  />
+  >
+    *
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "writingDirection": "ltr",
+          },
+          undefined,
+        ]
+      }
+    />
+  </Text>
   <View
     style={
       [
@@ -589,10 +639,35 @@ exports[`<TimeInput /> renders correctly 1`] = `
           "color": "rgba(28, 27, 31, 1)",
           "writingDirection": "ltr",
         },
-        undefined,
+        {
+          "color": "#BA1A1A",
+        },
       ]
     }
-  />
+  >
+    *
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "writingDirection": "ltr",
+          },
+          undefined,
+        ]
+      }
+    />
+  </Text>
   <View
     collapsable={false}
     style={
@@ -790,7 +865,7 @@ exports[`<TimeInput /> renders correctly 1`] = `
       ]
     }
   >
-    *Time Picker uses device local time, which may cause discrepancies with selected time
+    *Selected Time may be different if your device is not in SGT!
   </Text>
 </View>
 `;
@@ -821,10 +896,35 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
           "color": "rgba(28, 27, 31, 1)",
           "writingDirection": "ltr",
         },
-        undefined,
+        {
+          "color": "#BA1A1A",
+        },
       ]
     }
-  />
+  >
+    *
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "writingDirection": "ltr",
+          },
+          undefined,
+        ]
+      }
+    />
+  </Text>
   <View
     accessibilityRole="radiogroup"
   >
@@ -1071,11 +1171,33 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
           "color": "rgba(28, 27, 31, 1)",
           "writingDirection": "ltr",
         },
-        undefined,
+        {
+          "color": "#BA1A1A",
+        },
       ]
     }
   >
-    Upload Photos:
+    <Text
+      style={
+        [
+          {
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "500",
+            "letterSpacing": 0.15,
+            "lineHeight": 24,
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "color": "rgba(28, 27, 31, 1)",
+            "writingDirection": "ltr",
+          },
+          undefined,
+        ]
+      }
+    />
   </Text>
   <View>
     <View

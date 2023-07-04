@@ -65,6 +65,7 @@ const CardCarousel = ({ cats, cardWidth, carouselType, ...card }) => {
                         showFindLocation={item.lastSeenLocation}
                         locationOnPress={() => {
                             navigation.navigate("Map", {
+                                catID: item.catID,
                                 location: item.lastSeenLocation,
                             });
                         }}

@@ -51,6 +51,7 @@ const UserDetails = ({ user, userRole }) => {
 const SettingsOptionList = ({ user, userRole }) => {
     const [notifOn, setNotifOn] = useState(false);
     const navigation = useNavigation();
+    const iconSize = 20;
 
     return (
         <List.Section>
@@ -65,7 +66,7 @@ const SettingsOptionList = ({ user, userRole }) => {
                             icon={() => (
                                 <Ionicons
                                     name="lock-closed-outline"
-                                    size={24}
+                                    size={iconSize}
                                 />
                             )}
                         />
@@ -73,7 +74,10 @@ const SettingsOptionList = ({ user, userRole }) => {
                     right={() => (
                         <List.Icon
                             icon={() => (
-                                <Ionicons name="chevron-forward" size={24} />
+                                <Ionicons
+                                    name="chevron-forward"
+                                    size={iconSize}
+                                />
                             )}
                         />
                     )}
@@ -91,7 +95,7 @@ const SettingsOptionList = ({ user, userRole }) => {
                             icon={() => (
                                 <Ionicons
                                     name="notifications-outline"
-                                    size={24}
+                                    size={iconSize}
                                 />
                             )}
                         />
@@ -118,7 +122,7 @@ const SettingsOptionList = ({ user, userRole }) => {
                         icon={() => (
                             <Ionicons
                                 name="information-circle-outline"
-                                size={24}
+                                size={iconSize}
                             />
                         )}
                     />
@@ -126,7 +130,7 @@ const SettingsOptionList = ({ user, userRole }) => {
                 right={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="chevron-forward" size={24} />
+                            <Ionicons name="chevron-forward" size={iconSize} />
                         )}
                     />
                 )}
@@ -140,14 +144,17 @@ const SettingsOptionList = ({ user, userRole }) => {
                 left={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="help-circle-outline" size={24} />
+                            <Ionicons
+                                name="help-circle-outline"
+                                size={iconSize}
+                            />
                         )}
                     />
                 )}
                 right={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="chevron-forward" size={24} />
+                            <Ionicons name="chevron-forward" size={iconSize} />
                         )}
                     />
                 )}
@@ -161,14 +168,14 @@ const SettingsOptionList = ({ user, userRole }) => {
                 left={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="document-outline" size={24} />
+                            <Ionicons name="document-outline" size={iconSize} />
                         )}
                     />
                 )}
                 right={() => (
                     <List.Icon
                         icon={() => (
-                            <Ionicons name="chevron-forward" size={24} />
+                            <Ionicons name="chevron-forward" size={iconSize} />
                         )}
                     />
                 )}
@@ -183,14 +190,20 @@ const SettingsOptionList = ({ user, userRole }) => {
                     left={() => (
                         <List.Icon
                             icon={() => (
-                                <Ionicons name="build-outline" size={24} />
+                                <Ionicons
+                                    name="build-outline"
+                                    size={iconSize}
+                                />
                             )}
                         />
                     )}
                     right={() => (
                         <List.Icon
                             icon={() => (
-                                <Ionicons name="chevron-forward" size={24} />
+                                <Ionicons
+                                    name="chevron-forward"
+                                    size={iconSize}
+                                />
                             )}
                         />
                     )}
@@ -206,14 +219,20 @@ const SettingsOptionList = ({ user, userRole }) => {
                     left={() => (
                         <List.Icon
                             icon={() => (
-                                <Ionicons name="create-outline" size={24} />
+                                <Ionicons
+                                    name="create-outline"
+                                    size={iconSize}
+                                />
                             )}
                         />
                     )}
                     right={() => (
                         <List.Icon
                             icon={() => (
-                                <Ionicons name="chevron-forward" size={24} />
+                                <Ionicons
+                                    name="chevron-forward"
+                                    size={iconSize}
+                                />
                             )}
                         />
                     )}
@@ -269,15 +288,15 @@ export default function Settings() {
 }
 
 const titleVariant = "titleLarge";
-const bodyVariant = "bodyLarge";
+const bodyVariant = "bodyMedium";
 
 const styles = StyleSheet.create({
     listTitle: {
-        fontSize: 24,
+        fontSize: 20,
     },
     listView: {
         justifyContent: "center",
-        height: 65,
+        height: 50,
     },
     userDetails: {
         paddingVertical: 8,

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import {
+    Dimensions,
     FlatList,
+    Image,
     Keyboard,
     KeyboardAvoidingView,
     Platform,
@@ -14,15 +16,26 @@ import { WebView } from "react-native-webview";
 import { useIsFocused, useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useGetAllCats } from "../../utils/db/cat";
-import { Dimensions } from "react-native";
 import { useAuth } from "../../utils/context/auth";
 
 // Render Marker component
-const RenderMarker = ({ cat, navigation }) => {
+const RenderMarker = ({ cat, navigation, markers }) => {
     return (
-        <Marker key={cat.catID} coordinate={cat.lastSeenLocation}>
+        <Marker
+            key={cat.catID}
+            ref={(ref) => (markers[cat.catID] = ref)}
+            coordinate={cat.lastSeenLocation}
+            tracksViewChanges={false}
+            onCalloutPress={() =>
+                navigation.navigate("catalogue", {
+                    screen: "CatProfile",
+                    initial: false,
+                    params: { catID: cat.catID },
+                })
+            }
+        >
             <Callout
-                style={{ height: 150, width: 150 }}
+                style={{ height: "auto", width: 175, alignItems: "center" }}
                 onPress={() =>
                     navigation.navigate("catalogue", {
                         screen: "CatProfile",
@@ -31,18 +44,57 @@ const RenderMarker = ({ cat, navigation }) => {
                     })
                 }
             >
-                <View style={{ height: 150, width: 150 }}>
-                    <WebView
-                        style={{ height: 100, width: 150 }}
-                        resizeMode="cover"
-                        source={
-                            cat.photoURLs
-                                ? { uri: cat.photoURLs[0] }
-                                : require("../../../assets/placeholder.png")
-                        }
-                    />
-                    <Text style={{ textAlign: "center" }}>{cat.name}</Text>
-                </View>
+                {Platform.OS === "ios" ? (
+                    <View
+                        style={{
+                            height: 200,
+                            width: 175,
+                            alignItems: "center",
+                        }}
+                    >
+                        <View style={{ height: 15 }}></View>
+                        <Image
+                            style={styles.calloutImage}
+                            resizeMode="cover"
+                            source={
+                                cat.photoURLs
+                                    ? { uri: cat.photoURLs[0] }
+                                    : require("../../../assets/placeholder.png")
+                            }
+                        />
+                        <Text
+                            variant="bodyLarge"
+                            style={{ textAlign: "center" }}
+                        >
+                            {cat.name}
+                        </Text>
+                    </View>
+                ) : (
+                    <View
+                        style={{
+                            height: 175,
+                            width: 175,
+                            alignItems: "center",
+                        }}
+                    >
+                        <View style={{ height: 15 }}></View>
+                        <WebView
+                            style={styles.calloutImage}
+                            scalesPageToFit={true}
+                            source={
+                                cat.photoURLs
+                                    ? { uri: cat.photoURLs[0] }
+                                    : require("../../../assets/placeholder.png")
+                            }
+                        />
+                        <Text
+                            variant="bodyLarge"
+                            style={{ textAlign: "center" }}
+                        >
+                            {cat.name}
+                        </Text>
+                    </View>
+                )}
             </Callout>
         </Marker>
     );
@@ -77,21 +129,35 @@ export default function Map() {
     // For map dimensions
     const { width, height } = Dimensions.get("window");
 
+    // For markers to show callouts
+    const markers = [];
+
     // For map animation
     const mapRef = useRef(null);
 
-    const animateToRegion = (location) => {
+    const animateToRegion = (catID, location) => {
         mapRef.current?.animateToRegion(
             { ...location, latitudeDelta: 0.005, longitudeDelta: 0.005 },
             1000
         );
+        markers[catID].showCallout();
     };
 
     // Uses route params to bring user to location
     const route = useRoute();
-    if (route.params?.location) {
-        animateToRegion(route.params.location);
-    }
+
+    useEffect(() => {
+        if ((route.params?.catID, route.params?.location)) {
+            mapRef.current?.animateToRegion(
+                {
+                    ...route.params.location,
+                    latitudeDelta: 0.005,
+                    longitudeDelta: 0.005,
+                },
+                1000
+            );
+        }
+    }, [route.params]);
 
     // For navigating to profile
     const navigation = useNavigation();
@@ -144,6 +210,8 @@ export default function Map() {
                 testID="map"
                 ref={mapRef}
                 provider={PROVIDER_GOOGLE}
+                showsCompass
+                zoomEnabled
                 zoomControlEnabled
                 onPress={() => {
                     Keyboard.dismiss();
@@ -168,6 +236,7 @@ export default function Map() {
                                 key={cat.catID}
                                 cat={cat}
                                 navigation={navigation}
+                                markers={markers}
                             />
                         ))}
             </MapView>
@@ -176,12 +245,14 @@ export default function Map() {
                     position: "absolute",
                     top: 10,
                     width: width,
-                    height: 250,
+                    height: showPredictions ? 250 : 50,
                     alignItems: "center",
                 }}
             >
                 <Searchbar
-                    style={{ width: "100%" }}
+                    style={{ width: "95%", alignSelf: "center" }}
+                    theme={{ colors: { elevation: { level3: "white" } } }}
+                    elevation={2}
                     placeholder="Search"
                     onChangeText={onChangeSearch}
                     value={searchQuery}
@@ -198,7 +269,11 @@ export default function Map() {
                                 <RenderPredictionRow
                                     item={item}
                                     onPress={() =>
-                                        animateToRegion(item.lastSeenLocation)
+                                        animateToRegion(
+                                            item.catID,
+                                            item.lastSeenLocation,
+                                            true
+                                        )
                                     }
                                 />
                             );
@@ -211,6 +286,12 @@ export default function Map() {
 }
 
 const styles = StyleSheet.create({
+    calloutImage: {
+        height: 150,
+        width: 150,
+        padding: 0,
+        margin: 0,
+    },
     predictionsContainer: {
         width: "90%",
         backgroundColor: "white",
