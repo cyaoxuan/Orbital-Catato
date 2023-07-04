@@ -26,7 +26,7 @@ const lightTheme = {
 };
 
 export default function PhotoGallery() {
-    const { user } = getAuth();
+    const { user, userRole } = getAuth();
     const navigation = useNavigation();
     const route = useRoute();
     const { catID } = route.params;
@@ -52,18 +52,14 @@ export default function PhotoGallery() {
             const photoURI = await getImageFromGallery();
             if (photoURI !== null) {
                 // TODO: change to cat and userid
-                await userAddCatPicture(
-                    "2nTIJgoSsSTWzspThZlaQJppKuk2",
-                    catID,
-                    photoURI
-                );
+                await userAddCatPicture(user.uid, catID, photoURI);
                 setDialogText(
                     "Image upload from gallery confirmed! Thank you for your contribution!"
                 );
             }
         } catch (error) {
             console.error(error);
-            setPhotoError(null);
+            setPhotoError(error);
             setDialogText("Error uploading image from gallery :(");
         }
     };

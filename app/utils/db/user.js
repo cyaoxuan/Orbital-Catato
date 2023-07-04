@@ -3,17 +3,32 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 
 /* ----- CREATE OPERATIONS ----- */
 export const createUser = async (userID, isGuestUser) => {
-    await setDoc(doc(db, "User", userID), {
-        isGuest: true,
-        isUser: !isGuestUser,
-        isCaretaker: false,
-        isAdmin: false,
-    });
+    try {
+        await setDoc(doc(db, "User", userID), {
+            userID: userID,
+            role: {
+                isGuest: true,
+                isUser: !isGuestUser,
+                isCaretaker: false,
+                isAdmin: false,
+            },
+            notiOn: false,
+            notiType: null,
+            catsFollowed: null,
+        });
+    } catch (error) {
+        console.error("Error creating user:", error);
+    }
 };
 
 /* ----- READ OPERATIONS ----- */
 export const getUser = async (userID) => {
-    return (await getDoc(doc(db, "User", userID))).data();
+    try {
+        const user = await getDoc(doc(db, "User", userID));
+        return user.exists() ? user.data() : null;
+    } catch (error) {
+        console.error("Error getting user:", error);
+    }
 };
 
 /* ----- UPDATE OPERATIONS ----- */

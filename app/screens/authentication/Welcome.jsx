@@ -26,7 +26,6 @@ export default function WelcomeScreen() {
             setError(null);
 
             await signInAnonymously(auth); // Firebase Auth
-            // await createUser(auth.currentUser.uid, true) // Write to db
 
             setLoading(false);
             router.replace("/screens/main/Dashboard");
