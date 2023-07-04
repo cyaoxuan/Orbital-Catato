@@ -91,7 +91,7 @@ export default function Dashboard() {
                 loading={loadingConcern}
                 error={errorConcern}
             />
-                  
+
             {userRole && userRole.isCaretaker && (
                 <CarouselContainer
                     titleText="Unfed Cats"

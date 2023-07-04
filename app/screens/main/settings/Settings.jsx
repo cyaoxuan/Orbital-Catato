@@ -74,7 +74,10 @@ const SettingsOptionList = ({ user, userRole }) => {
                     right={() => (
                         <List.Icon
                             icon={() => (
-                                <Ionicons name="chevron-forward" size={iconSize} />
+                                <Ionicons
+                                    name="chevron-forward"
+                                    size={iconSize}
+                                />
                             )}
                         />
                     )}
@@ -187,14 +190,20 @@ const SettingsOptionList = ({ user, userRole }) => {
                     left={() => (
                         <List.Icon
                             icon={() => (
-                                <Ionicons name="build-outline" size={iconSize} />
+                                <Ionicons
+                                    name="build-outline"
+                                    size={iconSize}
+                                />
                             )}
                         />
                     )}
                     right={() => (
                         <List.Icon
                             icon={() => (
-                                <Ionicons name="chevron-forward" size={iconSize} />
+                                <Ionicons
+                                    name="chevron-forward"
+                                    size={iconSize}
+                                />
                             )}
                         />
                     )}
@@ -210,14 +219,20 @@ const SettingsOptionList = ({ user, userRole }) => {
                     left={() => (
                         <List.Icon
                             icon={() => (
-                                <Ionicons name="create-outline" size={iconSize} />
+                                <Ionicons
+                                    name="create-outline"
+                                    size={iconSize}
+                                />
                             )}
                         />
                     )}
                     right={() => (
                         <List.Icon
                             icon={() => (
-                                <Ionicons name="chevron-forward" size={iconSize} />
+                                <Ionicons
+                                    name="chevron-forward"
+                                    size={iconSize}
+                                />
                             )}
                         />
                     )}
