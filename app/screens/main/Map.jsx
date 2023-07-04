@@ -16,6 +16,7 @@ import { WebView } from "react-native-webview";
 import { useIsFocused, useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useGetAllCats } from "../../utils/db/cat";
+import { useAuth } from "../../utils/context/auth";
 
 // Render Marker component
 const RenderMarker = ({ cat, navigation, markers }) => {
@@ -123,6 +124,8 @@ const RenderPredictionRow = ({ item, onPress }) => {
 };
 
 export default function Map() {
+    const { userRole } = useAuth();
+
     // For map dimensions
     const { width, height } = Dimensions.get("window");
 

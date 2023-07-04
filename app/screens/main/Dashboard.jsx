@@ -37,6 +37,7 @@ export const CarouselContainer = ({
 
 export default function Dashboard() {
     const [updateTime, setUpdateTime] = useState(new Date());
+    const { userRole } = useAuth();
     const [refreshing, setRefreshing] = useState(false);
     const cardWidth = getItemWidthFrac(5 / 6);
 
@@ -90,20 +91,22 @@ export default function Dashboard() {
                 loading={loadingConcern}
                 error={errorConcern}
             />
-
-            <CarouselContainer
-                titleText="Unfed Cats"
-                subtitleText="Not Fed in 12 Hours"
-                carouselType="unfed"
-                cats={unfedCats}
-                cardWidth={cardWidth || 250}
-                iconName1="time-outline"
-                field1="Last Fed: "
-                iconName2="location"
-                field2="Seen: "
-                loading={loadingUnfed}
-                error={errorUnfed}
-            />
+                  
+            {userRole && userRole.isCaretaker && (
+                <CarouselContainer
+                    titleText="Unfed Cats"
+                    subtitleText="Not Fed in 12 Hours"
+                    carouselType="unfed"
+                    cats={unfedCats}
+                    cardWidth={cardWidth || 250}
+                    iconName1="time-outline"
+                    field1="Last Fed: "
+                    iconName2="location"
+                    field2="Seen: "
+                    loading={loadingUnfed}
+                    error={errorUnfed}
+                />
+            )}
 
             <View style={{ margin: 8 }}>
                 <Text variant="bodyMedium" style={{ color: "grey" }}>
