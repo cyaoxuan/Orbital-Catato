@@ -125,6 +125,7 @@ const CreateProfile = (props) => {
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
+                showError={true}
             />
 
             <Divider />
@@ -318,6 +319,7 @@ const ReportCat = (props) => {
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
+                showError={true}
             />
 
             <Divider />
@@ -696,6 +698,7 @@ const UpdateConcern = (props) => {
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
+                showError={true}
             />
 
             <Divider />
@@ -1112,6 +1115,7 @@ const UpdateProfile = (props) => {
                 cameraOnPress={handleImageFromCamera}
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
+                showError={false}
             />
 
             <Divider />
@@ -1166,10 +1170,7 @@ const UpdateProfile = (props) => {
                 label="Update Profile"
                 onPress={handleUpdate}
                 disabled={
-                    name.trim() === "" ||
-                    features.trim() === "" ||
-                    // photoURI === "" ||
-                    inProgress
+                    name.trim() === "" || features.trim() === "" || inProgress
                 }
             />
             {error[0] && (inProgress || setInProgress(false)) && (

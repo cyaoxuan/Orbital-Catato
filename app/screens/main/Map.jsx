@@ -14,6 +14,7 @@ import { WebView } from "react-native-webview";
 import { useIsFocused, useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useGetAllCats } from "../../utils/db/cat";
+import { Dimensions } from "react-native";
 
 // Render Marker component
 const RenderMarker = ({ cat, navigation }) => {
@@ -70,6 +71,9 @@ const RenderPredictionRow = ({ item, onPress }) => {
 };
 
 export default function Map() {
+    // For map dimensions
+    const { width, height } = Dimensions.get("window");
+
     // For map animation
     const mapRef = useRef(null);
 
@@ -125,15 +129,19 @@ export default function Map() {
     }, [allCats]);
 
     return (
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : ""}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : ""}
+            style={{ flex: 1 }}
+        >
             {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] && <ActivityIndicator />}
 
             <MapView
+                style={styles.map}
                 testID="map"
                 ref={mapRef}
-                style={{ height: "100%" }}
                 provider={PROVIDER_GOOGLE}
+                zoomControlEnabled
                 onPress={() => {
                     Keyboard.dismiss();
                     setShowPredictions(false);
@@ -164,12 +172,13 @@ export default function Map() {
                 style={{
                     position: "absolute",
                     top: 10,
-                    width: "100%",
+                    width: width,
                     height: 250,
                     alignItems: "center",
                 }}
             >
                 <Searchbar
+                    style={{ width: "100%" }}
                     placeholder="Search"
                     onChangeText={onChangeSearch}
                     value={searchQuery}
@@ -214,5 +223,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         flexDirection: "row",
         justifyContent: "space-between",
+    },
+    map: {
+        ...StyleSheet.absoluteFillObject,
     },
 });
