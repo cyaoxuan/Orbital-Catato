@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FlatList, Image, View } from "react-native";
 import {
+    ActivityIndicator,
     Button,
     DefaultTheme,
     Dialog,
@@ -18,6 +19,7 @@ import {
     getImageFromGallery,
 } from "../../../utils/db/photo";
 import { useNavigation } from "expo-router";
+import { useAuth } from "../../../utils/context/auth";
 
 const lightTheme = {
     ...DefaultTheme,
@@ -26,7 +28,7 @@ const lightTheme = {
 };
 
 export default function PhotoGallery() {
-    const { user, userRole } = getAuth();
+    const { user, userRole } = useAuth();
     const navigation = useNavigation();
     const route = useRoute();
     const { catID } = route.params;
@@ -44,30 +46,14 @@ export default function PhotoGallery() {
     // For image FAB
     const [open, setOpen] = useState(false);
     const imageSize = getItemWidthCols(2, 8);
-    const [photoError, setPhotoError] = useState(null);
 
-    const handleAddImageFromGallery = async () => {
+    const handleAddImageFrom = async (source) => {
         try {
-            setPhotoError(null);
-            const photoURI = await getImageFromGallery();
-            if (photoURI !== null) {
-                // TODO: change to cat and userid
-                await userAddCatPicture(user.uid, catID, photoURI);
-                setDialogText(
-                    "Image upload from gallery confirmed! Thank you for your contribution!"
-                );
-            }
-        } catch (error) {
-            console.error(error);
-            setPhotoError(error);
-            setDialogText("Error uploading image from gallery :(");
-        }
-    };
+            const photoURI =
+                source === "Gallery"
+                    ? await getImageFromGallery()
+                    : await getImageFromCamera();
 
-    const handleAddImageFromCamera = async () => {
-        try {
-            setPhotoError(null);
-            const photoURI = await getImageFromCamera();
             if (photoURI !== null) {
                 // TODO: change to cat and userid
                 await userAddCatPicture(
@@ -76,13 +62,12 @@ export default function PhotoGallery() {
                     photoURI
                 );
                 setDialogText(
-                    "Image upload from camera confirmed! Thank you for your contribution!"
+                    "Image upload confirmed! Thank you for your contribution!"
                 );
             }
         } catch (error) {
             console.error(error);
-            setPhotoError(null);
-            setDialogText("Error uploading image from camera :(");
+            setDialogText("Error uploading image :(\n" + error.message);
         }
     };
 
@@ -91,6 +76,10 @@ export default function PhotoGallery() {
             showDialog();
         }
     }, [dialogText]);
+
+    if (!user || !userRole) {
+        return <ActivityIndicator />;
+    }
 
     return (
         <Provider theme={lightTheme}>
@@ -121,38 +110,55 @@ export default function PhotoGallery() {
                         );
                     }}
                 />
-                <Portal>
-                    <FAB.Group
-                        testID="fab-group"
-                        style={{ position: "absolute", bottom: 10, right: 10 }}
-                        open={open}
-                        icon={open ? "close" : "plus"}
-                        actions={[
-                            {
-                                icon: "camera",
-                                label: "Camera",
-                                onPress: handleAddImageFromCamera,
-                            },
-                            {
-                                icon: "image",
-                                label: "Gallery",
-                                onPress: handleAddImageFromGallery,
-                            },
-                        ]}
-                        onStateChange={() => setOpen((prev) => !prev)}
-                    />
-                </Portal>
-                <Portal>
-                    <Dialog visible={dialogVisible} onDismiss={hideDialog}>
-                        <Dialog.Title>Image Upload</Dialog.Title>
-                        <Dialog.Content>
-                            <Text variant="bodyMedium">{dialogText}</Text>
-                        </Dialog.Content>
-                        <Dialog.Actions>
-                            <Button onPress={hideDialog}>Done</Button>
-                        </Dialog.Actions>
-                    </Dialog>
-                </Portal>
+
+                {userRole && userRole.isCaretaker && (
+                    <>
+                        <Portal>
+                            <FAB.Group
+                                testID="fab-group"
+                                style={{
+                                    position: "absolute",
+                                    bottom: 10,
+                                    right: 10,
+                                }}
+                                open={open}
+                                icon={open ? "close" : "plus"}
+                                actions={[
+                                    {
+                                        icon: "camera",
+                                        label: "Camera",
+                                        onPress: () =>
+                                            handleAddImageFrom("Camera"),
+                                    },
+                                    {
+                                        icon: "image",
+                                        label: "Gallery",
+                                        onPress: () =>
+                                            handleAddImageFrom("Gallery"),
+                                    },
+                                ]}
+                                onStateChange={() => setOpen((prev) => !prev)}
+                            />
+                        </Portal>
+
+                        <Portal>
+                            <Dialog
+                                visible={dialogVisible}
+                                onDismiss={hideDialog}
+                            >
+                                <Dialog.Title>Image Upload</Dialog.Title>
+                                <Dialog.Content>
+                                    <Text variant="bodyMedium">
+                                        {dialogText}
+                                    </Text>
+                                </Dialog.Content>
+                                <Dialog.Actions>
+                                    <Button onPress={hideDialog}>Done</Button>
+                                </Dialog.Actions>
+                            </Dialog>
+                        </Portal>
+                    </>
+                )}
             </View>
         </Provider>
     );

@@ -78,7 +78,11 @@ export default function CatProfile() {
         }
     }, [cat]);
 
-    if (!cat || !userRole) {
+    if (!userRole) {
+        return <ActivityIndicator />;
+    }
+
+    if (!cat) {
         return (
             <View
                 style={{
