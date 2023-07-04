@@ -700,6 +700,7 @@ export const useUserAddCatPicture = () => {
         } catch (error) {
             console.error("Error adding cat picture:", error);
             setError([error]);
+            throw error;
         } finally {
             setLoading([false]);
         }
