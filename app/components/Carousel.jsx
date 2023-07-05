@@ -20,7 +20,7 @@ function getInfo1(carouselType, cat) {
 }
 
 // Card Carousel used in Dashboard
-const CardCarousel = ({ cats, cardWidth, carouselType, ...card }) => {
+const CardCarousel = ({ cats, cardWidth, carouselType, userRole, ...card }) => {
     const navigation = useNavigation();
     const spaceBetweenCards = 16;
 
@@ -57,7 +57,9 @@ const CardCarousel = ({ cats, cardWidth, carouselType, ...card }) => {
                         info2={
                             item.locationName
                                 ? formatLastSeenSimple(
-                                      item.locationName,
+                                      userRole.isCaretaker
+                                          ? item.locationName
+                                          : item.locationZone,
                                       item.lastSeenTime
                                   )
                                 : "Unknown"
@@ -69,6 +71,7 @@ const CardCarousel = ({ cats, cardWidth, carouselType, ...card }) => {
                                 location: item.lastSeenLocation,
                             });
                         }}
+                        userRole={userRole}
                     />
                 );
             }}

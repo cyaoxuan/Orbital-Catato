@@ -30,6 +30,7 @@ export default function CatProfile() {
     const [favourite, setFavourite] = useState(false);
     const changeFavourite = () => setFavourite((prev) => !prev);
 
+    // Get cat data
     useEffect(() => {
         const fetchData = async () => {
             await getCat(catID);
@@ -39,6 +40,7 @@ export default function CatProfile() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [catID, isFocused]);
 
+    // Process cat data once it is ready
     useEffect(() => {
         if (cat) {
             const processData = async () => {
@@ -118,11 +120,17 @@ export default function CatProfile() {
                         location: cat.lastSeenLocation,
                     });
                 }}
+                userRole={userRole}
             />
 
             <KeyInfoContainer cat={cat} variant="bodyMedium" />
 
-            <DetailsContainer cat={cat} variant="bodyMedium" iconSize={24} />
+            <DetailsContainer
+                cat={cat}
+                userRole={userRole}
+                variant="bodyMedium"
+                iconSize={24}
+            />
 
             <PhotosContainer
                 photoURLs={cat.photoURLs}

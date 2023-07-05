@@ -20,6 +20,7 @@ const AvatarContainer = ({
     updateOnPress,
     locationValue,
     locationOnPress,
+    userRole,
 }) => {
     const buttonColor = "#663399";
 
@@ -31,66 +32,74 @@ const AvatarContainer = ({
                 variant="headlineLarge"
                 name={name}
             />
-            <View style={{ alignItems: "center", marginVertical: 4 }}>
-                <Button
-                    style={{ width: "70%" }}
-                    mode="outlined"
-                    icon={
-                        followValue
-                            ? () => (
-                                  <Ionicons
-                                      name="notifications"
-                                      size={20}
-                                      color={buttonColor}
-                                  />
-                              )
-                            : () => (
-                                  <Ionicons
-                                      name="notifications-outline"
-                                      size={24}
-                                      color={buttonColor}
-                                  />
-                              )
-                    }
-                    onPress={followOnPress}
-                >
-                    {followValue ? "Followed" : "Follow for Notifications"}
-                </Button>
-            </View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-                {updateValue && (
-                    <Button
-                        style={{ width: "40%", margin: 4 }}
-                        mode="outlined"
-                        icon={() => (
-                            <Ionicons
-                                name="create-outline"
-                                size={20}
-                                color={buttonColor}
-                            />
-                        )}
-                        onPress={updateOnPress}
+            {userRole && userRole.isUser && (
+                <>
+                    <View style={{ alignItems: "center", marginVertical: 4 }}>
+                        <Button
+                            style={{ width: "70%" }}
+                            mode="outlined"
+                            icon={
+                                followValue
+                                    ? () => (
+                                          <Ionicons
+                                              name="notifications"
+                                              size={20}
+                                              color={buttonColor}
+                                          />
+                                      )
+                                    : () => (
+                                          <Ionicons
+                                              name="notifications-outline"
+                                              size={24}
+                                              color={buttonColor}
+                                          />
+                                      )
+                            }
+                            onPress={followOnPress}
+                        >
+                            {followValue
+                                ? "Followed"
+                                : "Follow for Notifications"}
+                        </Button>
+                    </View>
+                    <View
+                        style={{ flexDirection: "row", alignItems: "center" }}
                     >
-                        Update
-                    </Button>
-                )}
-                {locationValue && (
-                    <Button
-                        style={{ width: "40%", margin: 4 }}
-                        mode="outlined"
-                        icon={() => (
-                            <Ionicons
-                                name="location-outline"
-                                size={20}
-                                color={buttonColor}
-                            />
+                        {updateValue && (
+                            <Button
+                                style={{ width: "40%", margin: 4 }}
+                                mode="outlined"
+                                icon={() => (
+                                    <Ionicons
+                                        name="create-outline"
+                                        size={20}
+                                        color={buttonColor}
+                                    />
+                                )}
+                                onPress={updateOnPress}
+                            >
+                                Update
+                            </Button>
                         )}
-                        onPress={locationOnPress}
-                    >
-                        Locate
-                    </Button>
-                )}
-            </View>
+                        {locationValue && userRole && userRole.isCaretaker && (
+                            <Button
+                                style={{ width: "40%", margin: 4 }}
+                                mode="outlined"
+                                icon={() => (
+                                    <Ionicons
+                                        name="location-outline"
+                                        size={20}
+                                        color={buttonColor}
+                                    />
+                                )}
+                                onPress={locationOnPress}
+                            >
+                                Locate
+                            </Button>
+                        )}
+                    </View>
+                </>
+            )}
         </View>
     );
 };
@@ -119,7 +128,7 @@ const KeyInfoContainer = ({ cat, variant }) => {
 };
 
 // Details Container
-const DetailsContainer = ({ cat, ...rest }) => {
+const DetailsContainer = ({ cat, userRole, ...rest }) => {
     return (
         <View style={styles.detailsContainer}>
             <IconTextField
@@ -136,7 +145,12 @@ const DetailsContainer = ({ cat, ...rest }) => {
                 field="Last Seen: "
                 info={
                     cat.locationName && cat.lastSeenTime
-                        ? formatLastSeen(cat.locationName, cat.lastSeenTime)
+                        ? formatLastSeen(
+                              userRole.isCaretaker
+                                  ? cat.locationName
+                                  : cat.locationZone,
+                              cat.lastSeenTime
+                          )
                         : "Unknown"
                 }
             />

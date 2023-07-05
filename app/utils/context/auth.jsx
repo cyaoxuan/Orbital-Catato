@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { createUser, getUser } from "../db/user";
+import { createUser, getUserByEmail, getUserByID } from "../db/user";
 
 const AuthContext = createContext({});
 export const auth = getAuth();
@@ -20,28 +20,38 @@ export function AuthProvider({ children }) {
             auth,
             async (authUser) => {
                 setUser(authUser);
-                if (authUser) {
-                    // Logged in
-                    setUser(authUser);
-                    const userData = await getUser(authUser.uid);
 
-                    if (userData) {
-                        // Existing user
-                        setUserRole(userData.role);
-                    } else {
-                        // New user
-                        await createUser(authUser.uid, authUser.isAnonymous);
-                        setUserRole({
-                            isGuest: true,
-                            isUser: !authUser.isAnonymous,
-                            isCaretaker: false,
-                            isAdmin: false,
-                        });
-                    }
-                } else {
+                if (!authUser) {
                     // Logged out
-                    setUser(null);
                     setUserRole(null);
+                    return;
+                }
+
+                if (authUser.isAnonymous) {
+                    // Guest, don't add into DB
+                    setUserRole({
+                        isGuest: true,
+                        isUser: false,
+                        isCaretaker: false,
+                        isAdmin: false,
+                    });
+                    return;
+                }
+
+                // New / existing cat lover and above
+                const userData = await getUserByID(authUser.uid);
+                if (userData) {
+                    // Existing user
+                    setUserRole(userData.role);
+                } else {
+                    // New user
+                    await createUser(authUser.uid, authUser.email);
+                    setUserRole({
+                        isGuest: true,
+                        isUser: true,
+                        isCaretaker: false,
+                        isAdmin: false,
+                    });
                 }
             }
         );

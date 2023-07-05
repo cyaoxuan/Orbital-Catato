@@ -72,6 +72,10 @@ export default function Dashboard() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [refreshing]);
 
+    if (!userRole) {
+        return <ActivityIndicator />;
+    }
+
     return (
         <ScrollView
             refreshControl={
@@ -90,6 +94,7 @@ export default function Dashboard() {
                 field2="Seen: "
                 loading={loadingConcern}
                 error={errorConcern}
+                userRole={userRole}
             />
 
             {userRole && userRole.isCaretaker && (
@@ -105,6 +110,7 @@ export default function Dashboard() {
                     field2="Seen: "
                     loading={loadingUnfed}
                     error={errorUnfed}
+                    userRole={userRole}
                 />
             )}
 
