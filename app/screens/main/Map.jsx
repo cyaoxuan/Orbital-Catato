@@ -237,7 +237,7 @@ export default function Map() {
                     longitudeDelta: 0.01,
                 }}
             >
-                {!error[0] && userRole.isCaretaker
+                {!error[0] && userRole && userRole.isCaretaker
                     ? allCats
                           .filter((cat) => cat.lastSeenLocation)
                           .map((cat, index) => (
@@ -273,7 +273,7 @@ export default function Map() {
                     alignItems: "center",
                 }}
             >
-                {userRole.isCaretaker ? (
+                {userRole && userRole.isCaretaker ? (
                     <Searchbar
                         style={{ width: "95%", alignSelf: "center" }}
                         theme={{ colors: { elevation: { level3: "white" } } }}

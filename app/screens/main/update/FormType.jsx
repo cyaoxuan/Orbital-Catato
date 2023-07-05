@@ -16,7 +16,6 @@ import {
     useUserDeleteCat,
     useUserUpdateCatConcern,
     useUserUpdateCatFed,
-    useUserUpdateCatFoster,
     useUserUpdateCatLocation,
     useUserUpdateCatProfile,
 } from "../../../utils/db/cat";
@@ -391,8 +390,6 @@ const UpdateLocation = (props) => {
         keyFeatures,
         concernStatus,
         concernDesc,
-        isFostered,
-        fosterReason,
         formType,
         userID,
     } = props;
@@ -435,8 +432,6 @@ const UpdateLocation = (props) => {
                 photoURLs: photoURLs,
                 concernStatus: concernStatus,
                 concernDesc: concernDesc,
-                isFostered: isFostered,
-                fosterReason: fosterReason,
                 formType: formType,
             });
         }
@@ -453,8 +448,6 @@ const UpdateLocation = (props) => {
         keyFeatures,
         photoURLs,
         formType,
-        isFostered,
-        fosterReason,
         concernStatus,
         concernDesc,
     ]);
@@ -519,8 +512,6 @@ const UpdateConcern = (props) => {
         keyFeatures,
         concernStatus,
         concernDesc,
-        isFostered,
-        fosterReason,
         formType,
         userID,
     } = props;
@@ -587,8 +578,6 @@ const UpdateConcern = (props) => {
                               (status) => status !== "Injured"
                           ),
                 concernDesc: concernDescription,
-                isFostered: isFostered,
-                fosterReason: fosterReason,
                 formType: formType,
             });
         }
@@ -606,8 +595,6 @@ const UpdateConcern = (props) => {
         photoURLs,
         concern,
         concernDescription,
-        isFostered,
-        fosterReason,
         formType,
         concernStatus,
     ]);
@@ -742,8 +729,6 @@ const UpdateFed = (props) => {
         keyFeatures,
         concernStatus,
         concernDesc,
-        isFostered,
-        fosterReason,
         formType,
         userID,
     } = props;
@@ -785,8 +770,6 @@ const UpdateFed = (props) => {
                 photoURLs: photoURLs,
                 concernStatus: concernStatus,
                 concernDesc: concernDesc,
-                isFostered: isFostered,
-                fosterReason: fosterReason,
                 formType: formType,
             });
         }
@@ -805,8 +788,6 @@ const UpdateFed = (props) => {
         photoURLs,
         concernStatus,
         concernDesc,
-        isFostered,
-        fosterReason,
         formType,
     ]);
 
@@ -858,132 +839,6 @@ const UpdateFed = (props) => {
     );
 };
 
-const UpdateFoster = (props) => {
-    const navigation = useNavigation();
-    const {
-        catID,
-        name,
-        photoURLs,
-        gender,
-        birthYear,
-        sterilised,
-        keyFeatures,
-        concernStatus,
-        concernDesc,
-        isFostered,
-        fosterReason,
-        formType,
-        userID,
-    } = props;
-    const [processed, setProcessed] = useState(false);
-    const [inProgress, setInProgress] = useState(false);
-    const { userUpdateCatFoster, loading, error } = useUserUpdateCatFoster();
-
-    // For Foster Radio
-    const [fostered, setFostered] = useState(isFostered ? "Yes" : "No");
-
-    // For FosterReason TextInput
-    const [fosterDesc, setFosterDesc] = useState(
-        fosterReason ? fosterReason : ""
-    );
-
-    useEffect(() => {
-        if (!loading[0] && processed && error[0] === null) {
-            navigation.navigate("ConfirmUpdate", {
-                catID: catID,
-                name: name,
-                gender: gender,
-                birthYear: birthYear,
-                sterilised: sterilised,
-                keyFeatures: keyFeatures,
-                photoURLs: photoURLs,
-                concernStatus: concernStatus,
-                concernDesc: concernDesc,
-                isFostered: fostered,
-                fosterReason: fosterDesc,
-                formType: formType,
-            });
-        }
-    }, [
-        loading,
-        processed,
-        error,
-        navigation,
-        props,
-        catID,
-        name,
-        gender,
-        birthYear,
-        sterilised,
-        keyFeatures,
-        photoURLs,
-        concernStatus,
-        concernDesc,
-        fostered,
-        fosterDesc,
-        formType,
-    ]);
-
-    const handleUpdate = async () => {
-        if (!inProgress) {
-            setInProgress(true);
-            setProcessed(false);
-
-            await userUpdateCatFoster(
-                props.userID,
-                catID,
-                fostered,
-                fosterDesc
-            );
-            setProcessed(true);
-            setInProgress(false);
-        } else {
-            setInProgress(true);
-        }
-    };
-
-    return (
-        <View style={styles.formContainer}>
-            <Text variant={titleVariant}>Update Foster</Text>
-            <TwoRadioInput
-                titleText="Fostering?"
-                value={fostered}
-                onValueChange={(value) => setFostered(value)}
-                firstText="Yes"
-                firstValue="Yes"
-                secondText="No"
-                secondValue="No"
-            />
-
-            <Divider />
-
-            {fostered === "Yes" && (
-                <FormInput
-                    multiline={true}
-                    label="Reasons:"
-                    placeholder="Reasons for fostering..."
-                    value={fosterDesc}
-                    onChangeText={setFosterDesc}
-                    errorText="Please give reasons for fostering!"
-                />
-            )}
-
-            <PillButton
-                label="Update"
-                onPress={handleUpdate}
-                disabled={
-                    inProgress ||
-                    (fostered === "Yes" && fosterDesc.trim() === "")
-                }
-            />
-            {error[0] && (inProgress || setInProgress(false)) && (
-                <Text>Error: {error[0].message}</Text>
-            )}
-            {loading[0] && <ActivityIndicator />}
-        </View>
-    );
-};
-
 const UpdateProfile = (props) => {
     const navigation = useNavigation();
     const {
@@ -995,8 +850,6 @@ const UpdateProfile = (props) => {
         sterilised,
         keyFeatures,
         formType,
-        isFostered,
-        fosterReason,
     } = props;
     const [processed, setProcessed] = useState(false);
     const [inProgress, setInProgress] = useState(false);
@@ -1033,8 +886,6 @@ const UpdateProfile = (props) => {
                 sterilised: sterile === "Yes",
                 keyFeatures: features,
                 photoURLs: photoURLs,
-                isFostered: isFostered,
-                fosterReason: fosterReason,
                 formType: formType,
             });
         }
@@ -1051,8 +902,6 @@ const UpdateProfile = (props) => {
         features,
         photoURLs,
         formType,
-        isFostered,
-        fosterReason,
     ]);
 
     const handleImageFromGallery = async () => {
@@ -1246,7 +1095,6 @@ export {
     ReportCat,
     UpdateConcern,
     UpdateFed,
-    UpdateFoster,
     UpdateLocation,
     UpdateProfile,
     DeleteProfile,

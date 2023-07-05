@@ -29,8 +29,6 @@ function getForm(userID, params) {
             return <FormTypes.UpdateConcern userID={userID} {...params} />;
         case "fed":
             return <FormTypes.UpdateFed userID={userID} {...params} />;
-        case "foster":
-            return <FormTypes.UpdateFoster userID={userID} {...params} />;
         case "update":
             return <FormTypes.UpdateProfile userID={userID} {...params} />;
         case "delete":

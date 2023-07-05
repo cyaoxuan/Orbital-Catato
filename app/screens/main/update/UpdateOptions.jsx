@@ -19,90 +19,90 @@ const UpdateOptionList = ({ cat }) => {
     return (
         <List.Section>
             {userRole && userRole.isUser && (
-                <List.Item
-                    title="Update Location"
-                    titleStyle={styles.title}
-                    onPress={() => {
-                        navigation.navigate("Form", {
-                            ...cat,
-                            formType: "location",
-                        });
-                    }}
-                    right={() => <List.Icon icon="arrow-right" />}
-                />
+                <>
+                    <List.Item
+                        title="Update Location"
+                        titleStyle={styles.title}
+                        onPress={() => {
+                            navigation.navigate("Form", {
+                                ...cat,
+                                formType: "location",
+                            });
+                        }}
+                        right={() => <List.Icon icon="arrow-right" />}
+                    />
+                    <Divider />
+                </>
             )}
-            <Divider />
+
             {userRole && userRole.isUser && (
-                <List.Item
-                    title="Update Concern"
-                    titleStyle={styles.title}
-                    onPress={() => {
-                        navigation.navigate("Form", {
-                            ...cat,
-                            formType: "concern",
-                        });
-                    }}
-                    right={() => <List.Icon icon="arrow-right" />}
-                />
+                <>
+                    <List.Item
+                        title="Update Concern"
+                        titleStyle={styles.title}
+                        onPress={() => {
+                            navigation.navigate("Form", {
+                                ...cat,
+                                formType: "concern",
+                            });
+                        }}
+                        right={() => <List.Icon icon="arrow-right" />}
+                    />
+                    <Divider />
+                </>
             )}
-            <Divider />
+
             {userRole && userRole.isCaretaker && (
-                <List.Item
-                    bottomDivider
-                    title="Update Fed Status"
-                    titleStyle={styles.title}
-                    onPress={() => {
-                        navigation.navigate("Form", {
-                            ...cat,
-                            formType: "fed",
-                        });
-                    }}
-                    right={() => <List.Icon icon="arrow-right" />}
-                />
+                <>
+                    <List.Item
+                        bottomDivider
+                        title="Update Fed Status"
+                        titleStyle={styles.title}
+                        onPress={() => {
+                            navigation.navigate("Form", {
+                                ...cat,
+                                formType: "fed",
+                            });
+                        }}
+                        right={() => <List.Icon icon="arrow-right" />}
+                    />
+                    <Divider />
+                </>
             )}
-            <Divider />
+
             {userRole && userRole.isCaretaker && (
-                <List.Item
-                    title="Temporarily Foster"
-                    titleStyle={styles.title}
-                    onPress={() => {
-                        navigation.navigate("Form", {
-                            ...cat,
-                            formType: "foster",
-                        });
-                    }}
-                    right={() => <List.Icon icon="arrow-right" />}
-                />
+                <>
+                    <List.Item
+                        title="Update Profile"
+                        titleStyle={styles.title}
+                        onPress={() => {
+                            navigation.navigate("Form", {
+                                ...cat,
+                                formType: "update",
+                            });
+                        }}
+                        right={() => <List.Icon icon="arrow-right" />}
+                    />
+                    <Divider />
+                </>
             )}
-            <Divider />
-            {userRole && userRole.isCaretaker && (
-                <List.Item
-                    title="Update Profile"
-                    titleStyle={styles.title}
-                    onPress={() => {
-                        navigation.navigate("Form", {
-                            ...cat,
-                            formType: "update",
-                        });
-                    }}
-                    right={() => <List.Icon icon="arrow-right" />}
-                />
-            )}
-            <Divider />
+
             {userRole && userRole.isAdmin && (
-                <List.Item
-                    title="Remove Cat Profile"
-                    titleStyle={styles.title}
-                    onPress={() => {
-                        navigation.navigate("Form", {
-                            ...cat,
-                            formType: "delete",
-                        });
-                    }}
-                    right={() => <List.Icon icon="arrow-right" />}
-                />
+                <>
+                    <List.Item
+                        title="Remove Cat Profile"
+                        titleStyle={styles.title}
+                        onPress={() => {
+                            navigation.navigate("Form", {
+                                ...cat,
+                                formType: "delete",
+                            });
+                        }}
+                        right={() => <List.Icon icon="arrow-right" />}
+                    />
+                    <Divider />
+                </>
             )}
-            <Divider />
         </List.Section>
     );
 };

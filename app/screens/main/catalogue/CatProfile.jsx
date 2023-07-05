@@ -61,8 +61,6 @@ export default function CatProfile() {
                 keyFeatures,
                 concernStatus,
                 concernDesc,
-                isFostered,
-                fosterReason,
             }) => ({
                 catID,
                 name,
@@ -73,8 +71,6 @@ export default function CatProfile() {
                 keyFeatures,
                 concernStatus,
                 concernDesc,
-                isFostered,
-                fosterReason,
             }))(cat);
             setPartialCat(partialCatTemp);
         }

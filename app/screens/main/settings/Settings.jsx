@@ -49,46 +49,12 @@ const UserDetails = ({ user, userRole }) => {
 };
 
 const SettingsOptionList = ({ user, userRole }) => {
-    const [notifOn, setNotifOn] = useState(false);
     const navigation = useNavigation();
     const iconSize = 20;
 
     return (
         <List.Section>
-            {userRole && userRole.isUser && (
-                <>
-                    <List.Item
-                        bottomDivider
-                        title="Notifications"
-                        style={styles.listView}
-                        titleStyle={styles.listTitle}
-                        left={() => (
-                            <List.Icon
-                                icon={() => (
-                                    <Ionicons
-                                        name="notifications-outline"
-                                        size={iconSize}
-                                    />
-                                )}
-                            />
-                        )}
-                        right={() => (
-                            <Switch
-                                style={{
-                                    transform: [
-                                        { scaleX: 1.2 },
-                                        { scaleY: 1.2 },
-                                    ],
-                                }}
-                                value={notifOn}
-                                onValueChange={setNotifOn}
-                            />
-                        )}
-                    />
-                    <Divider />
-                </>
-            )}
-
+            <Divider />
             <List.Item
                 title="About"
                 style={styles.listView}
@@ -137,34 +103,51 @@ const SettingsOptionList = ({ user, userRole }) => {
                 )}
             />
             <Divider />
-            <List.Item
-                title="Documentation"
-                style={styles.listView}
-                titleStyle={styles.listTitle}
-                onPress={() => {}}
-                left={() => (
-                    <List.Icon
-                        icon={() => (
-                            <Ionicons name="document-outline" size={iconSize} />
+
+            {userRole && userRole.isUser && (
+                <>
+                    <List.Item
+                        bottomDivider
+                        title="Notifications"
+                        style={styles.listView}
+                        titleStyle={styles.listTitle}
+                        onPress={() => {
+                            navigation.navigate("Notifications");
+                        }}
+                        left={() => (
+                            <List.Icon
+                                icon={() => (
+                                    <Ionicons
+                                        name="notifications-outline"
+                                        size={iconSize}
+                                    />
+                                )}
+                            />
+                        )}
+                        right={() => (
+                            <List.Icon
+                                icon={() => (
+                                    <Ionicons
+                                        name="chevron-forward"
+                                        size={iconSize}
+                                    />
+                                )}
+                            />
                         )}
                     />
-                )}
-                right={() => (
-                    <List.Icon
-                        icon={() => (
-                            <Ionicons name="chevron-forward" size={iconSize} />
-                        )}
-                    />
-                )}
-            />
-            <Divider />
+                    <Divider />
+                </>
+            )}
+
             {userRole && userRole.isAdmin && (
                 <>
                     <List.Item
                         title="Admin Panel"
                         style={styles.listView}
                         titleStyle={styles.listTitle}
-                        onPress={() => {}}
+                        onPress={() => {
+                            navigation.navigate("AdminPanel");
+                        }}
                         left={() => (
                             <List.Icon
                                 icon={() => (
@@ -189,6 +172,28 @@ const SettingsOptionList = ({ user, userRole }) => {
                     <Divider />
                 </>
             )}
+
+            <List.Item
+                title="Documentation"
+                style={styles.listView}
+                titleStyle={styles.listTitle}
+                onPress={() => {}}
+                left={() => (
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="document-outline" size={iconSize} />
+                        )}
+                    />
+                )}
+                right={() => (
+                    <List.Icon
+                        icon={() => (
+                            <Ionicons name="chevron-forward" size={iconSize} />
+                        )}
+                    />
+                )}
+            />
+            <Divider />
         </List.Section>
     );
 };
@@ -222,7 +227,6 @@ export default function Settings() {
             <View>
                 <UserDetails user={user} userRole={userRole} />
             </View>
-            <Divider />
             <View marginTop={4}>
                 <SettingsOptionList user={user} userRole={userRole} />
             </View>

@@ -38,8 +38,6 @@ export default function SelectCat() {
                     keyFeatures,
                     concernStatus,
                     concernDesc,
-                    isFostered,
-                    fosterReason,
                 }) => ({
                     catID,
                     name,
@@ -50,8 +48,6 @@ export default function SelectCat() {
                     keyFeatures,
                     concernStatus,
                     concernDesc,
-                    isFostered,
-                    fosterReason,
                 }))(item);
 
                 return (
