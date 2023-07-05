@@ -58,7 +58,7 @@ const CatCard = (props) => {
                 >
                     Profile
                 </Button>
-                {props.userRole.isCaretaker && (
+                {props.userRole?.isCaretaker && (
                     <Button
                         disabled={
                             props.showFindLocation === undefined ? true : false
