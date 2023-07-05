@@ -90,7 +90,7 @@ const CreateProfile = (props) => {
             setProcessed(false);
             // TODO: change to userid
             await userCreateCat(
-                "2nTIJgoSsSTWzspThZlaQJppKuk2",
+                props.userID,
                 {
                     name: newName,
                     photoURI: photoURI,
@@ -275,7 +275,7 @@ const ReportCat = (props) => {
             setProcessed(false);
             // TODO: change to userid
             await userCreateCat(
-                "2nTIJgoSsSTWzspThZlaQJppKuk2",
+                props.userID,
                 {
                     lastSeenLocation: location,
                     lastSeenTime: date,
@@ -463,13 +463,8 @@ const UpdateLocation = (props) => {
         if (!inProgress) {
             setInProgress(true);
             setProcessed(false);
-            // TODO: change to cat and userid
-            await userUpdateCatLocation(
-                "2nTIJgoSsSTWzspThZlaQJppKuk2",
-                catID,
-                location,
-                date
-            );
+
+            await userUpdateCatLocation(props.userID, catID, location, date);
             setProcessed(true);
             setInProgress(false);
         } else {
@@ -643,9 +638,9 @@ const UpdateConcern = (props) => {
         if (!inProgress) {
             setInProgress(true);
             setProcessed(false);
-            // TODO: change to cat and userid
+
             await userUpdateCatConcern(
-                "2nTIJgoSsSTWzspThZlaQJppKuk2",
+                props.userID,
                 catID,
                 location,
                 date,
@@ -819,13 +814,8 @@ const UpdateFed = (props) => {
         if (!inProgress) {
             setInProgress(true);
             setProcessed(false);
-            // TODO: change to cat and userid
-            await userUpdateCatFed(
-                "2nTIJgoSsSTWzspThZlaQJppKuk2",
-                catID,
-                date,
-                location
-            );
+
+            await userUpdateCatFed(props.userID, catID, date, location);
             setProcessed(true);
             setInProgress(false);
         } else {
@@ -938,9 +928,9 @@ const UpdateFoster = (props) => {
         if (!inProgress) {
             setInProgress(true);
             setProcessed(false);
-            // TODO: change to cat and userid
+
             await userUpdateCatFoster(
-                "2nTIJgoSsSTWzspThZlaQJppKuk2",
+                props.userID,
                 catID,
                 fostered,
                 fosterDesc
@@ -1091,8 +1081,8 @@ const UpdateProfile = (props) => {
         if (!inProgress) {
             setInProgress(true);
             setProcessed(false);
-            // TODO: change to cat and userid
-            await userUpdateCatProfile("2nTIJgoSsSTWzspThZlaQJppKuk2", catID, {
+
+            await userUpdateCatProfile(props.userID, catID, {
                 name: newName,
                 photoURI: photoURI,
                 gender: newGender,
@@ -1215,7 +1205,7 @@ const DeleteProfile = (props) => {
         if (!inProgress) {
             setInProgress(true);
             setProcessed(false);
-            await userDeleteCat("2nTIJgoSsSTWzspThZlaQJppKuk2", catID);
+            await userDeleteCat(props.userID, catID);
             setProcessed(true);
             setInProgress(false);
         } else {

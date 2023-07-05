@@ -1,5 +1,10 @@
 import { KeyboardAvoidingView, ScrollView, View } from "react-native";
-import { DefaultTheme, Provider, Text } from "react-native-paper";
+import {
+    ActivityIndicator,
+    DefaultTheme,
+    Provider,
+    Text,
+} from "react-native-paper";
 import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import * as FormTypes from "./FormType";
@@ -43,6 +48,10 @@ export default function Form() {
     const { user } = useAuth();
     const route = useRoute();
 
+    if (!user) {
+        return <ActivityIndicator />;
+    }
+
     return (
         <Provider theme={lightTheme}>
             <KeyboardAvoidingView
@@ -66,7 +75,7 @@ export default function Form() {
                         variant="headlineLarge"
                         name={route.params.name}
                     />
-                    {getForm(1, route.params)}
+                    {getForm(user.uid, route.params)}
                 </ScrollView>
             </KeyboardAvoidingView>
         </Provider>

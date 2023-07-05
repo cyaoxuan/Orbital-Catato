@@ -55,12 +55,7 @@ export default function PhotoGallery() {
                     : await getImageFromCamera();
 
             if (photoURI !== null) {
-                // TODO: change to cat and userid
-                await userAddCatPicture(
-                    "2nTIJgoSsSTWzspThZlaQJppKuk2",
-                    catID,
-                    photoURI
-                );
+                await userAddCatPicture(user.uid, catID, photoURI);
                 setDialogText(
                     "Image upload confirmed! Thank you for your contribution!"
                 );
