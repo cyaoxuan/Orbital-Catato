@@ -144,7 +144,7 @@ const DetailsContainer = ({ cat, userRole, ...rest }) => {
                 iconName="location-outline"
                 field="Last Seen: "
                 info={
-                    cat.locationName && cat.lastSeenTime
+                    cat.locationName && cat.lastSeenTime && userRole
                         ? formatLastSeen(
                               userRole.isCaretaker
                                   ? cat.locationName

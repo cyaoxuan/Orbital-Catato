@@ -49,12 +49,12 @@ const UserDetails = ({ user, userRole }) => {
 };
 
 const SettingsOptionList = ({ user, userRole }) => {
-    const [notifOn, setNotifOn] = useState(false);
     const navigation = useNavigation();
     const iconSize = 20;
 
     return (
         <List.Section>
+            <Divider />
             <List.Item
                 title="About"
                 style={styles.listView}
@@ -111,6 +111,9 @@ const SettingsOptionList = ({ user, userRole }) => {
                         title="Notifications"
                         style={styles.listView}
                         titleStyle={styles.listTitle}
+                        onPress={() => {
+                            navigation.navigate("Notifications");
+                        }}
                         left={() => (
                             <List.Icon
                                 icon={() => (
@@ -122,16 +125,11 @@ const SettingsOptionList = ({ user, userRole }) => {
                             />
                         )}
                         right={() => (
-                            <Switch
-                                style={{
-                                    transform: [
-                                        { scaleX: 1.2 },
-                                        { scaleY: 1.2 },
-                                    ],
-                                }}
-                                value={notifOn}
-                                onValueChange={setNotifOn}
-                            />
+                            <List.Icon
+                                icon={() => (
+                            <Ionicons name="chevron-forward" size={iconSize} />
+                        )}
+                    />
                         )}
                     />
                     <Divider />
@@ -226,7 +224,6 @@ export default function Settings() {
             <View>
                 <UserDetails user={user} userRole={userRole} />
             </View>
-            <Divider />
             <View marginTop={4}>
                 <SettingsOptionList user={user} userRole={userRole} />
             </View>

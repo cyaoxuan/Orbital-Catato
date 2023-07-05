@@ -48,6 +48,9 @@ export default function AdminPanel() {
         }
     }, [user]);
 
+    // Update user roles
+    // const { useUpdateUserRole, loading, error } = useUpdateUserRole();
+
     // const handleUpdate = async () => {
     //     if (!inProgress) {
     //         setInProgress(true);

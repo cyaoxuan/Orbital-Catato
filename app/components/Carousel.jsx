@@ -55,7 +55,7 @@ const CardCarousel = ({ cats, cardWidth, carouselType, userRole, ...card }) => {
                         {...card}
                         info1={getInfo1(carouselType, item)}
                         info2={
-                            item.locationName && item.locationZone
+                            item.locationName && item.locationZone && userRole
                                 ? formatLastSeenSimple(
                                       userRole.isCaretaker
                                           ? item.locationName
