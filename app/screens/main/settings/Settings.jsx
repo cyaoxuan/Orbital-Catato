@@ -56,62 +56,39 @@ const SettingsOptionList = ({ user, userRole }) => {
     return (
         <List.Section>
             {userRole && userRole.isUser && (
-                <List.Item
-                    title="Reset Password"
-                    style={styles.listView}
-                    titleStyle={styles.listTitle}
-                    onPress={() => {}}
-                    left={() => (
-                        <List.Icon
-                            icon={() => (
-                                <Ionicons
-                                    name="lock-closed-outline"
-                                    size={iconSize}
-                                />
-                            )}
-                        />
-                    )}
-                    right={() => (
-                        <List.Icon
-                            icon={() => (
-                                <Ionicons
-                                    name="chevron-forward"
-                                    size={iconSize}
-                                />
-                            )}
-                        />
-                    )}
-                />
+                <>
+                    <List.Item
+                        bottomDivider
+                        title="Notifications"
+                        style={styles.listView}
+                        titleStyle={styles.listTitle}
+                        left={() => (
+                            <List.Icon
+                                icon={() => (
+                                    <Ionicons
+                                        name="notifications-outline"
+                                        size={iconSize}
+                                    />
+                                )}
+                            />
+                        )}
+                        right={() => (
+                            <Switch
+                                style={{
+                                    transform: [
+                                        { scaleX: 1.2 },
+                                        { scaleY: 1.2 },
+                                    ],
+                                }}
+                                value={notifOn}
+                                onValueChange={setNotifOn}
+                            />
+                        )}
+                    />
+                    <Divider />
+                </>
             )}
-            <Divider />
-            {userRole && userRole.isUser && (
-                <List.Item
-                    bottomDivider
-                    title="Notifications"
-                    style={styles.listView}
-                    titleStyle={styles.listTitle}
-                    left={() => (
-                        <List.Icon
-                            icon={() => (
-                                <Ionicons
-                                    name="notifications-outline"
-                                    size={iconSize}
-                                />
-                            )}
-                        />
-                    )}
-                    right={() => (
-                        <Switch
-                            style={{
-                                transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
-                            }}
-                            value={notifOn}
-                            onValueChange={setNotifOn}
-                        />
-                    )}
-                />
-            )}
-            <Divider />
+
             <List.Item
                 title="About"
                 style={styles.listView}
@@ -182,63 +159,36 @@ const SettingsOptionList = ({ user, userRole }) => {
             />
             <Divider />
             {userRole && userRole.isAdmin && (
-                <List.Item
-                    title="Admin Panel"
-                    style={styles.listView}
-                    titleStyle={styles.listTitle}
-                    onPress={() => {}}
-                    left={() => (
-                        <List.Icon
-                            icon={() => (
-                                <Ionicons
-                                    name="build-outline"
-                                    size={iconSize}
-                                />
-                            )}
-                        />
-                    )}
-                    right={() => (
-                        <List.Icon
-                            icon={() => (
-                                <Ionicons
-                                    name="chevron-forward"
-                                    size={iconSize}
-                                />
-                            )}
-                        />
-                    )}
-                />
+                <>
+                    <List.Item
+                        title="Admin Panel"
+                        style={styles.listView}
+                        titleStyle={styles.listTitle}
+                        onPress={() => {}}
+                        left={() => (
+                            <List.Icon
+                                icon={() => (
+                                    <Ionicons
+                                        name="build-outline"
+                                        size={iconSize}
+                                    />
+                                )}
+                            />
+                        )}
+                        right={() => (
+                            <List.Icon
+                                icon={() => (
+                                    <Ionicons
+                                        name="chevron-forward"
+                                        size={iconSize}
+                                    />
+                                )}
+                            />
+                        )}
+                    />
+                    <Divider />
+                </>
             )}
-            <Divider />
-            {userRole && !userRole.isCaretaker && (
-                <List.Item
-                    title="Request Caretaker Tier"
-                    style={styles.listView}
-                    titleStyle={styles.listTitle}
-                    onPress={() => {}}
-                    left={() => (
-                        <List.Icon
-                            icon={() => (
-                                <Ionicons
-                                    name="create-outline"
-                                    size={iconSize}
-                                />
-                            )}
-                        />
-                    )}
-                    right={() => (
-                        <List.Icon
-                            icon={() => (
-                                <Ionicons
-                                    name="chevron-forward"
-                                    size={iconSize}
-                                />
-                            )}
-                        />
-                    )}
-                />
-            )}
-            <Divider />
         </List.Section>
     );
 };

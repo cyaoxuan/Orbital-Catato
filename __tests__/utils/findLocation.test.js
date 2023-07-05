@@ -278,7 +278,8 @@ describe("getRandomBuilding", () => {
         jest.spyOn(Math, "random").mockReturnValue(0.5);
         const zoneName = "Arts";
         const randomBuilding = getRandomBuilding(zoneName);
-        expect(randomBuilding).toBe("AS1");
+        expect(randomBuilding.latitude).toBe(1.2951454107251619);
+        expect(randomBuilding.longitude).toBe(103.77213443414018);
     });
 });
 

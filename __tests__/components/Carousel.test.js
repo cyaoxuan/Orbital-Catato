@@ -21,7 +21,8 @@ const cats = [
             require("../../assets/cats/cat-2-1.jpg"),
         ],
         lastSeenLocation: { latitude: 1, longitude: 1 },
-        locationName: "Engineering",
+        locationName: "E1",
+        locationZone: "Engineering",
         lastSeenTime: {
             toDate() {
                 return new Date(2023, 4, 20, 10, 53, 0, 0);
@@ -38,7 +39,8 @@ const cats = [
         catID: 2,
         name: "Skitty",
         photoURLs: [require("../../assets/cats/cat-2-1.jpg")],
-        locationName: "Utown",
+        locationName: "SRC",
+        locationZone: "Utown",
         lastSeenTime: {
             toDate() {
                 return new Date(2023, 4, 20, 10, 53, 0, 0);
@@ -55,7 +57,8 @@ const cats = [
         catID: 3,
         name: "Mitty",
         photoURLs: [require("../../assets/cats/cat-2-1.jpg")],
-        locationName: "Science",
+        locationName: "S17",
+        locationZone: "Science",
         lastSeenTime: {
             toDate() {
                 new Date(2023, 4, 15, 18, 34, 0, 0);
@@ -69,6 +72,13 @@ const cats = [
         concernStatus: ["Missing"],
     },
 ];
+
+const userRole = {
+    isGuest: true,
+    isUser: true,
+    isCaretaker: true,
+    isAdmin: false,
+};
 
 const mockNavigate = jest.fn();
 
@@ -145,6 +155,7 @@ describe("<CardCarousel />", () => {
                 cats={cats}
                 cardWidth={cardWidth}
                 carouselType={carouselType}
+                userRole={userRole}
             />
         ).toJSON();
 
@@ -160,6 +171,7 @@ describe("<CardCarousel />", () => {
                 cats={cats}
                 cardWidth={cardWidth}
                 carouselType={carouselType}
+                userRole={userRole}
             />
         );
 
@@ -176,6 +188,7 @@ describe("<CardCarousel />", () => {
                 cats={cats}
                 cardWidth={cardWidth}
                 carouselType={carouselType}
+                userRole={userRole}
             />
         );
 
@@ -200,6 +213,7 @@ describe("<CardCarousel />", () => {
                 cats={cats.splice(0, 1)}
                 cardWidth={cardWidth}
                 carouselType={carouselType}
+                userRole={userRole}
             />
         );
 

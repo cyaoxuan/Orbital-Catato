@@ -10,21 +10,26 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import { ActivityIndicator, Searchbar, Text } from "react-native-paper";
+import { ActivityIndicator, Banner, Searchbar, Text } from "react-native-paper";
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { WebView } from "react-native-webview";
 import { useIsFocused, useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useGetAllCats } from "../../utils/db/cat";
 import { useAuth } from "../../utils/context/auth";
+import { getRandomBuilding } from "../../utils/findLocation";
 
 // Render Marker component
-const RenderMarker = ({ cat, navigation, markers }) => {
+const RenderMarker = ({ cat, navigation, markers, random }) => {
     return (
         <Marker
             key={cat.catID}
             ref={(ref) => (markers[cat.catID] = ref)}
-            coordinate={cat.lastSeenLocation}
+            coordinate={
+                random
+                    ? getRandomBuilding(cat.locationZone)
+                    : cat.lastSeenLocation
+            }
             tracksViewChanges={false}
             onCalloutPress={() =>
                 navigation.navigate("catalogue", {
@@ -197,6 +202,10 @@ export default function Map() {
         }
     }, [allCats]);
 
+    if (!userRole) {
+        return <ActivityIndicator />;
+    }
+
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : ""}
@@ -228,17 +237,32 @@ export default function Map() {
                     longitudeDelta: 0.01,
                 }}
             >
-                {!error[0] &&
-                    allCats
-                        .filter((cat) => cat.lastSeenLocation)
-                        .map((cat, index) => (
-                            <RenderMarker
-                                key={cat.catID}
-                                cat={cat}
-                                navigation={navigation}
-                                markers={markers}
-                            />
-                        ))}
+                {!error[0] && userRole.isCaretaker
+                    ? allCats
+                          .filter((cat) => cat.lastSeenLocation)
+                          .map((cat, index) => (
+                              <RenderMarker
+                                  key={cat.catID}
+                                  cat={cat}
+                                  navigation={navigation}
+                                  markers={markers}
+                              />
+                          ))
+                    : allCats
+                          .filter(
+                              (cat) =>
+                                  cat.lastSeenLocation &&
+                                  cat.locationZone !== "Outside NUS"
+                          )
+                          .map((cat, index) => (
+                              <RenderMarker
+                                  key={cat.catID}
+                                  cat={cat}
+                                  navigation={navigation}
+                                  markers={markers}
+                                  random={true}
+                              />
+                          ))}
             </MapView>
             <View
                 style={{
@@ -249,15 +273,40 @@ export default function Map() {
                     alignItems: "center",
                 }}
             >
-                <Searchbar
-                    style={{ width: "95%", alignSelf: "center" }}
-                    theme={{ colors: { elevation: { level3: "white" } } }}
-                    elevation={2}
-                    placeholder="Search"
-                    onChangeText={onChangeSearch}
-                    value={searchQuery}
-                    onFocus={() => setShowPredictions(true)}
-                />
+                {userRole.isCaretaker ? (
+                    <Searchbar
+                        style={{ width: "95%", alignSelf: "center" }}
+                        theme={{ colors: { elevation: { level3: "white" } } }}
+                        elevation={2}
+                        placeholder="Search"
+                        onChangeText={onChangeSearch}
+                        value={searchQuery}
+                        onFocus={() => setShowPredictions(true)}
+                    />
+                ) : (
+                    <View
+                        elevation={2}
+                        style={{
+                            height: 75,
+                            width: "95%",
+                            backgroundColor: "white",
+                            borderWidth: 1,
+                            justifyContent: "center",
+                        }}
+                    >
+                        <Text
+                            variant="bodyMedium"
+                            style={{
+                                marginHorizontal: 12,
+                                textAlign: "center",
+                            }}
+                        >
+                            Cat locations are randomly generated within zones
+                            they were last seen in. Precise locations are not
+                            given to non-caretakers for their safety!
+                        </Text>
+                    </View>
+                )}
                 {showPredictions && (
                     <FlatList
                         style={[styles.predictionsContainer]}
@@ -271,8 +320,7 @@ export default function Map() {
                                     onPress={() =>
                                         animateToRegion(
                                             item.catID,
-                                            item.lastSeenLocation,
-                                            true
+                                            item.lastSeenLocation
                                         )
                                     }
                                 />

@@ -75,7 +75,7 @@ const UpdateOptionList = ({ cat }) => {
                 />
             )}
             <Divider />
-            {userRole && userRole.isAdmin && (
+            {userRole && userRole.isCaretaker && (
                 <List.Item
                     title="Update Profile"
                     titleStyle={styles.title}

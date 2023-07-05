@@ -3,6 +3,13 @@ import { cleanup, fireEvent, render } from "@testing-library/react-native";
 
 afterEach(cleanup);
 
+const userRole = {
+    isGuest: true,
+    isUser: true,
+    isCaretaker: true,
+    isAdmin: false,
+};
+
 describe("<CatCard />", () => {
     it("renders successfully", () => {
         const catCard = render(<CatCard />);
@@ -26,6 +33,7 @@ describe("<CatCard />", () => {
         const locationOnPressMock = jest.fn();
         const { getAllByTestId } = render(
             <CatCard
+                userRole={userRole}
                 profileOnPress={profileOnPressMock}
                 locationOnPress={locationOnPressMock}
             />

@@ -177,7 +177,7 @@ export function getRandomBuilding(zoneName) {
         ...locations.filter((loc) => loc.key !== "1" && loc.zone === zoneName),
     ];
     const randNum = Math.floor(Math.random() * locationsInZone.length);
-    return locationsInZone[randNum].value;
+    return locationsInZone[randNum].location;
 }
 
 // Given user input from form, { coords, locationName, locationZone } is returned

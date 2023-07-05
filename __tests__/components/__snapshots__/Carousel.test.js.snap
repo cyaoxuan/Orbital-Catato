@@ -20,7 +20,8 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         "lastSeenTime": {
           "toDate": [Function],
         },
-        "locationName": "Engineering",
+        "locationName": "E1",
+        "locationZone": "Engineering",
         "name": "Kitty",
         "photoURLs": [
           1,
@@ -39,7 +40,8 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         "lastSeenTime": {
           "toDate": [Function],
         },
-        "locationName": "Utown",
+        "locationName": "SRC",
+        "locationZone": "Utown",
         "name": "Skitty",
         "photoURLs": [
           1,
@@ -56,7 +58,8 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         "lastSeenTime": {
           "toDate": [Function],
         },
-        "locationName": "Science",
+        "locationName": "S17",
+        "locationZone": "Science",
         "name": "Mitty",
         "photoURLs": [
           1,
@@ -403,7 +406,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       ]
                     }
                   >
-                    Engineering (27d)
+                    E1 (27d)
                   </Text>
                 </Text>
               </View>
@@ -1086,7 +1089,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       ]
                     }
                   >
-                    Utown (27d)
+                    SRC (27d)
                   </Text>
                 </Text>
               </View>
@@ -1769,7 +1772,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       ]
                     }
                   >
-                    Science (NaNh)
+                    S17 (NaNh)
                   </Text>
                 </Text>
               </View>

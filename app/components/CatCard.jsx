@@ -58,17 +58,19 @@ const CatCard = (props) => {
                 >
                     Profile
                 </Button>
-                <Button
-                    disabled={
-                        props.showFindLocation === undefined ? true : false
-                    }
-                    onPress={props.locationOnPress}
-                    icon={() => (
-                        <Ionicons name="location" size={20} color="white" />
-                    )}
-                >
-                    Locate
-                </Button>
+                {props.userRole?.isCaretaker && (
+                    <Button
+                        disabled={
+                            props.showFindLocation === undefined ? true : false
+                        }
+                        onPress={props.locationOnPress}
+                        icon={() => (
+                            <Ionicons name="location" size={20} color="white" />
+                        )}
+                    >
+                        Locate
+                    </Button>
+                )}
             </Card.Actions>
         </Card>
     );
