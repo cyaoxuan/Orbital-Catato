@@ -17,7 +17,7 @@ export default function Notifications() {
     const [processed, setProcessed] = useState(false);
     const [inProgress, setInProgress] = useState(false);
 
-    // Get user 
+    // Get user
     // const { getUserByID, user: userDB, loading, error } = useGetUserByID();
 
     // useEffect(() => {
@@ -63,16 +63,16 @@ export default function Notifications() {
     const [concernNotif, setConcernNotif] = useState(false);
     const [fedNotif, setFedNotif] = useState(false);
     // Disables the other notifications if all notifications is off
-    const [disableNotif, setDisableNotif] = useState(true)
-    
+    const [disableNotif, setDisableNotif] = useState(true);
+
     const changeAllNotif = () => {
-        setAllNotif((prev) => !prev)
+        setAllNotif((prev) => !prev);
         if (allNotif) {
             setDisableNotif(true);
         } else {
             setDisableNotif(false);
         }
-    }
+    };
 
     // Keeps track of if the notification settings changed - if not disable button
     const [changedNotifs, setChangedNotifs] = useState(false);
@@ -92,7 +92,7 @@ export default function Notifications() {
     //         }
     //     }
     // }, [userDB, allNotif, newNotif, concernNotif, fedNotif])
-    
+
     if (!user || !userRole) {
         return <ActivityIndicator />;
     }
@@ -103,15 +103,16 @@ export default function Notifications() {
             <List.Section>
                 <List.Item
                     title="All"
-                    style={[styles.listView, styles.topListView, styles.bottomListView]}
+                    style={[
+                        styles.listView,
+                        styles.topListView,
+                        styles.bottomListView,
+                    ]}
                     titleStyle={styles.listTitle}
                     right={() => (
                         <Switch
                             style={{
-                                transform: [
-                                    { scaleX: 1.2 },
-                                    { scaleY: 1.2 },
-                                ],
+                                transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
                             }}
                             value={allNotif}
                             onValueChange={changeAllNotif}
@@ -122,7 +123,7 @@ export default function Notifications() {
 
             <Text variant={titleVariant}>Types of Notifications</Text>
 
-            <List.Section >
+            <List.Section>
                 <List.Item
                     title="New Cats"
                     description="New cats in the area reported by users"
@@ -131,10 +132,7 @@ export default function Notifications() {
                     right={() => (
                         <Switch
                             style={{
-                                transform: [
-                                    { scaleX: 1.2 },
-                                    { scaleY: 1.2 },
-                                ],
+                                transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
                             }}
                             disabled={disableNotif}
                             value={newNotif}
@@ -147,15 +145,17 @@ export default function Notifications() {
                 <List.Item
                     title="Concern"
                     description="Followed cats that are missing or injured"
-                    style={[styles.listView, userRole && !userRole.isCaretaker ? styles.bottomListView : ""]}
+                    style={[
+                        styles.listView,
+                        userRole && !userRole.isCaretaker
+                            ? styles.bottomListView
+                            : "",
+                    ]}
                     titleStyle={styles.listTitle}
                     right={() => (
                         <Switch
                             style={{
-                                transform: [
-                                    { scaleX: 1.2 },
-                                    { scaleY: 1.2 },
-                                ],
+                                transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
                             }}
                             disabled={disableNotif}
                             value={concernNotif}
@@ -163,7 +163,7 @@ export default function Notifications() {
                         />
                     )}
                 />
-        
+
                 {userRole && userRole.isCaretaker && (
                     <>
                         <Divider />
@@ -191,7 +191,8 @@ export default function Notifications() {
             </List.Section>
 
             <View style={{ alignItems: "center" }}>
-                <PillButton label="Update Settings" 
+                <PillButton
+                    label="Update Settings"
                     // disabled={!changedNotifs}
                     // onPress={handleNotifs}
                 />
@@ -215,15 +216,15 @@ const styles = StyleSheet.create({
     listView: {
         justifyContent: "center",
         height: 70,
-        backgroundColor: "white"
+        backgroundColor: "white",
     },
     topListView: {
         borderTopLeftRadius: 12,
-        borderTopRightRadius: 12
+        borderTopRightRadius: 12,
     },
     bottomListView: {
         borderBottomLeftRadius: 12,
-        borderBottomRightRadius: 12
+        borderBottomRightRadius: 12,
     },
     userDetails: {
         paddingVertical: 8,

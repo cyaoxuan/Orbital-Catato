@@ -127,9 +127,12 @@ const SettingsOptionList = ({ user, userRole }) => {
                         right={() => (
                             <List.Icon
                                 icon={() => (
-                            <Ionicons name="chevron-forward" size={iconSize} />
-                        )}
-                    />
+                                    <Ionicons
+                                        name="chevron-forward"
+                                        size={iconSize}
+                                    />
+                                )}
+                            />
                         )}
                     />
                     <Divider />

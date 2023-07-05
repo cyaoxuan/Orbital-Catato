@@ -33,18 +33,30 @@ export default function Update() {
     }
     if (userRole && !userRole.isUser) {
         return (
-        <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 16, backgroundColor: "white" }}>
-            <Avatar.Image
-                style={{ backgroundColor: "transparent", margin: 16 }}
-                source={require("../../../../assets/catato-logo.png")}
-                size={300}
-            />
-            <Text variant="bodyLarge" style={{ textAlign: "center", margin: 16 }}>If you see a new or injured cat, or just want to help caretakers find where a cat is, sign up or log in to make updates!</Text>
-            <PillButton
-                label="Signup / Login"
-                onPress={handleLogout}
-            />
-        </View> 
+            <View
+                style={{
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: 16,
+                    backgroundColor: "white",
+                }}
+            >
+                <Avatar.Image
+                    style={{ backgroundColor: "transparent", margin: 16 }}
+                    source={require("../../../../assets/catato-logo.png")}
+                    size={300}
+                />
+                <Text
+                    variant="bodyLarge"
+                    style={{ textAlign: "center", margin: 16 }}
+                >
+                    If you see a new or injured cat, or just want to help
+                    caretakers find where a cat is, sign up or log in to make
+                    updates!
+                </Text>
+                <PillButton label="Signup / Login" onPress={handleLogout} />
+            </View>
         );
     }
 
