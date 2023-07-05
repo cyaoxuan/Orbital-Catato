@@ -1,7 +1,6 @@
 import { View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
-import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import { PillButton } from "../../../components/Button";
 import { useAuth } from "../../../utils/context/auth";

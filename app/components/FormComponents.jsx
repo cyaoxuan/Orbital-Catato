@@ -140,7 +140,7 @@ const TimeInput = (props) => {
     );
 };
 
-// For gender, sterilised, concerns, foster
+// For gender, sterilised, concerns
 const TwoRadioInput = (props) => {
     const [selected, setSelected] = useState("First");
 

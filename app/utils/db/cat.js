@@ -184,8 +184,6 @@ export const useUserCreateCat = () => {
                             ? ["New"]
                             : ["Injured", "New"],
                     concernDesc: data.concernDesc,
-                    isFostered: false,
-                    fosterReason: null,
                     updatedAt: serverTimestamp(),
                 };
             } else {
@@ -204,8 +202,6 @@ export const useUserCreateCat = () => {
                     lastFedTime: null,
                     concernStatus: null,
                     concernDesc: null,
-                    isFostered: false,
-                    fosterReason: null,
                     updatedAt: serverTimestamp(),
                 };
             }
@@ -594,39 +590,6 @@ export const useUserUpdateCatFed = () => {
     };
 
     return { userUpdateCatFed, loading, error };
-};
-
-export const useUserUpdateCatFoster = () => {
-    const [loading, setLoading] = useState([false]);
-    const [error, setError] = useState([null]);
-
-    const userUpdateCatFoster = async (
-        userID,
-        catID,
-        isFostered,
-        fosterReason
-    ) => {
-        try {
-            if (!(userID && catID && isFostered)) {
-                throw new Error("Empty fields detected");
-            }
-
-            setLoading([true]);
-            setError([null]);
-
-            await userUpdateCat(userID, catID, "Update Foster", {
-                isFostered: isFostered === "Yes",
-                fosterReason: isFostered === "No" ? null : fosterReason,
-            });
-        } catch (error) {
-            console.error("Error updating cat foster:", error);
-            setError([error]);
-        } finally {
-            setLoading([false]);
-        }
-    };
-
-    return { userUpdateCatFoster, loading, error };
 };
 
 export const useUserUpdateCatProfile = () => {
