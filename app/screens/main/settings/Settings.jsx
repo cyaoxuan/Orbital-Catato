@@ -232,7 +232,11 @@ export default function Settings() {
             </View>
 
             <View style={{ alignItems: "center" }}>
-                <PillButton label="Log Out" onPress={handleLogout} />
+                <PillButton
+                    label="Log Out"
+                    width="65%"
+                    onPress={handleLogout}
+                />
             </View>
 
             {error && <Text>{error.message}</Text>}

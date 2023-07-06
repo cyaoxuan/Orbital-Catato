@@ -56,7 +56,11 @@ export default function LoginScreen() {
                 />
             </View>
 
-            <PillButton label="Log In" onPress={handleLoginWithEmail} />
+            <PillButton
+                label="Log In"
+                width="65%"
+                onPress={handleLoginWithEmail}
+            />
 
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}

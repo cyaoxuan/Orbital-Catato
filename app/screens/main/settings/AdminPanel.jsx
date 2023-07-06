@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useGetUserByEmail, useUpdateUserRole } from "../../../utils/db/user";
 
 export default function AdminPanel() {
-    const { userRole } = useAuth();
+    const { user, userRole } = useAuth();
 
     // To check if a user is being searched or updated
     const [processed, setProcessed] = useState(false);
@@ -24,7 +24,12 @@ export default function AdminPanel() {
     const [searchText, setSearchText] = useState("");
 
     // Get user after search
-    const { getUserByEmail, user, loading, error } = useGetUserByEmail();
+    const {
+        getUserByEmail,
+        user: userDB,
+        loading,
+        error,
+    } = useGetUserByEmail();
 
     const handleSearch = async () => {
         if (!inProgress) {
@@ -39,16 +44,16 @@ export default function AdminPanel() {
     };
 
     useEffect(() => {
-        if (user) {
-            user.role.isAdmin
+        if (userDB) {
+            userDB.role.isAdmin
                 ? setRadioValue("Admin")
-                : user.role.isCaretaker
+                : userDB.role.isCaretaker
                 ? setRadioValue("Caretaker")
                 : setRadioValue("Cat Lover");
         }
-    }, [user]);
+    }, [userDB]);
 
-    // Update user roles
+    // Update userDB roles
     // const { useUpdateUserRole, loading, error } = useUpdateUserRole();
 
     // const handleUpdate = async () => {
@@ -63,7 +68,7 @@ export default function AdminPanel() {
     //     }
     // }
 
-    if (!userRole) {
+    if (!user && !userRole) {
         return <ActivityIndicator />;
     }
 
@@ -91,19 +96,28 @@ export default function AdminPanel() {
                 onPress={handleSearch}
             />
 
-            {processed && !user && (
+            {processed && !userDB && (
                 <Text variant={bodyVariant} style={styles.errorText}>
                     User not found!
                 </Text>
             )}
-            {processed && user && (
+            {processed && userDB && (
                 <>
-                    <Text variant={bodyVariant}>
-                        User found! UID: {user.userID}
-                    </Text>
+                    <View style={{ alignItems: "center" }}>
+                        <Text variant={bodyVariant}>User found!</Text>
+                        <Text variant={bodyVariant}>UID: {userDB.userID}</Text>
+                    </View>
 
                     <View style={{ margin: 16 }}>
                         <Text variant="titleMedium">Update User Role:</Text>
+                        {userDB.userID === user.uid && (
+                            <Text
+                                variant={bodyVariant}
+                                style={styles.errorText}
+                            >
+                                You cannot change your own role!
+                            </Text>
+                        )}
                         <RadioButton.Group
                             value={radioValue}
                             onValueChange={(radioValue) =>
@@ -114,30 +128,37 @@ export default function AdminPanel() {
                                 <Text variant={bodyVariant}>Cat Lover</Text>
                                 <RadioButton.Android
                                     value="Cat Lover"
-                                    disabled={inProgress}
+                                    disabled={
+                                        inProgress || userDB.userID === user.uid
+                                    }
                                 />
                             </View>
                             <View style={styles.radioButtonContainer}>
                                 <Text variant={bodyVariant}>Caretaker</Text>
                                 <RadioButton.Android
                                     value="Caretaker"
-                                    disabled={inProgress}
+                                    disabled={
+                                        inProgress || userDB.userID === user.uid
+                                    }
                                 />
                             </View>
                             <View style={styles.radioButtonContainer}>
                                 <Text variant={bodyVariant}>Admin</Text>
                                 <RadioButton.Android
                                     value="Admin"
-                                    disabled={inProgress}
+                                    disabled={
+                                        inProgress || userDB.userID === user.uid
+                                    }
                                 />
                             </View>
                         </RadioButton.Group>
                         <View style={{ alignItems: "center" }}>
                             <PillButton
                                 label="Update Role"
-                                disabled={inProgress}
+                                disabled={
+                                    inProgress || userDB.userID === user.uid
+                                }
                                 // onPress={handleUpdate}
-                                onPress={() => {}}
                             />
                         </View>
                     </View>

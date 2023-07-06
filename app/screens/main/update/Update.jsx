@@ -55,7 +55,11 @@ export default function Update() {
                     caretakers find where a cat is, sign up or log in to make
                     updates!
                 </Text>
-                <PillButton label="Signup / Login" onPress={handleLogout} />
+                <PillButton
+                    label="Signup / Login"
+                    width="70%"
+                    onPress={handleLogout}
+                />
             </View>
         );
     }
