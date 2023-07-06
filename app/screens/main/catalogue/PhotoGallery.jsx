@@ -248,29 +248,31 @@ export default function PhotoGallery() {
                                         source={{ uri: item.photoURL }}
                                     />
 
-                                    <View
-                                        style={{
-                                            flexDirection: "row",
-                                            height: 30,
-                                            marginHorizontal: 8,
-                                            justifyContent: "space-between",
-                                        }}
-                                    >
-                                        <Text>
-                                            {item.isSelected
-                                                ? "Selected"
-                                                : "Not Selected"}
-                                        </Text>
-                                        <Ionicons
-                                            name={
-                                                item.isSelected
-                                                    ? "checkmark-circle"
-                                                    : "checkmark-circle-outline"
-                                            }
-                                            size={20}
-                                            color={"#663399"}
-                                        />
-                                    </View>
+                                    {deleting && 
+                                        <View
+                                            style={{
+                                                flexDirection: "row",
+                                                height: 30,
+                                                marginHorizontal: 8,
+                                                justifyContent: "space-between",
+                                            }}
+                                        >
+                                            <Text>
+                                                {item.isSelected
+                                                    ? "Selected"
+                                                    : "Not Selected"}
+                                            </Text>
+                                            <Ionicons
+                                                name={
+                                                    item.isSelected
+                                                        ? "checkmark-circle"
+                                                        : "checkmark-circle-outline"
+                                                }
+                                                size={20}
+                                                color={"#663399"}
+                                            />
+                                        </View>
+                                    }
                                 </View>
                             </TouchableOpacity>
                         );

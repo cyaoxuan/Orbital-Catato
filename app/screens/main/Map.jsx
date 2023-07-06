@@ -131,6 +131,9 @@ const RenderPredictionRow = ({ item, onPress }) => {
 export default function Map() {
     const { userRole } = useAuth();
 
+    // To check if map is ready
+    const [mapReady, setMapReady] = useState(false);
+
     // For map dimensions
     const { width, height } = Dimensions.get("window");
 
@@ -142,7 +145,7 @@ export default function Map() {
 
     const animateToRegion = (catID, location) => {
         mapRef.current?.animateToRegion(
-            { ...location, latitudeDelta: 0.005, longitudeDelta: 0.005 },
+            { ...location, latitudeDelta: 0.003, longitudeDelta: 0.003 },
             1000
         );
         markers[catID].showCallout();
@@ -150,19 +153,16 @@ export default function Map() {
 
     // Uses route params to bring user to location
     const route = useRoute();
-
-    useEffect(() => {
-        if ((route.params?.catID, route.params?.location)) {
-            mapRef.current?.animateToRegion(
-                {
-                    ...route.params.location,
-                    latitudeDelta: 0.005,
-                    longitudeDelta: 0.005,
-                },
-                1000
-            );
-        }
-    }, [route.params]);
+    const initialRegion = mapReady && route.params?.catID && route.params?.location ? {
+        ...route.params.location,
+        latitudeDelta: 0.003,
+        longitudeDelta: 0.003,
+    } : {
+        latitude: 1.296769,
+        longitude: 103.776437,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+    }
 
     // For navigating to profile
     const navigation = useNavigation();
@@ -219,6 +219,7 @@ export default function Map() {
                 testID="map"
                 ref={mapRef}
                 provider={PROVIDER_GOOGLE}
+                onMapReady={() => setMapReady(true)}
                 showsCompass
                 zoomEnabled
                 zoomControlEnabled
@@ -230,12 +231,7 @@ export default function Map() {
                     Keyboard.dismiss();
                     setShowPredictions(false);
                 }}
-                region={{
-                    latitude: 1.296769,
-                    longitude: 103.776437,
-                    latitudeDelta: 0.01,
-                    longitudeDelta: 0.01,
-                }}
+                region={initialRegion}
             >
                 {!error[0] && userRole && userRole.isCaretaker
                     ? allCats

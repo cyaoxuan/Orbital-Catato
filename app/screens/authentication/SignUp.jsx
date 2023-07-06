@@ -68,7 +68,7 @@ export default function SignUpScreen() {
                 />
             </View>
 
-            <PillButton label="Sign Up" onPress={handleSignUp} />
+            <PillButton label="Sign Up" width="65%" onPress={handleSignUp} />
 
             {error && <Text>{error.message}</Text>}
             {loading && <ActivityIndicator />}

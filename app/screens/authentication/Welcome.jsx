@@ -53,9 +53,9 @@ export default function WelcomeScreen() {
                 size={350}
             />
 
-            <PillButton label="Log In" onPress={onLoginPressed} />
+            <PillButton label="Log In" width="65%" onPress={onLoginPressed} />
 
-            <PillButton label="Sign Up" onPress={onSignUpPressed} />
+            <PillButton label="Sign Up" width="65%" onPress={onSignUpPressed} />
 
             <PillButton
                 mode="text"
