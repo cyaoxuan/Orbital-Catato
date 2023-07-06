@@ -1,4 +1,4 @@
-import { Button, Card, IconButton } from "react-native-paper";
+import { Button, Card } from "react-native-paper";
 import { IconTextField } from "./InfoText";
 import Ionicons from "@expo/vector-icons/Ionicons";
 

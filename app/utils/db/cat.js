@@ -672,6 +672,34 @@ export const useUserAddCatPicture = () => {
     return { userAddCatPicture, loading, error };
 };
 
+export const useUserDeleteCatPictures = () => {
+    const [loading, setLoading] = useState([false]);
+    const [error, setError] = useState([null]);
+
+    const userDeleteCatPictures = async (userID, catID, photoURIs) => {
+        try {
+            if (!(userID && catID && photoURIs)) {
+                throw new Error("Empty fields detected");
+            }
+
+            setLoading([true]);
+            setError([null]);
+
+            await userUpdateCat(userID, catID, "Delete Pictures", {
+                photoURLs: photoURIs,
+            });
+        } catch (error) {
+            console.error("Error deleting cat pictures:", error);
+            setError([error]);
+            throw error;
+        } finally {
+            setLoading([false]);
+        }
+    };
+
+    return { userDeleteCatPictures, loading, error };
+};
+
 /* ----- DELETE OPERATIONS ----- */
 export const useUserDeleteCat = () => {
     const [loading, setLoading] = useState([false]);
