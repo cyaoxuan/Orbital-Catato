@@ -24,7 +24,12 @@ export default function AdminPanel() {
     const [searchText, setSearchText] = useState("");
 
     // Get user after search
-    const { getUserByEmail, user: userDB, loading, error } = useGetUserByEmail();
+    const {
+        getUserByEmail,
+        user: userDB,
+        loading,
+        error,
+    } = useGetUserByEmail();
 
     const handleSearch = async () => {
         if (!inProgress) {
@@ -99,17 +104,20 @@ export default function AdminPanel() {
             {processed && userDB && (
                 <>
                     <View style={{ alignItems: "center" }}>
-                        <Text variant={bodyVariant}>
-                            User found!
-                        </Text>
-                        <Text variant={bodyVariant}>
-                            UID: {userDB.userID}
-                        </Text>
+                        <Text variant={bodyVariant}>User found!</Text>
+                        <Text variant={bodyVariant}>UID: {userDB.userID}</Text>
                     </View>
 
                     <View style={{ margin: 16 }}>
                         <Text variant="titleMedium">Update User Role:</Text>
-                        {userDB.userID === user.uid && <Text variant={bodyVariant} style={styles.errorText}>You cannot change your own role!</Text>}
+                        {userDB.userID === user.uid && (
+                            <Text
+                                variant={bodyVariant}
+                                style={styles.errorText}
+                            >
+                                You cannot change your own role!
+                            </Text>
+                        )}
                         <RadioButton.Group
                             value={radioValue}
                             onValueChange={(radioValue) =>
@@ -120,28 +128,36 @@ export default function AdminPanel() {
                                 <Text variant={bodyVariant}>Cat Lover</Text>
                                 <RadioButton.Android
                                     value="Cat Lover"
-                                    disabled={inProgress || userDB.userID === user.uid}
+                                    disabled={
+                                        inProgress || userDB.userID === user.uid
+                                    }
                                 />
                             </View>
                             <View style={styles.radioButtonContainer}>
                                 <Text variant={bodyVariant}>Caretaker</Text>
                                 <RadioButton.Android
                                     value="Caretaker"
-                                    disabled={inProgress || userDB.userID === user.uid}
+                                    disabled={
+                                        inProgress || userDB.userID === user.uid
+                                    }
                                 />
                             </View>
                             <View style={styles.radioButtonContainer}>
                                 <Text variant={bodyVariant}>Admin</Text>
                                 <RadioButton.Android
                                     value="Admin"
-                                    disabled={inProgress || userDB.userID === user.uid}
+                                    disabled={
+                                        inProgress || userDB.userID === user.uid
+                                    }
                                 />
                             </View>
                         </RadioButton.Group>
                         <View style={{ alignItems: "center" }}>
                             <PillButton
                                 label="Update Role"
-                                disabled={inProgress || userDB.userID === user.uid}
+                                disabled={
+                                    inProgress || userDB.userID === user.uid
+                                }
                                 // onPress={handleUpdate}
                             />
                         </View>

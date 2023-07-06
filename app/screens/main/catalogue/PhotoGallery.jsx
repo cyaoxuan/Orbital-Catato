@@ -248,7 +248,7 @@ export default function PhotoGallery() {
                                         source={{ uri: item.photoURL }}
                                     />
 
-                                    {deleting && 
+                                    {deleting && (
                                         <View
                                             style={{
                                                 flexDirection: "row",
@@ -272,7 +272,7 @@ export default function PhotoGallery() {
                                                 color={"#663399"}
                                             />
                                         </View>
-                                    }
+                                    )}
                                 </View>
                             </TouchableOpacity>
                         );

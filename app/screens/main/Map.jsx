@@ -153,16 +153,19 @@ export default function Map() {
 
     // Uses route params to bring user to location
     const route = useRoute();
-    const initialRegion = mapReady && route.params?.catID && route.params?.location ? {
-        ...route.params.location,
-        latitudeDelta: 0.003,
-        longitudeDelta: 0.003,
-    } : {
-        latitude: 1.296769,
-        longitude: 103.776437,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-    }
+    const initialRegion =
+        mapReady && route.params?.catID && route.params?.location
+            ? {
+                  ...route.params.location,
+                  latitudeDelta: 0.003,
+                  longitudeDelta: 0.003,
+              }
+            : {
+                  latitude: 1.296769,
+                  longitude: 103.776437,
+                  latitudeDelta: 0.01,
+                  longitudeDelta: 0.01,
+              };
 
     // For navigating to profile
     const navigation = useNavigation();
