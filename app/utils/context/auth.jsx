@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { createUser, getUserByEmail, getUserByID } from "../db/user";
+import { createUser, authGetUserByID } from "../db/user";
 
 const AuthContext = createContext({});
 export const auth = getAuth();
@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
                 }
 
                 // New / existing cat lover and above
-                const userData = await getUserByID(authUser.uid);
+                const userData = await authGetUserByID(authUser.uid);
                 if (userData) {
                     // Existing user
                     setUserRole(userData.role);

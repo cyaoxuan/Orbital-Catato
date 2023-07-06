@@ -16,9 +16,10 @@ import {
     useGetCat,
 } from "../../../utils/db/cat";
 import { useAuth } from "../../../utils/context/auth";
+import { useGetUserByID, useUserToggleCatFollow } from "../../../utils/db/user";
 
 export default function CatProfile() {
-    const { userRole } = useAuth();
+    const { user, userRole } = useAuth();
     const route = useRoute();
     const catID = route.params.catID;
     const navigation = useNavigation();
@@ -27,8 +28,35 @@ export default function CatProfile() {
     const { getCat, cat, loading, error } = useGetCat();
     const [partialCat, setPartialCat] = useState(null);
 
-    const [favourite, setFavourite] = useState(false);
-    const changeFavourite = () => setFavourite((prev) => !prev);
+    // Get user
+    const { getUserByID, user: userDB } = useGetUserByID();
+    useEffect(() => {
+        const fetchData = async () => {
+            await getUserByID(user.uid);
+        };
+
+        fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // Set default value for following
+    const [followed, setFollowed] = useState(false);
+    useEffect(() => {
+        if (userDB) {
+            setFollowed(userDB.catsFollowed.includes(catID));
+        }
+    }, [catID, userDB]);
+
+    // Handle cat following
+    const {
+        userToggleCatFollow,
+        loading: loadingFollow,
+        error: errorFollow,
+    } = useUserToggleCatFollow();
+    const changeFavourite = async () => {
+        await userToggleCatFollow(user.uid, catID, !followed);
+        setFollowed((prev) => !prev);
+    };
 
     // Get cat data
     useEffect(() => {
@@ -76,7 +104,7 @@ export default function CatProfile() {
         }
     }, [cat]);
 
-    if (!userRole) {
+    if (!user || !userRole) {
         return <ActivityIndicator />;
     }
 
@@ -100,7 +128,7 @@ export default function CatProfile() {
             <AvatarContainer
                 name={cat.name}
                 photoURL={cat.photoURLs[0]}
-                followValue={favourite}
+                followValue={followed}
                 followOnPress={changeFavourite}
                 updateValue={true}
                 updateOnPress={() =>

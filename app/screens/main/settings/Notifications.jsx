@@ -6,9 +6,13 @@ import {
     Switch,
     Text,
 } from "react-native-paper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../../utils/context/auth";
 import { PillButton } from "../../../components/Button";
+import {
+    useGetUserByID,
+    useUpdateUserNotification,
+} from "../../../utils/db/user";
 
 export default function Notifications() {
     const { user, userRole } = useAuth();
@@ -18,44 +22,54 @@ export default function Notifications() {
     const [inProgress, setInProgress] = useState(false);
 
     // Get user
-    // const { getUserByID, user: userDB, loading, error } = useGetUserByID();
+    const { getUserByID, user: userDB, loading, error } = useGetUserByID();
+    useEffect(() => {
+        const fetchData = async () => {
+            setInProgress(true);
+            setProcessed(false);
+            await getUserByID(user.uid);
+            setProcessed(true);
+            setInProgress(false);
+        };
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         if (!inProgress) {
-    //             setInProgress(true);
-    //             setProcessed(false);
-    //             await getUserByID(user.uid);
-    //             setProcessed(true);
-    //             setInProgress(false);
-    //         } else {
-    //             setInProgress(true)
-    //         }
-    // }, [user])
+        fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    // useEffect(() => {
-    //     if (userDB) {
-    //         setAllNotif(userDB.notiOn);
-    //         setDisableNotif(!userDB.notiOn);
-    //         setNewNotif(userDB.notiType?.new);
-    //         setConcernNotif(userDB.notiType?.concern);
-    //         setFedNotif(userDB.notiType?.fed);
-    //     }
-    // }, [userDB]);
+    // Set default selections based on user data
+    useEffect(() => {
+        if (userDB) {
+            setAllNotif(userDB.notiOn);
+            setDisableNotif(!userDB.notiOn);
+            setNewNotif(userDB.notiType?.new);
+            setConcernNotif(userDB.notiType?.concern);
+            setFedNotif(userDB.notiType?.fed);
+        }
+    }, [userDB]);
 
-    // const { useUpdateUserNotifications, loading, error } = useUpdateUserNotification();
+    // Update notifs
+    const {
+        updateUserNotification,
+        loading: loadingUpdate,
+        error: errorUpdate,
+    } = useUpdateUserNotification();
 
-    // const handleNotifs = async () => {
-    //     if (!inProgress) {
-    //         setInProgress(true);
-    //         setProcessed(false);
-    //         await updateUserNotifications();
-    //         setProcessed(true);
-    //         setInProgress(false);
-    //     } else {
-    //         setInProgress(true);
-    //     }
-    // }
+    const handleNotifs = async () => {
+        if (!inProgress) {
+            setInProgress(true);
+            setProcessed(false);
+            await updateUserNotification(
+                user.uid,
+                allNotif,
+                newNotif,
+                concernNotif,
+                fedNotif
+            );
+
+            setProcessed(true);
+            setInProgress(false);
+        }
+    };
 
     // For notifications
     const [allNotif, setAllNotif] = useState(false);
@@ -77,21 +91,22 @@ export default function Notifications() {
     // Keeps track of if the notification settings changed - if not disable button
     const [changedNotifs, setChangedNotifs] = useState(false);
 
-    // useEffect(() => {
-    //     if (userDB.notiType) {
-    //         if (userDB.notiOn !== allNotif || userDB.newNotif !== newNotif || userDB.concernNotif !== concernNotif || userDB.fedNotif !== fedNotif) {
-    //             setChangedNotifs(true);
-    //         } else {
-    //             setChangedNotifs(false);
-    //         }
-    //     } else {
-    //         if (userDB.notiOn !== allNotif || newNotif || concernNotif || fedNotif) {
-    //             setChangedNotifs(true);
-    //         } else {
-    //             setChangedNotifs(false);
-    //         }
-    //     }
-    // }, [userDB, allNotif, newNotif, concernNotif, fedNotif])
+    useEffect(() => {
+        if (!userDB) {
+            return;
+        }
+
+        if (
+            userDB.notiOn !== allNotif ||
+            userDB.notiType.new !== newNotif ||
+            userDB.notiType.concern !== concernNotif ||
+            userDB.notiType.fed !== fedNotif
+        ) {
+            setChangedNotifs(true);
+        } else {
+            setChangedNotifs(false);
+        }
+    }, [userDB, allNotif, newNotif, concernNotif, fedNotif]);
 
     if (!user || !userRole) {
         return <ActivityIndicator />;
@@ -193,14 +208,12 @@ export default function Notifications() {
             <View style={{ alignItems: "center" }}>
                 <PillButton
                     label="Update Settings"
-                    // disabled={!changedNotifs}
-                    // onPress={handleNotifs}
+                    disabled={!changedNotifs}
+                    onPress={handleNotifs}
                 />
             </View>
 
-            {/* {error[0] && (inProgress || setInProgress(false)) && (
-                <Text>Error: {error[0].message}</Text>
-            )} */}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
             {inProgress && <ActivityIndicator />}
         </ScrollView>
     );

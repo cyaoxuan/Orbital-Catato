@@ -54,19 +54,23 @@ export default function AdminPanel() {
     }, [userDB]);
 
     // Update userDB roles
-    // const { useUpdateUserRole, loading, error } = useUpdateUserRole();
+    const {
+        updateUserRole,
+        loading: loadingUpdate,
+        error: errorUpdate,
+    } = useUpdateUserRole();
 
-    // const handleUpdate = async () => {
-    //     if (!inProgress) {
-    //         setInProgress(true);
-    //         setProcessed(false);
-    //         await updateUserRole();
-    //         setProcessed(true);
-    //         setInProgress(false);
-    //     } else {
-    //         setInProgress(true);
-    //     }
-    // }
+    const handleUpdate = async () => {
+        if (!inProgress) {
+            setInProgress(true);
+            setProcessed(false);
+            await updateUserRole(userDB.userID, radioValue);
+            setProcessed(true);
+            setInProgress(false);
+        } else {
+            setInProgress(true);
+        }
+    };
 
     if (!user && !userRole) {
         return <ActivityIndicator />;
@@ -158,16 +162,15 @@ export default function AdminPanel() {
                                 disabled={
                                     inProgress || userDB.userID === user.uid
                                 }
-                                // onPress={handleUpdate}
+                                onPress={handleUpdate}
                             />
                         </View>
                     </View>
                 </>
             )}
 
-            {error[0] && (inProgress || setInProgress(false)) && (
-                <Text>Error: {error[0].message}</Text>
-            )}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
+            {errorUpdate[0] && <Text>Error: {errorUpdate[0].message}</Text>}
             {inProgress && <ActivityIndicator />}
         </View>
     );

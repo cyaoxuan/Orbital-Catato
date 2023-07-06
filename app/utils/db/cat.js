@@ -132,6 +132,10 @@ export const autoProcessMissing = async (cat) => {
 export const autoProcessConcernStatus = async () => {
     try {
         const querySnapshot = await getDocs(catColl);
+        // console.log(
+        //     "autoProcessConcernStatus, cats: ",
+        //     querySnapshot.docs.length
+        // );
         const cats = querySnapshot.docs.map((doc) => doc.data());
 
         for (let i = 0; i < cats.length; i++) {
@@ -241,6 +245,7 @@ export const useGetAllCats = () => {
             setError([null]);
 
             const querySnapshot = await getDocs(catColl);
+            // console.log("getAllCats, cats: ", querySnapshot.docs.length);
             const cats = querySnapshot.docs.map((doc) => doc.data());
             setAllCats(cats);
         } catch (error) {
@@ -265,6 +270,7 @@ export const useGetCat = () => {
             setError([null]);
 
             const catDoc = await getDoc(doc(db, "Cat", catID));
+            // console.log("getCat, cats: 1");
             const catData = catDoc.data();
             setCat(catData);
         } catch (error) {
@@ -293,6 +299,7 @@ export const useGetUnfedCats = () => {
                 where("concernStatus", "array-contains", "Unfed")
             );
             const querySnapshot = await getDocs(q);
+            // console.log("getUnfedCats, cats: ", querySnapshot.docs.length);
             const cats = querySnapshot.docs.map((doc) => doc.data());
             setUnfedCats(cats);
         } catch (error) {
@@ -325,10 +332,11 @@ export const useGetCatsofConcern = () => {
                 ])
             );
             const querySnapshot = await getDocs(q);
+            // console.log("getCatsofConcern, cats: ", querySnapshot.docs.length);
             const cats = querySnapshot.docs.map((doc) => doc.data());
             setCatsofConcern(cats);
         } catch (error) {
-            console.error("Error fetching unfed cats:", error);
+            console.error("Error fetching cats of concern:", error);
             setError([error]);
         } finally {
             setLoading([false]);
