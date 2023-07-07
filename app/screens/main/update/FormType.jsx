@@ -102,8 +102,6 @@ const CreateProfile = (props) => {
             );
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -186,9 +184,7 @@ const CreateProfile = (props) => {
                     inProgress
                 }
             />
-            {error[0] && (inProgress || setInProgress(false)) && (
-                <Text>Error: {error[0].message}</Text>
-            )}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -287,8 +283,6 @@ const ReportCat = (props) => {
             );
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -370,9 +364,7 @@ const ReportCat = (props) => {
                     inProgress
                 }
             />
-            {error[0] && (inProgress || setInProgress(false)) && (
-                <Text>Error: {error[0].message}</Text>
-            )}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -460,8 +452,6 @@ const UpdateLocation = (props) => {
             await userUpdateCatLocation(props.userID, catID, location, date);
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -492,9 +482,7 @@ const UpdateLocation = (props) => {
                 onPress={handleUpdate}
                 disabled={location === "" || date > today || inProgress}
             />
-            {error[0] && (inProgress || setInProgress(false)) && (
-                <Text>Error: {error[0].message}</Text>
-            )}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -558,7 +546,28 @@ const UpdateConcern = (props) => {
     }, []);
 
     useEffect(() => {
+        console.log(loading[0], processed, error[0]);
         if (!loading[0] && processed && error[0] === null) {
+            // Process new concern status to pass around
+            let newConcernStatus;
+            if (concern === "Healthy") {
+                newConcernStatus = concernStatus.filter(
+                    (status) => status !== "Injured"
+                );
+                newConcernStatus =
+                    newConcernStatus.length === 0 ? null : newConcernStatus;
+            } else {
+                if (!concernStatus) {
+                    newConcernStatus = ["Injured"];
+                } else {
+                    if (concernStatus.includes("Injured")) {
+                        newConcernStatus = concernStatus;
+                    } else {
+                        newConcernStatus = [...concernStatus, "Injured"];
+                    }
+                }
+            }
+
             navigation.navigate("ConfirmUpdate", {
                 catID: catID,
                 name: name,
@@ -567,16 +576,7 @@ const UpdateConcern = (props) => {
                 sterilised: sterilised,
                 keyFeatures: keyFeatures,
                 photoURLs: photoURLs,
-                concernStatus:
-                    (concern === "Injured" &&
-                        concernStatus.includes(concern)) ||
-                    (concern === "healthy" && !concernStatus.includes(concern))
-                        ? concernStatus
-                        : concern === "Injured"
-                        ? concernStatus.push(concern)
-                        : concernStatus.filter(
-                              (status) => status !== "Injured"
-                          ),
+                concernStatus: newConcernStatus,
                 concernDesc: concernDescription,
                 formType: formType,
             });
@@ -638,8 +638,6 @@ const UpdateConcern = (props) => {
             );
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -709,9 +707,7 @@ const UpdateConcern = (props) => {
                     inProgress
                 }
             />
-            {error[0] && (inProgress || setInProgress(false)) && (
-                <Text>Error: {error[0].message}</Text>
-            )}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -799,8 +795,6 @@ const UpdateFed = (props) => {
             await userUpdateCatFed(props.userID, catID, date, location);
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -831,9 +825,7 @@ const UpdateFed = (props) => {
                 onPress={handleUpdate}
                 disabled={location === "" || date > today || inProgress}
             />
-            {error[0] && (inProgress || setInProgress(false)) && (
-                <Text>Error: {error[0].message}</Text>
-            )}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -941,8 +933,6 @@ const UpdateProfile = (props) => {
             });
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -1022,9 +1012,7 @@ const UpdateProfile = (props) => {
                     name.trim() === "" || features.trim() === "" || inProgress
                 }
             />
-            {error[0] && (inProgress || setInProgress(false)) && (
-                <Text>Error: {error[0].message}</Text>
-            )}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
@@ -1057,8 +1045,6 @@ const DeleteProfile = (props) => {
             await userDeleteCat(props.userID, catID);
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -1082,9 +1068,7 @@ const DeleteProfile = (props) => {
                 onPress={handleDelete}
                 disabled={catName !== name || inProgress}
             />
-            {error[0] && (inProgress || setInProgress(false)) && (
-                <Text>Error: {error[0].message}</Text>
-            )}
+            {error[0] && <Text>Error: {error[0].message}</Text>}
             {loading[0] && <ActivityIndicator />}
         </View>
     );
