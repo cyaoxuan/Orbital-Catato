@@ -44,7 +44,9 @@ export default function CatProfile() {
     const [followed, setFollowed] = useState(false);
     useEffect(() => {
         if (userDB) {
-            setFollowed(userDB.catsFollowed?.includes(catID));
+            setFollowed(
+                userDB.catsFollowed && userDB.catsFollowed.includes(catID)
+            );
         }
     }, [catID, userDB]);
 
@@ -173,6 +175,10 @@ export default function CatProfile() {
                         catID: cat.catID,
                         name: cat.name,
                         photoURLs: cat.photoURLs,
+                        concernPhotoURLs:
+                            cat.concernPhotoURLs === undefined
+                                ? null
+                                : cat.concernPhotoURLs,
                     });
                 }}
             />

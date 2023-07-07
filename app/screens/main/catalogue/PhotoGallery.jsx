@@ -48,7 +48,7 @@ export default function PhotoGallery() {
 
     // Get photoURLs and add selected prop to each of them
     const route = useRoute();
-    const { catID, photoURLs } = route.params;
+    const { catID, photoURLs, concernPhotoURLs } = route.params;
     const photos = photoURLs.map((photoURL) => {
         return {
             photoURL: photoURL,
@@ -148,7 +148,12 @@ export default function PhotoGallery() {
             const newPhotoURLs = photoURLs.filter(
                 (URL) => !selectedURLs.includes(URL)
             );
-            await userDeleteCatPictures(user.uid, catID, newPhotoURLs);
+            await userDeleteCatPictures(
+                user.uid,
+                catID,
+                newPhotoURLs,
+                "Gallery"
+            );
             setListPhotos(
                 newPhotoURLs.map((photoURL) => {
                     return {

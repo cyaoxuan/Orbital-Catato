@@ -1,12 +1,13 @@
 import { View } from "react-native";
 import { ActivityIndicator, Avatar, Text } from "react-native-paper";
 import { useRouter } from "expo-router";
-import { auth } from "../../utils/context/auth";
+import { auth, useAuth } from "../../utils/context/auth";
 import { signInAnonymously } from "firebase/auth";
 import { useState } from "react";
 import { PillButton } from "../../components/Button";
 
 export default function WelcomeScreen() {
+    const { user } = useAuth();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -34,6 +35,10 @@ export default function WelcomeScreen() {
             setLoading(false);
         }
     };
+
+    if (user) {
+        router.replace("/screens/main/Dashboard");
+    }
 
     return (
         <View

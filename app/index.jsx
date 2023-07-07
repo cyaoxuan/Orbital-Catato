@@ -1,9 +1,8 @@
-import { AuthProvider, useAuth } from "./utils/context/auth";
+import { AuthProvider } from "./utils/context/auth";
 import { useState, useEffect, useRef } from "react";
 import { Platform } from "react-native";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
-import Dashboard from "./screens/main/Dashboard";
 import WelcomeScreen from "./screens/authentication/Welcome";
 
 export const unstable_settings = {
@@ -73,7 +72,6 @@ async function registerForPushNotificationsAsync() {
 }
 
 export default function RootNavigation() {
-    const { user } = useAuth();
     const [expoPushToken, setExpoPushToken] = useState("");
     const [notification, setNotification] = useState(false);
     const notificationListener = useRef();
@@ -107,6 +105,8 @@ export default function RootNavigation() {
     }, []);
 
     return (
-        <AuthProvider>{user ? <Dashboard /> : <WelcomeScreen />}</AuthProvider>
+        <AuthProvider>
+            <WelcomeScreen />
+        </AuthProvider>
     );
 }
