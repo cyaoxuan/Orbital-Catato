@@ -1,4 +1,3 @@
-import { useRouter } from "expo-router";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
 import { View } from "react-native";
@@ -12,7 +11,6 @@ export default function ForgotPasswordScreen() {
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [emailSent, setEmailSent] = useState(false);
-    const router = useRouter();
 
     const handlePasswordReset = async () => {
         try {

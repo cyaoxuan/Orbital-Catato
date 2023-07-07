@@ -3,7 +3,6 @@ import {
     ActivityIndicator,
     Divider,
     List,
-    Switch,
     Text,
 } from "react-native-paper";
 import { auth, useAuth } from "../../../utils/context/auth";

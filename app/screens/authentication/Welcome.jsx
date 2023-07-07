@@ -5,7 +5,6 @@ import { auth } from "../../utils/context/auth";
 import { signInAnonymously } from "firebase/auth";
 import { useState } from "react";
 import { PillButton } from "../../components/Button";
-import { createUser } from "../../utils/db/user";
 
 export default function WelcomeScreen() {
     const [error, setError] = useState(null);

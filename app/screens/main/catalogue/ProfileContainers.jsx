@@ -1,5 +1,5 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Button, Divider, IconButton, Text } from "react-native-paper";
+import { ActivityIndicator, Button, Divider, IconButton, Text } from "react-native-paper";
 import { IconTextField, KeyTextField } from "../../../components/InfoText";
 import { CatAvatar } from "../../../components/CatAvatar";
 import {
@@ -16,6 +16,8 @@ const AvatarContainer = ({
     photoURL,
     followValue,
     followOnPress,
+    loadingFollow,
+    errorFollow,
     updateValue,
     updateOnPress,
     locationValue,
@@ -98,6 +100,8 @@ const AvatarContainer = ({
                             </Button>
                         )}
                     </View>
+                    {errorFollow[0] && <Text>Error: {errorFollow[0].message}</Text>}
+                    {loadingFollow[0] && <ActivityIndicator />}
                 </>
             )}
         </View>
