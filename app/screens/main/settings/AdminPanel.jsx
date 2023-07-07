@@ -1,14 +1,10 @@
-import { StyleSheet, View } from "react-native";
-import {
-    ActivityIndicator,
-    RadioButton,
-    Text,
-    TextInput,
-} from "react-native-paper";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { ActivityIndicator, RadioButton, Text } from "react-native-paper";
 import { PillButton } from "../../../components/Button";
 import { useAuth } from "../../../utils/context/auth";
 import { useEffect, useState } from "react";
 import { useGetUserByEmail, useUpdateUserRole } from "../../../utils/db/user";
+import { AuthInput } from "../../../components/TextInput";
 
 export default function AdminPanel() {
     const { user, userRole } = useAuth();
@@ -77,7 +73,10 @@ export default function AdminPanel() {
     }
 
     return (
-        <View style={{ alignItems: "center", padding: 16 }}>
+        <ScrollView
+            style={{ padding: 16 }}
+            contentContainerStyle={{ alignItems: "center" }}
+        >
             <View style={{ alignItems: "center", padding: 16 }}>
                 <Text variant="displaySmall">Update User Roles</Text>
                 <Text variant="bodyLarge">
@@ -85,17 +84,18 @@ export default function AdminPanel() {
                 </Text>
             </View>
 
-            <TextInput
-                style={{ width: "80%", margin: 16 }}
-                mode="outlined"
+            <AuthInput
                 label="Email"
-                disabled={inProgress}
+                iconName="mail"
+                placeholder="orbitee@kitty.xyz"
+                textContentType="emailAddress"
                 value={searchText}
                 onChangeText={(text) => setSearchText(text)}
             />
 
             <PillButton
                 label="Search User"
+                width="65%"
                 disabled={inProgress}
                 onPress={handleSearch}
             />
@@ -172,7 +172,7 @@ export default function AdminPanel() {
             {error[0] && <Text>Error: {error[0].message}</Text>}
             {errorUpdate[0] && <Text>Error: {errorUpdate[0].message}</Text>}
             {inProgress && <ActivityIndicator />}
-        </View>
+        </ScrollView>
     );
 }
 

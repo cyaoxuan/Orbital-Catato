@@ -1,8 +1,13 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import {
     ActivityIndicator,
+    Button,
+    DefaultTheme,
+    Dialog,
     Divider,
     List,
+    Portal,
+    Provider,
     Switch,
     Text,
 } from "react-native-paper";
@@ -13,9 +18,11 @@ import {
     useGetUserByID,
     useUpdateUserNotification,
 } from "../../../utils/db/user";
+import { useNavigation } from "expo-router";
 
 export default function Notifications() {
     const { user, userRole } = useAuth();
+    const navigation = useNavigation();
 
     // To check if notifications is being updated
     const [processed, setProcessed] = useState(false);
@@ -68,6 +75,7 @@ export default function Notifications() {
 
             setProcessed(true);
             setInProgress(false);
+            showDialog();
         }
     };
 
@@ -108,119 +116,159 @@ export default function Notifications() {
         }
     }, [userDB, allNotif, newNotif, concernNotif, fedNotif]);
 
+    // Dialog after notifications update
+    const [dialogVisible, setDialogVisible] = useState(false);
+    const showDialog = () => setDialogVisible(true);
+    const hideDialog = () => {
+        setDialogVisible(false);
+        navigation.navigate("Settings");
+    };
+
     if (!user || !userRole) {
         return <ActivityIndicator />;
     }
 
     return (
-        <ScrollView style={{ margin: 16 }}>
-            <Text variant={titleVariant}>Notifications</Text>
-            <List.Section>
-                <List.Item
-                    title="All"
-                    style={[
-                        styles.listView,
-                        styles.topListView,
-                        styles.bottomListView,
-                    ]}
-                    titleStyle={styles.listTitle}
-                    right={() => (
-                        <Switch
-                            style={{
-                                transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
-                            }}
-                            value={allNotif}
-                            onValueChange={changeAllNotif}
-                        />
+        <Provider theme={lightTheme}>
+            <ScrollView style={{ margin: 16 }}>
+                <Text variant={titleVariant}>Notifications</Text>
+                <List.Section>
+                    <List.Item
+                        title="Enable Notifications"
+                        style={[
+                            styles.listView,
+                            styles.topListView,
+                            styles.bottomListView,
+                        ]}
+                        titleStyle={styles.listTitle}
+                        right={() => (
+                            <Switch
+                                style={{
+                                    transform: [
+                                        { scaleX: 1.2 },
+                                        { scaleY: 1.2 },
+                                    ],
+                                }}
+                                value={allNotif}
+                                onValueChange={changeAllNotif}
+                            />
+                        )}
+                    />
+                </List.Section>
+
+                <Text variant={titleVariant}>Types of Notifications</Text>
+
+                <List.Section>
+                    <List.Item
+                        title="New Cats"
+                        description="New cats in the area reported by users"
+                        style={[styles.listView, styles.topListView]}
+                        titleStyle={styles.listTitle}
+                        right={() => (
+                            <Switch
+                                style={{
+                                    transform: [
+                                        { scaleX: 1.2 },
+                                        { scaleY: 1.2 },
+                                    ],
+                                }}
+                                disabled={disableNotif}
+                                value={newNotif}
+                                onValueChange={setNewNotif}
+                            />
+                        )}
+                    />
+                    <Divider />
+
+                    <List.Item
+                        title="Concern"
+                        description="Followed cats that are missing or injured"
+                        style={[
+                            styles.listView,
+                            userRole && !userRole.isCaretaker
+                                ? styles.bottomListView
+                                : "",
+                        ]}
+                        titleStyle={styles.listTitle}
+                        right={() => (
+                            <Switch
+                                style={{
+                                    transform: [
+                                        { scaleX: 1.2 },
+                                        { scaleY: 1.2 },
+                                    ],
+                                }}
+                                disabled={disableNotif}
+                                value={concernNotif}
+                                onValueChange={setConcernNotif}
+                            />
+                        )}
+                    />
+
+                    {userRole && userRole.isCaretaker && (
+                        <>
+                            <Divider />
+                            <List.Item
+                                title="Unfed"
+                                description="Followed cats not fed in 12h"
+                                style={[styles.listView, styles.bottomListView]}
+                                titleStyle={styles.listTitle}
+                                right={() => (
+                                    <Switch
+                                        style={{
+                                            transform: [
+                                                { scaleX: 1.2 },
+                                                { scaleY: 1.2 },
+                                            ],
+                                        }}
+                                        disabled={disableNotif}
+                                        value={fedNotif}
+                                        onValueChange={setFedNotif}
+                                    />
+                                )}
+                            />
+                        </>
                     )}
-                />
-            </List.Section>
+                </List.Section>
 
-            <Text variant={titleVariant}>Types of Notifications</Text>
+                <View style={{ alignItems: "center" }}>
+                    <PillButton
+                        label="Update Settings"
+                        disabled={!changedNotifs}
+                        onPress={handleNotifs}
+                    />
+                </View>
 
-            <List.Section>
-                <List.Item
-                    title="New Cats"
-                    description="New cats in the area reported by users"
-                    style={[styles.listView, styles.topListView]}
-                    titleStyle={styles.listTitle}
-                    right={() => (
-                        <Switch
-                            style={{
-                                transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
-                            }}
-                            disabled={disableNotif}
-                            value={newNotif}
-                            onValueChange={setNewNotif}
-                        />
-                    )}
-                />
-                <Divider />
+                <Portal>
+                    <Dialog visible={dialogVisible} onDismiss={hideDialog}>
+                        <Dialog.Title>Notifications Update</Dialog.Title>
+                        <Dialog.Content>
+                            <Text variant="bodyMedium">
+                                Notifications Update Confirmed! Press done to go
+                                back to settings.
+                            </Text>
+                        </Dialog.Content>
+                        <Dialog.Actions>
+                            <Button onPress={hideDialog}>Done</Button>
+                        </Dialog.Actions>
+                    </Dialog>
+                </Portal>
 
-                <List.Item
-                    title="Concern"
-                    description="Followed cats that are missing or injured"
-                    style={[
-                        styles.listView,
-                        userRole && !userRole.isCaretaker
-                            ? styles.bottomListView
-                            : "",
-                    ]}
-                    titleStyle={styles.listTitle}
-                    right={() => (
-                        <Switch
-                            style={{
-                                transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
-                            }}
-                            disabled={disableNotif}
-                            value={concernNotif}
-                            onValueChange={setConcernNotif}
-                        />
-                    )}
-                />
-
-                {userRole && userRole.isCaretaker && (
-                    <>
-                        <Divider />
-                        <List.Item
-                            title="Unfed"
-                            description="Followed cats not fed in 12h"
-                            style={[styles.listView, styles.bottomListView]}
-                            titleStyle={styles.listTitle}
-                            right={() => (
-                                <Switch
-                                    style={{
-                                        transform: [
-                                            { scaleX: 1.2 },
-                                            { scaleY: 1.2 },
-                                        ],
-                                    }}
-                                    disabled={disableNotif}
-                                    value={fedNotif}
-                                    onValueChange={setFedNotif}
-                                />
-                            )}
-                        />
-                    </>
-                )}
-            </List.Section>
-
-            <View style={{ alignItems: "center" }}>
-                <PillButton
-                    label="Update Settings"
-                    disabled={!changedNotifs}
-                    onPress={handleNotifs}
-                />
-            </View>
-
-            {error[0] && <Text>Error: {error[0].message}</Text>}
-            {inProgress && <ActivityIndicator />}
-        </ScrollView>
+                {error[0] && <Text>Error: {error[0].message}</Text>}
+                {inProgress && <ActivityIndicator />}
+            </ScrollView>
+        </Provider>
     );
 }
 
 const titleVariant = "titleLarge";
 const bodyVariant = "bodyMedium";
+
+const lightTheme = {
+    ...DefaultTheme,
+    mode: "light",
+    dark: false,
+};
 
 const styles = StyleSheet.create({
     listTitle: {

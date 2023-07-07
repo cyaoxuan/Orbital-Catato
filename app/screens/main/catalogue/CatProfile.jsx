@@ -2,7 +2,6 @@ import { ScrollView, View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { useIsFocused, useRoute } from "@react-navigation/native";
-import { PillButton } from "../../../components/Button";
 import {
     AvatarContainer,
     KeyInfoContainer,
@@ -31,13 +30,15 @@ export default function CatProfile() {
     // Get user
     const { getUserByID, user: userDB } = useGetUserByID();
     useEffect(() => {
-        const fetchData = async () => {
-            await getUserByID(user.uid);
-        };
+        if (user) {
+            const fetchData = async () => {
+                await getUserByID(user.uid);
+            };
 
-        fetchData();
+            fetchData();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [user]);
 
     // Set default value for following
     const [followed, setFollowed] = useState(false);
@@ -54,8 +55,12 @@ export default function CatProfile() {
         error: errorFollow,
     } = useUserToggleCatFollow();
     const changeFavourite = async () => {
-        await userToggleCatFollow(user.uid, catID, !followed);
-        setFollowed((prev) => !prev);
+        try {
+            await userToggleCatFollow(user.uid, catID, !followed);
+            setFollowed((prev) => !prev);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     // Get cat data
@@ -130,6 +135,8 @@ export default function CatProfile() {
                 photoURL={cat.photoURLs[0]}
                 followValue={followed}
                 followOnPress={changeFavourite}
+                loadingFollow={loadingFollow}
+                errorFollow={errorFollow}
                 updateValue={true}
                 updateOnPress={() =>
                     navigation.navigate("update", {

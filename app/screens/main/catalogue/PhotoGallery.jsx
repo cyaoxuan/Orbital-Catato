@@ -61,8 +61,8 @@ export default function PhotoGallery() {
     const [open, setOpen] = useState(false);
 
     // For Confirm/Delete Image Upload Dialog
-    const [DialogVisible, setDialogVisible] = useState(false);
-    const [DialogText, setDialogText] = useState("");
+    const [dialogVisible, setDialogVisible] = useState(false);
+    const [dialogText, setDialogText] = useState("");
     const showDialog = () => setDialogVisible(true);
     const confirmHideDialog = () => {
         setDialogText("");
@@ -96,10 +96,10 @@ export default function PhotoGallery() {
 
     // Showing Dialog
     useEffect(() => {
-        if (DialogText !== "") {
+        if (dialogText !== "") {
             showDialog();
         }
-    }, [DialogText]);
+    }, [dialogText]);
 
     // For deleting state
     const [deleting, setDeleting] = useState(false);
@@ -337,17 +337,17 @@ export default function PhotoGallery() {
 
                         <Portal>
                             <Dialog
-                                visible={DialogVisible}
+                                visible={dialogVisible}
                                 onDismiss={backHideDialog}
                             >
                                 <Dialog.Title>
-                                    {deleting || DialogText.includes("Delete")
+                                    {deleting || dialogText.includes("Delete")
                                         ? "Image Deletion"
                                         : "Image Upload"}
                                 </Dialog.Title>
                                 <Dialog.Content>
                                     <Text variant="bodyMedium">
-                                        {DialogText}
+                                        {dialogText}
                                     </Text>
                                 </Dialog.Content>
                                 <Dialog.Actions>
@@ -366,7 +366,7 @@ export default function PhotoGallery() {
                                     {!deleting && (
                                         <Button
                                             onPress={
-                                                DialogText.includes("Error")
+                                                dialogText.includes("Error")
                                                     ? backHideDialog
                                                     : confirmHideDialog
                                             }

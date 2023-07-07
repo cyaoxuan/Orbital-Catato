@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import { ActivityIndicator, Banner, Searchbar, Text } from "react-native-paper";
+import { ActivityIndicator, Searchbar, Text } from "react-native-paper";
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { WebView } from "react-native-webview";
 import { useIsFocused, useRoute } from "@react-navigation/native";
