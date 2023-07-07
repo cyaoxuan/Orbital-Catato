@@ -16,7 +16,7 @@ export const getImageFromGallery = async () => {
         allowsEditing: true,
         aspect: [1, 1],
         quality: 1,
-    }).then((img) => (uri = img.canceled ? null : img.assets[0].uri));
+    }).then((img) => (uri = img.canceled ? "" : img.assets[0].uri));
 
     return uri;
 };
@@ -40,7 +40,7 @@ export const getImageFromCamera = async () => {
         allowsEditing: true,
         aspect: [1, 1],
         quality: 1,
-    }).then((img) => (uri = img.canceled ? null : img.assets[0].uri));
+    }).then((img) => (uri = img.canceled ? "" : img.assets[0].uri));
 
     return uri;
 };

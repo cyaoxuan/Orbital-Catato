@@ -40,7 +40,7 @@ describe("getImageFromGallery", () => {
         );
     });
 
-    it("returns null when no image is selected in gallery", async () => {
+    it("returns empty string when no image is selected in gallery", async () => {
         // Mock the permission granted for media library
         ImagePicker.requestMediaLibraryPermissionsAsync.mockResolvedValueOnce({
             status: "granted",
@@ -53,7 +53,7 @@ describe("getImageFromGallery", () => {
         });
 
         // Assert that null is returned
-        expect(await getImageFromGallery()).toBeNull();
+        expect(await getImageFromGallery()).toBe("");
     });
 
     it("returns the correct URI when an image is selected and edited", async () => {
@@ -104,7 +104,7 @@ describe("getImageFromCamera", () => {
         );
     });
 
-    it("returns null when no image is taken", async () => {
+    it("returns empty string when no image is taken", async () => {
         // Mock the permission granted for camera and media library
         ImagePicker.requestCameraPermissionsAsync.mockResolvedValueOnce({
             status: "granted",
@@ -121,7 +121,7 @@ describe("getImageFromCamera", () => {
         });
 
         // Assert that null is returned
-        expect(await getImageFromCamera()).toBeNull();
+        expect(await getImageFromCamera()).toBe("");
     });
 
     it("returns the correct URI when an image is taken and edited", async () => {
