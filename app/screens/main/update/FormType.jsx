@@ -102,8 +102,6 @@ const CreateProfile = (props) => {
             );
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -287,8 +285,6 @@ const ReportCat = (props) => {
             );
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -460,8 +456,6 @@ const UpdateLocation = (props) => {
             await userUpdateCatLocation(props.userID, catID, location, date);
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -638,8 +632,6 @@ const UpdateConcern = (props) => {
             );
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -799,8 +791,6 @@ const UpdateFed = (props) => {
             await userUpdateCatFed(props.userID, catID, date, location);
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -941,8 +931,6 @@ const UpdateProfile = (props) => {
             });
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 
@@ -1057,8 +1045,6 @@ const DeleteProfile = (props) => {
             await userDeleteCat(props.userID, catID);
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 

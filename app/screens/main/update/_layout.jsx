@@ -10,7 +10,10 @@ export default function SettingsLayout() {
                     name="SelectCat"
                     options={{ title: "Select Cat" }}
                 />
-                <Stack.Screen name="UpdateOptions" />
+                <Stack.Screen
+                    name="UpdateOptions"
+                    options={{ title: "Update Options" }}
+                />
                 <Stack.Screen name="Form" />
                 <Stack.Screen
                     name="ConfirmUpdate"

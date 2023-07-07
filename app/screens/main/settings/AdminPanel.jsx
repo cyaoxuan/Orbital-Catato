@@ -34,8 +34,6 @@ export default function AdminPanel() {
             await getUserByEmail(searchText);
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(false);
         }
     };
 
@@ -63,8 +61,6 @@ export default function AdminPanel() {
             await updateUserRole(userDB.userID, radioValue);
             setProcessed(true);
             setInProgress(false);
-        } else {
-            setInProgress(true);
         }
     };
 

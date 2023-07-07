@@ -44,7 +44,7 @@ export default function CatProfile() {
     const [followed, setFollowed] = useState(false);
     useEffect(() => {
         if (userDB) {
-            setFollowed(userDB.catsFollowed.includes(catID));
+            setFollowed(userDB.catsFollowed?.includes(catID));
         }
     }, [catID, userDB]);
 
@@ -141,6 +141,7 @@ export default function CatProfile() {
                 updateOnPress={() =>
                     navigation.navigate("update", {
                         screen: "UpdateOptions",
+                        initial: false,
                         params: { ...partialCat },
                     })
                 }
