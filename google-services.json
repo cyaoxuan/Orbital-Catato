@@ -10,7 +10,7 @@
             "client_info": {
                 "mobilesdk_app_id": "1:312029122334:android:d82a22e3b6d698d92d030f",
                 "android_client_info": {
-                    "package_name": "com.catato"
+                    "package_name": "com.yxsandpie.Catato"
                 }
             },
             "oauth_client": [
@@ -21,7 +21,7 @@
             ],
             "api_key": [
                 {
-                    "current_key": "AIzaSyD2pu5LzN_aGdMOtHQLae8WcE2j0W3xwa8"
+                    "current_key": "AIzaSyDgph_4AdnIhptyqqxauAjWGNAfR5XGU1w"
                 }
             ],
             "services": {
@@ -35,7 +35,7 @@
                             "client_id": "312029122334-n67vsn1sblpjjmds4hmn9lvcob9k164o.apps.googleusercontent.com",
                             "client_type": 2,
                             "ios_info": {
-                                "bundle_id": "com.catato"
+                                "bundle_id": "com.yxsandpie.Catato"
                             }
                         }
                     ]
