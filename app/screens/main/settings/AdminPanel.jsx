@@ -1,9 +1,5 @@
 import { ScrollView, StyleSheet, View } from "react-native";
-import {
-    ActivityIndicator,
-    RadioButton,
-    Text,
-} from "react-native-paper";
+import { ActivityIndicator, RadioButton, Text } from "react-native-paper";
 import { PillButton } from "../../../components/Button";
 import { useAuth } from "../../../utils/context/auth";
 import { useEffect, useState } from "react";
@@ -77,7 +73,10 @@ export default function AdminPanel() {
     }
 
     return (
-        <ScrollView style={{ padding: 16 }} contentContainerStyle={{ alignItems: "center" }}>
+        <ScrollView
+            style={{ padding: 16 }}
+            contentContainerStyle={{ alignItems: "center" }}
+        >
             <View style={{ alignItems: "center", padding: 16 }}>
                 <Text variant="displaySmall">Update User Roles</Text>
                 <Text variant="bodyLarge">

@@ -20,9 +20,8 @@ export default function Catalogue() {
     const onFilter = (value) => {
         setFilterValue(value);
         if (value === "Followed") {
-            let filteredCats = allCats.filter(
-                (cat) =>
-                    userDB.catsFollowed.includes(cat.catID)
+            let filteredCats = allCats.filter((cat) =>
+                userDB.catsFollowed.includes(cat.catID)
             );
             setDisplayCats(filteredCats);
         } else {
@@ -54,10 +53,14 @@ export default function Catalogue() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isFocused]);
 
-    // Set display cats on DB call  
+    // Set display cats on DB call
     useEffect(() => {
         if (allCats && userDB && filterValue === "Followed") {
-            setDisplayCats([...allCats.filter((cat) => cat.name && userDB.catsFollowed.includes(cat.catID))]);
+            setDisplayCats([
+                ...allCats.filter(
+                    (cat) => cat.name && userDB.catsFollowed.includes(cat.catID)
+                ),
+            ]);
         } else if (allCats) {
             setDisplayCats([...allCats.filter((cat) => cat.name)]);
         }
@@ -80,7 +83,7 @@ export default function Catalogue() {
                     >
                         Meet the Cats!
                     </Text>
-                    {userRole.isUser && 
+                    {userRole.isUser && (
                         <SegmentedButtons
                             style={{ width: "70%" }}
                             value={filterValue}
@@ -89,16 +92,16 @@ export default function Catalogue() {
                             buttons={[
                                 {
                                     value: "All",
-                                    label: "All"
+                                    label: "All",
                                 },
                                 {
                                     value: "Followed",
-                                    label: "Followed"
-                                }
+                                    label: "Followed",
+                                },
                             ]}
                         />
-                    }
-                    
+                    )}
+
                     {error[0] && <Text>Error: {error[0].message}</Text>}
                     {loading[0] && <ActivityIndicator />}
                 </View>

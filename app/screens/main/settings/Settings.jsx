@@ -1,10 +1,5 @@
 import { ScrollView, StyleSheet, View } from "react-native";
-import {
-    ActivityIndicator,
-    Divider,
-    List,
-    Text,
-} from "react-native-paper";
+import { ActivityIndicator, Divider, List, Text } from "react-native-paper";
 import { auth, useAuth } from "../../../utils/context/auth";
 import { useNavigation, useRouter } from "expo-router";
 import { useState } from "react";

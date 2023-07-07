@@ -26,7 +26,7 @@ export default function SignUp() {
             setLoading(false);
             navigation.navigate("main", {
                 screen: "Dashboard",
-            })
+            });
         } catch (error) {
             console.error(error);
             setError(error);
