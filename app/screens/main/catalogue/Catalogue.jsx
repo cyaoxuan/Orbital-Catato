@@ -15,7 +15,7 @@ export default function Catalogue() {
     const { getAllCats, allCats, loading, error } = useGetAllCats();
 
     // For filter buttons (all/followed)
-    const [filterValue, setFilterValue] = useState("");
+    const [filterValue, setFilterValue] = useState("All");
     const [displayCats, setDisplayCats] = useState([]);
     const onFilter = (value) => {
         setFilterValue(value);
