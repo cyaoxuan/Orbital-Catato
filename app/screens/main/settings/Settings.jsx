@@ -6,6 +6,8 @@ import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { PillButton } from "../../../components/Button";
 import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { removeUserPushToken } from "../../../utils/db/user";
 
 const UserDetails = ({ user, userRole }) => {
     return (
@@ -198,18 +200,29 @@ export default function Settings() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
-    const handleLogout = () => {
-        setLoading(true);
-        signOut(auth)
-            .then(() => {
-                setLoading(false);
-                router.replace("/screens/authentication/Welcome");
-            })
-            .catch((error) => {
-                console.error(error);
-                setError(error);
-                setLoading(false);
-            });
+    const handleLogout = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const userID = user.uid;
+            await signOut(auth); // Firebase auth
+
+            // Get push token from storage
+            const token = await AsyncStorage.getItem("expoPushToken");
+            if (token) {
+                // Got token
+                // console.log(token);
+                removeUserPushToken(userID, token);
+            }
+
+            setLoading(false);
+            router.replace("/screens/authentication/Welcome");
+        } catch (error) {
+            console.error(error);
+            setError(error);
+            setLoading(false);
+        }
     };
 
     if (!user || !userRole) {

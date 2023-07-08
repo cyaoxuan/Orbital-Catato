@@ -546,7 +546,6 @@ const UpdateConcern = (props) => {
     }, []);
 
     useEffect(() => {
-        console.log(loading[0], processed, error[0]);
         if (!loading[0] && processed && error[0] === null) {
             // Process new concern status to pass around
             let newConcernStatus;

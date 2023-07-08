@@ -6,6 +6,8 @@ import { auth } from "../../utils/context/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthInput, PasswordInput } from "../../components/TextInput";
 import { PillButton } from "../../components/Button";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { addUserPushToken } from "../../utils/db/user";
 
 export default function LoginScreen() {
     const [error, setError] = useState(null);
@@ -19,7 +21,15 @@ export default function LoginScreen() {
             setLoading(true);
             setError(null);
 
-            await signInWithEmailAndPassword(auth, email, password);
+            await signInWithEmailAndPassword(auth, email, password); // Firebase auth
+
+            // Get push token from storage
+            const token = await AsyncStorage.getItem("expoPushToken");
+            if (token) {
+                // Got token
+                // console.log(token);
+                addUserPushToken(auth.currentUser.uid, token);
+            }
 
             setLoading(false);
             router.replace("/screens/main/Dashboard");
