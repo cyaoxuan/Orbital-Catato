@@ -9,6 +9,7 @@ import {
     IconButton,
     Portal,
     Provider,
+    SegmentedButtons,
     Text,
 } from "react-native-paper";
 import { getItemWidthCols } from "../../../utils/calculateItemWidths";
@@ -49,13 +50,36 @@ export default function PhotoGallery() {
     // Get photoURLs and add selected prop to each of them
     const route = useRoute();
     const { catID, photoURLs, concernPhotoURLs } = route.params;
-    const photos = photoURLs.map((photoURL) => {
-        return {
-            photoURL: photoURL,
-            isSelected: false,
-        };
-    });
-    const [listPhotos, setListPhotos] = useState(photos);
+
+    const galleryPhotos = photoURLs
+        ? photoURLs.map((photoURL) => {
+              return {
+                  photoURL: photoURL,
+                  isSelected: false,
+              };
+          })
+        : [];
+
+    const concernPhotos = concernPhotoURLs
+        ? concernPhotoURLs.map((photoURL) => {
+              return {
+                  photoURL: photoURL,
+                  isSelected: false,
+              };
+          })
+        : [];
+
+    // For filter buttons (gallery/injured)
+    const [filterValue, setFilterValue] = useState("Gallery");
+    const [listPhotos, setListPhotos] = useState(galleryPhotos);
+    const onFilter = (value) => {
+        setFilterValue(value);
+        if (value === "Concern") {
+            setListPhotos(concernPhotos);
+        } else {
+            setListPhotos(galleryPhotos);
+        }
+    };
 
     // For image FAB
     const [open, setOpen] = useState(false);
@@ -142,18 +166,32 @@ export default function PhotoGallery() {
     };
 
     // For deleting images
-    const handleDeleteImages = async () => {
+    const handleDeleteImages = async (from) => {
         try {
             const selectedURLs = selectedImages.map((photo) => photo.photoURL);
-            const newPhotoURLs = photoURLs.filter(
-                (URL) => !selectedURLs.includes(URL)
-            );
-            await userDeleteCatPictures(
-                user.uid,
-                catID,
-                newPhotoURLs,
-                "Gallery"
-            );
+            let newPhotoURLs;
+            if (from === "Gallery") {
+                newPhotoURLs = photoURLs.filter(
+                    (URL) => !selectedURLs.includes(URL)
+                );
+                await userDeleteCatPictures(
+                    user.uid,
+                    catID,
+                    newPhotoURLs,
+                    "Gallery"
+                );
+            } else {
+                newPhotoURLs = concernPhotoURLs.filter(
+                    (URL) => !selectedURLs.includes(URL)
+                );
+                await userDeleteCatPictures(
+                    user.uid,
+                    catID,
+                    newPhotoURLs,
+                    "Concern"
+                );
+            }
+
             setListPhotos(
                 newPhotoURLs.map((photoURL) => {
                     return {
@@ -202,18 +240,20 @@ export default function PhotoGallery() {
                         />
                         <Text>
                             Selected Items: {selectedImages.length}
-                            {selectedImages.length === photoURLs.length && (
-                                <Text style={{ color: "#BA1A1A" }}>
-                                    {" (Cannot Delete All)"}
-                                </Text>
-                            )}
+                            {selectedImages.length === photoURLs.length &&
+                                filterValue === "Gallery" && (
+                                    <Text style={{ color: "#BA1A1A" }}>
+                                        {" (Cannot Delete All)"}
+                                    </Text>
+                                )}
                         </Text>
                         <Button
                             mode="text"
                             onPress={showDeleteDialog}
                             disabled={
                                 selectedImages.length === 0 ||
-                                selectedImages.length === photoURLs.length
+                                (filterValue === "Gallery" &&
+                                    selectedImages.length === photoURLs.length)
                             }
                         >
                             Delete
@@ -222,9 +262,48 @@ export default function PhotoGallery() {
                 )}
                 <FlatList
                     ListHeaderComponent={() => (
-                        <Text variant="headlineMedium">
-                            {route.params.name} Meowmories
-                        </Text>
+                        <View
+                            style={{ alignItems: "center", marginVertical: 16 }}
+                        >
+                            {filterValue === "Concern" ? (
+                                <>
+                                    <Text variant="headlineSmall">
+                                        {route.params.name} Concern Photos
+                                    </Text>
+                                    <Text
+                                        variant="bodyLarge"
+                                        style={{
+                                            textAlign: "center",
+                                            marginHorizontal: 16,
+                                        }}
+                                    >
+                                        Concern Photos are uploaded from the
+                                        concern update form!
+                                    </Text>
+                                </>
+                            ) : (
+                                <Text variant="headlineMedium">
+                                    {route.params.name} Meowmories
+                                </Text>
+                            )}
+                            <SegmentedButtons
+                                style={{ width: "70%", margin: 8 }}
+                                value={filterValue}
+                                onValueChange={onFilter}
+                                buttons={[
+                                    {
+                                        value: "Gallery",
+                                        label: "Gallery",
+                                        disabled: deleting,
+                                    },
+                                    {
+                                        value: "Concern",
+                                        label: "Concern",
+                                        disabled: deleting,
+                                    },
+                                ]}
+                            />
+                        </View>
                     )}
                     ListHeaderComponentStyle={{ alignItems: "center" }}
                     numColumns={2}
@@ -296,46 +375,79 @@ export default function PhotoGallery() {
                                 }}
                                 open={open}
                                 icon={open ? "close" : "plus"}
-                                actions={[
-                                    {
-                                        icon: () => (
-                                            <Ionicons
-                                                name="camera"
-                                                size={20}
-                                                color="#663399"
-                                                style={{ alignSelf: "center" }}
-                                            />
-                                        ),
-                                        label: "Camera",
-                                        onPress: () =>
-                                            handleAddImageFrom("Camera"),
-                                    },
-                                    {
-                                        icon: () => (
-                                            <Ionicons
-                                                name="image"
-                                                size={20}
-                                                color="#663399"
-                                                style={{ alignSelf: "center" }}
-                                            />
-                                        ),
-                                        label: "Gallery",
-                                        onPress: () =>
-                                            handleAddImageFrom("Gallery"),
-                                    },
-                                    {
-                                        icon: () => (
-                                            <Ionicons
-                                                name="trash"
-                                                size={20}
-                                                color="#663399"
-                                                style={{ alignSelf: "center" }}
-                                            />
-                                        ),
-                                        label: "Delete",
-                                        onPress: changeDeleting,
-                                    },
-                                ]}
+                                actions={
+                                    filterValue === "Concern"
+                                        ? [
+                                              {
+                                                  icon: () => (
+                                                      <Ionicons
+                                                          name="trash"
+                                                          size={20}
+                                                          color="#663399"
+                                                          style={{
+                                                              alignSelf:
+                                                                  "center",
+                                                          }}
+                                                      />
+                                                  ),
+                                                  label: "Delete",
+                                                  onPress: changeDeleting,
+                                              },
+                                          ]
+                                        : [
+                                              {
+                                                  icon: () => (
+                                                      <Ionicons
+                                                          name="camera"
+                                                          size={20}
+                                                          color="#663399"
+                                                          style={{
+                                                              alignSelf:
+                                                                  "center",
+                                                          }}
+                                                      />
+                                                  ),
+                                                  label: "Camera",
+                                                  onPress: () =>
+                                                      handleAddImageFrom(
+                                                          "Camera"
+                                                      ),
+                                              },
+                                              {
+                                                  icon: () => (
+                                                      <Ionicons
+                                                          name="image"
+                                                          size={20}
+                                                          color="#663399"
+                                                          style={{
+                                                              alignSelf:
+                                                                  "center",
+                                                          }}
+                                                      />
+                                                  ),
+                                                  label: "Gallery",
+                                                  onPress: () =>
+                                                      handleAddImageFrom(
+                                                          "Gallery"
+                                                      ),
+                                              },
+                                              {
+                                                  icon: () => (
+                                                      <Ionicons
+                                                          name="trash"
+                                                          size={20}
+                                                          color="#663399"
+                                                          style={{
+                                                              alignSelf:
+                                                                  "center",
+                                                          }}
+                                                      />
+                                                  ),
+                                                  label: "Delete",
+                                                  onPress: changeDeleting,
+                                              },
+                                          ]
+                                }
                                 onStateChange={() => setOpen((prev) => !prev)}
                             />
                         </Portal>
@@ -359,7 +471,11 @@ export default function PhotoGallery() {
                                     {deleting && (
                                         <>
                                             <Button
-                                                onPress={handleDeleteImages}
+                                                onPress={() =>
+                                                    handleDeleteImages(
+                                                        filterValue
+                                                    )
+                                                }
                                             >
                                                 Confirm Delete
                                             </Button>

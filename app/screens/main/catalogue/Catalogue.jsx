@@ -15,13 +15,13 @@ export default function Catalogue() {
     const { getAllCats, allCats, loading, error } = useGetAllCats();
 
     // For filter buttons (all/followed)
-    const [filterValue, setFilterValue] = useState("");
+    const [filterValue, setFilterValue] = useState("All");
     const [displayCats, setDisplayCats] = useState([]);
     const onFilter = (value) => {
         setFilterValue(value);
         if (value === "Followed") {
             let filteredCats = allCats.filter((cat) =>
-                userDB.catsFollowed.includes(cat.catID)
+                userDB.catsFollowed?.includes(cat.catID)
             );
             setDisplayCats(filteredCats);
         } else {
@@ -58,7 +58,8 @@ export default function Catalogue() {
         if (allCats && userDB && filterValue === "Followed") {
             setDisplayCats([
                 ...allCats.filter(
-                    (cat) => cat.name && userDB.catsFollowed.includes(cat.catID)
+                    (cat) =>
+                        cat.name && userDB.catsFollowed?.includes(cat.catID)
                 ),
             ]);
         } else if (allCats) {

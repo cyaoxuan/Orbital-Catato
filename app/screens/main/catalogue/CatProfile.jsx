@@ -143,6 +143,7 @@ export default function CatProfile() {
                 updateOnPress={() =>
                     navigation.navigate("update", {
                         screen: "UpdateOptions",
+                        initial: false,
                         params: { ...partialCat },
                     })
                 }
