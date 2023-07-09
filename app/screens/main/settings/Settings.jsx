@@ -246,11 +246,7 @@ export default function Settings() {
                     width="65%"
                     onPress={handleLogout}
                 />
-                {/* <PillButton
-                    label="Send Noti"
-                    onPress={() => sendNoti("new", "BnMCBeEgTOECC2AFXjWa")}
-                />
-                <PillButton label="Reset Data" onPress={resetCatData} /> */}
+                {/* <PillButton label="Reset Data" onPress={resetCatData} /> */}
             </View>
 
             {error && <Text>{error.message}</Text>}

@@ -338,25 +338,6 @@ const cats = [
         sterilised: true,
         updatedAt: today,
     },
-    // Cat 11: null cat
-    {
-        birthYear: null,
-        catID: "11",
-        concernDesc: null,
-        concernPhotoURLs: null,
-        concernStatus: null,
-        gender: null,
-        keyFeatures: null,
-        lastFedTime: null,
-        lastSeenLocation: null,
-        lastSeenTime: null,
-        locationName: null,
-        locationZone: null,
-        name: null,
-        photoURLs: null,
-        sterilised: null,
-        updatedAt: null,
-    },
 ];
 
 export async function resetCatData() {
