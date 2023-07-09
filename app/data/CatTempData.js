@@ -23,7 +23,13 @@ const cats = [
         },
         lastSeenTime: new Date(2023, 4, 19, 14, 21, 0, 0), // Will be converted from firebase timestamp
         lastFedTime: new Date(2023, 4, 19, 12, 1, 0, 0),
-        concernStatus: ["Injured"],
+        // concernStatus: ["Injured"],
+        concernStatus: {
+            injured: true,
+            missing: false,
+            new: false,
+            unfed: false,
+        },
         concernDesc: "Seen limping, possibly right front leg injured",
     },
     {
@@ -47,7 +53,12 @@ const cats = [
         },
         lastSeenTime: new Date(2023, 4, 20, 10, 53, 0, 0),
         lastFedTime: null,
-        concernStatus: ["New", "Injured"],
+        concernStatus: {
+            injured: true,
+            missing: false,
+            new: true,
+            unfed: false,
+        },
         concernDesc: "New and had wounds on body",
     },
     {
@@ -71,7 +82,12 @@ const cats = [
         },
         lastSeenTime: new Date(2023, 4, 15, 18, 34, 0, 0),
         lastFedTime: new Date(2023, 4, 15, 18, 34, 0, 0),
-        concernStatus: ["Missing"], // The database registers as missing past certain time?
+        concernStatus: {
+            injured: false,
+            missing: true,
+            new: false,
+            unfed: false,
+        },
         concernDesc: "Has not been seen in 5 days",
     },
     {
@@ -93,7 +109,12 @@ const cats = [
         },
         lastSeenTime: new Date(2023, 4, 20, 9, 16, 0, 0),
         lastFedTime: new Date(2023, 4, 19, 20, 47, 0, 0),
-        concernStatus: [], // If the array is empty it's healthy
+        concernStatus: {
+            injured: false,
+            missing: false,
+            new: false,
+            unfed: false,
+        },
         concernDesc: null,
     },
     {
@@ -107,7 +128,7 @@ const cats = [
         lastSeenLocation: null,
         lastSeenTime: null,
         lastFedTime: null,
-        concernStatus: [],
+        concernStatus: null,
         concernDesc: null,
     },
 ];

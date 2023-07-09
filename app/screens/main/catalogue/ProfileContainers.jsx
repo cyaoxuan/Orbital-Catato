@@ -141,6 +141,25 @@ const KeyInfoContainer = ({ cat, variant }) => {
 
 // Details Container
 const DetailsContainer = ({ cat, userRole, ...rest }) => {
+    // Process concernStatus into a string
+    const concernStatusList = [];
+    cat.concernStatus.injured && concernStatusList.push("Injured");
+    cat.concernStatus.missing && concernStatusList.push("Missing");
+    cat.concernStatus.new && concernStatusList.push("New");
+    cat.concernStatus.unfed && concernStatusList.push("Unfed");
+    const concernStatusString =
+        concernStatusList.length === 0
+            ? "Healthy"
+            : concernStatusList.join(", ");
+
+    // Process concernStatusDesc based on concernStatus
+    const processedConcernStatusDesc =
+        concernStatusString === "Healthy"
+            ? "This cat is happy and healthy!"
+            : cat.concernDesc
+            ? cat.concernDesc
+            : "This cat requires attention!";
+
     return (
         <View style={styles.detailsContainer}>
             <IconTextField
@@ -180,20 +199,14 @@ const DetailsContainer = ({ cat, userRole, ...rest }) => {
                 {...rest}
                 iconName="alert-circle-outline"
                 field="Concern Status: "
-                info={
-                    cat.concernStatus ? cat.concernStatus.join(", ") : "Healthy"
-                }
+                info={concernStatusString}
             />
             <IconTextField
                 iconTextStyle={styles.iconTextStyle}
                 {...rest}
                 iconName="information-circle-outline"
                 field="Concerns: "
-                info={
-                    cat.concernStatus
-                        ? cat.concernDesc || "This cat requires attention!"
-                        : "The cat is happy and healthy!"
-                }
+                info={processedConcernStatusDesc}
             />
         </View>
     );

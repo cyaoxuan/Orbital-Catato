@@ -277,7 +277,7 @@ export const addUserPushToken = async (userID, pushToken) => {
         return;
     }
 
-    const oldPushTokens = user.pushTokens;
+    const oldPushTokens = user.data().pushTokens;
     const newPushTokens = oldPushTokens
         ? [...oldPushTokens, pushToken]
         : [pushToken];
@@ -290,7 +290,7 @@ export const removeUserPushToken = async (userID, pushToken) => {
         return;
     }
 
-    const oldPushTokens = user.pushTokens;
+    const oldPushTokens = user.data().pushTokens;
     const filteredPushTokens = oldPushTokens
         ? oldPushTokens.filter((token) => token !== pushToken)
         : [];

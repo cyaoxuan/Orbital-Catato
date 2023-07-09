@@ -513,9 +513,7 @@ const UpdateConcern = (props) => {
 
     // For Concern Radio
     const [concern, setConcern] = useState(
-        concernStatus && concernStatus.includes("Injured")
-            ? "Injured"
-            : "Healthy"
+        concernStatus.injured ? "Injured" : "Healthy"
     );
 
     // For Location Dropdown
@@ -548,25 +546,6 @@ const UpdateConcern = (props) => {
     useEffect(() => {
         if (!loading[0] && processed && error[0] === null) {
             // Process new concern status to pass around
-            let newConcernStatus;
-            if (concern === "Healthy") {
-                newConcernStatus = concernStatus.filter(
-                    (status) => status !== "Injured"
-                );
-                newConcernStatus =
-                    newConcernStatus.length === 0 ? null : newConcernStatus;
-            } else {
-                if (!concernStatus) {
-                    newConcernStatus = ["Injured"];
-                } else {
-                    if (concernStatus.includes("Injured")) {
-                        newConcernStatus = concernStatus;
-                    } else {
-                        newConcernStatus = [...concernStatus, "Injured"];
-                    }
-                }
-            }
-
             navigation.navigate("ConfirmUpdate", {
                 catID: catID,
                 name: name,
@@ -575,7 +554,12 @@ const UpdateConcern = (props) => {
                 sterilised: sterilised,
                 keyFeatures: keyFeatures,
                 photoURLs: photoURLs,
-                concernStatus: newConcernStatus,
+                concernStatus: {
+                    injured: concern === "Injured",
+                    missing: concernStatus.missing,
+                    new: concernStatus.new,
+                    unfed: concernStatus.unfed,
+                },
                 concernDesc: concernDescription,
                 formType: formType,
             });
@@ -632,8 +616,7 @@ const UpdateConcern = (props) => {
                 date,
                 concern,
                 concernDescription,
-                photoURI,
-                concernStatus
+                photoURI
             );
             setProcessed(true);
             setInProgress(false);
@@ -840,7 +823,10 @@ const UpdateProfile = (props) => {
         birthYear,
         sterilised,
         keyFeatures,
+        concernStatus,
+        concernDesc,
         formType,
+        userID,
     } = props;
     const [processed, setProcessed] = useState(false);
     const [inProgress, setInProgress] = useState(false);
@@ -860,6 +846,9 @@ const UpdateProfile = (props) => {
     const [year, setYear] = useState(
         birthYear ? birthYear : new Date().getFullYear()
     );
+
+    // For New Radio
+    const [isNew, setIsNew] = useState("Yes");
 
     // For Sterilised Radio
     const [sterile, setSterile] = useState(sterilised ? "Yes" : "No");
@@ -929,6 +918,7 @@ const UpdateProfile = (props) => {
                 birthYear: year,
                 sterilised: sterile === "Yes",
                 keyFeatures: features,
+                isNew: concernStatus.new ? isNew === "Yes" : false,
             });
             setProcessed(true);
             setInProgress(false);
@@ -982,6 +972,22 @@ const UpdateProfile = (props) => {
             />
 
             <Divider />
+
+            {concernStatus.new && (
+                <>
+                    <TwoRadioInput
+                        titleText="Is New"
+                        value={isNew}
+                        onValueChange={(value) => setIsNew(value)}
+                        firstText="Yes"
+                        firstValue="Yes"
+                        secondText="No"
+                        secondValue="No"
+                    />
+
+                    <Divider />
+                </>
+            )}
 
             <TwoRadioInput
                 titleText="Sterilised"

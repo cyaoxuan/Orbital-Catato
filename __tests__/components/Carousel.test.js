@@ -33,7 +33,12 @@ const cats = [
                 return new Date(2023, 4, 19, 12, 1, 0, 0);
             },
         },
-        concernStatus: ["Injured"],
+        concernStatus: {
+            injured: true,
+            missing: false,
+            new: false,
+            unfed: false,
+        },
     },
     {
         catID: 2,
@@ -51,7 +56,12 @@ const cats = [
                 return new Date(2023, 4, 20, 10, 53, 0, 0);
             },
         },
-        concernStatus: ["New", "Injured"],
+        concernStatus: {
+            injured: true,
+            missing: false,
+            new: true,
+            unfed: false,
+        },
     },
     {
         catID: 3,
@@ -69,7 +79,12 @@ const cats = [
                 new Date(2023, 4, 15, 18, 34, 0, 0);
             },
         },
-        concernStatus: ["Missing"],
+        concernStatus: {
+            injured: false,
+            missing: true,
+            new: false,
+            unfed: false,
+        },
     },
 ];
 
@@ -104,24 +119,40 @@ describe("getInfo1", () => {
         expect(getInfo1("concern", null)).toBe("Unknown");
     });
 
-    test("Return empty string when carouselType is concern, concernStatus is empty", () => {
-        expect(getInfo1("concern", { concernStatus: [] })).toBe("");
+    test("Return Unknown when carouselType is concern, concernStatus is null", () => {
+        expect(getInfo1("concern", { concernStatus: null })).toBe("Unknown");
+    });
+
+    test("Return Unknown when carouselType is concern, concernStatus is empty object", () => {
+        expect(getInfo1("concern", { concernStatus: {} })).toBe("Unknown");
     });
 
     test("Return Unknown when carouselType is unfed, lastFedTime is null", () => {
         expect(getInfo1("unfed", { lastFedTime: null })).toBe("Unknown");
     });
 
-    test("Return correct string when carouselType is concern, concernStatus array with one element", () => {
-        expect(getInfo1("concern", { concernStatus: ["Injured"] })).toBe(
-            "Injured"
-        );
-    });
-
-    test("Return correct string when carouselType is concern, concernStatus array with more than one element", () => {
+    test("Return correct string when carouselType is concern, concernStatus only has one true", () => {
         expect(
             getInfo1("concern", {
-                concernStatus: ["Injured", "Missing", "New"],
+                concernStatus: {
+                    injured: true,
+                    missing: false,
+                    new: false,
+                    unfed: false,
+                },
+            })
+        ).toBe("Injured");
+    });
+
+    test("Return correct string when carouselType is concern, concernStatus has more than one true", () => {
+        expect(
+            getInfo1("concern", {
+                concernStatus: {
+                    injured: true,
+                    missing: true,
+                    new: true,
+                    unfed: false,
+                },
             })
         ).toBe("Injured, Missing, New");
     });

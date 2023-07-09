@@ -7,9 +7,12 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
     [
       {
         "catID": 1,
-        "concernStatus": [
-          "Injured",
-        ],
+        "concernStatus": {
+          "injured": true,
+          "missing": false,
+          "new": false,
+          "unfed": false,
+        },
         "lastFedTime": {
           "toDate": [Function],
         },
@@ -30,10 +33,12 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
       },
       {
         "catID": 2,
-        "concernStatus": [
-          "New",
-          "Injured",
-        ],
+        "concernStatus": {
+          "injured": true,
+          "missing": false,
+          "new": true,
+          "unfed": false,
+        },
         "lastFedTime": {
           "toDate": [Function],
         },
@@ -49,9 +54,12 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
       },
       {
         "catID": 3,
-        "concernStatus": [
-          "Missing",
-        ],
+        "concernStatus": {
+          "injured": false,
+          "missing": true,
+          "new": false,
+          "unfed": false,
+        },
         "lastFedTime": {
           "toDate": [Function],
         },
@@ -1026,7 +1034,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       ]
                     }
                   >
-                    New, Injured
+                    Injured, New
                   </Text>
                 </Text>
               </View>
