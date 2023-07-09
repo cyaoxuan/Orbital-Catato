@@ -11,36 +11,25 @@ export const unstable_settings = {
     initialRouteName: "index",
 };
 
+// Handle notification behaviour when app is foregrounded
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
         shouldShowAlert: true,
-        shouldPlaySound: false,
+        shouldPlaySound: true,
         shouldSetBadge: false,
     }),
 });
 
-// Can use this function below OR use Expo's Push Notification Tool from: https://expo.dev/notifications
-async function sendPushNotification(expoPushToken) {
-    const message = {
-        to: expoPushToken,
-        sound: "default",
-        title: "Original Title",
-        body: "And here is the body!",
-        data: { someData: "goes here" },
-    };
-
-    await fetch("https://exp.host/--/api/v2/push/send", {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Accept-encoding": "gzip, deflate",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(message),
-    });
-}
-
 async function registerForPushNotificationsAsync() {
+    if (Platform.OS === "android") {
+        Notifications.setNotificationChannelAsync("default", {
+            name: "default",
+            importance: Notifications.AndroidImportance.MAX,
+            vibrationPattern: [0, 250, 250, 250],
+            lightColor: "#FF231F7C",
+        });
+    }
+
     let token;
     if (Device.isDevice) {
         const { status: existingStatus } =
@@ -58,15 +47,6 @@ async function registerForPushNotificationsAsync() {
         console.log(token);
     } else {
         console.log("Must use physical device for Push Notifications");
-    }
-
-    if (Platform.OS === "android") {
-        Notifications.setNotificationChannelAsync("default", {
-            name: "default",
-            importance: Notifications.AndroidImportance.MAX,
-            vibrationPattern: [0, 250, 250, 250],
-            lightColor: "#FF231F7C",
-        });
     }
 
     return token;
