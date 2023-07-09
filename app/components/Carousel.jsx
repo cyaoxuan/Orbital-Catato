@@ -11,8 +11,17 @@ function getInfo1(carouselType, cat) {
         return "Unknown";
     }
 
-    if (carouselType === "concern" && cat.concernStatus) {
-        return cat.concernStatus.join(", ");
+    if (
+        carouselType === "concern" &&
+        cat.concernStatus &&
+        Object.keys(cat.concernStatus).length !== 0
+    ) {
+        const concerns = [];
+        cat.concernStatus.injured && concerns.push("Injured");
+        cat.concernStatus.missing && concerns.push("Missing");
+        cat.concernStatus.new && concerns.push("New");
+
+        return concerns.join(", ");
     } else if (carouselType === "unfed" && cat.lastFedTime) {
         return formatLastFedSimple(cat.lastFedTime);
     }

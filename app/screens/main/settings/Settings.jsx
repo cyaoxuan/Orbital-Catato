@@ -9,6 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { removeUserPushToken } from "../../../utils/db/user";
 import { sendNoti } from "../../../utils/noti";
+import { resetCatData } from "../../../data/resetCatData";
 
 const UserDetails = ({ user, userRole }) => {
     return (
@@ -245,10 +246,11 @@ export default function Settings() {
                     width="65%"
                     onPress={handleLogout}
                 />
-                <PillButton
+                {/* <PillButton
                     label="Send Noti"
                     onPress={() => sendNoti("new", "BnMCBeEgTOECC2AFXjWa")}
                 />
+                <PillButton label="Reset Data" onPress={resetCatData} /> */}
             </View>
 
             {error && <Text>{error.message}</Text>}
