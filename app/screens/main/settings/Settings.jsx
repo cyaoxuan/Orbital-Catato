@@ -8,6 +8,7 @@ import { PillButton } from "../../../components/Button";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { removeUserPushToken } from "../../../utils/db/user";
+import { sendNoti } from "../../../utils/noti";
 
 const UserDetails = ({ user, userRole }) => {
     return (
@@ -243,6 +244,10 @@ export default function Settings() {
                     label="Log Out"
                     width="65%"
                     onPress={handleLogout}
+                />
+                <PillButton
+                    label="Send Noti"
+                    onPress={() => sendNoti("new", "BnMCBeEgTOECC2AFXjWa")}
                 />
             </View>
 

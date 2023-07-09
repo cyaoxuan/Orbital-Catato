@@ -123,7 +123,7 @@ export const autoProcessMissing = async (cat) => {
                 }
             );
 
-            await sendNoti("concern", cat.catID); // Send noti to alert that cat is missing
+            await sendNoti("missing", cat.catID); // Send noti to alert that cat is missing
         }
 
         if (!missing && updatedMissing) {
@@ -499,7 +499,7 @@ export const useUserUpdateCatConcern = () => {
                             }
                         );
 
-                        await sendNoti("concern", catID); // Send noti to alert that cat is injured
+                        await sendNoti("injured", catID); // Send noti to alert that cat is injured
                     }
                 } catch (error) {
                     console.error("Error updating cat concern:", error);
