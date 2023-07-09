@@ -117,7 +117,7 @@ export const useGetUserByEmail = () => {
 // For notifications
 export const getUsersWithNoti = async (notiType, catID) => {
     let q;
-    if (catID) {
+    if (notiType === "concern" || notiType === "fed") {
         // For notis that need catID (concern, fed)
         q = query(
             userColl,

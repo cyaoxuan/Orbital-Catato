@@ -14,6 +14,7 @@ import { sub } from "date-fns";
 import { useEffect, useState } from "react";
 import { uploadImageToStorage } from "./photo";
 import { processLocation } from "../findLocation";
+import { sendNoti } from "../noti";
 
 const catColl = collection(db, "Cat");
 const catUpdateColl = collection(db, "CatUpdate");
@@ -77,6 +78,7 @@ export const autoProcessUnfed = async (cat) => {
                     ? [...oldConcernStatus, "Unfed"]
                     : ["Unfed"],
             });
+            await sendNoti("fed", cat.catID); // Send noti to alert that cat is unfed
         }
 
         if (!unfed && updatedUnfed) {
@@ -86,7 +88,7 @@ export const autoProcessUnfed = async (cat) => {
             );
             newConcernStatus =
                 newConcernStatus.length === 0 ? null : newConcernStatus;
-            await userUpdateCat("SYSTEM", cat.catID, "Update Concern (Unfed)", {
+            await userUpdateCat("SYSTEM", cat.catID, "Update Concern (Fed)", {
                 concernStatus: newConcernStatus,
             });
         }
@@ -120,6 +122,8 @@ export const autoProcessMissing = async (cat) => {
                         : ["Missing"],
                 }
             );
+
+            await sendNoti("concern", cat.catID); // Send noti to alert that cat is missing
         }
 
         if (!missing && updatedMissing) {
@@ -132,7 +136,7 @@ export const autoProcessMissing = async (cat) => {
             await userUpdateCat(
                 "SYSTEM",
                 cat.catID,
-                "Update Concern (Missing)",
+                "Update Concern (Not Missing)",
                 {
                     concernStatus: newConcernStatus,
                 }
@@ -242,6 +246,10 @@ export const useUserCreateCat = () => {
 
             // Commit the batched operations
             await batch.commit();
+
+            if (isTemp) {
+                await sendNoti("new", catDoc.id); // Send noti to alert that new cat is sighted
+            }
         } catch (error) {
             console.error("Error creating cat:", error);
             setError([error]);
@@ -490,6 +498,8 @@ export const useUserUpdateCatConcern = () => {
                                 lastSeenTime: seenTime,
                             }
                         );
+
+                        await sendNoti("concern", catID); // Send noti to alert that cat is injured
                     }
                 } catch (error) {
                     console.error("Error updating cat concern:", error);
