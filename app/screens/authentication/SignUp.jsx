@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 import { auth } from "../../utils/context/auth";
-import { useNavigation } from "expo-router";
+import { useRouter } from "expo-router";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { AuthInput, PasswordInput } from "../../components/TextInput";
 import { PillButton } from "../../components/Button";
@@ -15,7 +15,7 @@ export default function SignUp() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const navigation = useNavigation();
+    const router = useRouter();
 
     const handleSignUp = async () => {
         try {
@@ -34,9 +34,7 @@ export default function SignUp() {
             }
 
             setLoading(false);
-            navigation.navigate("main", {
-                screen: "Dashboard",
-            });
+            router.replace("/screens/main/Dashboard");
         } catch (error) {
             console.error(error);
             setError(error);
