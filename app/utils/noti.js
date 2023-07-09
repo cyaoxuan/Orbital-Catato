@@ -44,17 +44,14 @@ export const sendNoti = async (notiType, catID) => {
     // Send notis
     if (userPushTokens) {
         console.log(userPushTokens);
-        const requestArray = [
-            "ExponentPushToken[29h55pB8-weC0z5qgxehC1]",
-            "ExponentPushToken[L41WWMDGdCC2HPxvSQWcdS]",
-        ].map((pushToken) => {
+        const requestArray = userPushTokens.map((pushToken) => {
             return {
                 to: pushToken,
                 ...message,
             };
         });
 
-        await fetch("https://exp.host/--/api/v2/push/send", {
+        const response = await fetch("https://exp.host/--/api/v2/push/send", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -63,5 +60,21 @@ export const sendNoti = async (notiType, catID) => {
             },
             body: JSON.stringify(requestArray),
         });
+
+        // The code below is to get push tickets to see if notifications work
+        // const tix = await response.json();
+        // const ids = { ids: tix.data.map((ticket) => ticket.id) };
+
+        // await fetch("https://exp.host/--/api/v2/push/getReceipts", {
+        //     method: "POST",
+        //     headers: {
+        //         Accept: "application/json",
+        //         "Accept-encoding": "gzip, deflate",
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(ids),
+        // })
+        //     .then((response) => response.text())
+        //     .then((text) => console.log(text));
     }
 };

@@ -11,15 +11,6 @@ export const unstable_settings = {
     initialRouteName: "index",
 };
 
-// Handle notification behaviour when app is foregrounded
-Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-        shouldShowAlert: true,
-        shouldPlaySound: true,
-        shouldSetBadge: false,
-    }),
-});
-
 async function registerForPushNotificationsAsync() {
     if (Platform.OS === "android") {
         Notifications.setNotificationChannelAsync("default", {
