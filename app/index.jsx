@@ -4,6 +4,7 @@ import { Platform } from "react-native";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import WelcomeScreen from "./screens/authentication/Welcome";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const unstable_settings = {
     // Ensure any route can link back to `/`
@@ -78,9 +79,19 @@ export default function RootNavigation() {
     const responseListener = useRef();
 
     useEffect(() => {
-        registerForPushNotificationsAsync().then((token) =>
-            setExpoPushToken(token)
-        );
+        const getToken = async () => {
+            try {
+                const token = await registerForPushNotificationsAsync();
+                if (token) {
+                    setExpoPushToken(token);
+                    await AsyncStorage.setItem("expoPushToken", token);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        getToken();
 
         notificationListener.current =
             Notifications.addNotificationReceivedListener((notification) => {

@@ -11,11 +11,9 @@ import {
     setDoc,
     updateDoc,
     where,
-    writeBatch,
 } from "firebase/firestore";
 
 const userColl = collection(db, "User");
-const userUpdateColl = collection(db, "UserUpdate");
 
 // Note: Some functions are not exported as they are only used for testing / internal calls.
 // This is to ensure that all changes to the database is logged for accountability.
@@ -41,6 +39,7 @@ export const createUser = async (userID, email) => {
                 fed: false,
             },
             catsFollowed: null,
+            pushTokens: null,
             updatedAt: serverTimestamp(),
         });
     } catch (error) {
@@ -113,6 +112,33 @@ export const useGetUserByEmail = () => {
     };
 
     return { getUserByEmail, user, loading, error };
+};
+
+// For notifications
+export const getUsersWithNoti = async (notiType, catID) => {
+    let q;
+    if (catID) {
+        // For notis that need catID (concern, fed)
+        q = query(
+            userColl,
+            where("notiOn", "==", true),
+            where("notiType." + notiType, "==", true),
+            where("catsFollowed", "array-contains", catID)
+        );
+    } else {
+        // For notis that dont need cat id (new)
+        q = query(
+            userColl,
+            where("notiOn", "==", true),
+            where("notiType." + notiType, "==", true)
+        );
+    }
+
+    const querySnapshot = await getDocs(q);
+    const users = querySnapshot.docs
+        .flatMap((doc) => doc.data().pushTokens)
+        .filter((token) => token);
+    return users;
 };
 
 /* ----- UPDATE OPERATIONS ----- */
@@ -242,4 +268,33 @@ export const useUserToggleCatFollow = () => {
     };
 
     return { userToggleCatFollow, loading, error };
+};
+
+// For notifications, errors handled in respective auth functions in screens
+export const addUserPushToken = async (userID, pushToken) => {
+    const user = await getDoc(doc(db, "User", userID));
+    if (!user.exists()) {
+        return;
+    }
+
+    const oldPushTokens = user.pushTokens;
+    const newPushTokens = oldPushTokens
+        ? [...oldPushTokens, pushToken]
+        : [pushToken];
+    await updateUser(userID, { pushTokens: newPushTokens });
+};
+
+export const removeUserPushToken = async (userID, pushToken) => {
+    const user = await getDoc(doc(db, "User", userID));
+    if (!user.exists()) {
+        return;
+    }
+
+    const oldPushTokens = user.pushTokens;
+    const filteredPushTokens = oldPushTokens
+        ? oldPushTokens.filter((token) => token !== pushToken)
+        : [];
+    const newPushTokens =
+        filteredPushTokens.length === 0 ? null : filteredPushTokens;
+    await updateUser(userID, { pushTokens: newPushTokens });
 };
