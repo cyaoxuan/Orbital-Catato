@@ -3,6 +3,9 @@ import { TextInput } from "react-native-paper";
 import { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+// Text Input for authentication screens (email / username) and admin panel
+// props: iconName (string), disabled (boolean), label (string), placeholder (string), textContentType (string)
+// value (hook value), onChangeText (callback)
 const AuthInput = (props) => {
     const [value, setValue] = useState("");
 
@@ -30,6 +33,9 @@ const AuthInput = (props) => {
     );
 };
 
+// Text input for passwords in auth screens, hides content
+// props: iconName (string), label (stirng), placeholder (string), textContentType (string),
+// disabled (boolean), value (hook value), onChangeText (callback)
 const PasswordInput = (props) => {
     const [value, setValue] = useState("");
     const [secureText, setSecureText] = useState(true);

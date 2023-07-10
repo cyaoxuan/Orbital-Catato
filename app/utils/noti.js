@@ -2,10 +2,15 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { getUsersWithNoti } from "./db/user";
 
+// Send notifications
+// @param notiType: "missing", "injured", "fed", "new"
+// @param catID: catID to get name
 export const sendNoti = async (notiType, catID) => {
+    // Get name of cat
     const catDoc = await getDoc(doc(db, "Cat", catID));
     const catName = catDoc.data().name;
 
+    // Get users' pushtokens based on their notification settings and cats followed
     const notiQuery =
         notiType === "fed" || notiType === "new" ? notiType : "concern";
     const userPushTokens = await getUsersWithNoti(notiQuery, catID);
@@ -41,7 +46,7 @@ export const sendNoti = async (notiType, catID) => {
         };
     }
 
-    // Send notis
+    // Send notifications to push tokens
     if (userPushTokens) {
         console.log(userPushTokens);
         const requestArray = userPushTokens.map((pushToken) => {

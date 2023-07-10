@@ -11,7 +11,9 @@ export const unstable_settings = {
     initialRouteName: "index",
 };
 
+// Register for push token
 async function registerForPushNotificationsAsync() {
+    // Set notification channel if android
     if (Platform.OS === "android") {
         Notifications.setNotificationChannelAsync("default", {
             name: "default",
@@ -21,8 +23,10 @@ async function registerForPushNotificationsAsync() {
         });
     }
 
+    // No token if not physical device (emulator)
     let token;
     if (Device.isDevice) {
+        // Get device permissions
         const { status: existingStatus } =
             await Notifications.getPermissionsAsync();
         let finalStatus = existingStatus;
@@ -49,6 +53,7 @@ export default function RootNavigation() {
     const notificationListener = useRef();
     const responseListener = useRef();
 
+    // Save token to local storage so it can be obtained later
     useEffect(() => {
         const getToken = async () => {
             try {
@@ -64,6 +69,7 @@ export default function RootNavigation() {
 
         getToken();
 
+        // Listen for notifications
         notificationListener.current =
             Notifications.addNotificationReceivedListener((notification) => {
                 setNotification(notification);

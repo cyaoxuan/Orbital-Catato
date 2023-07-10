@@ -1,6 +1,9 @@
 import { dateTimeOptions } from "../data/DateTimeOptions";
 
 // Format Age Field
+// @param birthYear: number
+// @return age: number
+// @throw Error
 export function formatAge(birthYear) {
     const currYear = new Date().getFullYear();
 
@@ -17,6 +20,8 @@ export function formatAge(birthYear) {
 }
 
 // Format Last Seen Field - assumes arguments are not null since checks are done beforehand
+// @param locationName: string
+// @param lastSeenTime
 export function formatLastSeen(locationName, lastSeenTime) {
     if (!locationName || !lastSeenTime) {
         throw new Error("Missing locationName or lastSeenTime");

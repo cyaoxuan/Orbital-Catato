@@ -11,12 +11,9 @@ import * as FormTypes from "./FormType";
 import { useAuth } from "../../../utils/context/auth";
 import { Platform } from "react-native";
 
-const lightTheme = {
-    ...DefaultTheme,
-    mode: "light",
-    dark: false,
-};
-
+// Checks which formtype and returns the relevant form
+// @param userID: userID to pass it to form
+// @param params: params from form needed for the form types
 function getForm(userID, params) {
     switch (params.formType) {
         case "create":
@@ -52,6 +49,7 @@ export default function Form() {
 
     return (
         <Provider theme={lightTheme}>
+            {/* keyboard avoiding to prevent blocking of form inputs */}
             <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "padding" : ""}
                 style={{ flex: 1 }}
@@ -79,3 +77,9 @@ export default function Form() {
         </Provider>
     );
 }
+
+const lightTheme = {
+    ...DefaultTheme,
+    mode: "light",
+    dark: false,
+};

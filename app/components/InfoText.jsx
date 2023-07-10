@@ -2,6 +2,9 @@ import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+// Displays Field: Info with icons
+// props: iconTextStyle (style), iconName (string), iconSize (number),
+// variant (string), field (string), info (string)
 const IconTextField = (props) => {
     return (
         <View style={[styles.iconTextContainer, props.iconTextStyle]}>
@@ -21,6 +24,8 @@ const IconTextField = (props) => {
     );
 };
 
+// Displays Field: Info
+// props: variant (string), field (string), info (string)
 const KeyTextField = (props) => {
     return (
         <View style={styles.keyTextContainer}>

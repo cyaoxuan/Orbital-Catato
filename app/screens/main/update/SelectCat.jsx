@@ -51,6 +51,7 @@ export default function SelectCat() {
                 }))(item);
 
                 return (
+                    // Render cat cards
                     <View key={item.catId}>
                         <CatCardSimple
                             name={item.name}

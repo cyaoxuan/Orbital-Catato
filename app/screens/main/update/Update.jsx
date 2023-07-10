@@ -14,6 +14,7 @@ export default function Update() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    // guests can "logout" back to welcome screen
     const handleLogout = () => {
         setLoading(true);
         signOut(auth)
@@ -31,6 +32,8 @@ export default function Update() {
     if (!userRole) {
         return <ActivityIndicator />;
     }
+
+    // Guests screen
     if (userRole && !userRole.isUser) {
         return (
             <View
@@ -51,9 +54,9 @@ export default function Update() {
                     variant="bodyLarge"
                     style={{ textAlign: "center", margin: 16 }}
                 >
-                    If you see a new or injured cat, or just want to help
-                    caretakers find where a cat is, sign up or log in to make
-                    updates!
+                    Guests cannot update. If you see a new or injured cat, or
+                    just want to help caretakers find where a cat is, sign up or
+                    log in to make updates!
                 </Text>
                 <PillButton
                     label="Signup / Login"

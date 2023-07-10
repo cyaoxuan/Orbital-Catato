@@ -1,5 +1,5 @@
 import { FlatList, View } from "react-native";
-import { ActivityIndicator, SegmentedButtons, Text } from "react-native-paper";
+import { ActivityIndicator, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { TouchableCatAvatar } from "../../../components/CatAvatar";
 import { useEffect, useState } from "react";
@@ -7,6 +7,7 @@ import { useGetAllCats } from "../../../utils/db/cat";
 import { useGetUserByID } from "../../../utils/db/user";
 import { useAuth } from "../../../utils/context/auth";
 import { useIsFocused } from "@react-navigation/native";
+import { FilterButton } from "../../../components/Button";
 
 export default function Catalogue() {
     const { user, userRole } = useAuth();
@@ -85,21 +86,12 @@ export default function Catalogue() {
                         Meet the Cats!
                     </Text>
                     {userRole.isUser && (
-                        <SegmentedButtons
-                            style={{ width: "70%" }}
-                            value={filterValue}
+                        <FilterButton
+                            filterValue={filterValue}
                             onValueChange={onFilter}
                             disabled={!userDB}
-                            buttons={[
-                                {
-                                    value: "All",
-                                    label: "All",
-                                },
-                                {
-                                    value: "Followed",
-                                    label: "Followed",
-                                },
-                            ]}
+                            firstValue="All"
+                            secondValue="Followed"
                         />
                     )}
 

@@ -13,7 +13,10 @@ import NumericInput from "react-native-numeric-input";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { timeOptions } from "../data/DateTimeOptions";
 
-// For Location
+// Styled dropdown select list from react-native-dropdown select list
+// Required field, shows errorText if nothing is selected
+// props: titleText (string), selected (hook value), setSelected (hook function),
+// data (array of objects with key:value properties)
 const DropdownList = (props) => {
     const [selected, setSelected] = useState("");
 
@@ -40,8 +43,11 @@ const DropdownList = (props) => {
     );
 };
 
-// Text inputs, description reasons, name, features etc
-// Required field
+// Text inputs for form description, reasons, name, features fields etc
+// Styled RN Paper Text Input
+// Required field, shows HelperText error if nothing has been typed
+// props: disabled (boolean), multiline (boolean), label (string), placeholder (string)
+// value (hook value), onChangeText (callback), errorText (string)
 const FormInput = (props) => {
     const [value, setValue] = useState("");
 
@@ -70,7 +76,10 @@ const FormInput = (props) => {
     );
 };
 
-// For year
+// Style react-native-numeric-input component to select numbers
+// Used for picking year in form
+// props: errorText (string), titleText (string), min (number), max (number),
+// value (hook value), onChange (callback)
 const NumberSpinner = (props) => {
     const [number, setNumber] = useState(new Date().getFullYear());
 
@@ -100,7 +109,10 @@ const NumberSpinner = (props) => {
     );
 };
 
-// For time
+// Styled RN dateTimePicker
+// Only selects time
+// props: titleText (string), displayTime (Date object), today (Date object) onPress (callback), show (boolean)
+// value (hook value), onChange (callback)
 const TimeInput = (props) => {
     return (
         <View style={styles.container}>
@@ -140,7 +152,10 @@ const TimeInput = (props) => {
     );
 };
 
-// For gender, sterilised, concerns
+// Styled Radio input from RN Paper, for two radio buttons only
+// For gender, sterilised, concerns in forms
+// props: titleText (string), firstText (string), firstValue (string), secondText (string), secondValue (string),
+// value (hook value), onValueChange (callback)
 const TwoRadioInput = (props) => {
     const [selected, setSelected] = useState("First");
 
@@ -158,11 +173,15 @@ const TwoRadioInput = (props) => {
                 }
             >
                 <View style={styles.radioButtonContainer}>
-                    <Text variant={bodyVariant}>{props.firstText}</Text>
+                    <Text variant={bodyVariant}>
+                        {props.firstValue || "First"}
+                    </Text>
                     <RadioButton.Android value={props.firstValue || "First"} />
                 </View>
                 <View style={styles.radioButtonContainer}>
-                    <Text variant={bodyVariant}>{props.secondText}</Text>
+                    <Text variant={bodyVariant}>
+                        {props.secondValue || "Second"}
+                    </Text>
                     <RadioButton.Android
                         value={props.secondValue || "Second"}
                     />
@@ -172,7 +191,54 @@ const TwoRadioInput = (props) => {
     );
 };
 
-// To upload photos in form
+// Styled Radio input from RN Paper, for three radio buttons only
+// For admin panel
+// props: disabled (boolean), value (hook value), onValueChange (callback),
+// firstValue (string), secondValue (string), thirdValue (string)
+const ThreeRadioInput = (props) => {
+    const [selected, setSelected] = useState("First");
+
+    return (
+        <RadioButton.Group
+            value={props.value ? props.value : selected}
+            onValueChange={
+                props.onValueChange
+                    ? props.onValueChange
+                    : (value) => setSelected(value)
+            }
+        >
+            <View style={styles.radioButtonContainer}>
+                <Text variant={bodyVariant}>{props.firstValue || "First"}</Text>
+                <RadioButton.Android
+                    value={props.firstValue || "First"}
+                    disabled={props.disabled}
+                />
+            </View>
+            <View style={styles.radioButtonContainer}>
+                <Text variant={bodyVariant}>
+                    {props.secondValue || "Second"}
+                </Text>
+                <RadioButton.Android
+                    value={props.secondValue || "Second"}
+                    disabled={props.disabled}
+                />
+            </View>
+            <View style={styles.radioButtonContainer}>
+                <Text variant={bodyVariant}>{props.thirdValue || "Third"}</Text>
+                <RadioButton.Android
+                    value={props.thirdValue || "Third"}
+                    disabled={props.disabled}
+                />
+            </View>
+        </RadioButton.Group>
+    );
+};
+
+// Styled button and menu from RN Paper
+// Shows options to upload photo from gallery or camera
+// Required field, shows error whe no photoURI is set
+// props: titleText (string), showError (boolean), photoURI (string),
+// cameraOnPress (callback), galleryOnPress (callback)
 const UploadPhotos = (props) => {
     const [visible, setVisible] = useState(false);
     const openMenu = () => setVisible(true);
@@ -230,6 +296,7 @@ export {
     NumberSpinner,
     TimeInput,
     TwoRadioInput,
+    ThreeRadioInput,
     UploadPhotos,
 };
 

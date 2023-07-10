@@ -2,6 +2,10 @@ import { Button, Card } from "react-native-paper";
 import { IconTextField } from "./InfoText";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+// Card used for the Carousel in Dashboard
+// props: cardWidth (number), photoURL (string), name (string), userRole (object of roles)
+// iconName1 (string), field1 (string), info1 (string), iconName2 (string), field2 (string), info2 (string)
+// profileOnPress (calback), locationOnPress (callback), showFindLocation (boolean)
 const CatCard = (props) => {
     const cardWidth = props.cardWidth ? props.cardWidth : 300;
 
@@ -36,7 +40,7 @@ const CatCard = (props) => {
                     testID="infoText1"
                     iconName={props.iconName1}
                     iconSize={20}
-                    variant="bodyLarge"
+                    variant="bodyMedium"
                     field={props.field1}
                     info={props.info1}
                 />
@@ -44,7 +48,7 @@ const CatCard = (props) => {
                     testID="infoText2"
                     iconName={props.iconName2}
                     iconSize={20}
-                    variant="bodyLarge"
+                    variant="bodyMedium"
                     field={props.field2}
                     info={props.info2}
                 />
@@ -76,6 +80,8 @@ const CatCard = (props) => {
     );
 };
 
+// Card used for SelectCat in Update forms
+// props: cardWidth (number), photoURL (string), name (string), onPress (callback)
 const CatCardSimple = (props) => {
     return (
         <Card

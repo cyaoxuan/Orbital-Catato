@@ -1,11 +1,14 @@
 import { FlatList, View } from "react-native";
-import { useNavigation } from "expo-router";
 import { CatCard } from "./CatCard";
 import {
     formatLastFedSimple,
     formatLastSeenSimple,
 } from "../utils/formatDetails";
 
+// Function to get info1 field on the card
+// @param carouselType: "concern" or "fed"
+// @param cat: cat object with concernStatus or lastFedTime
+// @return formatted string depending on carouselType or "Unknown" if any fields are missing
 function getInfo1(carouselType, cat) {
     if (!cat || !carouselType) {
         return "Unknown";
@@ -28,9 +31,16 @@ function getInfo1(carouselType, cat) {
     return "Unknown";
 }
 
-// Card Carousel used in Dashboard
-const CardCarousel = ({ cats, cardWidth, carouselType, userRole, ...card }) => {
-    const navigation = useNavigation();
+// Card Carousel used in Dashboard, implemented using FlatList and snaps to each card
+// props: cats (array of cat objects), cardWidth (number), carouselType (string), userRole (object of roles), ...card (props for card)
+const CardCarousel = ({
+    cats,
+    cardWidth,
+    carouselType,
+    userRole,
+    navigation,
+    ...card
+}) => {
     const spaceBetweenCards = 16;
 
     return (

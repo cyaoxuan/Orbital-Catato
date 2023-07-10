@@ -1,10 +1,12 @@
 import { ScrollView, StyleSheet, View } from "react-native";
-import { ActivityIndicator, Divider, List, Text } from "react-native-paper";
+import { ActivityIndicator, List, Text } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import { useAuth } from "../../../utils/context/auth";
+import { OptionListItem } from "../../../components/OptionListItem";
 
+// Render the option lists
 const UpdateOptionList = ({ cat }) => {
     const { userRole } = useAuth();
     const navigation = useNavigation();
@@ -13,95 +15,80 @@ const UpdateOptionList = ({ cat }) => {
         return <ActivityIndicator />;
     }
     if (userRole && !userRole.isUser) {
-        return <Text>Guest, no updating</Text>;
+        // Guests cannot update
+        return (
+            <Text
+                variant="bodyLarge"
+                style={{ textAlign: "center", margin: 16 }}
+            >
+                Guests cannot update. If you see a new or injured cat, or just
+                want to help caretakers find where a cat is, sign up or log in
+                to make updates!
+            </Text>
+        );
     }
 
     return (
+        // Some options do not show based on user roles
         <List.Section>
             {userRole && userRole.isUser && (
-                <>
-                    <List.Item
-                        title="Update Location"
-                        titleStyle={styles.title}
-                        onPress={() => {
-                            navigation.navigate("Form", {
-                                ...cat,
-                                formType: "location",
-                            });
-                        }}
-                        right={() => <List.Icon icon="arrow-right" />}
-                    />
-                    <Divider />
-                </>
+                <OptionListItem
+                    title="Update Location"
+                    onPress={() => {
+                        navigation.navigate("Form", {
+                            ...cat,
+                            formType: "location",
+                        });
+                    }}
+                />
             )}
 
             {userRole && userRole.isUser && (
-                <>
-                    <List.Item
-                        title="Update Concern"
-                        titleStyle={styles.title}
-                        onPress={() => {
-                            navigation.navigate("Form", {
-                                ...cat,
-                                formType: "concern",
-                            });
-                        }}
-                        right={() => <List.Icon icon="arrow-right" />}
-                    />
-                    <Divider />
-                </>
+                <OptionListItem
+                    title="Update Concern"
+                    onPress={() => {
+                        navigation.navigate("Form", {
+                            ...cat,
+                            formType: "concern",
+                        });
+                    }}
+                />
             )}
 
             {userRole && userRole.isCaretaker && (
-                <>
-                    <List.Item
-                        bottomDivider
-                        title="Update Fed Status"
-                        titleStyle={styles.title}
-                        onPress={() => {
-                            navigation.navigate("Form", {
-                                ...cat,
-                                formType: "fed",
-                            });
-                        }}
-                        right={() => <List.Icon icon="arrow-right" />}
-                    />
-                    <Divider />
-                </>
+                <OptionListItem
+                    title="Update Fed Status"
+                    onPress={() => {
+                        navigation.navigate("Form", {
+                            ...cat,
+                            formType: "fed",
+                        });
+                    }}
+                />
             )}
 
             {userRole && userRole.isCaretaker && (
-                <>
-                    <List.Item
-                        title="Update Profile"
-                        titleStyle={styles.title}
-                        onPress={() => {
-                            navigation.navigate("Form", {
-                                ...cat,
-                                formType: "update",
-                            });
-                        }}
-                        right={() => <List.Icon icon="arrow-right" />}
-                    />
-                    <Divider />
-                </>
+                <OptionListItem
+                    title="Update Profile"
+                    onPress={() => {
+                        navigation.navigate("Form", {
+                            ...cat,
+                            formType: "update",
+                        });
+                    }}
+                />
             )}
 
             {userRole && userRole.isAdmin && (
-                <>
-                    <List.Item
-                        title="Remove Cat Profile"
-                        titleStyle={styles.title}
-                        onPress={() => {
-                            navigation.navigate("Form", {
-                                ...cat,
-                                formType: "delete",
-                            });
-                        }}
-                        right={() => <List.Icon icon="arrow-right" />}
-                    />
-                    <Divider />
-                </>
+                <OptionListItem
+                    title="Remove Cat Profile"
+                    onPress={() => {
+                        navigation.navigate("Form", {
+                            ...cat,
+                            formType: "delete",
+                        });
+                    }}
+                />
             )}
         </List.Section>
     );

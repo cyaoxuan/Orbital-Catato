@@ -262,7 +262,6 @@ export default function Notifications() {
 }
 
 const titleVariant = "titleLarge";
-const bodyVariant = "bodyMedium";
 
 const lightTheme = {
     ...DefaultTheme,
@@ -286,9 +285,5 @@ const styles = StyleSheet.create({
     bottomListView: {
         borderBottomLeftRadius: 12,
         borderBottomRightRadius: 12,
-    },
-    userDetails: {
-        paddingVertical: 8,
-        paddingHorizontal: 4,
     },
 });

@@ -132,9 +132,7 @@ const CreateProfile = (props) => {
                 titleText="Gender"
                 value={newGender}
                 onValueChange={(value) => setNewGender(value)}
-                firstText="F"
                 firstValue="F"
-                secondText="M"
                 secondValue="M"
             />
 
@@ -157,9 +155,7 @@ const CreateProfile = (props) => {
                 titleText="Sterilised"
                 value={sterile}
                 onValueChange={(value) => setSterile(value)}
-                firstText="Yes"
                 firstValue="Yes"
-                secondText="No"
                 secondValue="No"
             />
 
@@ -201,6 +197,7 @@ const ReportCat = (props) => {
     const [location, setLocation] = useState("");
 
     // For RNDateTimePicker
+    // Get current time so it can be used to check against selected time
     const todayRef = useRef(new Date());
     const today = todayRef.current;
     const [date, setDate] = useState(new Date());
@@ -324,9 +321,7 @@ const ReportCat = (props) => {
                 titleText="Sterilised"
                 value={sterile}
                 onValueChange={(value) => setSterile(value)}
-                firstText="Yes"
                 firstValue="Yes"
-                secondText="No"
                 secondValue="No"
             />
 
@@ -336,9 +331,7 @@ const ReportCat = (props) => {
                 titleText="Concern:"
                 value={concern}
                 onValueChange={(value) => setConcern(value)}
-                firstText="Healthy"
                 firstValue="Healthy"
-                secondText="Injured"
                 secondValue="Injured"
             />
 
@@ -394,6 +387,7 @@ const UpdateLocation = (props) => {
     const [location, setLocation] = useState("");
 
     // For RNDateTimePicker
+    // Get current time so it can be used to check against selected time
     const todayRef = useRef(new Date());
     const today = todayRef.current;
     const [date, setDate] = useState(new Date());
@@ -525,6 +519,7 @@ const UpdateConcern = (props) => {
     );
 
     // For RNDateTimePicker
+    // Get current time so it can be used to check against selected time
     const todayRef = useRef(new Date());
     const today = todayRef.current;
     const [date, setDate] = useState(new Date());
@@ -651,9 +646,7 @@ const UpdateConcern = (props) => {
                 titleText="Concern:"
                 value={concern}
                 onValueChange={(value) => setConcern(value)}
-                firstText="Healthy"
                 firstValue="Healthy"
-                secondText="Injured"
                 secondValue="Injured"
             />
 
@@ -718,6 +711,7 @@ const UpdateFed = (props) => {
     const [location, setLocation] = useState("");
 
     // For RNDateTimePicker
+    // Get current time so it can be used to check against selected time
     const todayRef = useRef(new Date());
     const today = todayRef.current;
     const [date, setDate] = useState(new Date());
@@ -952,9 +946,7 @@ const UpdateProfile = (props) => {
                 titleText="Gender"
                 value={newGender}
                 onValueChange={(value) => setNewGender(value)}
-                firstText="F"
                 firstValue="F"
-                secondText="M"
                 secondValue="M"
             />
 
@@ -993,9 +985,7 @@ const UpdateProfile = (props) => {
                 titleText="Sterilised"
                 value={sterile}
                 onValueChange={(value) => setSterile(value)}
-                firstText="Yes"
                 firstValue="Yes"
-                secondText="No"
                 secondValue="No"
             />
 

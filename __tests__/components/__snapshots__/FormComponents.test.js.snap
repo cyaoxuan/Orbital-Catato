@@ -958,7 +958,9 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
             undefined,
           ]
         }
-      />
+      >
+        First
+      </Text>
       <View
         accessibilityLiveRegion="polite"
         accessibilityRole="radio"
@@ -1082,7 +1084,9 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
             undefined,
           ]
         }
-      />
+      >
+        Second
+      </Text>
       <View
         accessibilityLiveRegion="polite"
         accessibilityRole="radio"

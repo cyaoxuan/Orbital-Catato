@@ -1,6 +1,10 @@
 import { Dimensions } from "react-native";
 
 // Get width of preview photos in CatProfile / cards in SelectCats
+// @param noOfColumns: number >= 0
+// @param margin: number
+// @return number for itemWidth
+// @throw Error if invalid params
 export function getItemWidthCols(noOfColumns, margin) {
     if ((!noOfColumns && noOfColumns !== 0) || (!margin && margin !== 0)) {
         throw new Error("Missing noOfColumns or margin");
@@ -19,6 +23,9 @@ export function getItemWidthCols(noOfColumns, margin) {
 }
 
 // Calculate card width in Carousel in Dashboard
+// @param frac: number >= 0
+// @return number for itemWidth
+// @throw Error if invalid params
 export function getItemWidthFrac(frac) {
     if (!frac && frac !== 0) {
         throw new Error("Missing frac");
