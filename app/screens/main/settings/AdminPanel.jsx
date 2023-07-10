@@ -5,6 +5,7 @@ import { useAuth } from "../../../utils/context/auth";
 import { useEffect, useState } from "react";
 import { useGetUserByEmail, useUpdateUserRole } from "../../../utils/db/user";
 import { AuthInput } from "../../../components/TextInput";
+import { ThreeRadioInput } from "../../../components/FormComponents";
 
 export default function AdminPanel() {
     const { user, userRole } = useAuth();
@@ -102,6 +103,7 @@ export default function AdminPanel() {
                 </Text>
             )}
             {processed && userDB && (
+                // show options for roles after user is found
                 <>
                     <View style={{ alignItems: "center" }}>
                         <Text variant={bodyVariant}>User found!</Text>
@@ -111,6 +113,7 @@ export default function AdminPanel() {
                     <View style={{ margin: 16 }}>
                         <Text variant="titleMedium">Update User Role:</Text>
                         {userDB.userID === user.uid && (
+                            // prevent admins from changing their own role
                             <Text
                                 variant={bodyVariant}
                                 style={styles.errorText}
@@ -118,40 +121,16 @@ export default function AdminPanel() {
                                 You cannot change your own role!
                             </Text>
                         )}
-                        <RadioButton.Group
+                        <ThreeRadioInput
+                            disabled={inProgress || userDB.userID === user.uid}
                             value={radioValue}
                             onValueChange={(radioValue) =>
                                 setRadioValue(radioValue)
                             }
-                        >
-                            <View style={styles.radioButtonContainer}>
-                                <Text variant={bodyVariant}>Cat Lover</Text>
-                                <RadioButton.Android
-                                    value="Cat Lover"
-                                    disabled={
-                                        inProgress || userDB.userID === user.uid
-                                    }
-                                />
-                            </View>
-                            <View style={styles.radioButtonContainer}>
-                                <Text variant={bodyVariant}>Caretaker</Text>
-                                <RadioButton.Android
-                                    value="Caretaker"
-                                    disabled={
-                                        inProgress || userDB.userID === user.uid
-                                    }
-                                />
-                            </View>
-                            <View style={styles.radioButtonContainer}>
-                                <Text variant={bodyVariant}>Admin</Text>
-                                <RadioButton.Android
-                                    value="Admin"
-                                    disabled={
-                                        inProgress || userDB.userID === user.uid
-                                    }
-                                />
-                            </View>
-                        </RadioButton.Group>
+                            firstValue="Cat Lover"
+                            secondValue="Caretaker"
+                            thirdValue="Admin"
+                        />
                         <View style={{ alignItems: "center" }}>
                             <PillButton
                                 label="Update Role"

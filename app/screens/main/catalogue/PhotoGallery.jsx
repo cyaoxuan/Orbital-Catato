@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-import { FlatList, Image, TouchableOpacity, View } from "react-native";
+import { FlatList, View } from "react-native";
 import {
     ActivityIndicator,
-    Button,
     DefaultTheme,
-    Dialog,
-    FAB,
-    IconButton,
     Portal,
     Provider,
-    SegmentedButtons,
     Text,
 } from "react-native-paper";
 import { getItemWidthCols } from "../../../utils/calculateItemWidths";
@@ -24,13 +19,13 @@ import {
 } from "../../../utils/db/photo";
 import { useNavigation } from "expo-router";
 import { useAuth } from "../../../utils/context/auth";
-import Ionicons from "@expo/vector-icons/Ionicons";
-
-const lightTheme = {
-    ...DefaultTheme,
-    mode: "light",
-    dark: false,
-};
+import { FilterButton } from "../../../components/Button";
+import {
+    DeletingView,
+    ImageDialog,
+    ImageFAB,
+    ImageItem,
+} from "./GalleryComponents";
 
 export default function PhotoGallery() {
     const { user, userRole } = useAuth();
@@ -217,48 +212,13 @@ export default function PhotoGallery() {
         <Provider theme={lightTheme}>
             <View style={{ flex: 1 }}>
                 {deleting && (
-                    <View
-                        style={{
-                            height: 50,
-                            width: "100%",
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            backgroundColor: "mistyrose",
-                        }}
-                    >
-                        <IconButton
-                            icon={() => (
-                                <Ionicons
-                                    name="close-circle-outline"
-                                    size={20}
-                                    color="#663399"
-                                    style={{ alignSelf: "center" }}
-                                />
-                            )}
-                            onPress={changeDeleting}
-                        />
-                        <Text>
-                            Selected Items: {selectedImages.length}
-                            {selectedImages.length === photoURLs.length &&
-                                filterValue === "Gallery" && (
-                                    <Text style={{ color: "#BA1A1A" }}>
-                                        {" (Cannot Delete All)"}
-                                    </Text>
-                                )}
-                        </Text>
-                        <Button
-                            mode="text"
-                            onPress={showDeleteDialog}
-                            disabled={
-                                selectedImages.length === 0 ||
-                                (filterValue === "Gallery" &&
-                                    selectedImages.length === photoURLs.length)
-                            }
-                        >
-                            Delete
-                        </Button>
-                    </View>
+                    <DeletingView
+                        changeDeleting={changeDeleting}
+                        selectedImages={selectedImages}
+                        photoURLs={photoURLs}
+                        filterValue={filterValue}
+                        showDeleteDialog={showDeleteDialog}
+                    />
                 )}
                 <FlatList
                     ListHeaderComponent={() => (
@@ -266,6 +226,7 @@ export default function PhotoGallery() {
                             style={{ alignItems: "center", marginVertical: 16 }}
                         >
                             {filterValue === "Concern" ? (
+                                // Flatlist header based on gallery or concern
                                 <>
                                     <Text variant="headlineSmall">
                                         {route.params.name} Concern Photos
@@ -286,22 +247,12 @@ export default function PhotoGallery() {
                                     {route.params.name} Meowmories
                                 </Text>
                             )}
-                            <SegmentedButtons
-                                style={{ width: "70%", margin: 8 }}
-                                value={filterValue}
+                            <FilterButton
+                                filterValue={filterValue}
                                 onValueChange={onFilter}
-                                buttons={[
-                                    {
-                                        value: "Gallery",
-                                        label: "Gallery",
-                                        disabled: deleting,
-                                    },
-                                    {
-                                        value: "Concern",
-                                        label: "Concern",
-                                        disabled: deleting,
-                                    },
-                                ]}
+                                disabled={deleting}
+                                firstValue="Gallery"
+                                secondValue="Concern"
                             />
                         </View>
                     )}
@@ -312,53 +263,13 @@ export default function PhotoGallery() {
                     extraData={selectedImages}
                     renderItem={({ item, index }) => {
                         return (
-                            <TouchableOpacity
-                                activeOpacity={0.8}
-                                disabled={!deleting}
-                                onPress={() => selectImage(item)}
-                                style={{
-                                    height: imageSize + 30 + 8,
-                                    width: imageSize + 8,
-                                }}
-                            >
-                                <View key={index} testID="gallery-photo">
-                                    <Image
-                                        style={{
-                                            height: imageSize,
-                                            width: imageSize,
-                                            resizeMode: "cover",
-                                            margin: 8,
-                                        }}
-                                        source={{ uri: item.photoURL }}
-                                    />
-
-                                    {deleting && (
-                                        <View
-                                            style={{
-                                                flexDirection: "row",
-                                                height: 30,
-                                                marginHorizontal: 8,
-                                                justifyContent: "space-between",
-                                            }}
-                                        >
-                                            <Text>
-                                                {item.isSelected
-                                                    ? "Selected"
-                                                    : "Not Selected"}
-                                            </Text>
-                                            <Ionicons
-                                                name={
-                                                    item.isSelected
-                                                        ? "checkmark-circle"
-                                                        : "checkmark-circle-outline"
-                                                }
-                                                size={20}
-                                                color={"#663399"}
-                                            />
-                                        </View>
-                                    )}
-                                </View>
-                            </TouchableOpacity>
+                            <ImageItem
+                                item={item}
+                                index={index}
+                                deleting={deleting}
+                                imageOnPress={() => selectImage(item)}
+                                imageSize={imageSize}
+                            />
                         );
                     }}
                 />
@@ -366,137 +277,25 @@ export default function PhotoGallery() {
                 {userRole && userRole.isCaretaker && (
                     <>
                         <Portal>
-                            <FAB.Group
-                                testID="fab-group"
-                                style={{
-                                    position: "absolute",
-                                    bottom: 10,
-                                    right: 10,
-                                }}
+                            <ImageFAB
                                 open={open}
-                                icon={open ? "close" : "plus"}
-                                actions={
-                                    filterValue === "Concern"
-                                        ? [
-                                              {
-                                                  icon: () => (
-                                                      <Ionicons
-                                                          name="trash"
-                                                          size={20}
-                                                          color="#663399"
-                                                          style={{
-                                                              alignSelf:
-                                                                  "center",
-                                                          }}
-                                                      />
-                                                  ),
-                                                  label: "Delete",
-                                                  onPress: changeDeleting,
-                                              },
-                                          ]
-                                        : [
-                                              {
-                                                  icon: () => (
-                                                      <Ionicons
-                                                          name="camera"
-                                                          size={20}
-                                                          color="#663399"
-                                                          style={{
-                                                              alignSelf:
-                                                                  "center",
-                                                          }}
-                                                      />
-                                                  ),
-                                                  label: "Camera",
-                                                  onPress: () =>
-                                                      handleAddImageFrom(
-                                                          "Camera"
-                                                      ),
-                                              },
-                                              {
-                                                  icon: () => (
-                                                      <Ionicons
-                                                          name="image"
-                                                          size={20}
-                                                          color="#663399"
-                                                          style={{
-                                                              alignSelf:
-                                                                  "center",
-                                                          }}
-                                                      />
-                                                  ),
-                                                  label: "Gallery",
-                                                  onPress: () =>
-                                                      handleAddImageFrom(
-                                                          "Gallery"
-                                                      ),
-                                              },
-                                              {
-                                                  icon: () => (
-                                                      <Ionicons
-                                                          name="trash"
-                                                          size={20}
-                                                          color="#663399"
-                                                          style={{
-                                                              alignSelf:
-                                                                  "center",
-                                                          }}
-                                                      />
-                                                  ),
-                                                  label: "Delete",
-                                                  onPress: changeDeleting,
-                                              },
-                                          ]
-                                }
-                                onStateChange={() => setOpen((prev) => !prev)}
+                                setOpen={setOpen}
+                                handleAddImageFrom={handleAddImageFrom}
+                                changeDeleting={changeDeleting}
+                                filterValue={filterValue}
                             />
                         </Portal>
 
                         <Portal>
-                            <Dialog
+                            <ImageDialog
                                 visible={dialogVisible}
-                                onDismiss={backHideDialog}
-                            >
-                                <Dialog.Title>
-                                    {deleting || dialogText.includes("Delete")
-                                        ? "Image Deletion"
-                                        : "Image Upload"}
-                                </Dialog.Title>
-                                <Dialog.Content>
-                                    <Text variant="bodyMedium">
-                                        {dialogText}
-                                    </Text>
-                                </Dialog.Content>
-                                <Dialog.Actions>
-                                    {deleting && (
-                                        <>
-                                            <Button
-                                                onPress={() =>
-                                                    handleDeleteImages(
-                                                        filterValue
-                                                    )
-                                                }
-                                            >
-                                                Confirm Delete
-                                            </Button>
-                                            <Button onPress={backHideDialog}>
-                                                Back
-                                            </Button>
-                                        </>
-                                    )}
-                                    {!deleting && (
-                                        <Button
-                                            onPress={
-                                                dialogText.includes("Error")
-                                                    ? backHideDialog
-                                                    : confirmHideDialog
-                                            }
-                                        >
-                                            Done
-                                        </Button>
-                                    )}
-                                </Dialog.Actions>
-                            </Dialog>
+                                deleting={deleting}
+                                dialogText={dialogText}
+                                filterValue={filterValue}
+                                handleDeleteImages={handleDeleteImages}
+                                backHideDialog={backHideDialog}
+                                confirmHideDialog={confirmHideDialog}
+                            />
                         </Portal>
                     </>
                 )}
@@ -504,3 +303,9 @@ export default function PhotoGallery() {
         </Provider>
     );
 }
+
+const lightTheme = {
+    ...DefaultTheme,
+    mode: "light",
+    dark: false,
+};

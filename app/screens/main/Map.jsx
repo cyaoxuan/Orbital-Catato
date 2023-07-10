@@ -20,6 +20,8 @@ import { useAuth } from "../../utils/context/auth";
 import { getRandomBuilding } from "../../utils/findLocation";
 
 // Render Marker component
+// Will generate a random coordinate for marker if random is true
+// props: cat (object), navigation (navigator), markers (array), random (boolean)
 const RenderMarker = ({ cat, navigation, markers, random }) => {
     return (
         <Marker
@@ -41,6 +43,7 @@ const RenderMarker = ({ cat, navigation, markers, random }) => {
         >
             <Callout
                 style={{ height: "auto", width: 175, alignItems: "center" }}
+                // repeated onPress due to difference in android and ios behavior for callout press
                 onPress={() =>
                     navigation.navigate("catalogue", {
                         screen: "CatProfile",
@@ -49,6 +52,7 @@ const RenderMarker = ({ cat, navigation, markers, random }) => {
                     })
                 }
             >
+                {/* image and text for callout depending on OS */}
                 {Platform.OS === "ios" ? (
                     <View
                         style={{
@@ -106,6 +110,7 @@ const RenderMarker = ({ cat, navigation, markers, random }) => {
 };
 
 // Render Searchbar PredictionRow component
+// props: item (cat object), onPress (callback)
 const RenderPredictionRow = ({ item, onPress }) => {
     return (
         <TouchableOpacity
@@ -140,7 +145,7 @@ export default function Map() {
     // For markers to show callouts
     const markers = [];
 
-    // For map animation
+    // For map animation after search
     const mapRef = useRef(null);
 
     const animateToRegion = (catID, location) => {
@@ -151,7 +156,7 @@ export default function Map() {
         markers[catID].showCallout();
     };
 
-    // Uses route params to bring user to location
+    // Uses route params to bring user to location of cat
     const route = useRoute();
     const initialRegion =
         mapReady && route.params?.catID && route.params?.location
@@ -199,6 +204,7 @@ export default function Map() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isFocused]);
 
+    // Filter for cats without names
     useEffect(() => {
         if (allCats) {
             setSearchCats([...allCats.filter((cat) => cat.name)]);
@@ -211,6 +217,7 @@ export default function Map() {
 
     return (
         <KeyboardAvoidingView
+            // to stop map from constantly resizing when keyboard opens but inconsistent
             behavior={Platform.OS === "ios" ? "padding" : ""}
             style={{ flex: 1 }}
         >
@@ -236,6 +243,7 @@ export default function Map() {
                 }}
                 region={initialRegion}
             >
+                {/* render markers from cat data, filters cats outside NUS if not caretaker */}
                 {!error[0] && userRole && userRole.isCaretaker
                     ? allCats
                           .filter((cat) => cat.lastSeenLocation)
@@ -272,6 +280,7 @@ export default function Map() {
                     alignItems: "center",
                 }}
             >
+                {/* show search bar if caretaker */}
                 {userRole && userRole.isCaretaker ? (
                     <Searchbar
                         style={{ width: "95%", alignSelf: "center" }}
@@ -283,6 +292,7 @@ export default function Map() {
                         onFocus={() => setShowPredictions(true)}
                     />
                 ) : (
+                    // else show text regarding random locations
                     <View
                         elevation={2}
                         style={{
@@ -307,6 +317,7 @@ export default function Map() {
                     </View>
                 )}
                 {showPredictions && (
+                    // render prediction rows
                     <FlatList
                         style={[styles.predictionsContainer]}
                         keyboardShouldPersistTaps="handled"

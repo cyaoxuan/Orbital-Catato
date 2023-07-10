@@ -5,12 +5,14 @@ import { useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { PillButton } from "../../../components/Button";
-import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { removeUserPushToken } from "../../../utils/db/user";
-import { sendNoti } from "../../../utils/noti";
-import { resetCatData } from "../../../data/resetCatData";
+import { OptionListItemIcon } from "../../../components/OptionListItem";
+// import { sendNoti } from "../../../utils/noti";
+// import { resetCatData } from "../../../data/resetCatData";
 
+// User Details container
+// props: user (object), userRole (object)
 const UserDetails = ({ user, userRole }) => {
     return (
         <>
@@ -46,152 +48,50 @@ const UserDetails = ({ user, userRole }) => {
     );
 };
 
-const SettingsOptionList = ({ user, userRole }) => {
+// Options list for settings
+// props: userRole (object)
+const SettingsOptionList = ({ userRole }) => {
     const navigation = useNavigation();
-    const iconSize = 20;
 
     return (
         <List.Section>
             <Divider />
-            <List.Item
+            <OptionListItemIcon
                 title="About"
-                style={styles.listView}
-                titleStyle={styles.listTitle}
                 onPress={() => {}}
-                left={() => (
-                    <List.Icon
-                        icon={() => (
-                            <Ionicons
-                                name="information-circle-outline"
-                                size={iconSize}
-                            />
-                        )}
-                    />
-                )}
-                right={() => (
-                    <List.Icon
-                        icon={() => (
-                            <Ionicons name="chevron-forward" size={iconSize} />
-                        )}
-                    />
-                )}
+                iconName="information-circle-outline"
             />
-            <Divider />
-            <List.Item
+            <OptionListItemIcon
                 title="FAQs"
-                style={styles.listView}
-                titleStyle={styles.listTitle}
                 onPress={() => {}}
-                left={() => (
-                    <List.Icon
-                        icon={() => (
-                            <Ionicons
-                                name="help-circle-outline"
-                                size={iconSize}
-                            />
-                        )}
-                    />
-                )}
-                right={() => (
-                    <List.Icon
-                        icon={() => (
-                            <Ionicons name="chevron-forward" size={iconSize} />
-                        )}
-                    />
-                )}
+                iconName="help-circle-outline"
             />
-            <Divider />
 
             {userRole && userRole.isUser && (
-                <>
-                    <List.Item
-                        bottomDivider
-                        title="Notifications"
-                        style={styles.listView}
-                        titleStyle={styles.listTitle}
-                        onPress={() => {
-                            navigation.navigate("Notifications");
-                        }}
-                        left={() => (
-                            <List.Icon
-                                icon={() => (
-                                    <Ionicons
-                                        name="notifications-outline"
-                                        size={iconSize}
-                                    />
-                                )}
-                            />
-                        )}
-                        right={() => (
-                            <List.Icon
-                                icon={() => (
-                                    <Ionicons
-                                        name="chevron-forward"
-                                        size={iconSize}
-                                    />
-                                )}
-                            />
-                        )}
-                    />
-                    <Divider />
-                </>
+                <OptionListItemIcon
+                    title="Notifications"
+                    onPress={() => {
+                        navigation.navigate("Notifications");
+                    }}
+                    iconName="notifications-outline"
+                />
             )}
 
             {userRole && userRole.isAdmin && (
-                <>
-                    <List.Item
-                        title="Admin Panel"
-                        style={styles.listView}
-                        titleStyle={styles.listTitle}
-                        onPress={() => {
-                            navigation.navigate("AdminPanel");
-                        }}
-                        left={() => (
-                            <List.Icon
-                                icon={() => (
-                                    <Ionicons
-                                        name="build-outline"
-                                        size={iconSize}
-                                    />
-                                )}
-                            />
-                        )}
-                        right={() => (
-                            <List.Icon
-                                icon={() => (
-                                    <Ionicons
-                                        name="chevron-forward"
-                                        size={iconSize}
-                                    />
-                                )}
-                            />
-                        )}
-                    />
-                    <Divider />
-                </>
+                <OptionListItemIcon
+                    title="Admin Panel"
+                    onPress={() => {
+                        navigation.navigate("AdminPanel");
+                    }}
+                    iconName="build-outline"
+                />
             )}
 
-            <List.Item
+            <OptionListItemIcon
                 title="Documentation"
-                style={styles.listView}
-                titleStyle={styles.listTitle}
                 onPress={() => {}}
-                left={() => (
-                    <List.Icon
-                        icon={() => (
-                            <Ionicons name="document-outline" size={iconSize} />
-                        )}
-                    />
-                )}
-                right={() => (
-                    <List.Icon
-                        icon={() => (
-                            <Ionicons name="chevron-forward" size={iconSize} />
-                        )}
-                    />
-                )}
+                iconName="document-outline"
             />
-            <Divider />
         </List.Section>
     );
 };
@@ -202,6 +102,7 @@ export default function Settings() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
+    // Logs out the user
     const handleLogout = async () => {
         try {
             setLoading(true);
@@ -237,7 +138,7 @@ export default function Settings() {
                 <UserDetails user={user} userRole={userRole} />
             </View>
             <View marginTop={4}>
-                <SettingsOptionList user={user} userRole={userRole} />
+                <SettingsOptionList userRole={userRole} />
             </View>
 
             <View style={{ alignItems: "center" }}>

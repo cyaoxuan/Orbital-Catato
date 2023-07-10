@@ -9,7 +9,11 @@ import {
     useGetCatsofConcern,
     useGetUnfedCats,
 } from "../../utils/db/cat";
+import { useNavigation } from "expo-router";
 
+// Container for Carousels
+// props: titleText (string), subtitleText (string), loading (array from db util), error (array from db util),
+// cats (array of cat objects), ...carousel (carousel props)
 export const CarouselContainer = ({
     titleText,
     subtitleText,
@@ -36,11 +40,14 @@ export const CarouselContainer = ({
 };
 
 export default function Dashboard() {
-    const [updateTime, setUpdateTime] = useState(new Date());
     const { userRole } = useAuth();
-    const [refreshing, setRefreshing] = useState(false);
+    const navigation = useNavigation();
     const cardWidth = getItemWidthFrac(5 / 6);
+    // For refresh and showing update time
+    const [refreshing, setRefreshing] = useState(false);
+    const [updateTime, setUpdateTime] = useState(new Date());
 
+    // Refresh control callback
     const onRefresh = useCallback(() => {
         setRefreshing(true);
         setTimeout(() => {
@@ -49,12 +56,14 @@ export default function Dashboard() {
         }, 500);
     }, []);
 
+    // DB Utils to fetch cat data
     const {
         getCatsofConcern,
         catsOfConcern,
         loading: loadingConcern,
         error: errorConcern,
     } = useGetCatsofConcern();
+
     const {
         getUnfedCats,
         unfedCats,
@@ -72,6 +81,7 @@ export default function Dashboard() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [refreshing]);
 
+    // If user role is not loaded yet, show loading
     if (!userRole) {
         return <ActivityIndicator />;
     }
@@ -95,9 +105,11 @@ export default function Dashboard() {
                 loading={loadingConcern}
                 error={errorConcern}
                 userRole={userRole}
+                navigation={navigation}
             />
 
             {userRole && userRole.isCaretaker && (
+                // Do not show unfed if not caretaker
                 <CarouselContainer
                     titleText="Unfed Cats"
                     subtitleText="Not Fed in 12 Hours"
@@ -111,9 +123,11 @@ export default function Dashboard() {
                     loading={loadingUnfed}
                     error={errorUnfed}
                     userRole={userRole}
+                    navigation={navigation}
                 />
             )}
 
+            {/* show last update time */}
             <View style={{ margin: 8 }}>
                 <Text variant="bodyMedium" style={{ color: "grey" }}>
                     Scroll Up to Refresh

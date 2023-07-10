@@ -95,13 +95,9 @@ const userRole = {
     isAdmin: false,
 };
 
-const mockNavigate = jest.fn();
-
-jest.mock("expo-router", () => ({
-    useNavigation: () => ({
-        navigate: mockNavigate,
-    }),
-}));
+const mockNavigation = {
+    navigate: jest.fn(),
+};
 
 describe("getInfo1", () => {
     test("Return Unknown when carouselType and cat are null", () => {
@@ -220,6 +216,7 @@ describe("<CardCarousel />", () => {
                 cardWidth={cardWidth}
                 carouselType={carouselType}
                 userRole={userRole}
+                navigation={mockNavigation}
             />
         );
 
@@ -228,7 +225,7 @@ describe("<CardCarousel />", () => {
 
         fireEvent.press(buttons[0]);
 
-        expect(mockNavigate).toHaveBeenCalledWith("catalogue", {
+        expect(mockNavigation.navigate).toHaveBeenCalledWith("catalogue", {
             screen: "CatProfile",
             initial: false,
             params: { catID: cats[0].catID },
@@ -245,6 +242,7 @@ describe("<CardCarousel />", () => {
                 cardWidth={cardWidth}
                 carouselType={carouselType}
                 userRole={userRole}
+                navigation={mockNavigation}
             />
         );
 
@@ -253,7 +251,7 @@ describe("<CardCarousel />", () => {
 
         fireEvent.press(buttons[6]);
 
-        expect(mockNavigate).toHaveBeenCalledWith("Map", {
+        expect(mockNavigation.navigate).toHaveBeenCalledWith("Map", {
             catID: 1,
             location: { latitude: 1, longitude: 1 },
         });

@@ -22,6 +22,7 @@ export default function CatProfile() {
     const route = useRoute();
     const catID = route.params.catID;
     const navigation = useNavigation();
+    // For refreshing page when in focus
     const isFocused = useIsFocused();
 
     const { getCat, cat, loading, error } = useGetCat();
@@ -86,6 +87,7 @@ export default function CatProfile() {
             };
             processData();
 
+            // Partial cat is to pass to update
             const partialCatTemp = (({
                 catID,
                 name,

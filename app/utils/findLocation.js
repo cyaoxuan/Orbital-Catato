@@ -2,6 +2,9 @@ import { locationjson, locations, zonejson } from "../data/locationData";
 import * as Location from "expo-location";
 
 // proccesses long/lat/alt format from kml file to {lat: , long: }, [lat, long] or [[long], [lat]]
+// @param polygon: (flat array of long, lat, alt, long, lat, alt, ...)
+// @return array with processed polygon
+// @throw Error if invalid params
 export function processPolygonCoordinates(polygon) {
     if (!polygon) {
         throw new Error("Missing polygon");
@@ -32,6 +35,10 @@ export function processPolygonCoordinates(polygon) {
 
 // Checks if point is in a polygon
 // Checks intersection with bounding lines (odd/even), referenced from G4G
+// @param zoneName: string, keys in zonejson
+// @param currLocation: {latitude: , longitude: }
+// @return boolean for if in zone
+// @throw Error if invalid params
 export function isInZone(zoneName, currLocation) {
     function onLine(line, loc) {
         if (
@@ -117,7 +124,10 @@ export function isInZone(zoneName, currLocation) {
     return checkInside(zone, currLocation);
 }
 
-// Returns the location object (key, value, location, zone) of the nearest location to currLocation
+// Returns the location of the nearest location to currLocation
+// @param currLocation: {latitude: , longitude: }
+// @return location object (key, value, location, zone)
+// @throw Error if invalid params
 export function getNearestBuilding(currLocation) {
     // Uses Haversine formula
     function calcGreatCircle(loc1, loc2) {
@@ -165,7 +175,10 @@ export function getNearestBuilding(currLocation) {
     return nearestLocations[minLoc];
 }
 
-// Return name of randomised location in a zone
+// Returns the location of randomised location in a zone
+// @param currLocation: {latitude: , longitude: }
+// @return location object (key, value, location, zone)
+// @throw Error if invalid params
 export function getRandomBuilding(zoneName) {
     if (!zoneName) {
         throw new Error("Missing zoneName");
@@ -180,11 +193,14 @@ export function getRandomBuilding(zoneName) {
     return locationsInZone[randNum].location;
 }
 
-// Given user input from form, { coords, locationName, locationZone } is returned
+// Given user input from form, return location
+// @param locationStr: string from location dropdown list data
+// @return location object { coords, locationName, locationZone }
 export const processLocation = async (locationStr) => {
     try {
         let coords, locationName, locationZone;
         if (locationStr == "Use Current Location") {
+            // Get permission for current location
             const { status } =
                 await Location.requestForegroundPermissionsAsync();
             if (status !== "granted") {

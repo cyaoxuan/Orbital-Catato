@@ -1,6 +1,8 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Avatar, Text } from "react-native-paper";
 
+// Cat Avatar with circular image and name
+// props: photoURL (string), size (image size || number), variant (font size || string), name (string)
 const CatAvatar = (props) => {
     return (
         <View style={styles.avatarContainer}>
@@ -18,6 +20,8 @@ const CatAvatar = (props) => {
     );
 };
 
+// Cat Avatar with circular image and name, touchable
+// props: photoURL (string), size (image size || number), variant (font size || string), name (string), onPress (callback)
 const TouchableCatAvatar = (props) => {
     return (
         <TouchableOpacity

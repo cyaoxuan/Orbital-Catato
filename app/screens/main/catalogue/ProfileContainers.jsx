@@ -1,11 +1,5 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import {
-    ActivityIndicator,
-    Button,
-    Divider,
-    IconButton,
-    Text,
-} from "react-native-paper";
+import { ActivityIndicator, Button, Divider, Text } from "react-native-paper";
 import { IconTextField, KeyTextField } from "../../../components/InfoText";
 import { CatAvatar } from "../../../components/CatAvatar";
 import {
@@ -16,7 +10,10 @@ import {
 import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-// Avatar Container
+// Avatar Container for profile photo, name and buttons
+// props: name (string), photoURL (string), userRole (object),
+// followValue (hook value), followOnPress (callback), loadingFollow (array), errorFollow (array),
+// updateValue (hook value), updateOnPress (callback), locationValue (hook value), locationOnPress (callback)
 const AvatarContainer = ({
     name,
     photoURL,
@@ -41,6 +38,7 @@ const AvatarContainer = ({
                 name={name}
             />
             {userRole && userRole.isUser && (
+                // only show follow and update button for users
                 <>
                     <View style={{ alignItems: "center", marginVertical: 4 }}>
                         <Button
@@ -90,6 +88,7 @@ const AvatarContainer = ({
                             </Button>
                         )}
                         {locationValue && userRole && userRole.isCaretaker && (
+                            // only show location button for caretakers
                             <Button
                                 style={{ width: "40%", margin: 4 }}
                                 mode="outlined"
@@ -117,6 +116,7 @@ const AvatarContainer = ({
 };
 
 // Key Info Container (Gender, Age, Sterilised)
+// props: cat (object), variant (string)
 const KeyInfoContainer = ({ cat, variant }) => {
     return (
         <View style={styles.keyInfoContainer}>
@@ -140,6 +140,7 @@ const KeyInfoContainer = ({ cat, variant }) => {
 };
 
 // Details Container
+// props: cat (object), userRole (object), ...rest (IconTextField props)
 const DetailsContainer = ({ cat, userRole, ...rest }) => {
     // Process concernStatus into a string
     const concernStatusList = [];
@@ -212,7 +213,8 @@ const DetailsContainer = ({ cat, userRole, ...rest }) => {
     );
 };
 
-// Render preview photos
+// Render preview photos on profile
+// props: photoURLs (array)
 const PreviewPhotos = ({ photoURLs }) => {
     let previewPhotos;
 
@@ -252,6 +254,7 @@ const PreviewPhotos = ({ photoURLs }) => {
 };
 
 // Photos Container
+// props: photoURLs (array), variant (string), iconSize (number), onPress (callback)
 const PhotosContainer = ({ photoURLs, variant, iconSize, onPress }) => {
     return (
         <View style={styles.photosContainer}>
