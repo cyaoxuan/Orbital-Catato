@@ -8,8 +8,7 @@ import { PillButton } from "../../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { removeUserPushToken } from "../../../utils/db/user";
 import { OptionListItemIcon } from "../../../components/OptionListItem";
-// import { sendNoti } from "../../../utils/noti";
-// import { resetCatData } from "../../../data/resetCatData";
+import { resetCatData } from "../../../data/resetCatData";
 
 // User Details container
 // props: user (object), userRole (object)

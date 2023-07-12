@@ -6,6 +6,7 @@ import {
     getDoc,
     getDocs,
     or,
+    orderBy,
     query,
     serverTimestamp,
     where,
@@ -270,7 +271,9 @@ export const useGetAllCats = () => {
             setLoading([true]);
             setError([null]);
 
-            const querySnapshot = await getDocs(catColl);
+            const querySnapshot = await getDocs(
+                query(catColl, orderBy("name"))
+            );
             // console.log("getAllCats, cats: ", querySnapshot.docs.length);
             const cats = querySnapshot.docs.map((doc) => doc.data());
             setAllCats(cats);
@@ -320,7 +323,11 @@ export const useGetUnfedCats = () => {
             setLoading([true]);
             setError([null]);
 
-            const q = query(catColl, where("concernStatus.unfed", "==", true));
+            const q = query(
+                catColl,
+                where("concernStatus.unfed", "==", true),
+                orderBy("name")
+            );
             const querySnapshot = await getDocs(q);
             // console.log("getUnfedCats, cats: ", querySnapshot.docs.length);
             const cats = querySnapshot.docs.map((doc) => doc.data());
@@ -352,7 +359,8 @@ export const useGetCatsofConcern = () => {
                     where("concernStatus.injured", "==", true),
                     where("concernStatus.missing", "==", true),
                     where("concernStatus.new", "==", true)
-                )
+                ),
+                orderBy("name")
             );
             const querySnapshot = await getDocs(q);
             // console.log("getCatsofConcern, cats: ", querySnapshot.docs.length);

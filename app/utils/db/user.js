@@ -32,11 +32,11 @@ export const createUser = async (userID, email) => {
                 isCaretaker: false,
                 isAdmin: false,
             },
-            notiOn: false,
+            notiOn: true,
             notiType: {
-                new: false,
-                concern: false,
+                concern: true,
                 fed: false,
+                new: true,
             },
             catsFollowed: null,
             pushTokens: null,
@@ -125,13 +125,16 @@ export const getUsersWithNoti = async (notiType, catID) => {
             where("notiType." + notiType, "==", true),
             where("catsFollowed", "array-contains", catID)
         );
-    } else {
+    } else if (notiType === "new") {
         // For notis that dont need cat id (new)
         q = query(
             userColl,
             where("notiOn", "==", true),
             where("notiType." + notiType, "==", true)
         );
+    } else if (notiType === "announcement") {
+        // Admin announcements
+        q = query(userColl, where("notiOn", "==", true));
     }
 
     const querySnapshot = await getDocs(q);
@@ -206,9 +209,9 @@ export const useUpdateUserNotification = () => {
             await updateUser(userID, {
                 notiOn: allNotif,
                 notiType: {
-                    new: allNotif && newNotif,
                     concern: allNotif && concernNotif,
                     fed: allNotif && fedNotif,
+                    new: allNotif && newNotif,
                 },
             });
         } catch (error) {
