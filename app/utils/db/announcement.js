@@ -28,7 +28,7 @@ export const useCreateAnnouncement = () => {
                 updatedAt: serverTimestamp(),
             });
 
-            sendNoti("announcement", null);
+            // sendNoti("announcement", null);
         } catch (error) {
             console.error("Error creating announcement:", error);
             setError([error]);
