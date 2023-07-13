@@ -3,6 +3,7 @@ import {
     collection,
     doc,
     getDocs,
+    setDoc,
     writeBatch,
 } from "firebase/firestore";
 import { db } from "../config/firebase";
@@ -349,14 +350,12 @@ export async function resetCatData() {
         batch.delete(doc.ref);
     });
 
-    // Add cats
+    // Commit operations to delete
+    await batch.commit();
+
+    // Add cats with custom ids
     for (let i = 0; i < cats.length; i++) {
         const cat = cats[i];
-        const catRef = doc(collection(db, "Cat"));
-        batch.set(catRef, cat); // Add the cat object with auto generated id
-        batch.update(catRef, { catID: catRef.id }); // Update id to firestore id
+        await setDoc(doc(db, "Cat", cat.catID), cat);
     }
-
-    // Commit operations
-    await batch.commit();
 }
