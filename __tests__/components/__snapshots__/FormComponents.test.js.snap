@@ -4,8 +4,8 @@ exports[`<DropdownList /> renders correctly 1`] = `
 <View
   style={
     {
-      "margin": 4,
-      "width": "90%",
+      "marginVertical": 8,
+      "width": "85%",
     }
   }
 >
@@ -28,6 +28,7 @@ exports[`<DropdownList /> renders correctly 1`] = `
         },
         {
           "color": "#BA1A1A",
+          "fontFamily": "Nunito-Bold",
         },
       ]
     }
@@ -50,7 +51,9 @@ exports[`<DropdownList /> renders correctly 1`] = `
             "color": "rgba(28, 27, 31, 1)",
             "writingDirection": "ltr",
           },
-          undefined,
+          {
+            "fontFamily": "Nunito-Medium",
+          },
         ]
       }
     />
@@ -101,7 +104,7 @@ exports[`<DropdownList /> renders correctly 1`] = `
         style={
           [
             {
-              "fontFamily": undefined,
+              "fontFamily": "Nunito-Medium",
             },
             undefined,
           ]
@@ -128,8 +131,8 @@ exports[`<FormInput /> renders correctly 1`] = `
 <View
   style={
     {
-      "margin": 4,
-      "width": "90%",
+      "marginVertical": 8,
+      "width": "85%",
     }
   }
 >
@@ -144,6 +147,7 @@ exports[`<FormInput /> renders correctly 1`] = `
         {
           "alignContent": "center",
           "backgroundColor": "transparent",
+          "fontFamily": "Nunito-Medium",
           "width": "100%",
         },
       ]
@@ -357,8 +361,8 @@ exports[`<NumberSpinner /> renders correctly 1`] = `
 <View
   style={
     {
-      "margin": 4,
-      "width": "90%",
+      "marginVertical": 8,
+      "width": "85%",
     }
   }
 >
@@ -381,6 +385,7 @@ exports[`<NumberSpinner /> renders correctly 1`] = `
         },
         {
           "color": "#BA1A1A",
+          "fontFamily": "Nunito-Bold",
         },
       ]
     }
@@ -403,7 +408,9 @@ exports[`<NumberSpinner /> renders correctly 1`] = `
             "color": "rgba(28, 27, 31, 1)",
             "writingDirection": "ltr",
           },
-          undefined,
+          {
+            "fontFamily": "Nunito-Medium",
+          },
         ]
       }
     />
@@ -462,7 +469,7 @@ exports[`<NumberSpinner /> renders correctly 1`] = `
         [
           {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#F8F9FD",
             "borderRightColor": "#d4d4d4",
             "borderRightWidth": 1,
             "width": 48,
@@ -617,8 +624,8 @@ exports[`<TimeInput /> renders correctly 1`] = `
 <View
   style={
     {
-      "margin": 4,
-      "width": "90%",
+      "marginVertical": 8,
+      "width": "85%",
     }
   }
 >
@@ -641,6 +648,7 @@ exports[`<TimeInput /> renders correctly 1`] = `
         },
         {
           "color": "#BA1A1A",
+          "fontFamily": "Nunito-Bold",
         },
       ]
     }
@@ -663,7 +671,9 @@ exports[`<TimeInput /> renders correctly 1`] = `
             "color": "rgba(28, 27, 31, 1)",
             "writingDirection": "ltr",
           },
-          undefined,
+          {
+            "fontFamily": "Nunito-Medium",
+          },
         ]
       }
     />
@@ -672,7 +682,7 @@ exports[`<TimeInput /> renders correctly 1`] = `
     collapsable={false}
     style={
       {
-        "backgroundColor": "rgba(232, 222, 248, 1)",
+        "backgroundColor": "#05668D",
         "borderRadius": 20,
         "margin": 4,
         "shadowColor": "#000",
@@ -691,8 +701,8 @@ exports[`<TimeInput /> renders correctly 1`] = `
       collapsable={false}
       style={
         {
-          "backgroundColor": "rgba(232, 222, 248, 1)",
-          "borderColor": "transparent",
+          "backgroundColor": "#05668D",
+          "borderColor": "#05668D",
           "borderRadius": 20,
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -791,13 +801,12 @@ exports[`<TimeInput /> renders correctly 1`] = `
                   },
                   false,
                   {
-                    "marginHorizontal": 24,
-                    "marginVertical": 10,
+                    "marginHorizontal": 12,
                   },
                   undefined,
                   false,
                   {
-                    "color": "rgba(29, 25, 43, 1)",
+                    "color": "white",
                     "fontFamily": "System",
                     "fontSize": 14,
                     "fontWeight": "500",
@@ -834,25 +843,24 @@ exports[`<TimeInput /> renders correctly 1`] = `
           "color": "rgba(28, 27, 31, 1)",
           "writingDirection": "ltr",
         },
-        undefined,
+        {
+          "color": undefined,
+          "fontFamily": "Nunito-Medium",
+        },
       ]
     }
   >
-    Selected Time:
-     
-    07:00
-     
-    (SGT, GMT+8)
+    Selected Time: 07:00 (SGT, GMT+8)
   </Text>
   <Text
     style={
       [
         {
           "fontFamily": "System",
-          "fontSize": 14,
+          "fontSize": 12,
           "fontWeight": "400",
-          "letterSpacing": 0.25,
-          "lineHeight": 20,
+          "letterSpacing": 0.4,
+          "lineHeight": 16,
         },
         {
           "textAlign": "left",
@@ -861,7 +869,10 @@ exports[`<TimeInput /> renders correctly 1`] = `
           "color": "rgba(28, 27, 31, 1)",
           "writingDirection": "ltr",
         },
-        undefined,
+        {
+          "color": undefined,
+          "fontFamily": "Nunito-Medium",
+        },
       ]
     }
   >
@@ -874,8 +885,8 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
 <View
   style={
     {
-      "margin": 4,
-      "width": "90%",
+      "marginVertical": 8,
+      "width": "85%",
     }
   }
 >
@@ -898,6 +909,7 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
         },
         {
           "color": "#BA1A1A",
+          "fontFamily": "Nunito-Bold",
         },
       ]
     }
@@ -920,7 +932,9 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
             "color": "rgba(28, 27, 31, 1)",
             "writingDirection": "ltr",
           },
-          undefined,
+          {
+            "fontFamily": "Nunito-Medium",
+          },
         ]
       }
     />
@@ -955,7 +969,10 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
               "color": "rgba(28, 27, 31, 1)",
               "writingDirection": "ltr",
             },
-            undefined,
+            {
+              "color": undefined,
+              "fontFamily": "Nunito-Medium",
+            },
           ]
         }
       >
@@ -983,6 +1000,7 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
         }
         accessible={true}
         collapsable={false}
+        color="#05668D"
         focusable={true}
         onBlur={[Function]}
         onClick={[Function]}
@@ -1008,7 +1026,7 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
           collapsable={false}
           style={
             {
-              "borderColor": "rgba(103, 80, 164, 1)",
+              "borderColor": "#05668D",
               "borderRadius": 10,
               "borderWidth": 2,
               "height": 20,
@@ -1038,7 +1056,7 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
               collapsable={false}
               style={
                 {
-                  "backgroundColor": "rgba(103, 80, 164, 1)",
+                  "backgroundColor": "#05668D",
                   "borderRadius": 5,
                   "height": 10,
                   "transform": [
@@ -1081,7 +1099,10 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
               "color": "rgba(28, 27, 31, 1)",
               "writingDirection": "ltr",
             },
-            undefined,
+            {
+              "color": undefined,
+              "fontFamily": "Nunito-Medium",
+            },
           ]
         }
       >
@@ -1109,6 +1130,7 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
         }
         accessible={true}
         collapsable={false}
+        color="#05668D"
         focusable={true}
         onBlur={[Function]}
         onClick={[Function]}
@@ -1153,8 +1175,8 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
 <View
   style={
     {
-      "margin": 4,
-      "width": "90%",
+      "marginVertical": 8,
+      "width": "85%",
     }
   }
 >
@@ -1176,33 +1198,12 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
           "writingDirection": "ltr",
         },
         {
-          "color": "#BA1A1A",
+          "color": undefined,
+          "fontFamily": "Nunito-Medium",
         },
       ]
     }
-  >
-    <Text
-      style={
-        [
-          {
-            "fontFamily": "System",
-            "fontSize": 16,
-            "fontWeight": "500",
-            "letterSpacing": 0.15,
-            "lineHeight": 24,
-          },
-          {
-            "textAlign": "left",
-          },
-          {
-            "color": "rgba(28, 27, 31, 1)",
-            "writingDirection": "ltr",
-          },
-          undefined,
-        ]
-      }
-    />
-  </Text>
+  />
   <View>
     <View
       collapsable={false}
@@ -1211,7 +1212,7 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
         collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(232, 222, 248, 1)",
+            "backgroundColor": "#05668D",
             "borderRadius": 20,
             "margin": 4,
             "shadowColor": "#000",
@@ -1230,8 +1231,8 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
           collapsable={false}
           style={
             {
-              "backgroundColor": "rgba(232, 222, 248, 1)",
-              "borderColor": "transparent",
+              "backgroundColor": "#05668D",
+              "borderColor": "#05668D",
               "borderRadius": 20,
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -1314,38 +1315,26 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
                       "marginLeft": 16,
                       "marginRight": -16,
                     },
-                    false,
+                    {
+                      "marginLeft": 12,
+                      "marginRight": -8,
+                    },
                   ]
                 }
                 testID="button-icon-container"
               >
                 <Text
-                  accessibilityElementsHidden={true}
                   allowFontScaling={false}
-                  importantForAccessibility="no-hide-descendants"
-                  pointerEvents="none"
                   selectable={false}
                   style={
                     [
                       {
-                        "color": "rgba(29, 25, 43, 1)",
-                        "fontSize": 18,
+                        "color": "white",
+                        "fontSize": 20,
                       },
-                      [
-                        {
-                          "lineHeight": 18,
-                          "transform": [
-                            {
-                              "scaleX": 1,
-                            },
-                          ],
-                        },
-                        {
-                          "backgroundColor": "transparent",
-                        },
-                      ],
+                      undefined,
                       {
-                        "fontFamily": "material-community",
+                        "fontFamily": "ionicons",
                         "fontStyle": "normal",
                         "fontWeight": "normal",
                       },
@@ -1353,7 +1342,7 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
                     ]
                   }
                 >
-                  󰄀
+                  
                 </Text>
               </View>
               <Text
@@ -1383,13 +1372,12 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
                       },
                       false,
                       {
-                        "marginHorizontal": 24,
-                        "marginVertical": 10,
+                        "marginHorizontal": 16,
                       },
                       undefined,
                       false,
                       {
-                        "color": "rgba(29, 25, 43, 1)",
+                        "color": "white",
                         "fontFamily": "System",
                         "fontSize": 14,
                         "fontWeight": "500",
@@ -1403,7 +1391,6 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
                 testID="button-text"
               >
                 Upload
-                 
               </Text>
             </View>
           </View>
@@ -1428,7 +1415,10 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
           "color": "rgba(28, 27, 31, 1)",
           "writingDirection": "ltr",
         },
-        undefined,
+        {
+          "color": undefined,
+          "fontFamily": "Nunito-Medium",
+        },
       ]
     }
   >

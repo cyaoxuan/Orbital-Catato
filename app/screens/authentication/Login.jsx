@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { View } from "react-native";
-import { ActivityIndicator, Text } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import { useRouter } from "expo-router";
 import { auth } from "../../utils/context/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthInput, PasswordInput } from "../../components/TextInput";
-import { PillButton } from "../../components/Button";
+import { PillButton, TextButton } from "../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { addUserPushToken } from "../../utils/db/user";
+import { allStyles, primaryColor } from "../../components/Styles";
+import { BodyText, ErrorText, TitleText } from "../../components/Text";
 
 export default function LoginScreen() {
     const [error, setError] = useState(null);
@@ -41,24 +43,23 @@ export default function LoginScreen() {
     };
 
     return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text variant="displayMedium">Login</Text>
-            <Text variant="displaySmall">Sign in to continue</Text>
+        <View style={allStyles.centerFlexView}>
+            <View>
+                <TitleText variant="displayMedium" text="Login" />
+                <BodyText variant="displaySmall" text="Sign in to continue" />
+            </View>
 
-            <View style={{ justifyContent: "space-between" }}>
+            <View style={{ justifyContent: "space-between", paddingBottom: 8 }}>
                 <AuthInput
                     label="Email"
-                    iconName="mail"
-                    placeholder="orbitee@kitty.xyz"
+                    iconName="mail-outline"
                     textContentType="emailAddress"
                     value={email}
                     onChangeText={setEmail}
                 />
 
                 <PasswordInput
-                    iconName="lock-closed"
+                    iconName="lock-closed-outline"
                     label="Password"
                     textContentType="password"
                     value={password}
@@ -68,15 +69,14 @@ export default function LoginScreen() {
 
             <PillButton
                 label="Log In"
-                width="65%"
                 onPress={handleLoginWithEmail}
+                colorMode="primary"
             />
 
-            {error && <Text>{error.message}</Text>}
-            {loading && <ActivityIndicator />}
+            {error && <ErrorText variant="bodyMedium" text={error.message} />}
+            {loading && <ActivityIndicator color={primaryColor} />}
 
-            <PillButton
-                mode="text"
+            <TextButton
                 label="Forgot Password?"
                 onPress={() => router.push("./ForgotPassword")}
             />

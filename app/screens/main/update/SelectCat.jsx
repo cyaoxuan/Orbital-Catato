@@ -4,6 +4,7 @@ import { CatCardSimple } from "../../../components/CatCard";
 import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import { useGetAllCats } from "../../../utils/db/cat";
 import { useEffect } from "react";
+import { screenSecondaryColor } from "../../../components/Styles";
 
 export default function SelectCat() {
     const navigation = useNavigation();
@@ -22,7 +23,10 @@ export default function SelectCat() {
     return (
         <FlatList
             style={{ flex: 1 }}
-            contentContainerStyle={{ justifyContent: "space-around" }}
+            contentContainerStyle={{
+                backgroundColor: screenSecondaryColor,
+                justifyContent: "space-around",
+            }}
             columnWrapperStyle={{ flexShrink: 1 }}
             numColumns={2}
             data={allCats}

@@ -5,10 +5,10 @@ exports[`<CatCard /> renders correctly 1`] = `
   collapsable={false}
   style={
     {
-      "backgroundColor": "rgba(247, 243, 249, 1)",
-      "borderRadius": 12,
-      "height": 330,
-      "margin": 4,
+      "backgroundColor": "rgba(255, 255, 255, 1)",
+      "borderRadius": 20,
+      "height": 375,
+      "margin": 10,
       "shadowColor": "#000",
       "shadowOffset": {
         "height": 1,
@@ -25,10 +25,11 @@ exports[`<CatCard /> renders correctly 1`] = `
     collapsable={false}
     style={
       {
-        "backgroundColor": "rgba(247, 243, 249, 1)",
-        "borderRadius": 12,
+        "backgroundColor": "rgba(255, 255, 255, 1)",
+        "borderRadius": 20,
         "elevation": 1,
         "flex": 1,
+        "overflow": "hidden",
         "shadowColor": "#000",
         "shadowOffset": {
           "height": 1,
@@ -60,10 +61,11 @@ exports[`<CatCard /> renders correctly 1`] = `
               "overflow": "hidden",
             },
             {
-              "borderRadius": 12,
+              "borderTopLeftRadius": 0,
+              "borderTopRightRadius": 0,
             },
             {
-              "height": 175,
+              "height": 200,
               "resizeMode": "cover",
               "width": 300,
             },
@@ -91,7 +93,8 @@ exports[`<CatCard /> renders correctly 1`] = `
                 "width": undefined,
               },
               {
-                "borderRadius": 12,
+                "borderTopLeftRadius": 0,
+                "borderTopRightRadius": 0,
               },
             ]
           }
@@ -151,7 +154,9 @@ exports[`<CatCard /> renders correctly 1`] = `
                   {
                     "marginBottom": 2,
                   },
-                  undefined,
+                  {
+                    "fontFamily": "Nunito-Bold",
+                  },
                 ],
               ]
             }
@@ -169,7 +174,7 @@ exports[`<CatCard /> renders correctly 1`] = `
             },
             undefined,
             {
-              "paddingHorizontal": 4,
+              "paddingHorizontal": 8,
             },
           ]
         }
@@ -227,7 +232,7 @@ exports[`<CatCard /> renders correctly 1`] = `
                 },
                 {
                   "flex": 1,
-                  "fontWeight": "bold",
+                  "fontFamily": "Nunito-Bold",
                 },
               ]
             }
@@ -252,6 +257,7 @@ exports[`<CatCard /> renders correctly 1`] = `
                   },
                   {
                     "flex": 1,
+                    "fontFamily": "Nunito-Medium",
                   },
                 ]
               }
@@ -313,7 +319,7 @@ exports[`<CatCard /> renders correctly 1`] = `
                 },
                 {
                   "flex": 1,
-                  "fontWeight": "bold",
+                  "fontFamily": "Nunito-Bold",
                 },
               ]
             }
@@ -338,6 +344,7 @@ exports[`<CatCard /> renders correctly 1`] = `
                   },
                   {
                     "flex": 1,
+                    "fontFamily": "Nunito-Medium",
                   },
                 ]
               }
@@ -378,6 +385,7 @@ exports[`<CatCard /> renders correctly 1`] = `
             {
               "backgroundColor": "transparent",
               "borderRadius": 20,
+              "height": 36,
               "marginLeft": 8,
               "shadowColor": "#000",
               "shadowOffset": {
@@ -395,11 +403,11 @@ exports[`<CatCard /> renders correctly 1`] = `
             style={
               {
                 "backgroundColor": "transparent",
-                "borderColor": "rgba(121, 116, 126, 1)",
+                "borderColor": "#05668D",
                 "borderRadius": 20,
                 "borderStyle": "solid",
                 "borderWidth": 1,
-                "flex": undefined,
+                "flex": 1,
                 "minWidth": 64,
                 "shadowColor": "#000",
                 "shadowOffset": {
@@ -463,7 +471,9 @@ exports[`<CatCard /> renders correctly 1`] = `
                       "flexDirection": "row",
                       "justifyContent": "center",
                     },
-                    undefined,
+                    {
+                      "height": 36,
+                    },
                   ]
                 }
               >
@@ -489,8 +499,8 @@ exports[`<CatCard /> renders correctly 1`] = `
                     style={
                       [
                         {
-                          "color": "#663399",
-                          "fontSize": 20,
+                          "color": "#05668D",
+                          "fontSize": 16,
                         },
                         undefined,
                         {
@@ -538,14 +548,19 @@ exports[`<CatCard /> renders correctly 1`] = `
                         false,
                         false,
                         {
-                          "color": "rgba(103, 80, 164, 1)",
+                          "color": "#05668D",
                           "fontFamily": "System",
                           "fontSize": 14,
                           "fontWeight": "500",
                           "letterSpacing": 0.1,
                           "lineHeight": 20,
                         },
-                        undefined,
+                        {
+                          "fontFamily": "Nunito-Medium",
+                          "fontSize": 16,
+                          "margin": 0,
+                          "padding": 0,
+                        },
                       ],
                     ]
                   }
@@ -568,8 +583,8 @@ exports[`<CatCardSimple /> renders correctly 1`] = `
   collapsable={false}
   style={
     {
-      "backgroundColor": "rgba(247, 243, 249, 1)",
-      "borderRadius": 12,
+      "backgroundColor": "rgba(255, 255, 255, 1)",
+      "borderRadius": 10,
       "flex": 0.5,
       "margin": 8,
       "shadowColor": "#000",
@@ -587,10 +602,11 @@ exports[`<CatCardSimple /> renders correctly 1`] = `
     collapsable={false}
     style={
       {
-        "backgroundColor": "rgba(247, 243, 249, 1)",
-        "borderRadius": 12,
+        "backgroundColor": "rgba(255, 255, 255, 1)",
+        "borderRadius": 10,
         "elevation": 1,
         "flex": undefined,
+        "overflow": "hidden",
         "shadowColor": "#000",
         "shadowOffset": {
           "height": 1,
@@ -622,7 +638,8 @@ exports[`<CatCardSimple /> renders correctly 1`] = `
               "overflow": "hidden",
             },
             {
-              "borderRadius": 12,
+              "borderTopLeftRadius": 4,
+              "borderTopRightRadius": 4,
             },
             {
               "height": NaN,
@@ -651,7 +668,8 @@ exports[`<CatCardSimple /> renders correctly 1`] = `
                 "width": undefined,
               },
               {
-                "borderRadius": 12,
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
               },
             ]
           }
@@ -711,7 +729,9 @@ exports[`<CatCardSimple /> renders correctly 1`] = `
                   {
                     "marginBottom": 2,
                   },
-                  undefined,
+                  {
+                    "fontFamily": "Nunito-Medium",
+                  },
                 ],
               ]
             }

@@ -1,5 +1,5 @@
 import { ScrollView, View } from "react-native";
-import { ActivityIndicator, Text } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { useIsFocused, useRoute } from "@react-navigation/native";
 import {
@@ -16,12 +16,20 @@ import {
 } from "../../../utils/db/cat";
 import { useAuth } from "../../../utils/context/auth";
 import { useGetUserByID, useUserToggleCatFollow } from "../../../utils/db/user";
+import {
+    screenSecondaryColor,
+    secondaryColor,
+} from "../../../components/Styles";
+import { ErrorText } from "../../../components/Text";
+import { getItemWidthFrac } from "../../../utils/calculateItemWidths";
+import { Image } from "react-native";
 
 export default function CatProfile() {
     const { user, userRole } = useAuth();
     const route = useRoute();
     const catID = route.params.catID;
     const navigation = useNavigation();
+    const imageSize = getItemWidthFrac(3 / 4);
     // For refreshing page when in focus
     const isFocused = useIsFocused();
 
@@ -114,7 +122,7 @@ export default function CatProfile() {
     }, [cat]);
 
     if (!user || !userRole) {
-        return <ActivityIndicator />;
+        return <ActivityIndicator color={secondaryColor} />;
     }
 
     if (!cat) {
@@ -126,17 +134,42 @@ export default function CatProfile() {
                     alignItems: "center",
                 }}
             >
-                {error[0] && <Text>Error: {error[0].message}</Text>}
-                {loading[0] && <ActivityIndicator />}
+                {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+                {loading[0] && <ActivityIndicator color={secondaryColor} />}
             </View>
         );
     }
 
     return (
-        <ScrollView testID="profile-container">
+        <ScrollView
+            testID="profile-container"
+            style={{ backgroundColor: screenSecondaryColor }}
+        >
+            <View
+                style={{
+                    alignItems: "center",
+                    width: "100%",
+                    paddingBottom: 16,
+                }}
+            >
+                <Image
+                    source={
+                        cat.photoURLs
+                            ? { uri: cat.photoURLs[0] }
+                            : require("../../../../assets/placeholder.png")
+                    }
+                    resizeMode="cover"
+                    style={{
+                        width: imageSize,
+                        height: imageSize,
+                        borderRadius: 20,
+                    }}
+                />
+            </View>
             <AvatarContainer
                 name={cat.name}
                 photoURL={cat.photoURLs[0]}
+                imageSize={imageSize}
                 followValue={followed}
                 followOnPress={changeFavourite}
                 loadingFollow={loadingFollow}
@@ -165,7 +198,7 @@ export default function CatProfile() {
                 cat={cat}
                 userRole={userRole}
                 variant="bodyMedium"
-                iconSize={24}
+                iconSize={20}
             />
 
             <PhotosContainer

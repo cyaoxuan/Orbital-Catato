@@ -4,7 +4,9 @@ exports[`<PillButton /> renders correctly 1`] = `
 <View
   style={
     {
-      "flexDirection": "row",
+      "alignItems": "center",
+      "margin": 10,
+      "width": "100%",
     }
   }
 >
@@ -12,9 +14,9 @@ exports[`<PillButton /> renders correctly 1`] = `
     collapsable={false}
     style={
       {
-        "backgroundColor": "transparent",
-        "borderRadius": 20,
-        "margin": 10,
+        "backgroundColor": "#05668D",
+        "borderRadius": 50,
+        "height": 40,
         "shadowColor": "#000",
         "shadowOffset": {
           "height": 0,
@@ -22,7 +24,7 @@ exports[`<PillButton /> renders correctly 1`] = `
         },
         "shadowOpacity": 0,
         "shadowRadius": 0,
-        "width": "80%",
+        "width": "90%",
       }
     }
     testID="button-container-outer-layer"
@@ -31,12 +33,13 @@ exports[`<PillButton /> renders correctly 1`] = `
       collapsable={false}
       style={
         {
-          "backgroundColor": "transparent",
-          "borderColor": "rgba(121, 116, 126, 1)",
-          "borderRadius": 20,
+          "backgroundColor": "#05668D",
+          "borderColor": "transparent",
+          "borderRadius": 50,
           "borderStyle": "solid",
-          "borderWidth": 1,
-          "flex": undefined,
+          "borderWidth": 0,
+          "flex": 1,
+          "justifyContent": "center",
           "minWidth": 64,
           "shadowColor": "#000",
           "shadowOffset": {
@@ -86,7 +89,7 @@ exports[`<PillButton /> renders correctly 1`] = `
               "overflow": "hidden",
             },
             {
-              "borderRadius": 20,
+              "borderRadius": 50,
             },
           ]
         }
@@ -131,20 +134,22 @@ exports[`<PillButton /> renders correctly 1`] = `
                   },
                   false,
                   {
-                    "marginHorizontal": 24,
-                    "marginVertical": 10,
+                    "marginHorizontal": 12,
                   },
                   undefined,
                   false,
                   {
-                    "color": "rgba(103, 80, 164, 1)",
+                    "color": "white",
                     "fontFamily": "System",
                     "fontSize": 14,
                     "fontWeight": "500",
                     "letterSpacing": 0.1,
                     "lineHeight": 20,
                   },
-                  undefined,
+                  {
+                    "fontFamily": "Nunito-Medium",
+                    "fontSize": 16,
+                  },
                 ],
               ]
             }

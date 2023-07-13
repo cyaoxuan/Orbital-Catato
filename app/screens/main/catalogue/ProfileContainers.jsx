@@ -1,7 +1,6 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { ActivityIndicator, Button, Divider, Text } from "react-native-paper";
 import { IconTextField, KeyTextField } from "../../../components/InfoText";
-import { CatAvatar } from "../../../components/CatAvatar";
 import {
     formatAge,
     formatLastSeen,
@@ -9,14 +8,15 @@ import {
 } from "../../../utils/formatDetails";
 import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { screenMainColor, secondaryColor } from "../../../components/Styles";
+import { BodyText, ErrorText, TitleText } from "../../../components/Text";
 
 // Avatar Container for profile photo, name and buttons
-// props: name (string), photoURL (string), userRole (object),
+// props: name (string), photoURL (string), imageSize (number), userRole (object),
 // followValue (hook value), followOnPress (callback), loadingFollow (array), errorFollow (array),
 // updateValue (hook value), updateOnPress (callback), locationValue (hook value), locationOnPress (callback)
 const AvatarContainer = ({
     name,
-    photoURL,
     followValue,
     followOnPress,
     loadingFollow,
@@ -27,40 +27,38 @@ const AvatarContainer = ({
     locationOnPress,
     userRole,
 }) => {
-    const buttonColor = "#663399";
+    const buttonColor = secondaryColor;
 
     return (
         <View style={styles.avatarContainer}>
-            <CatAvatar
-                size={200}
-                photoURL={photoURL}
-                variant="headlineLarge"
-                name={name}
-            />
             {userRole && userRole.isUser && (
                 // only show follow and update button for users
                 <>
-                    <View style={{ alignItems: "center", marginVertical: 4 }}>
+                    <TitleText variant="displaySmall" text={name} />
+                    <View
+                        style={{
+                            alignItems: "center",
+                            marginVertical: 4,
+                            width: "100%",
+                        }}
+                    >
                         <Button
-                            style={{ width: "70%" }}
-                            mode="outlined"
-                            icon={
-                                followValue
-                                    ? () => (
-                                          <Ionicons
-                                              name="notifications"
-                                              size={20}
-                                              color={buttonColor}
-                                          />
-                                      )
-                                    : () => (
-                                          <Ionicons
-                                              name="notifications-outline"
-                                              size={24}
-                                              color={buttonColor}
-                                          />
-                                      )
+                            style={{
+                                width: "80%",
+                                borderColor: buttonColor,
+                            }}
+                            mode={followValue ? "contained" : "outlined"}
+                            textColor={followValue ? "white" : buttonColor}
+                            buttonColor={
+                                followValue ? buttonColor : "transparent"
                             }
+                            icon={() => (
+                                <Ionicons
+                                    name="notifications"
+                                    size={20}
+                                    color={followValue ? "white" : buttonColor}
+                                />
+                            )}
                             onPress={followOnPress}
                         >
                             {followValue
@@ -69,12 +67,21 @@ const AvatarContainer = ({
                         </Button>
                     </View>
                     <View
-                        style={{ flexDirection: "row", alignItems: "center" }}
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            borderColor: buttonColor,
+                        }}
                     >
                         {updateValue && (
                             <Button
-                                style={{ width: "40%", margin: 4 }}
+                                style={{
+                                    width: "40%",
+                                    margin: 4,
+                                    borderColor: buttonColor,
+                                }}
                                 mode="outlined"
+                                textColor={buttonColor}
                                 icon={() => (
                                     <Ionicons
                                         name="create-outline"
@@ -90,8 +97,13 @@ const AvatarContainer = ({
                         {locationValue && userRole && userRole.isCaretaker && (
                             // only show location button for caretakers
                             <Button
-                                style={{ width: "40%", margin: 4 }}
+                                style={{
+                                    width: "40%",
+                                    margin: 4,
+                                    borderColor: buttonColor,
+                                }}
                                 mode="outlined"
+                                textColor={buttonColor}
                                 icon={() => (
                                     <Ionicons
                                         name="location-outline"
@@ -106,9 +118,11 @@ const AvatarContainer = ({
                         )}
                     </View>
                     {errorFollow[0] && (
-                        <Text>Error: {errorFollow[0].message}</Text>
+                        <ErrorText text={"Error: " + errorFollow[0].message} />
                     )}
-                    {loadingFollow[0] && <ActivityIndicator />}
+                    {loadingFollow[0] && (
+                        <ActivityIndicator color={secondaryColor} />
+                    )}
                 </>
             )}
         </View>
@@ -167,14 +181,15 @@ const DetailsContainer = ({ cat, userRole, ...rest }) => {
                 iconTextStyle={styles.iconTextStyle}
                 {...rest}
                 iconName="star-outline"
-                field="Key Features: "
+                field="Key Features"
                 info={cat.keyFeatures ? cat.keyFeatures : "Unknown"}
             />
+            <Divider />
             <IconTextField
                 iconTextStyle={styles.iconTextStyle}
                 {...rest}
                 iconName="location-outline"
-                field="Last Seen: "
+                field="Last Seen"
                 info={
                     cat.locationName && cat.lastSeenTime && userRole
                         ? formatLastSeen(
@@ -186,27 +201,30 @@ const DetailsContainer = ({ cat, userRole, ...rest }) => {
                         : "Unknown"
                 }
             />
+            <Divider />
             <IconTextField
                 iconTextStyle={styles.iconTextStyle}
                 {...rest}
                 iconName="time-outline"
-                field="Last Fed: "
+                field="Last Fed"
                 info={
                     cat.lastFedTime ? formatLastFed(cat.lastFedTime) : "Unknown"
                 }
             />
+            <Divider />
             <IconTextField
                 iconTextStyle={styles.iconTextStyle}
                 {...rest}
                 iconName="alert-circle-outline"
-                field="Concern Status: "
+                field="Concern Status"
                 info={concernStatusString}
             />
+            <Divider />
             <IconTextField
                 iconTextStyle={styles.iconTextStyle}
                 {...rest}
                 iconName="information-circle-outline"
-                field="Concerns: "
+                field="Concerns"
                 info={processedConcernStatusDesc}
             />
         </View>
@@ -221,7 +239,12 @@ const PreviewPhotos = ({ photoURLs }) => {
     if (photoURLs === null) {
         return (
             <View style={styles.previewContainer}>
-                <Text style={{ marginTop: 20 }}>This cat has no photos!</Text>
+                <Text
+                    variant="BodyMedium"
+                    style={{ fontFamily: "Nunito-Medium", marginTop: 20 }}
+                >
+                    This cat has no photos!
+                </Text>
             </View>
         );
     } else if (photoURLs.length > 4) {
@@ -259,19 +282,23 @@ const PhotosContainer = ({ photoURLs, variant, iconSize, onPress }) => {
     return (
         <View style={styles.photosContainer}>
             <View style={styles.photosHeader}>
-                <Text variant={variant}>Photos</Text>
+                <TitleText variant={variant} text="Photos" />
                 <TouchableOpacity testID="view-button" onPress={onPress}>
                     <View style={{ flexDirection: "row" }}>
-                        <Text variant={variant}>View All</Text>
+                        <BodyText
+                            variant={variant}
+                            text="View All"
+                            color={secondaryColor}
+                        />
                         <Ionicons
                             name="chevron-forward"
                             size={iconSize}
+                            color={secondaryColor}
                             style={{ marginHorizontal: 4 }}
                         />
                     </View>
                 </TouchableOpacity>
             </View>
-            <Divider />
             <PreviewPhotos photoURLs={photoURLs ? photoURLs : null} />
         </View>
     );
@@ -287,38 +314,41 @@ export {
 
 const styles = StyleSheet.create({
     avatarContainer: {
+        width: "100%",
         alignItems: "center",
         justifyContent: "center",
-        padding: 15,
+        backgroundColor: screenMainColor,
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
+        padding: 12,
     },
-
     keyInfoContainer: {
         flexDirection: "row",
         justifyContent: "space-evenly",
-        padding: 15,
-        backgroundColor: "lightgrey",
+        padding: 12,
+        backgroundColor: screenMainColor,
     },
-
     detailsContainer: {
         justifyContent: "space-evenly",
         padding: 15,
+        marginVertical: 12,
+        backgroundColor: screenMainColor,
     },
-
     iconTextStyle: {
-        margin: 8,
+        marginHorizontal: 8,
+        marginVertical: 10,
     },
-
     photosContainer: {
         padding: 16,
+        backgroundColor: screenMainColor,
     },
-
     photosHeader: {
         flexDirection: "row",
         justifyContent: "space-between",
         paddingHorizontal: 8,
     },
-
     previewContainer: {
         flexDirection: "row",
+        paddingTop: 4,
     },
 });

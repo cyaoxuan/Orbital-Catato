@@ -1,15 +1,12 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import {
     ActivityIndicator,
     Button,
     DefaultTheme,
     Dialog,
-    Divider,
     List,
     Portal,
     Provider,
-    Switch,
-    Text,
 } from "react-native-paper";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../utils/context/auth";
@@ -19,6 +16,14 @@ import {
     useUpdateUserNotification,
 } from "../../../utils/db/user";
 import { useNavigation } from "expo-router";
+import {
+    allStyles,
+    screenMainColor,
+    screenSecondaryColor,
+    secondaryColor,
+} from "../../../components/Styles";
+import { SwitchListItem } from "../../../components/OptionListItem";
+import { BodyText, ErrorText, TitleText } from "../../../components/Text";
 
 export default function Notifications() {
     const { user, userRole } = useAuth();
@@ -125,165 +130,126 @@ export default function Notifications() {
     };
 
     if (!user || !userRole) {
-        return <ActivityIndicator />;
+        return <ActivityIndicator color={secondaryColor} />;
     }
 
     return (
         <Provider theme={lightTheme}>
-            <ScrollView style={{ margin: 16 }}>
-                <Text variant={titleVariant}>Notifications</Text>
-                <List.Section>
-                    <List.Item
-                        title="Enable Notifications"
-                        style={[
-                            styles.listView,
-                            styles.topListView,
-                            styles.bottomListView,
-                        ]}
-                        titleStyle={styles.listTitle}
-                        right={() => (
-                            <Switch
-                                style={{
-                                    transform: [
-                                        { scaleX: 1.2 },
-                                        { scaleY: 1.2 },
-                                    ],
-                                }}
+            <View
+                style={{
+                    backgroundColor: screenSecondaryColor,
+                    height: "100%",
+                }}
+            >
+                <ScrollView style={{ margin: 10 }}>
+                    <View style={{ paddingHorizontal: 20 }}>
+                        <TitleText
+                            variant={titleVariant}
+                            text="Notifications"
+                        />
+                    </View>
+
+                    <View style={allStyles.roundedOptionView}>
+                        <List.Section style={allStyles.listSection}>
+                            <SwitchListItem
+                                title="Enable Notifications"
                                 value={allNotif}
                                 onValueChange={changeAllNotif}
                             />
-                        )}
-                    />
-                </List.Section>
+                        </List.Section>
+                    </View>
 
-                <Text variant={titleVariant}>Types of Notifications</Text>
+                    <View style={{ paddingHorizontal: 20 }}>
+                        <TitleText
+                            variant={titleVariant}
+                            text="Types of Notifications"
+                        />
+                    </View>
 
-                <List.Section>
-                    <List.Item
-                        title="New Cats"
-                        description="New cats in the area reported by users"
-                        style={[styles.listView, styles.topListView]}
-                        titleStyle={styles.listTitle}
-                        right={() => (
-                            <Switch
-                                style={{
-                                    transform: [
-                                        { scaleX: 1.2 },
-                                        { scaleY: 1.2 },
-                                    ],
-                                }}
+                    <View style={allStyles.roundedOptionView}>
+                        <List.Section>
+                            <SwitchListItem
+                                title="New Cats"
+                                description="New cats in the area reported by users"
                                 disabled={disableNotif}
                                 value={newNotif}
                                 onValueChange={setNewNotif}
                             />
-                        )}
-                    />
-                    <Divider />
-
-                    <List.Item
-                        title="Concern"
-                        description="Followed cats that are missing or injured"
-                        style={[
-                            styles.listView,
-                            userRole && !userRole.isCaretaker
-                                ? styles.bottomListView
-                                : "",
-                        ]}
-                        titleStyle={styles.listTitle}
-                        right={() => (
-                            <Switch
-                                style={{
-                                    transform: [
-                                        { scaleX: 1.2 },
-                                        { scaleY: 1.2 },
-                                    ],
-                                }}
+                            <SwitchListItem
+                                title="Concern"
+                                description="Followed cats that are missing or injured"
                                 disabled={disableNotif}
                                 value={concernNotif}
                                 onValueChange={setConcernNotif}
                             />
-                        )}
-                    />
 
-                    {userRole && userRole.isCaretaker && (
-                        <>
-                            <Divider />
-                            <List.Item
-                                title="Unfed"
-                                description="Followed cats not fed in 12h"
-                                style={[styles.listView, styles.bottomListView]}
-                                titleStyle={styles.listTitle}
-                                right={() => (
-                                    <Switch
-                                        style={{
-                                            transform: [
-                                                { scaleX: 1.2 },
-                                                { scaleY: 1.2 },
-                                            ],
-                                        }}
-                                        disabled={disableNotif}
-                                        value={fedNotif}
-                                        onValueChange={setFedNotif}
-                                    />
-                                )}
-                            />
-                        </>
+                            {userRole && userRole.isCaretaker && (
+                                <SwitchListItem
+                                    title="Unfed"
+                                    description="Followed cats not fed in 12h"
+                                    disabled={disableNotif}
+                                    value={fedNotif}
+                                    onValueChange={setFedNotif}
+                                />
+                            )}
+                        </List.Section>
+                    </View>
+
+                    <View style={{ alignItems: "center" }}>
+                        <PillButton
+                            label="Update Settings"
+                            disabled={!changedNotifs}
+                            onPress={handleNotifs}
+                        />
+                    </View>
+
+                    <Portal>
+                        <Dialog
+                            visible={dialogVisible}
+                            onDismiss={hideDialog}
+                            theme={{
+                                colors: {
+                                    elevation: { level3: screenMainColor },
+                                },
+                            }}
+                        >
+                            <Dialog.Title style={{ fontFamily: "Nunito-Bold" }}>
+                                Notifications Update
+                            </Dialog.Title>
+                            <Dialog.Content>
+                                <BodyText
+                                    variant="bodyMedium"
+                                    text="Notifications Update Confirmed! Press done to go
+                                back to settings."
+                                />
+                            </Dialog.Content>
+                            <Dialog.Actions>
+                                <Button
+                                    onPress={hideDialog}
+                                    mode="text"
+                                    textColor={secondaryColor}
+                                    labelStyle={allStyles.buttonText}
+                                >
+                                    Done
+                                </Button>
+                            </Dialog.Actions>
+                        </Dialog>
+                    </Portal>
+
+                    {error[0] && (
+                        <ErrorText text={"Error: " + error[0].message} />
                     )}
-                </List.Section>
-
-                <View style={{ alignItems: "center" }}>
-                    <PillButton
-                        label="Update Settings"
-                        disabled={!changedNotifs}
-                        onPress={handleNotifs}
-                    />
-                </View>
-
-                <Portal>
-                    <Dialog visible={dialogVisible} onDismiss={hideDialog}>
-                        <Dialog.Title>Notifications Update</Dialog.Title>
-                        <Dialog.Content>
-                            <Text variant="bodyMedium">
-                                Notifications Update Confirmed! Press done to go
-                                back to settings.
-                            </Text>
-                        </Dialog.Content>
-                        <Dialog.Actions>
-                            <Button onPress={hideDialog}>Done</Button>
-                        </Dialog.Actions>
-                    </Dialog>
-                </Portal>
-
-                {error[0] && <Text>Error: {error[0].message}</Text>}
-                {inProgress && <ActivityIndicator />}
-            </ScrollView>
+                    {inProgress && <ActivityIndicator color={secondaryColor} />}
+                </ScrollView>
+            </View>
         </Provider>
     );
 }
 
-const titleVariant = "titleLarge";
+const titleVariant = "titleMedium";
 
 const lightTheme = {
     ...DefaultTheme,
     mode: "light",
     dark: false,
 };
-
-const styles = StyleSheet.create({
-    listTitle: {
-        fontSize: 20,
-    },
-    listView: {
-        justifyContent: "center",
-        height: 70,
-        backgroundColor: "white",
-    },
-    topListView: {
-        borderTopLeftRadius: 12,
-        borderTopRightRadius: 12,
-    },
-    bottomListView: {
-        borderBottomLeftRadius: 12,
-        borderBottomRightRadius: 12,
-    },
-});

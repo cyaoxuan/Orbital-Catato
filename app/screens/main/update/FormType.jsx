@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { ActivityIndicator, Divider, Text } from "react-native-paper";
+import { ActivityIndicator, Divider } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { PillButton } from "../../../components/Button";
 import {
@@ -24,6 +24,8 @@ import {
     getImageFromGallery,
 } from "../../../utils/db/photo";
 import { locations } from "../../../data/locationData";
+import { BodyText, ErrorText, TitleText } from "../../../components/Text";
+import { secondaryColor } from "../../../components/Styles";
 
 const CreateProfile = (props) => {
     const navigation = useNavigation();
@@ -107,7 +109,7 @@ const CreateProfile = (props) => {
 
     return (
         <View style={styles.formContainer}>
-            <Text variant={titleVariant}>Create Profile</Text>
+            <TitleText variant={titleVariant} text="Create Profile" />
             <FormInput
                 label="Name"
                 placeholder="Kitty's Name"
@@ -180,8 +182,8 @@ const CreateProfile = (props) => {
                     inProgress
                 }
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
-            {loading[0] && <ActivityIndicator />}
+            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
 };
@@ -285,7 +287,7 @@ const ReportCat = (props) => {
 
     return (
         <View style={styles.formContainer}>
-            <Text variant={titleVariant}>Report Cat</Text>
+            <TitleText variant={titleVariant} text="Report Cat" />
             <DropdownList
                 titleText="Seen at:"
                 selected={location}
@@ -357,8 +359,8 @@ const ReportCat = (props) => {
                     inProgress
                 }
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
-            {loading[0] && <ActivityIndicator />}
+            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
 };
@@ -451,7 +453,7 @@ const UpdateLocation = (props) => {
 
     return (
         <View style={styles.formContainer}>
-            <Text variant={titleVariant}>Update Location</Text>
+            <TitleText variant={titleVariant} text="Update Location" />
             <DropdownList
                 titleText="Seen at:"
                 selected={location}
@@ -476,8 +478,8 @@ const UpdateLocation = (props) => {
                 onPress={handleUpdate}
                 disabled={location === "" || date > today || inProgress}
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
-            {loading[0] && <ActivityIndicator />}
+            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
 };
@@ -620,7 +622,7 @@ const UpdateConcern = (props) => {
 
     return (
         <View style={styles.formContainer}>
-            <Text variant={titleVariant}>Update Concern</Text>
+            <TitleText variant={titleVariant} text="Update Concern" />
             <DropdownList
                 titleText="Seen at:"
                 selected={location}
@@ -682,8 +684,8 @@ const UpdateConcern = (props) => {
                     inProgress
                 }
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
-            {loading[0] && <ActivityIndicator />}
+            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
 };
@@ -776,7 +778,7 @@ const UpdateFed = (props) => {
 
     return (
         <View style={styles.formContainer}>
-            <Text variant={titleVariant}>Update Fed</Text>
+            <TitleText variant={titleVariant} text="Update Fed" />
             <DropdownList
                 titleText="Seen at:"
                 selected={location}
@@ -801,8 +803,8 @@ const UpdateFed = (props) => {
                 onPress={handleUpdate}
                 disabled={location === "" || date > today || inProgress}
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
-            {loading[0] && <ActivityIndicator />}
+            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
 };
@@ -921,7 +923,7 @@ const UpdateProfile = (props) => {
 
     return (
         <View style={styles.formContainer}>
-            <Text variant={titleVariant}>Update Profile</Text>
+            <TitleText variant={titleVariant} text="Update Profile" />
             <FormInput
                 label="Name"
                 placeholder="Kitty's Name"
@@ -1007,8 +1009,8 @@ const UpdateProfile = (props) => {
                     name.trim() === "" || features.trim() === "" || inProgress
                 }
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
-            {loading[0] && <ActivityIndicator />}
+            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
 };
@@ -1045,11 +1047,11 @@ const DeleteProfile = (props) => {
 
     return (
         <View style={styles.formContainer}>
-            <Text variant={titleVariant}>Delete Profile</Text>
-            <Text variant="bodyMedium">
-                Deleted Profiles cannot be recovered!
-            </Text>
-
+            <TitleText variant={titleVariant} text="Delete Profile" />
+            <BodyText
+                variant="bodyMedium"
+                text="Deleted Profiles cannot be recovered!"
+            />
             <FormInput
                 multiline={true}
                 label="Cat's Name:"
@@ -1063,8 +1065,8 @@ const DeleteProfile = (props) => {
                 onPress={handleDelete}
                 disabled={catName !== name || inProgress}
             />
-            {error[0] && <Text>Error: {error[0].message}</Text>}
-            {loading[0] && <ActivityIndicator />}
+            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
 };

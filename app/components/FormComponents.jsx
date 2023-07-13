@@ -5,13 +5,15 @@ import {
     HelperText,
     Menu,
     RadioButton,
-    Text,
     TextInput,
 } from "react-native-paper";
 import { SelectList } from "react-native-dropdown-select-list";
 import NumericInput from "react-native-numeric-input";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { timeOptions } from "../data/DateTimeOptions";
+import { BodyText, ErrorText, RequiredFormText } from "./Text";
+import { allStyles, screenSecondaryColor, secondaryColor } from "./Styles";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 // Styled dropdown select list from react-native-dropdown select list
 // Required field, shows errorText if nothing is selected
@@ -22,10 +24,9 @@ const DropdownList = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text variant={titleVariant} style={styles.errorText}>
-                *<Text variant={titleVariant}>{props.titleText}</Text>
-            </Text>
+            <RequiredFormText variant={titleVariant} text={props.titleText} />
             <SelectList
+                fontFamily="Nunito-Medium"
                 setSelected={
                     props.setSelected
                         ? props.setSelected
@@ -35,9 +36,10 @@ const DropdownList = (props) => {
                 save="value"
             />
             {selected === "" && props.selected === "" && (
-                <Text variant={bodyVariant} style={styles.errorText}>
-                    Please select an option before continuing!
-                </Text>
+                <ErrorText
+                    variant={bodyVariant}
+                    text={"Please select an option before continuing!"}
+                />
             )}
         </View>
     );
@@ -54,7 +56,7 @@ const FormInput = (props) => {
     return (
         <View style={styles.container}>
             <TextInput
-                style={styles.formInput}
+                style={[styles.formInput, allStyles.bodyText]}
                 disabled={props.disabled}
                 multiline={props.multiline}
                 label={props.label || "Label"}
@@ -85,9 +87,7 @@ const NumberSpinner = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text variant={titleVariant} style={styles.errorText}>
-                *<Text variant={titleVariant}>{props.titleText}</Text>
-            </Text>
+            <RequiredFormText variant={titleVariant} text={props.titleText} />
             <NumericInput
                 type="up-down"
                 rounded
@@ -102,6 +102,7 @@ const NumberSpinner = (props) => {
                               setNumber(num);
                           }
                 }
+                upDownButtonsBackgroundColor={screenSecondaryColor}
                 totalWidth={120}
                 totalHeight={40}
             />
@@ -116,25 +117,32 @@ const NumberSpinner = (props) => {
 const TimeInput = (props) => {
     return (
         <View style={styles.container}>
-            <Text variant={titleVariant} style={styles.errorText}>
-                *<Text variant={titleVariant}>{props.titleText}</Text>
-            </Text>
+            <RequiredFormText variant={titleVariant} text={props.titleText} />
             <Button
-                mode="contained-tonal"
                 onPress={props.onPress}
-                style={{ width: "50%", margin: 4 }}
+                style={{
+                    width: "50%",
+                    margin: 4,
+                    borderColor: secondaryColor,
+                }}
+                buttonColor={secondaryColor}
+                textColor="white"
             >
                 Pick Time{" "}
             </Button>
-            <Text variant={bodyVariant}>
-                Selected Time:{" "}
-                {props.displayTime.toLocaleTimeString("en-GB", timeOptions)}{" "}
-                {"(SGT, GMT+8)"}
-            </Text>
+            <BodyText
+                variant={bodyVariant}
+                text={
+                    "Selected Time: " +
+                    props.displayTime.toLocaleTimeString("en-GB", timeOptions) +
+                    " (SGT, GMT+8)"
+                }
+            />
             {props.displayTime > props.today && (
-                <Text variant={bodyVariant} style={styles.errorText}>
-                    Error: Selected future time! Are you a time traveller?
-                </Text>
+                <ErrorText
+                    variant={bodyVariant}
+                    text="Error: Selected future time! Are you a time traveller?"
+                />
             )}
             {props.show && (
                 <RNDateTimePicker
@@ -145,9 +153,10 @@ const TimeInput = (props) => {
                     onChange={props.onChange}
                 />
             )}
-            <Text variant={bodyVariant}>
-                *Selected Time may be different if your device is not in SGT!
-            </Text>
+            <BodyText
+                variant="bodySmall"
+                text="*Selected Time may be different if your device is not in SGT!"
+            />
         </View>
     );
 };
@@ -158,12 +167,11 @@ const TimeInput = (props) => {
 // value (hook value), onValueChange (callback)
 const TwoRadioInput = (props) => {
     const [selected, setSelected] = useState("First");
+    const radioColor = secondaryColor;
 
     return (
         <View style={styles.container}>
-            <Text variant={titleVariant} style={styles.errorText}>
-                *<Text variant={titleVariant}>{props.titleText}</Text>
-            </Text>
+            <RequiredFormText variant={titleVariant} text={props.titleText} />
             <RadioButton.Group
                 value={props.value ? props.value : selected}
                 onValueChange={
@@ -173,17 +181,23 @@ const TwoRadioInput = (props) => {
                 }
             >
                 <View style={styles.radioButtonContainer}>
-                    <Text variant={bodyVariant}>
-                        {props.firstValue || "First"}
-                    </Text>
-                    <RadioButton.Android value={props.firstValue || "First"} />
+                    <BodyText
+                        variant={bodyVariant}
+                        text={props.firstValue || "First"}
+                    />
+                    <RadioButton.Android
+                        value={props.firstValue || "First"}
+                        color={radioColor}
+                    />
                 </View>
                 <View style={styles.radioButtonContainer}>
-                    <Text variant={bodyVariant}>
-                        {props.secondValue || "Second"}
-                    </Text>
+                    <BodyText
+                        variant={bodyVariant}
+                        text={props.secondValue || "Second"}
+                    />
                     <RadioButton.Android
                         value={props.secondValue || "Second"}
+                        color={radioColor}
                     />
                 </View>
             </RadioButton.Group>
@@ -197,6 +211,7 @@ const TwoRadioInput = (props) => {
 // firstValue (string), secondValue (string), thirdValue (string)
 const ThreeRadioInput = (props) => {
     const [selected, setSelected] = useState("First");
+    const radioColor = secondaryColor;
 
     return (
         <RadioButton.Group
@@ -208,26 +223,36 @@ const ThreeRadioInput = (props) => {
             }
         >
             <View style={styles.radioButtonContainer}>
-                <Text variant={bodyVariant}>{props.firstValue || "First"}</Text>
+                <BodyText
+                    variant={bodyVariant}
+                    text={props.firstValue || "First"}
+                />
                 <RadioButton.Android
                     value={props.firstValue || "First"}
                     disabled={props.disabled}
+                    color={radioColor}
                 />
             </View>
             <View style={styles.radioButtonContainer}>
-                <Text variant={bodyVariant}>
-                    {props.secondValue || "Second"}
-                </Text>
+                <BodyText
+                    variant={bodyVariant}
+                    text={props.secondValue || "Second"}
+                />
                 <RadioButton.Android
                     value={props.secondValue || "Second"}
                     disabled={props.disabled}
+                    color={radioColor}
                 />
             </View>
             <View style={styles.radioButtonContainer}>
-                <Text variant={bodyVariant}>{props.thirdValue || "Third"}</Text>
+                <BodyText
+                    variant={bodyVariant}
+                    text={props.thirdValue || "Third"}
+                />
                 <RadioButton.Android
                     value={props.thirdValue || "Third"}
                     disabled={props.disabled}
+                    color={radioColor}
                 />
             </View>
         </RadioButton.Group>
@@ -246,23 +271,41 @@ const UploadPhotos = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text variant={titleVariant} style={styles.errorText}>
-                {props.showError ? "*" : ""}
-                <Text variant={titleVariant}>{props.titleText}</Text>
-            </Text>
+            {props.showError ? (
+                <RequiredFormText
+                    variant={titleVariant}
+                    text={props.titleText}
+                />
+            ) : (
+                <BodyText variant={titleVariant} text={props.titleText} />
+            )}
             <View>
                 <Menu
-                    style={{ marginTop: -50 }}
+                    style={{ marginTop: -50, marginLeft: 10 }}
+                    theme={{
+                        colors: { elevation: { level2: screenSecondaryColor } },
+                    }}
                     visible={visible}
                     onDismiss={closeMenu}
                     anchor={
                         <Button
-                            mode="contained-tonal"
-                            icon="camera"
+                            style={{
+                                width: "50%",
+                                margin: 4,
+                                borderColor: secondaryColor,
+                            }}
+                            buttonColor={secondaryColor}
+                            textColor="white"
+                            icon={() => (
+                                <Ionicons
+                                    name="camera"
+                                    size={20}
+                                    color="white"
+                                />
+                            )}
                             onPress={openMenu}
-                            style={{ width: "50%", margin: 4 }}
                         >
-                            Upload{" "}
+                            Upload
                         </Button>
                     }
                 >
@@ -278,14 +321,17 @@ const UploadPhotos = (props) => {
                     />
                 </Menu>
             </View>
-            <Text variant={bodyVariant}>
-                Image: {props.photoURI ? props.photoURI : ""}
-                {props.showError && !props.photoURI && (
-                    <Text variant={bodyVariant} style={styles.errorText}>
-                        Upload before continuing!
-                    </Text>
-                )}
-            </Text>
+            <BodyText
+                variant={bodyVariant}
+                text={"Image: " + (props.photoURI ? props.photoURI : "")}
+            />
+
+            {props.showError && !props.photoURI && (
+                <ErrorText
+                    variant={bodyVariant}
+                    text="Upload before continuing!"
+                />
+            )}
         </View>
     );
 };
@@ -316,8 +362,8 @@ const styles = StyleSheet.create({
     },
 
     container: {
-        width: "90%",
-        margin: 4,
+        width: "85%",
+        marginVertical: 8,
     },
 
     radioButtonContainer: {

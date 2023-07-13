@@ -6,21 +6,34 @@ import { getUsersWithNoti } from "./db/user";
 // @param notiType: "missing", "injured", "fed", "new"
 // @param catID: catID to get name
 export const sendNoti = async (notiType, catID) => {
-    // Get name of cat
-    const catDoc = await getDoc(doc(db, "Cat", catID));
-    const catName = catDoc.data().name;
-
     // Get users' pushtokens based on their notification settings and cats followed
     const notiQuery =
-        notiType === "fed" || notiType === "new" ? notiType : "concern";
+        notiType === "fed" || notiType === "new" || notiType === "announcement"
+            ? notiType
+            : "concern";
     const userPushTokens = await getUsersWithNoti(notiQuery, catID);
+
+    // Get name of cat
+    let catName;
+    let catDoc;
+
+    if (catID) {
+        catDoc = await getDoc(doc(db, "Cat", catID));
+        catName = catDoc.data().name;
+    }
 
     // Set message for different noti types
     let message = {
         sound: "default",
     };
 
-    if (notiType === "new") {
+    if (notiType === "announcement") {
+        message = {
+            ...message,
+            title: "Announcement",
+            body: "New Admin announcement!",
+        };
+    } else if (notiType === "new") {
         message = {
             ...message,
             title: "New Cat",
@@ -35,20 +48,19 @@ export const sendNoti = async (notiType, catID) => {
     } else if (notiType === "injured") {
         message = {
             ...message,
-            title: "Missing Cat",
+            title: "Injured Cat",
             body: `${catName} is reported as injured!`,
         };
     } else if (notiType === "fed") {
         message = {
             ...message,
-            title: "Missing Cat",
+            title: "Unfed Cat",
             body: `${catName} has not been fed in more than 12 hours!`,
         };
     }
 
     // Send notifications to push tokens
     if (userPushTokens) {
-        console.log(userPushTokens);
         const requestArray = userPushTokens.map((pushToken) => {
             return {
                 to: pushToken,

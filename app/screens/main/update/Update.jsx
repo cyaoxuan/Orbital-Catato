@@ -1,11 +1,17 @@
 import { View } from "react-native";
-import { ActivityIndicator, Avatar, Text } from "react-native-paper";
+import { ActivityIndicator, Avatar, List, Text } from "react-native-paper";
 import { useNavigation, useRouter } from "expo-router";
-import { CatAvatar } from "../../../components/CatAvatar";
 import { PillButton } from "../../../components/Button";
 import { auth, useAuth } from "../../../utils/context/auth";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
+import {
+    allStyles,
+    screenSecondaryColor,
+    secondaryColor,
+} from "../../../components/Styles";
+import { OptionListItem } from "../../../components/OptionListItem";
+import { BodyText, TitleText } from "../../../components/Text";
 
 export default function Update() {
     const { userRole } = useAuth();
@@ -30,21 +36,13 @@ export default function Update() {
     };
 
     if (!userRole) {
-        return <ActivityIndicator />;
+        return <ActivityIndicator color={secondaryColor} />;
     }
 
     // Guests screen
     if (userRole && !userRole.isUser) {
         return (
-            <View
-                style={{
-                    flex: 1,
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: 16,
-                    backgroundColor: "white",
-                }}
-            >
+            <View style={[allStyles.centerFlexView, { padding: 16 }]}>
                 <Avatar.Image
                     style={{ backgroundColor: "transparent", margin: 16 }}
                     source={require("../../../../assets/catato-logo.png")}
@@ -52,7 +50,11 @@ export default function Update() {
                 />
                 <Text
                     variant="bodyLarge"
-                    style={{ textAlign: "center", margin: 16 }}
+                    style={{
+                        fontFamily: "Nunito-Medium",
+                        textAlign: "center",
+                        margin: 16,
+                    }}
                 >
                     Guests cannot update. If you see a new or injured cat, or
                     just want to help caretakers find where a cat is, sign up or
@@ -60,8 +62,8 @@ export default function Update() {
                 </Text>
                 <PillButton
                     label="Signup / Login"
-                    width="70%"
                     onPress={handleLogout}
+                    colorMode="primary"
                 />
             </View>
         );
@@ -69,55 +71,62 @@ export default function Update() {
 
     return (
         <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+            style={{
+                padding: 16,
+                height: "100%",
+                backgroundColor: screenSecondaryColor,
+                justifyContent: "center",
+            }}
         >
-            <CatAvatar
-                photoURL={null}
-                size={200}
-                variant="headlineLarge"
-                name="Select Cat"
-            />
-            <PillButton
-                label="Select Cat"
-                onPress={() => {
-                    navigation.navigate("SelectCat");
-                }}
-            />
-            <Text
-                style={{
-                    marginHorizontal: 100,
-                    paddingVertical: 20,
-                    textAlign: "center",
-                }}
-            >
-                Please ensure you have selected the right cat before proceeding
-            </Text>
+            <View style={{ alignItems: "center" }}>
+                <TitleText variant="headlineSmall" text="Update Cats" />
+                <Text
+                    variant="bodyLarge"
+                    style={{
+                        fontFamily: "Nunito-Medium",
+                        textAlign: "center",
+                        margin: 16,
+                    }}
+                >
+                    Please ensure you select the right cat before updating!
+                </Text>
+            </View>
+            <View style={allStyles.roundedOptionView}>
+                <List.Section style={allStyles.listSection}>
+                    <OptionListItem
+                        title="Select Cat"
+                        onPress={() => {
+                            navigation.navigate("SelectCat");
+                        }}
+                    />
 
-            {userRole && userRole.isAdmin && (
-                <PillButton
-                    label="Create New Profile"
-                    onPress={() =>
-                        navigation.navigate("Form", {
-                            catID: 0,
-                            name: "New Cat",
-                            photoURLs: null,
-                            formType: "create",
-                        })
-                    }
-                />
-            )}
+                    {userRole && userRole.isAdmin && (
+                        <OptionListItem
+                            title="Create New Profile"
+                            onPress={() =>
+                                navigation.navigate("Form", {
+                                    catID: 0,
+                                    name: "New Cat",
+                                    photoURLs: null,
+                                    formType: "create",
+                                })
+                            }
+                        />
+                    )}
 
-            <PillButton
-                label="Report New Cat"
-                onPress={() =>
-                    navigation.navigate("Form", {
-                        catID: 0,
-                        name: "New Cat",
-                        photoURLs: null,
-                        formType: "report",
-                    })
-                }
-            />
+                    <OptionListItem
+                        title="Report New Cat"
+                        onPress={() =>
+                            navigation.navigate("Form", {
+                                catID: 0,
+                                name: "New Cat",
+                                photoURLs: null,
+                                formType: "report",
+                            })
+                        }
+                    />
+                </List.Section>
+            </View>
         </View>
     );
 }

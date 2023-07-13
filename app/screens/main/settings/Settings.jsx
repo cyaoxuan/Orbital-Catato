@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, View } from "react-native";
-import { ActivityIndicator, Divider, List, Text } from "react-native-paper";
+import { ScrollView, View } from "react-native";
+import { ActivityIndicator, Avatar, List, Text } from "react-native-paper";
 import { auth, useAuth } from "../../../utils/context/auth";
 import { useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
@@ -8,42 +8,98 @@ import { PillButton } from "../../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { removeUserPushToken } from "../../../utils/db/user";
 import { OptionListItemIcon } from "../../../components/OptionListItem";
-import { resetCatData } from "../../../data/resetCatData";
+import { BodyText, ErrorText, TitleText } from "../../../components/Text";
+import {
+    allStyles,
+    screenMainColor,
+    screenSecondaryColor,
+    secondaryColor,
+} from "../../../components/Styles";
+// import { sendNoti } from "../../../utils/noti";
+// import { resetCatData } from "../../../data/resetCatData";
 
 // User Details container
 // props: user (object), userRole (object)
 const UserDetails = ({ user, userRole }) => {
     return (
-        <>
-            <Text variant={titleVariant}>User Details</Text>
-            <Text variant={bodyVariant} style={styles.userDetails}>
-                Username:{" "}
-                {user
-                    ? user.displayName
-                        ? user.displayName
-                        : "No Username"
-                    : "None"}
-            </Text>
-            <Text variant={bodyVariant} style={styles.userDetails}>
-                User ID: {user ? user.uid : "None"}
-            </Text>
-            <Text variant={bodyVariant} style={styles.userDetails}>
-                Email:{" "}
-                {user ? (user.isAnonymous ? "No Email" : user.email) : "None"}
-            </Text>
-            <Text variant={bodyVariant} style={styles.userDetails}>
-                User Tier:{" "}
-                {userRole
-                    ? userRole.isAdmin
-                        ? "Admin"
-                        : userRole.isCaretaker
-                        ? "Caretaker"
-                        : userRole.isUser
-                        ? "Cat Lover"
-                        : "Guest"
-                    : "None"}
-            </Text>
-        </>
+        <View style={allStyles.roundedView}>
+            <View
+                style={{
+                    backgroundColor: screenMainColor,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: "100%",
+                }}
+            >
+                <Avatar.Image
+                    source={require("../../../../assets/placeholder.png")}
+                    size={80}
+                    style={{ marginRight: 16, marginBottom: 10 }}
+                />
+                <View>
+                    <TitleText
+                        variant={titleVariant}
+                        text={
+                            user
+                                ? user.displayName
+                                    ? user.displayName
+                                    : "No Username"
+                                : "None"
+                        }
+                    />
+                    <BodyText
+                        variant={bodyVariant}
+                        text={
+                            userRole
+                                ? userRole.isAdmin
+                                    ? "Admin"
+                                    : userRole.isCaretaker
+                                    ? "Caretaker"
+                                    : userRole.isUser
+                                    ? "Cat Lover"
+                                    : "Guest"
+                                : "None"
+                        }
+                    />
+                </View>
+            </View>
+            <View
+                style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                    marginVertical: 4,
+                }}
+            >
+                <TitleText variant={bodyVariant} text={"UID"} />
+                <BodyText
+                    variant={subBodyVariant}
+                    text={user ? user.uid : "None"}
+                />
+            </View>
+            <View
+                style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "100%",
+                    marginVertical: 4,
+                }}
+            >
+                <TitleText variant={bodyVariant} text={"Email"} />
+                <BodyText
+                    variant={subBodyVariant}
+                    text={
+                        user
+                            ? user.isAnonymous
+                                ? "No Email"
+                                : user.email
+                            : "None"
+                    }
+                />
+            </View>
+        </View>
     );
 };
 
@@ -53,45 +109,46 @@ const SettingsOptionList = ({ userRole }) => {
     const navigation = useNavigation();
 
     return (
-        <List.Section>
-            <Divider />
-            <OptionListItemIcon
-                title="About"
-                onPress={() => {}}
-                iconName="information-circle-outline"
-            />
-            <OptionListItemIcon
-                title="FAQs"
-                onPress={() => {}}
-                iconName="help-circle-outline"
-            />
-
-            {userRole && userRole.isUser && (
+        <View style={allStyles.roundedOptionView}>
+            <List.Section style={allStyles.listSection}>
                 <OptionListItemIcon
-                    title="Notifications"
-                    onPress={() => {
-                        navigation.navigate("Notifications");
-                    }}
-                    iconName="notifications-outline"
+                    title="About"
+                    onPress={() => {}}
+                    iconName="information-circle-outline"
                 />
-            )}
-
-            {userRole && userRole.isAdmin && (
                 <OptionListItemIcon
-                    title="Admin Panel"
-                    onPress={() => {
-                        navigation.navigate("AdminPanel");
-                    }}
-                    iconName="build-outline"
+                    title="FAQs"
+                    onPress={() => {}}
+                    iconName="help-circle-outline"
                 />
-            )}
 
-            <OptionListItemIcon
-                title="Documentation"
-                onPress={() => {}}
-                iconName="document-outline"
-            />
-        </List.Section>
+                {userRole && userRole.isUser && (
+                    <OptionListItemIcon
+                        title="Notifications"
+                        onPress={() => {
+                            navigation.navigate("Notifications");
+                        }}
+                        iconName="notifications-outline"
+                    />
+                )}
+
+                {userRole && userRole.isAdmin && (
+                    <OptionListItemIcon
+                        title="Admin Panel"
+                        onPress={() => {
+                            navigation.navigate("AdminPanel");
+                        }}
+                        iconName="build-outline"
+                    />
+                )}
+
+                <OptionListItemIcon
+                    title="Documentation"
+                    onPress={() => {}}
+                    iconName="document-outline"
+                />
+            </List.Section>
+        </View>
     );
 };
 
@@ -128,46 +185,29 @@ export default function Settings() {
     };
 
     if (!user || !userRole) {
-        return <ActivityIndicator />;
+        return <ActivityIndicator color={secondaryColor} />;
     }
 
     return (
-        <ScrollView style={{ margin: 16 }}>
-            <View>
-                <UserDetails user={user} userRole={userRole} />
-            </View>
+        <ScrollView
+            style={{ padding: 16, backgroundColor: screenSecondaryColor }}
+        >
+            <UserDetails user={user} userRole={userRole} />
             <View marginTop={4}>
                 <SettingsOptionList userRole={userRole} />
             </View>
 
             <View style={{ alignItems: "center" }}>
-                <PillButton
-                    label="Log Out"
-                    width="65%"
-                    onPress={handleLogout}
-                />
+                <PillButton label="Log Out" onPress={handleLogout} />
                 {/* <PillButton label="Reset Data" onPress={resetCatData} /> */}
             </View>
 
-            {error && <Text>{error.message}</Text>}
-            {loading && <ActivityIndicator />}
+            {error && <ErrorText text={"Error: " + error.message} />}
+            {loading && <ActivityIndicator color={secondaryColor} />}
         </ScrollView>
     );
 }
 
 const titleVariant = "titleLarge";
-const bodyVariant = "bodyMedium";
-
-const styles = StyleSheet.create({
-    listTitle: {
-        fontSize: 20,
-    },
-    listView: {
-        justifyContent: "center",
-        height: 50,
-    },
-    userDetails: {
-        paddingVertical: 8,
-        paddingHorizontal: 4,
-    },
-});
+const bodyVariant = "bodyLarge";
+const subBodyVariant = "bodyMedium";

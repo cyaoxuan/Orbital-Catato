@@ -1,17 +1,52 @@
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { AuthProvider } from "../../utils/context/auth";
+import { IconButton } from "react-native-paper";
 
 export default function AuthLayout() {
+    const router = useRouter();
+
     return (
         <AuthProvider>
             <Stack initialRouteName="Welcome">
                 <Stack.Screen name="Welcome" options={{ headerShown: false }} />
-                <Stack.Screen name="Login" />
+                <Stack.Screen
+                    name="Login"
+                    options={{
+                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        elevation: 0,
+                        headerShadowVisible: false,
+                        headerLeft: () => (
+                            <IconButton
+                                icon="arrow-left"
+                                onPress={() => router.replace("/")}
+                            />
+                        ),
+                    }}
+                />
                 <Stack.Screen
                     name="ForgotPassword"
-                    options={{ title: "Forgot Password" }}
+                    options={{
+                        title: "Forgot Password",
+                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        elevation: 0,
+                        headerShadowVisible: false,
+                    }}
                 />
-                <Stack.Screen name="SignUp" />
+                <Stack.Screen
+                    name="SignUp"
+                    options={{
+                        title: "Sign Up",
+                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        elevation: 0,
+                        headerShadowVisible: false,
+                        headerLeft: () => (
+                            <IconButton
+                                icon="arrow-left"
+                                onPress={() => router.replace("/")}
+                            />
+                        ),
+                    }}
+                />
             </Stack>
         </AuthProvider>
     );
