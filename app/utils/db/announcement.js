@@ -23,12 +23,15 @@ export const useCreateAnnouncement = () => {
             setLoading([true]);
             setError([null]);
 
-            await addDoc(announcementColl, {
+            const announceDoc = doc(announcementColl);
+
+            await setDoc(announceDoc, {
+                announcementID: announceDoc.id,
                 message: message,
                 updatedAt: serverTimestamp(),
             });
 
-            // sendNoti("announcement", null);
+            sendNoti("announcement", null);
         } catch (error) {
             console.error("Error creating announcement:", error);
             setError([error]);
@@ -78,6 +81,7 @@ export const useUpdateAnnouncement = () => {
             setError([null]);
 
             await setDoc(doc(db, "Announcement", announcementID), {
+                announcementID: announcementID,
                 message: newMessage,
                 updatedAt: serverTimestamp(),
             });

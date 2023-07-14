@@ -1,9 +1,14 @@
-import { FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import { CatCard } from "./CatCard";
 import {
     formatLastFedSimple,
     formatLastSeenSimple,
 } from "../utils/formatDetails";
+import { Card, Paragraph } from "react-native-paper";
+import { screenMainColor } from "./Styles";
+import { View } from "react-native";
+import { BodyText } from "./Text";
+import { dateTimeOptions } from "../data/DateTimeOptions";
 
 // Function to get info1 field on the card
 // @param carouselType: "concern" or "fed"
@@ -41,21 +46,18 @@ const CardCarousel = ({
     navigation,
     ...card
 }) => {
-    const spaceBetweenCards = 16;
+    const spaceBetweenCards = 20;
 
     return (
         <FlatList
             testID="card-carousel"
-            style={{ height: (cardWidth * 6) / 5 }}
+            style={{ height: (cardWidth * 5) / 4 + 16 }}
             horizontal
             snapToAlignment="center"
             decelerationRate="normal"
             showsHorizontalScrollIndicator={false}
             scrollEventThrottle={4}
             snapToInterval={cardWidth + spaceBetweenCards}
-            ItemSeparatorComponent={() => (
-                <View style={{ width: spaceBetweenCards }} />
-            )}
             data={cats}
             keyExtractor={(item, index) => item.catID}
             renderItem={({ item }) => {
@@ -64,6 +66,7 @@ const CardCarousel = ({
                         name={item.name}
                         photoURL={item.photoURLs ? item.photoURLs[0] : null}
                         cardWidth={cardWidth}
+                        spaceBetweenCards={spaceBetweenCards}
                         profileOnPress={() =>
                             navigation.navigate("catalogue", {
                                 screen: "CatProfile",
@@ -98,4 +101,69 @@ const CardCarousel = ({
     );
 };
 
-export { getInfo1, CardCarousel };
+// Card Carousel used in Dashboard, implemented using FlatList and snaps to each card
+// props: announcements (array of announcement objects), cardWidth (number)
+const AnnouncementCarousel = ({ announcements, cardWidth }) => {
+    const spaceBetweenCards = 20;
+    return (
+        <FlatList
+            testID="announcement-carousel"
+            style={{ height: cardWidth / 2 + 16 }}
+            horizontal
+            decelerationRate="normal"
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={4}
+            ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
+            data={announcements}
+            renderItem={({ item, index }) => {
+                return (
+                    <Card
+                        key={index}
+                        style={{
+                            height: cardWidth / 2,
+                            width: cardWidth,
+                            borderRadius: 0,
+                            margin: spaceBetweenCards / 2,
+                            overflow: "hidden",
+                        }}
+                        theme={{
+                            colors: { elevation: { level1: screenMainColor } },
+                        }}
+                        mode="elevated"
+                    >
+                        <Card.Content
+                            style={{
+                                paddingHorizontal: 12,
+                            }}
+                        >
+                            <Paragraph
+                                variant="bodyMedium"
+                                style={{
+                                    fontFamily: "Nunito-Medium",
+                                    height: "85%",
+                                }}
+                            >
+                                {item.message}
+                            </Paragraph>
+                            <BodyText
+                                variant="bodySmall"
+                                text={
+                                    "Updated At: " +
+                                    item.updatedAt
+                                        .toDate()
+                                        .toLocaleString(
+                                            "en-GB",
+                                            dateTimeOptions
+                                        ) +
+                                    " (SGT)"
+                                }
+                            />
+                        </Card.Content>
+                    </Card>
+                );
+            }}
+        />
+    );
+};
+
+export { getInfo1, CardCarousel, AnnouncementCarousel };

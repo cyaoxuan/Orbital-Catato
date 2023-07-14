@@ -1,5 +1,5 @@
 import { FlatList, View } from "react-native";
-import { ActivityIndicator, Text } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import { useNavigation } from "expo-router";
 import { TouchableCatAvatar } from "../../../components/CatAvatar";
 import { useEffect, useState } from "react";
@@ -8,6 +8,8 @@ import { useGetUserByID } from "../../../utils/db/user";
 import { useAuth } from "../../../utils/context/auth";
 import { useIsFocused } from "@react-navigation/native";
 import { FilterButton } from "../../../components/Button";
+import { screenMainColor, secondaryColor } from "../../../components/Styles";
+import { ErrorText, TitleText } from "../../../components/Text";
 
 export default function Catalogue() {
     const { user, userRole } = useAuth();
@@ -69,52 +71,59 @@ export default function Catalogue() {
     }, [allCats, filterValue, userDB]);
 
     if (!user || !userRole) {
-        return <ActivityIndicator />;
+        return <ActivityIndicator color={secondaryColor} />;
     }
 
     return (
-        <FlatList
-            testID="catalogue"
-            contentContainerStyle={{ width: "100%" }}
-            ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
-            ListHeaderComponent={
-                <View style={{ alignItems: "center", marginBottom: 16 }}>
-                    <Text
-                        variant="headlineLarge"
-                        style={{ textAlign: "center", margin: 8 }}
-                    >
-                        Meet the Cats!
-                    </Text>
-                    {userRole.isUser && (
-                        <FilterButton
-                            filterValue={filterValue}
-                            onValueChange={onFilter}
-                            disabled={!userDB}
-                            firstValue="All"
-                            secondValue="Followed"
+        <View style={{ backgroundColor: screenMainColor, height: "100%" }}>
+            <FlatList
+                testID="catalogue"
+                contentContainerStyle={{
+                    width: "100%",
+                }}
+                ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
+                ListHeaderComponent={
+                    <View style={{ alignItems: "center", marginVertical: 16 }}>
+                        <TitleText
+                            variant="headlineLarge"
+                            text="Meet the Cats!"
+                            style={{ textAlign: "center" }}
                         />
-                    )}
+                        {userRole.isUser && (
+                            <FilterButton
+                                filterValue={filterValue}
+                                onValueChange={onFilter}
+                                disabled={!userDB}
+                                firstValue="All"
+                                secondValue="Followed"
+                            />
+                        )}
 
-                    {error[0] && <Text>Error: {error[0].message}</Text>}
-                    {loading[0] && <ActivityIndicator />}
-                </View>
-            }
-            data={displayCats}
-            renderItem={({ item }) => {
-                return (
-                    <TouchableCatAvatar
-                        size={200}
-                        photoURL={item.photoURLs ? item.photoURLs[0] : null}
-                        variant="headlineLarge"
-                        name={item.name}
-                        onPress={() => {
-                            navigation.navigate("CatProfile", {
-                                catID: item.catID,
-                            });
-                        }}
-                    />
-                );
-            }}
-        />
+                        {error[0] && (
+                            <ErrorText text={"Error: " + error[0].message} />
+                        )}
+                        {loading[0] && (
+                            <ActivityIndicator color={secondaryColor} />
+                        )}
+                    </View>
+                }
+                data={displayCats}
+                renderItem={({ item }) => {
+                    return (
+                        <TouchableCatAvatar
+                            size={200}
+                            photoURL={item.photoURLs ? item.photoURLs[0] : null}
+                            variant="headlineMedium"
+                            name={item.name}
+                            onPress={() => {
+                                navigation.navigate("CatProfile", {
+                                    catID: item.catID,
+                                });
+                            }}
+                        />
+                    );
+                }}
+            />
+        </View>
     );
 }

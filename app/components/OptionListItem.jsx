@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
 import { Divider, List, Switch } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
+import { secondaryColor } from "./Styles";
 
 // Styled RN Paper List Item for options
-// props: title (string), onPress (callback)
+// props: title (string), onPress (callback), divider (boolean)
 const OptionListItem = (props) => {
     return (
         <>
@@ -20,13 +21,13 @@ const OptionListItem = (props) => {
                     />
                 )}
             />
-            <Divider />
+            {props.divider && <Divider />}
         </>
     );
 };
 
 // Styled RN Paper List Item for options with icon
-// props: title (string), onPress (callback), iconName (string)
+// props: title (string), onPress (callback), iconName (string), divider (boolean)
 const OptionListItemIcon = (props) => {
     return (
         <>
@@ -50,29 +51,27 @@ const OptionListItemIcon = (props) => {
                     />
                 )}
             />
-            <Divider />
+            {props.divider && <Divider />}
         </>
     );
 };
 
 // Styled RN Paper List Item for switches
 // props: title (string), topView (boolean), bottomView (boolean),
-// value (hook value), onValueChange (callback)
+// value (hook value), onValueChange (callback), divider (boolean)
 const SwitchListItem = (props) => {
-    const viewStyle = [styles.listView];
-    if (props.topView) viewStyle.push(styles.topListView);
-    if (props.bottomView) viewStyle.push(styles.bottomListView);
-
     return (
         <List.Item
             title={props.title}
-            style={viewStyle}
+            description={props.description}
+            style={styles.listView}
             titleStyle={styles.listTitle}
+            descriptionStyle={styles.listDescription}
             right={() => (
                 <Switch
-                    style={{
-                        transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
-                    }}
+                    style={styles.switch}
+                    color={secondaryColor}
+                    disabled={props.disabled}
                     value={props.value}
                     onValueChange={props.onValueChange}
                 />
@@ -88,19 +87,20 @@ const iconSize = 20;
 // Notis
 const styles = StyleSheet.create({
     listTitle: {
+        fontFamily: "Nunito-Medium",
         fontSize: 20,
+    },
+    listDescription: {
+        fontFamily: "Nunito-Medium",
+        fontSize: 12,
     },
     listView: {
         justifyContent: "center",
         height: 65,
+        padding: 16,
     },
-    topListView: {
-        borderTopLeftRadius: 12,
-        borderTopRightRadius: 12,
-    },
-    bottomListView: {
-        borderBottomLeftRadius: 12,
-        borderBottomRightRadius: 12,
+    switch: {
+        transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],
     },
     userDetails: {
         paddingVertical: 8,

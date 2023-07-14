@@ -26,6 +26,8 @@ import {
     ImageFAB,
     ImageItem,
 } from "./GalleryComponents";
+import { screenMainColor, secondaryColor } from "../../../components/Styles";
+import { TitleText } from "../../../components/Text";
 
 export default function PhotoGallery() {
     const { user, userRole } = useAuth();
@@ -40,7 +42,9 @@ export default function PhotoGallery() {
         loading: deleteLoading,
         error: deleteError,
     } = useUserDeleteCatPictures();
-    const imageSize = getItemWidthCols(2, 8);
+
+    const imageMargins = 12;
+    const imageSize = getItemWidthCols(2, imageMargins);
 
     // Get photoURLs and add selected prop to each of them
     const route = useRoute();
@@ -205,12 +209,12 @@ export default function PhotoGallery() {
     };
 
     if (!user || !userRole) {
-        return <ActivityIndicator />;
+        return <ActivityIndicator color={secondaryColor} />;
     }
 
     return (
         <Provider theme={lightTheme}>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: screenMainColor }}>
                 {deleting && (
                     <DeletingView
                         changeDeleting={changeDeleting}
@@ -223,29 +227,50 @@ export default function PhotoGallery() {
                 <FlatList
                     ListHeaderComponent={() => (
                         <View
-                            style={{ alignItems: "center", marginVertical: 16 }}
+                            style={{ alignItems: "center", marginVertical: 4 }}
                         >
                             {filterValue === "Concern" ? (
                                 // Flatlist header based on gallery or concern
-                                <>
-                                    <Text variant="headlineSmall">
-                                        {route.params.name} Concern Photos
-                                    </Text>
+                                <View
+                                    style={{ height: 60, alignItems: "center" }}
+                                >
+                                    <TitleText
+                                        variant="headlineSmall"
+                                        text={
+                                            route.params.name +
+                                            " Concern Photos"
+                                        }
+                                    />
                                     <Text
                                         variant="bodyLarge"
                                         style={{
+                                            fontFamily: "Nunito-Medium",
                                             textAlign: "center",
                                             marginHorizontal: 16,
                                         }}
                                     >
-                                        Concern Photos are uploaded from the
-                                        concern update form!
+                                        Uploaded from concern update forms
                                     </Text>
-                                </>
+                                </View>
                             ) : (
-                                <Text variant="headlineMedium">
-                                    {route.params.name} Meowmories
-                                </Text>
+                                <View
+                                    style={{ height: 60, alignItems: "center" }}
+                                >
+                                    <TitleText
+                                        variant="headlineMedium"
+                                        text={route.params.name + " Meowmories"}
+                                    />
+                                    <Text
+                                        variant="bodyLarge"
+                                        style={{
+                                            fontFamily: "Nunito-Medium",
+                                            textAlign: "center",
+                                            marginHorizontal: 16,
+                                        }}
+                                    >
+                                        Profile picture and gallery photos
+                                    </Text>
+                                </View>
                             )}
                             <FilterButton
                                 filterValue={filterValue}
@@ -258,7 +283,9 @@ export default function PhotoGallery() {
                     )}
                     ListHeaderComponentStyle={{ alignItems: "center" }}
                     numColumns={2}
-                    contentContainerStyle={{ justifyContent: "space-around" }}
+                    contentContainerStyle={{
+                        justifyContent: "space-between",
+                    }}
                     data={listPhotos}
                     extraData={selectedImages}
                     renderItem={({ item, index }) => {
@@ -269,6 +296,7 @@ export default function PhotoGallery() {
                                 deleting={deleting}
                                 imageOnPress={() => selectImage(item)}
                                 imageSize={imageSize}
+                                imageMargins={imageMargins}
                             />
                         );
                     }}

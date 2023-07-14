@@ -1,28 +1,42 @@
 import { Button, Card } from "react-native-paper";
-import { IconTextField } from "./InfoText";
+import { IconTextFieldRow } from "./InfoText";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { screenMainColor, secondaryColor } from "./Styles";
 
 // Card used for the Carousel in Dashboard
-// props: cardWidth (number), photoURL (string), name (string), userRole (object of roles)
+// props: cardWidth (number), spaceBetweenCards (number), photoURL (string), name (string), userRole (object of roles)
 // iconName1 (string), field1 (string), info1 (string), iconName2 (string), field2 (string), info2 (string)
 // profileOnPress (calback), locationOnPress (callback), showFindLocation (boolean)
 const CatCard = (props) => {
     const cardWidth = props.cardWidth ? props.cardWidth : 300;
+    const spaceBetweenCards = props.spaceBetweenCards
+        ? props.spaceBetweenCards
+        : 20;
+    const buttonColor = secondaryColor;
 
     return (
         <Card
             style={{
-                height: (cardWidth * 11) / 10,
+                height: (cardWidth * 5) / 4,
                 width: cardWidth,
-                margin: 4,
+                margin: spaceBetweenCards / 2,
+                borderRadius: 20,
+                overflow: "hidden",
+            }}
+            theme={{
+                colors: { elevation: { level1: screenMainColor } },
             }}
             mode="elevated"
         >
             <Card.Cover
                 style={{
-                    height: (cardWidth * 7) / 12,
+                    height: (cardWidth * 2) / 3,
                     width: cardWidth,
                     resizeMode: "cover",
+                }}
+                theme={{
+                    roundness: 0,
+                    isV3: false,
                 }}
                 testID="cover-image"
                 source={
@@ -34,9 +48,10 @@ const CatCard = (props) => {
             <Card.Title
                 title={props.name || "Name"}
                 titleVariant="titleLarge"
+                titleStyle={{ fontFamily: "Nunito-Bold" }}
             />
-            <Card.Content style={{ paddingHorizontal: 4 }}>
-                <IconTextField
+            <Card.Content style={{ paddingHorizontal: 8 }}>
+                <IconTextFieldRow
                     testID="infoText1"
                     iconName={props.iconName1}
                     iconSize={20}
@@ -44,7 +59,7 @@ const CatCard = (props) => {
                     field={props.field1}
                     info={props.info1}
                 />
-                <IconTextField
+                <IconTextFieldRow
                     testID="infoText2"
                     iconName={props.iconName2}
                     iconSize={20}
@@ -55,21 +70,47 @@ const CatCard = (props) => {
             </Card.Content>
             <Card.Actions>
                 <Button
+                    compact={true}
+                    textColor={buttonColor}
+                    style={{
+                        borderColor: buttonColor,
+                        height: 36,
+                    }}
+                    contentStyle={{ height: 36 }}
+                    labelStyle={{
+                        fontFamily: "Nunito-Medium",
+                        fontSize: 16,
+                        padding: 0,
+                        margin: 0,
+                    }}
                     onPress={props.profileOnPress}
                     icon={() => (
-                        <Ionicons name="heart" size={20} color="#663399" />
+                        <Ionicons name="heart" size={16} color={buttonColor} />
                     )}
                 >
                     Profile
                 </Button>
                 {props.userRole?.isCaretaker && (
                     <Button
+                        buttonColor={buttonColor}
+                        style={{
+                            height: 36,
+                        }}
+                        contentStyle={{
+                            height: 36,
+                        }}
+                        labelStyle={{
+                            fontFamily: "Nunito-Medium",
+                            fontSize: 16,
+                            padding: 0,
+                            margin: 0,
+                        }}
                         disabled={
                             props.showFindLocation === undefined ? true : false
                         }
                         onPress={props.locationOnPress}
                         icon={() => (
-                            <Ionicons name="location" size={20} color="white" />
+                            <Ionicons name="location" size={16} color="white" />
                         )}
                     >
                         Locate
@@ -85,7 +126,15 @@ const CatCard = (props) => {
 const CatCardSimple = (props) => {
     return (
         <Card
-            style={{ flex: 1 / 2, margin: 8 }}
+            style={{
+                flex: 1 / 2,
+                margin: 8,
+                borderRadius: 10,
+                overflow: "hidden",
+            }}
+            theme={{
+                colors: { elevation: { level1: screenMainColor } },
+            }}
             onPress={props.onPress}
             mode="elevated"
         >
@@ -94,6 +143,10 @@ const CatCardSimple = (props) => {
                     height: (3 * props.cardWidth) / 4,
                     width: props.cardWidth,
                     resizeMode: "cover",
+                }}
+                theme={{
+                    roundness: 4,
+                    isV3: false,
                 }}
                 testID="cover-image"
                 source={
@@ -105,6 +158,7 @@ const CatCardSimple = (props) => {
             <Card.Title
                 title={props.name || "Name"}
                 titleVariant="bodyLarge"
+                titleStyle={{ fontFamily: "Nunito-Medium" }}
                 titleNumberOfLines={2}
             />
         </Card>

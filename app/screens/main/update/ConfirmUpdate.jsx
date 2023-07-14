@@ -5,6 +5,7 @@ import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import { PillButton } from "../../../components/Button";
 import { useAuth } from "../../../utils/context/auth";
+import { secondaryColor } from "../../../components/Styles";
 
 export default function ConfirmUpdate() {
     const { userRole } = useAuth();
@@ -12,7 +13,7 @@ export default function ConfirmUpdate() {
     const route = useRoute();
 
     if (!userRole) {
-        return <ActivityIndicator />;
+        return <ActivityIndicator color={secondaryColor} />;
     }
 
     return (

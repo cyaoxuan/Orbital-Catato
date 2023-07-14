@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View } from "react-native";
-import { ActivityIndicator, Text } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import { auth } from "../../utils/context/auth";
 import { useRouter } from "expo-router";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -8,6 +8,8 @@ import { AuthInput, PasswordInput } from "../../components/TextInput";
 import { PillButton } from "../../components/Button";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { addUserPushToken } from "../../utils/db/user";
+import { allStyles, primaryColor } from "../../components/Styles";
+import { BodyText, ErrorText, TitleText } from "../../components/Text";
 
 export default function SignUp() {
     const [error, setError] = useState(null);
@@ -43,17 +45,16 @@ export default function SignUp() {
     };
 
     return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text variant="displayMedium">Sign Up</Text>
-            <Text variant="displaySmall">Create an account</Text>
+        <View style={allStyles.centerFlexView}>
+            <View>
+                <TitleText variant="displayMedium" text="Sign Up" />
+                <BodyText variant="displaySmall" text="Create an account" />
+            </View>
 
-            <View style={{ justifyContent: "space-between" }}>
+            <View style={{ justifyContent: "space-between", paddingBottom: 8 }}>
                 <AuthInput
                     label="Username"
-                    iconName="person"
-                    placeholder="orbitee"
+                    iconName="person-outline"
                     textContentType="username"
                     value={username}
                     onChangeText={setUsername}
@@ -61,26 +62,29 @@ export default function SignUp() {
 
                 <AuthInput
                     label="Email"
-                    iconName="mail"
-                    placeholder="orbitee@kitty.xyz"
+                    iconName="mail-outline"
                     textContentType="emailAddress"
                     value={email}
                     onChangeText={setEmail}
                 />
 
                 <PasswordInput
-                    iconName="lock-closed"
                     label="Password"
+                    iconName="lock-closed-outline"
                     textContentType="password"
                     value={password}
                     onChangeText={setPassword}
                 />
             </View>
 
-            <PillButton label="Sign Up" width="65%" onPress={handleSignUp} />
+            <PillButton
+                label="Sign Up"
+                onPress={handleSignUp}
+                colorMode="primary"
+            />
 
-            {error && <Text>{error.message}</Text>}
-            {loading && <ActivityIndicator />}
+            {error && <ErrorText variant="bodyMedium" text={error.message} />}
+            {loading && <ActivityIndicator color={primaryColor} />}
         </View>
     );
 }

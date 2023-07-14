@@ -2,7 +2,6 @@
 
 exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
 <RCTScrollView
-  ItemSeparatorComponent={[Function]}
   data={
     [
       {
@@ -92,11 +91,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
   scrollEventThrottle={4}
   showsHorizontalScrollIndicator={false}
   snapToAlignment="center"
-  snapToInterval={316}
+  snapToInterval={320}
   stickyHeaderIndices={[]}
   style={
     {
-      "height": 360,
+      "height": 391,
     }
   }
   testID="card-carousel"
@@ -119,10 +118,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(247, 243, 249, 1)",
-            "borderRadius": 12,
-            "height": 330,
-            "margin": 4,
+            "backgroundColor": "rgba(255, 255, 255, 1)",
+            "borderRadius": 20,
+            "height": 375,
+            "margin": 10,
             "shadowColor": "#000",
             "shadowOffset": {
               "height": 1,
@@ -139,10 +138,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
           collapsable={false}
           style={
             {
-              "backgroundColor": "rgba(247, 243, 249, 1)",
-              "borderRadius": 12,
+              "backgroundColor": "rgba(255, 255, 255, 1)",
+              "borderRadius": 20,
               "elevation": 1,
               "flex": 1,
+              "overflow": "hidden",
               "shadowColor": "#000",
               "shadowOffset": {
                 "height": 1,
@@ -174,10 +174,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     "overflow": "hidden",
                   },
                   {
-                    "borderRadius": 12,
+                    "borderTopLeftRadius": 0,
+                    "borderTopRightRadius": 0,
                   },
                   {
-                    "height": 175,
+                    "height": 200,
                     "resizeMode": "cover",
                     "width": 300,
                   },
@@ -209,7 +210,8 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "width": undefined,
                     },
                     {
-                      "borderRadius": 12,
+                      "borderTopLeftRadius": 0,
+                      "borderTopRightRadius": 0,
                     },
                   ]
                 }
@@ -269,7 +271,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                         {
                           "marginBottom": 2,
                         },
-                        undefined,
+                        {
+                          "fontFamily": "Nunito-Bold",
+                        },
                       ],
                     ]
                   }
@@ -287,7 +291,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   },
                   undefined,
                   {
-                    "paddingHorizontal": 4,
+                    "paddingHorizontal": 8,
                   },
                 ]
               }
@@ -322,7 +326,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       },
                       {
                         "flex": 1,
-                        "fontWeight": "bold",
+                        "fontFamily": "Nunito-Bold",
                       },
                     ]
                   }
@@ -347,6 +351,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                         },
                         {
                           "flex": 1,
+                          "fontFamily": "Nunito-Medium",
                         },
                       ]
                     }
@@ -385,7 +390,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       },
                       {
                         "flex": 1,
-                        "fontWeight": "bold",
+                        "fontFamily": "Nunito-Bold",
                       },
                     ]
                   }
@@ -410,6 +415,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                         },
                         {
                           "flex": 1,
+                          "fontFamily": "Nunito-Medium",
                         },
                       ]
                     }
@@ -450,6 +456,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   {
                     "backgroundColor": "transparent",
                     "borderRadius": 20,
+                    "height": 36,
                     "marginLeft": 8,
                     "shadowColor": "#000",
                     "shadowOffset": {
@@ -467,11 +474,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   style={
                     {
                       "backgroundColor": "transparent",
-                      "borderColor": "rgba(121, 116, 126, 1)",
+                      "borderColor": "#05668D",
                       "borderRadius": 20,
                       "borderStyle": "solid",
                       "borderWidth": 1,
-                      "flex": undefined,
+                      "flex": 1,
                       "minWidth": 64,
                       "shadowColor": "#000",
                       "shadowOffset": {
@@ -535,7 +542,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                             "flexDirection": "row",
                             "justifyContent": "center",
                           },
-                          undefined,
+                          {
+                            "height": 36,
+                          },
                         ]
                       }
                     >
@@ -590,14 +599,19 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                               false,
                               false,
                               {
-                                "color": "rgba(103, 80, 164, 1)",
+                                "color": "#05668D",
                                 "fontFamily": "System",
                                 "fontSize": 14,
                                 "fontWeight": "500",
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              undefined,
+                              {
+                                "fontFamily": "Nunito-Medium",
+                                "fontSize": 16,
+                                "margin": 0,
+                                "padding": 0,
+                              },
                             ],
                           ]
                         }
@@ -613,8 +627,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                 collapsable={false}
                 style={
                   {
-                    "backgroundColor": "rgba(103, 80, 164, 1)",
+                    "backgroundColor": "#05668D",
                     "borderRadius": 20,
+                    "height": 36,
                     "marginLeft": 8,
                     "shadowColor": "#000",
                     "shadowOffset": {
@@ -631,12 +646,12 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   collapsable={false}
                   style={
                     {
-                      "backgroundColor": "rgba(103, 80, 164, 1)",
+                      "backgroundColor": "#05668D",
                       "borderColor": "transparent",
                       "borderRadius": 20,
                       "borderStyle": "solid",
                       "borderWidth": 0,
-                      "flex": undefined,
+                      "flex": 1,
                       "minWidth": 64,
                       "shadowColor": "#000",
                       "shadowOffset": {
@@ -700,7 +715,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                             "flexDirection": "row",
                             "justifyContent": "center",
                           },
-                          undefined,
+                          {
+                            "height": 36,
+                          },
                         ]
                       }
                     >
@@ -762,7 +779,12 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              undefined,
+                              {
+                                "fontFamily": "Nunito-Medium",
+                                "fontSize": 16,
+                                "margin": 0,
+                                "padding": 0,
+                              },
                             ],
                           ]
                         }
@@ -778,13 +800,6 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
           </View>
         </View>
       </View>
-      <View
-        style={
-          {
-            "width": 16,
-          }
-        }
-      />
     </View>
     <View
       onFocusCapture={[Function]}
@@ -802,10 +817,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(247, 243, 249, 1)",
-            "borderRadius": 12,
-            "height": 330,
-            "margin": 4,
+            "backgroundColor": "rgba(255, 255, 255, 1)",
+            "borderRadius": 20,
+            "height": 375,
+            "margin": 10,
             "shadowColor": "#000",
             "shadowOffset": {
               "height": 1,
@@ -822,10 +837,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
           collapsable={false}
           style={
             {
-              "backgroundColor": "rgba(247, 243, 249, 1)",
-              "borderRadius": 12,
+              "backgroundColor": "rgba(255, 255, 255, 1)",
+              "borderRadius": 20,
               "elevation": 1,
               "flex": 1,
+              "overflow": "hidden",
               "shadowColor": "#000",
               "shadowOffset": {
                 "height": 1,
@@ -857,10 +873,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     "overflow": "hidden",
                   },
                   {
-                    "borderRadius": 12,
+                    "borderTopLeftRadius": 0,
+                    "borderTopRightRadius": 0,
                   },
                   {
-                    "height": 175,
+                    "height": 200,
                     "resizeMode": "cover",
                     "width": 300,
                   },
@@ -892,7 +909,8 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "width": undefined,
                     },
                     {
-                      "borderRadius": 12,
+                      "borderTopLeftRadius": 0,
+                      "borderTopRightRadius": 0,
                     },
                   ]
                 }
@@ -952,7 +970,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                         {
                           "marginBottom": 2,
                         },
-                        undefined,
+                        {
+                          "fontFamily": "Nunito-Bold",
+                        },
                       ],
                     ]
                   }
@@ -970,7 +990,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   },
                   undefined,
                   {
-                    "paddingHorizontal": 4,
+                    "paddingHorizontal": 8,
                   },
                 ]
               }
@@ -1005,7 +1025,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       },
                       {
                         "flex": 1,
-                        "fontWeight": "bold",
+                        "fontFamily": "Nunito-Bold",
                       },
                     ]
                   }
@@ -1030,6 +1050,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                         },
                         {
                           "flex": 1,
+                          "fontFamily": "Nunito-Medium",
                         },
                       ]
                     }
@@ -1068,7 +1089,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       },
                       {
                         "flex": 1,
-                        "fontWeight": "bold",
+                        "fontFamily": "Nunito-Bold",
                       },
                     ]
                   }
@@ -1093,6 +1114,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                         },
                         {
                           "flex": 1,
+                          "fontFamily": "Nunito-Medium",
                         },
                       ]
                     }
@@ -1133,6 +1155,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   {
                     "backgroundColor": "transparent",
                     "borderRadius": 20,
+                    "height": 36,
                     "marginLeft": 8,
                     "shadowColor": "#000",
                     "shadowOffset": {
@@ -1150,11 +1173,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   style={
                     {
                       "backgroundColor": "transparent",
-                      "borderColor": "rgba(121, 116, 126, 1)",
+                      "borderColor": "#05668D",
                       "borderRadius": 20,
                       "borderStyle": "solid",
                       "borderWidth": 1,
-                      "flex": undefined,
+                      "flex": 1,
                       "minWidth": 64,
                       "shadowColor": "#000",
                       "shadowOffset": {
@@ -1218,7 +1241,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                             "flexDirection": "row",
                             "justifyContent": "center",
                           },
-                          undefined,
+                          {
+                            "height": 36,
+                          },
                         ]
                       }
                     >
@@ -1273,14 +1298,19 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                               false,
                               false,
                               {
-                                "color": "rgba(103, 80, 164, 1)",
+                                "color": "#05668D",
                                 "fontFamily": "System",
                                 "fontSize": 14,
                                 "fontWeight": "500",
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              undefined,
+                              {
+                                "fontFamily": "Nunito-Medium",
+                                "fontSize": 16,
+                                "margin": 0,
+                                "padding": 0,
+                              },
                             ],
                           ]
                         }
@@ -1298,6 +1328,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   {
                     "backgroundColor": "rgba(28, 27, 31, 0.12)",
                     "borderRadius": 20,
+                    "height": 36,
                     "marginLeft": 8,
                     "shadowColor": "#000",
                     "shadowOffset": {
@@ -1319,7 +1350,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "borderRadius": 20,
                       "borderStyle": "solid",
                       "borderWidth": 0,
-                      "flex": undefined,
+                      "flex": 1,
                       "minWidth": 64,
                       "shadowColor": "#000",
                       "shadowOffset": {
@@ -1383,7 +1414,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                             "flexDirection": "row",
                             "justifyContent": "center",
                           },
-                          undefined,
+                          {
+                            "height": 36,
+                          },
                         ]
                       }
                     >
@@ -1445,7 +1478,12 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              undefined,
+                              {
+                                "fontFamily": "Nunito-Medium",
+                                "fontSize": 16,
+                                "margin": 0,
+                                "padding": 0,
+                              },
                             ],
                           ]
                         }
@@ -1461,13 +1499,6 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
           </View>
         </View>
       </View>
-      <View
-        style={
-          {
-            "width": 16,
-          }
-        }
-      />
     </View>
     <View
       onFocusCapture={[Function]}
@@ -1485,10 +1516,10 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
         collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(247, 243, 249, 1)",
-            "borderRadius": 12,
-            "height": 330,
-            "margin": 4,
+            "backgroundColor": "rgba(255, 255, 255, 1)",
+            "borderRadius": 20,
+            "height": 375,
+            "margin": 10,
             "shadowColor": "#000",
             "shadowOffset": {
               "height": 1,
@@ -1505,10 +1536,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
           collapsable={false}
           style={
             {
-              "backgroundColor": "rgba(247, 243, 249, 1)",
-              "borderRadius": 12,
+              "backgroundColor": "rgba(255, 255, 255, 1)",
+              "borderRadius": 20,
               "elevation": 1,
               "flex": 1,
+              "overflow": "hidden",
               "shadowColor": "#000",
               "shadowOffset": {
                 "height": 1,
@@ -1540,10 +1572,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     "overflow": "hidden",
                   },
                   {
-                    "borderRadius": 12,
+                    "borderTopLeftRadius": 0,
+                    "borderTopRightRadius": 0,
                   },
                   {
-                    "height": 175,
+                    "height": 200,
                     "resizeMode": "cover",
                     "width": 300,
                   },
@@ -1575,7 +1608,8 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "width": undefined,
                     },
                     {
-                      "borderRadius": 12,
+                      "borderTopLeftRadius": 0,
+                      "borderTopRightRadius": 0,
                     },
                   ]
                 }
@@ -1635,7 +1669,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                         {
                           "marginBottom": 2,
                         },
-                        undefined,
+                        {
+                          "fontFamily": "Nunito-Bold",
+                        },
                       ],
                     ]
                   }
@@ -1653,7 +1689,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   },
                   undefined,
                   {
-                    "paddingHorizontal": 4,
+                    "paddingHorizontal": 8,
                   },
                 ]
               }
@@ -1688,7 +1724,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       },
                       {
                         "flex": 1,
-                        "fontWeight": "bold",
+                        "fontFamily": "Nunito-Bold",
                       },
                     ]
                   }
@@ -1713,6 +1749,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                         },
                         {
                           "flex": 1,
+                          "fontFamily": "Nunito-Medium",
                         },
                       ]
                     }
@@ -1751,7 +1788,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       },
                       {
                         "flex": 1,
-                        "fontWeight": "bold",
+                        "fontFamily": "Nunito-Bold",
                       },
                     ]
                   }
@@ -1776,6 +1813,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                         },
                         {
                           "flex": 1,
+                          "fontFamily": "Nunito-Medium",
                         },
                       ]
                     }
@@ -1816,6 +1854,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   {
                     "backgroundColor": "transparent",
                     "borderRadius": 20,
+                    "height": 36,
                     "marginLeft": 8,
                     "shadowColor": "#000",
                     "shadowOffset": {
@@ -1833,11 +1872,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   style={
                     {
                       "backgroundColor": "transparent",
-                      "borderColor": "rgba(121, 116, 126, 1)",
+                      "borderColor": "#05668D",
                       "borderRadius": 20,
                       "borderStyle": "solid",
                       "borderWidth": 1,
-                      "flex": undefined,
+                      "flex": 1,
                       "minWidth": 64,
                       "shadowColor": "#000",
                       "shadowOffset": {
@@ -1901,7 +1940,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                             "flexDirection": "row",
                             "justifyContent": "center",
                           },
-                          undefined,
+                          {
+                            "height": 36,
+                          },
                         ]
                       }
                     >
@@ -1956,14 +1997,19 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                               false,
                               false,
                               {
-                                "color": "rgba(103, 80, 164, 1)",
+                                "color": "#05668D",
                                 "fontFamily": "System",
                                 "fontSize": 14,
                                 "fontWeight": "500",
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              undefined,
+                              {
+                                "fontFamily": "Nunito-Medium",
+                                "fontSize": 16,
+                                "margin": 0,
+                                "padding": 0,
+                              },
                             ],
                           ]
                         }
@@ -1981,6 +2027,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                   {
                     "backgroundColor": "rgba(28, 27, 31, 0.12)",
                     "borderRadius": 20,
+                    "height": 36,
                     "marginLeft": 8,
                     "shadowColor": "#000",
                     "shadowOffset": {
@@ -2002,7 +2049,7 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "borderRadius": 20,
                       "borderStyle": "solid",
                       "borderWidth": 0,
-                      "flex": undefined,
+                      "flex": 1,
                       "minWidth": 64,
                       "shadowColor": "#000",
                       "shadowOffset": {
@@ -2066,7 +2113,9 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                             "flexDirection": "row",
                             "justifyContent": "center",
                           },
-                          undefined,
+                          {
+                            "height": 36,
+                          },
                         ]
                       }
                     >
@@ -2128,7 +2177,12 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              undefined,
+                              {
+                                "fontFamily": "Nunito-Medium",
+                                "fontSize": 16,
+                                "margin": 0,
+                                "padding": 0,
+                              },
                             ],
                           ]
                         }

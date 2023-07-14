@@ -49,7 +49,10 @@ exports[`<CatAvatar /> renders correctly 1`] = `
         {
           "writingDirection": "ltr",
         },
-        undefined,
+        {
+          "color": undefined,
+          "fontFamily": "Nunito-Medium",
+        },
       ]
     }
   >
@@ -136,7 +139,10 @@ exports[`<TouchableCatAvatar /> renders correctly 1`] = `
         {
           "writingDirection": "ltr",
         },
-        undefined,
+        {
+          "color": undefined,
+          "fontFamily": "Nunito-Medium",
+        },
       ]
     }
   >

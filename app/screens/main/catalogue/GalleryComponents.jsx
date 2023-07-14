@@ -1,26 +1,35 @@
 import React from "react";
 import { Image, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Button, Dialog, FAB, IconButton, Text } from "react-native-paper";
+import { BodyText } from "../../../components/Text";
 import {
-    Button,
-    Dialog,
-    FAB,
-    IconButton,
-    Portal,
-    Text,
-} from "react-native-paper";
+    allStyles,
+    screenSecondaryColor,
+    secondaryColor,
+} from "../../../components/Styles";
 
 // Image item in PhotoGallery FlatList
-// props: item (object), index (number), deleting (boolean), imageOnPress (callback), imageSize (number)
-const ImageItem = ({ item, index, deleting, imageOnPress, imageSize }) => {
+// props: item (object), index (number), deleting (boolean), imageOnPress (callback), imageSize (number), imageMargins (number)
+const ImageItem = ({
+    item,
+    index,
+    deleting,
+    imageOnPress,
+    imageSize,
+    imageMargins,
+}) => {
     return (
         <TouchableOpacity
             activeOpacity={0.8}
             disabled={!deleting}
             onPress={imageOnPress}
             style={{
-                height: imageSize + 30 + 8,
-                width: imageSize + 8,
+                height: imageSize + 30 + imageMargins,
+                width: imageSize + imageMargins,
+                flex: 0.5,
+                alignItems: "center",
+                justifyContent: "center",
             }}
         >
             <View key={index} testID="gallery-photo">
@@ -29,7 +38,7 @@ const ImageItem = ({ item, index, deleting, imageOnPress, imageSize }) => {
                         height: imageSize,
                         width: imageSize,
                         resizeMode: "cover",
-                        margin: 8,
+                        marginHorizontal: imageMargins,
                     }}
                     source={{ uri: item.photoURL }}
                 />
@@ -39,13 +48,14 @@ const ImageItem = ({ item, index, deleting, imageOnPress, imageSize }) => {
                         style={{
                             flexDirection: "row",
                             height: 30,
-                            marginHorizontal: 8,
+                            marginHorizontal: imageMargins,
                             justifyContent: "space-between",
                         }}
                     >
-                        <Text>
-                            {item.isSelected ? "Selected" : "Not Selected"}
-                        </Text>
+                        <BodyText
+                            text={item.isSelected ? "Selected" : "Not Selected"}
+                        />
+
                         <Ionicons
                             name={
                                 item.isSelected
@@ -53,7 +63,7 @@ const ImageItem = ({ item, index, deleting, imageOnPress, imageSize }) => {
                                     : "checkmark-circle-outline"
                             }
                             size={20}
-                            color={"#663399"}
+                            color={secondaryColor}
                         />
                     </View>
                 )}
@@ -77,7 +87,7 @@ const ImageFAB = ({
             <Ionicons
                 name="trash"
                 size={20}
-                color="#663399"
+                color={secondaryColor}
                 style={{ alignSelf: "center" }}
             />
         ),
@@ -95,7 +105,7 @@ const ImageFAB = ({
                           <Ionicons
                               name="camera"
                               size={20}
-                              color="#663399"
+                              color={secondaryColor}
                               style={{ alignSelf: "center" }}
                           />
                       ),
@@ -107,7 +117,7 @@ const ImageFAB = ({
                           <Ionicons
                               name="image"
                               size={20}
-                              color="#663399"
+                              color={secondaryColor}
                               style={{ alignSelf: "center" }}
                           />
                       ),
@@ -125,8 +135,11 @@ const ImageFAB = ({
                 bottom: 10,
                 right: 10,
             }}
+            fabStyle={{ backgroundColor: secondaryColor }}
+            theme={{ colors: { elevation: { level3: screenSecondaryColor } } }}
+            color="white"
             open={open}
-            icon={open ? "close" : "plus"}
+            icon={"pencil"}
             actions={actions}
             onStateChange={() => setOpen((prev) => !prev)}
         />
@@ -153,7 +166,7 @@ const ImageDialog = ({
                     : "Image Upload"}
             </Dialog.Title>
             <Dialog.Content>
-                <Text variant="bodyMedium">{dialogText}</Text>
+                <BodyText variant="bodyMedium" text={dialogText} />
             </Dialog.Content>
             <Dialog.Actions>
                 {deleting && (
@@ -171,6 +184,9 @@ const ImageDialog = ({
                                 ? backHideDialog
                                 : confirmHideDialog
                         }
+                        mode="text"
+                        textColor={secondaryColor}
+                        labelStyle={allStyles.buttonText}
                     >
                         Done
                     </Button>
@@ -201,7 +217,7 @@ const DeletingView = ({
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
-                backgroundColor: "mistyrose",
+                backgroundColor: screenSecondaryColor,
             }}
         >
             <IconButton
@@ -209,22 +225,28 @@ const DeletingView = ({
                     <Ionicons
                         name="close-circle-outline"
                         size={20}
-                        color="#663399"
+                        color={secondaryColor}
                         style={{ alignSelf: "center" }}
                     />
                 )}
                 onPress={changeDeleting}
             />
-            <Text>
+            <Text style={{ fontFamily: "Nunito-Medium" }}>
                 Selected Items: {selectedImages.length}
                 {isAllSelected && (
-                    <Text style={{ color: "#BA1A1A" }}>
+                    <Text
+                        style={{
+                            fontFamily: "Nunito-Medium",
+                            color: "#BA1A1A",
+                        }}
+                    >
                         {" (Cannot Delete All)"}
                     </Text>
                 )}
             </Text>
             <Button
                 mode="text"
+                textColor={secondaryColor}
                 onPress={showDeleteDialog}
                 disabled={
                     // gallery cannot delete all photos

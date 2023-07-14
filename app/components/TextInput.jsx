@@ -2,10 +2,11 @@ import { View, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 import { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { allStyles, primaryColor, secondaryColor } from "./Styles";
 
 // Text Input for authentication screens (email / username) and admin panel
 // props: iconName (string), disabled (boolean), label (string), placeholder (string), textContentType (string)
-// value (hook value), onChangeText (callback)
+// value (hook value), onChangeText (callback), colorMode (string)
 const AuthInput = (props) => {
     const [value, setValue] = useState("");
 
@@ -14,16 +15,20 @@ const AuthInput = (props) => {
             <Ionicons
                 testID="icon"
                 name={props.iconName || "help"}
-                size={24}
+                size={20}
                 style={styles.icon}
             />
             <TextInput
                 testID="input"
-                style={styles.input}
-                mode="outlined"
+                style={[styles.input, allStyles.bodyText]}
+                activeUnderlineColor={
+                    props.colorMode === "secondary"
+                        ? secondaryColor
+                        : primaryColor
+                }
+                mode="flat"
                 disabled={props.disabled}
                 label={props.label || "Label"}
-                placeholder={props.placeholder}
                 autoCapitalize="none"
                 textContentType={props.textContentType}
                 value={props.value || value}
@@ -46,16 +51,16 @@ const PasswordInput = (props) => {
             <Ionicons
                 testID="icon"
                 name={props.iconName || "help"}
-                size={24}
+                size={20}
                 style={styles.icon}
             />
             <TextInput
                 testID="input"
-                style={styles.input}
-                mode="outlined"
+                style={[styles.input, allStyles.bodyText]}
+                activeUnderlineColor={primaryColor}
+                mode="flat"
                 disabled={props.disabled}
                 label={props.label || "Label"}
-                placeholder={props.placeholder}
                 autoCorrect={false}
                 autoCapitalize="none"
                 textContentType={props.textContentType}
@@ -80,25 +85,18 @@ export { AuthInput, PasswordInput };
 const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: "row",
-        alignItems: "center",
         justifyContent: "center",
         padding: 12,
     },
 
     input: {
         fontSize: 16,
-        width: "80%",
-    },
-
-    formInput: {
-        fontSize: 16,
-        width: "100%",
+        width: "90%",
         backgroundColor: "transparent",
-        paddingHorizontal: 0,
-        alignContent: "center",
     },
 
     icon: {
-        marginHorizontal: 8,
+        marginHorizontal: 16,
+        marginTop: 28,
     },
 });

@@ -4,7 +4,6 @@ exports[`<AuthInput /> renders correctly 1`] = `
 <View
   style={
     {
-      "alignItems": "center",
       "flexDirection": "row",
       "justifyContent": "center",
       "padding": 12,
@@ -18,10 +17,11 @@ exports[`<AuthInput /> renders correctly 1`] = `
       [
         {
           "color": undefined,
-          "fontSize": 24,
+          "fontSize": 20,
         },
         {
-          "marginHorizontal": 8,
+          "marginHorizontal": 16,
+          "marginTop": 28,
         },
         {
           "fontFamily": "ionicons",
@@ -37,228 +37,197 @@ exports[`<AuthInput /> renders correctly 1`] = `
   </Text>
   <View
     style={
-      {
-        "width": "80%",
-      }
+      [
+        {
+          "backgroundColor": "rgba(231, 224, 236, 1)",
+          "borderTopLeftRadius": 4,
+          "borderTopRightRadius": 4,
+        },
+        {
+          "backgroundColor": "transparent",
+          "fontFamily": "Nunito-Medium",
+          "width": "90%",
+        },
+      ]
     }
   >
     <View
-      pointerEvents="none"
+      collapsable={false}
+      style={
+        {
+          "backgroundColor": "rgba(28, 27, 31, 1)",
+          "bottom": 0,
+          "height": 1,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "transform": [
+            {
+              "scaleY": 0.5,
+            },
+          ],
+          "zIndex": 1,
+        }
+      }
+      testID="text-input-underline"
+    />
+    <View
       style={
         [
           {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 6,
+            "paddingBottom": 0,
+            "paddingTop": 0,
           },
           {
-            "backgroundColor": "rgba(255, 251, 254, 1)",
-            "borderColor": "rgba(121, 116, 126, 1)",
-            "borderRadius": 4,
-            "borderWidth": 1,
+            "minHeight": 56,
           },
-          undefined,
         ]
       }
-      testID="text-input-outline"
-    />
-    <View>
+    >
       <View
+        collapsable={false}
+        pointerEvents="none"
         style={
-          [
-            {
-              "paddingBottom": 0,
-            },
-            {
-              "minHeight": 56,
-              "paddingTop": 8,
-            },
-          ]
+          {
+            "bottom": 0,
+            "left": 0,
+            "opacity": 1,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "transform": [
+              {
+                "translateX": 0,
+              },
+            ],
+            "zIndex": 3,
+          }
         }
       >
-        <View
+        <Text
           collapsable={false}
-          pointerEvents="none"
+          maxFontSizeMultiplier={1.5}
+          numberOfLines={1}
+          onLayout={[Function]}
           style={
             {
-              "bottom": 0,
+              "color": "#FBAB4B",
+              "fontFamily": "System",
+              "fontSize": 16,
+              "fontWeight": undefined,
               "left": 0,
-              "opacity": 1,
+              "letterSpacing": 0.15,
+              "lineHeight": undefined,
+              "opacity": 0,
+              "paddingLeft": 16,
+              "paddingRight": 16,
               "position": "absolute",
-              "right": 0,
-              "top": 0,
+              "textAlign": "left",
+              "top": 30,
               "transform": [
                 {
                   "translateX": 0,
                 },
+                {
+                  "translateY": 0,
+                },
+                {
+                  "scale": 1,
+                },
               ],
-              "zIndex": 3,
+              "writingDirection": "ltr",
             }
           }
+          testID="input-label-active"
         >
-          <Text
-            collapsable={false}
-            maxFontSizeMultiplier={1.5}
-            numberOfLines={1}
-            style={
-              {
-                "backgroundColor": "rgba(255, 251, 254, 1)",
-                "color": "transparent",
-                "fontFamily": "System",
-                "fontSize": 16,
-                "fontWeight": undefined,
-                "left": 8,
-                "letterSpacing": 0.15,
-                "lineHeight": undefined,
-                "opacity": -0.6666666666666667,
-                "paddingHorizontal": 0,
-                "position": "absolute",
-                "textAlign": "left",
-                "top": 33,
-                "transform": [
-                  {
-                    "translateX": 0,
-                  },
-                  {
-                    "translateY": 0,
-                  },
-                  {
-                    "scale": 1,
-                  },
-                  {
-                    "scaleY": 1,
-                  },
-                ],
-                "width": -16,
-                "writingDirection": "ltr",
-              }
-            }
-          >
-            Label
-          </Text>
-          <Text
-            collapsable={false}
-            maxFontSizeMultiplier={1.5}
-            numberOfLines={1}
-            onLayout={[Function]}
-            style={
-              {
-                "color": "rgba(103, 80, 164, 1)",
-                "fontFamily": "System",
-                "fontSize": 16,
-                "fontWeight": undefined,
-                "left": 0,
-                "letterSpacing": 0.15,
-                "lineHeight": undefined,
-                "opacity": 0,
-                "paddingHorizontal": 16,
-                "position": "absolute",
-                "textAlign": "left",
-                "top": 32,
-                "transform": [
-                  {
-                    "translateX": 0,
-                  },
-                  {
-                    "translateY": 0,
-                  },
-                  {
-                    "scale": 1,
-                  },
-                ],
-                "writingDirection": "ltr",
-              }
-            }
-            testID="input-label-active"
-          >
-            Label
-          </Text>
-          <Text
-            collapsable={false}
-            maxFontSizeMultiplier={1.5}
-            numberOfLines={1}
-            style={
-              {
-                "color": "rgba(73, 69, 79, 1)",
-                "fontFamily": "System",
-                "fontSize": 16,
-                "fontWeight": undefined,
-                "left": 0,
-                "letterSpacing": 0.15,
-                "lineHeight": undefined,
-                "opacity": 0,
-                "paddingHorizontal": 16,
-                "position": "absolute",
-                "textAlign": "left",
-                "top": 32,
-                "transform": [
-                  {
-                    "translateX": 0,
-                  },
-                  {
-                    "translateY": 0,
-                  },
-                  {
-                    "scale": 1,
-                  },
-                ],
-                "writingDirection": "ltr",
-              }
-            }
-            testID="input-label-inactive"
-          >
-            Label
-          </Text>
-        </View>
-        <TextInput
-          autoCapitalize="none"
-          editable={true}
+          Label
+        </Text>
+        <Text
+          collapsable={false}
           maxFontSizeMultiplier={1.5}
-          multiline={false}
-          onBlur={[Function]}
-          onChangeText={[Function]}
-          onFocus={[Function]}
-          placeholder=" "
-          placeholderTextColor="rgba(73, 69, 79, 1)"
-          selectionColor="rgba(103, 80, 164, 1)"
+          numberOfLines={1}
           style={
-            [
-              {
-                "margin": 0,
-                "zIndex": 1,
-              },
-              {
-                "height": 48,
-              },
-              {
-                "paddingBottom": 0,
-                "paddingTop": 0,
-              },
-              {
-                "color": "rgba(28, 27, 31, 1)",
-                "fontFamily": "System",
-                "fontSize": 16,
-                "fontWeight": undefined,
-                "letterSpacing": 0.15,
-                "lineHeight": undefined,
-                "paddingHorizontal": 16,
-                "textAlign": "left",
-                "textAlignVertical": "center",
-              },
-              false,
-              [
-                {},
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "System",
+              "fontSize": 16,
+              "fontWeight": undefined,
+              "left": 0,
+              "letterSpacing": 0.15,
+              "lineHeight": undefined,
+              "opacity": 0,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "position": "absolute",
+              "textAlign": "left",
+              "top": 30,
+              "transform": [
+                {
+                  "translateX": 0,
+                },
+                {
+                  "translateY": 0,
+                },
+                {
+                  "scale": 1,
+                },
               ],
-              undefined,
-            ]
+              "writingDirection": "ltr",
+            }
           }
-          testID="input"
-          underlineColorAndroid="transparent"
-          value=""
-        />
+          testID="input-label-inactive"
+        >
+          Label
+        </Text>
       </View>
+      <TextInput
+        autoCapitalize="none"
+        editable={true}
+        maxFontSizeMultiplier={1.5}
+        multiline={false}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder=" "
+        placeholderTextColor="rgba(73, 69, 79, 1)"
+        selectionColor="#FBAB4B"
+        style={
+          [
+            {
+              "margin": 0,
+            },
+            {
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            },
+            {
+              "height": 56,
+            },
+            {
+              "paddingBottom": 4,
+              "paddingTop": 24,
+            },
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "System",
+              "fontSize": 16,
+              "fontWeight": undefined,
+              "letterSpacing": 0.15,
+              "lineHeight": undefined,
+              "textAlign": "left",
+              "textAlignVertical": "center",
+            },
+            false,
+            [
+              {},
+            ],
+            undefined,
+          ]
+        }
+        testID="input"
+        underlineColorAndroid="transparent"
+        value=""
+      />
     </View>
   </View>
 </View>
@@ -268,7 +237,6 @@ exports[`<PasswordInput /> renders correctly 1`] = `
 <View
   style={
     {
-      "alignItems": "center",
       "flexDirection": "row",
       "justifyContent": "center",
       "padding": 12,
@@ -282,10 +250,11 @@ exports[`<PasswordInput /> renders correctly 1`] = `
       [
         {
           "color": undefined,
-          "fontSize": 24,
+          "fontSize": 20,
         },
         {
-          "marginHorizontal": 8,
+          "marginHorizontal": 16,
+          "marginTop": 28,
         },
         {
           "fontFamily": "ionicons",
@@ -301,256 +270,249 @@ exports[`<PasswordInput /> renders correctly 1`] = `
   </Text>
   <View
     style={
-      {
-        "width": "80%",
-      }
+      [
+        {
+          "backgroundColor": "rgba(231, 224, 236, 1)",
+          "borderTopLeftRadius": 4,
+          "borderTopRightRadius": 4,
+        },
+        {
+          "backgroundColor": "transparent",
+          "fontFamily": "Nunito-Medium",
+          "width": "90%",
+        },
+      ]
     }
   >
     <View
-      pointerEvents="none"
+      collapsable={false}
+      style={
+        {
+          "backgroundColor": "rgba(28, 27, 31, 1)",
+          "bottom": 0,
+          "height": 1,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "transform": [
+            {
+              "scaleY": 0.5,
+            },
+          ],
+          "zIndex": 1,
+        }
+      }
+      testID="text-input-underline"
+    />
+    <View
       style={
         [
           {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 6,
+            "paddingBottom": 0,
+            "paddingTop": 0,
           },
           {
-            "backgroundColor": "rgba(255, 251, 254, 1)",
-            "borderColor": "rgba(121, 116, 126, 1)",
-            "borderRadius": 4,
-            "borderWidth": 1,
+            "minHeight": 56,
           },
-          undefined,
         ]
       }
-      testID="text-input-outline"
-    />
-    <View>
+    >
       <View
+        collapsable={false}
+        pointerEvents="none"
         style={
-          [
-            {
-              "paddingBottom": 0,
-            },
-            {
-              "minHeight": 56,
-              "paddingTop": 8,
-            },
-          ]
+          {
+            "bottom": 0,
+            "left": 0,
+            "opacity": 1,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "transform": [
+              {
+                "translateX": 0,
+              },
+            ],
+            "zIndex": 3,
+          }
         }
       >
-        <View
+        <Text
           collapsable={false}
-          pointerEvents="none"
+          maxFontSizeMultiplier={1.5}
+          numberOfLines={1}
+          onLayout={[Function]}
           style={
             {
-              "bottom": 0,
+              "color": "#FBAB4B",
+              "fontFamily": "System",
+              "fontSize": 16,
+              "fontWeight": undefined,
               "left": 0,
-              "opacity": 1,
+              "letterSpacing": 0.15,
+              "lineHeight": undefined,
+              "opacity": 0,
+              "paddingLeft": 16,
+              "paddingRight": 56,
               "position": "absolute",
-              "right": 0,
-              "top": 0,
+              "textAlign": "left",
+              "top": 30,
               "transform": [
                 {
                   "translateX": 0,
                 },
+                {
+                  "translateY": 0,
+                },
+                {
+                  "scale": 1,
+                },
               ],
-              "zIndex": 3,
+              "writingDirection": "ltr",
             }
           }
+          testID="input-label-active"
         >
-          <Text
-            collapsable={false}
-            maxFontSizeMultiplier={1.5}
-            numberOfLines={1}
-            style={
-              {
-                "backgroundColor": "rgba(255, 251, 254, 1)",
-                "color": "transparent",
-                "fontFamily": "System",
-                "fontSize": 16,
-                "fontWeight": undefined,
-                "left": 8,
-                "letterSpacing": 0.15,
-                "lineHeight": undefined,
-                "opacity": -0.6666666666666667,
-                "paddingHorizontal": 0,
-                "position": "absolute",
-                "textAlign": "left",
-                "top": 33,
-                "transform": [
-                  {
-                    "translateX": 0,
-                  },
-                  {
-                    "translateY": 0,
-                  },
-                  {
-                    "scale": 1,
-                  },
-                  {
-                    "scaleY": 1,
-                  },
-                ],
-                "width": -16,
-                "writingDirection": "ltr",
-              }
-            }
-          >
-            Label
-          </Text>
-          <Text
-            collapsable={false}
-            maxFontSizeMultiplier={1.5}
-            numberOfLines={1}
-            onLayout={[Function]}
-            style={
-              {
-                "color": "rgba(103, 80, 164, 1)",
-                "fontFamily": "System",
-                "fontSize": 16,
-                "fontWeight": undefined,
-                "left": 0,
-                "letterSpacing": 0.15,
-                "lineHeight": undefined,
-                "opacity": 0,
-                "paddingHorizontal": 16,
-                "position": "absolute",
-                "textAlign": "left",
-                "top": 32,
-                "transform": [
-                  {
-                    "translateX": 0,
-                  },
-                  {
-                    "translateY": 0,
-                  },
-                  {
-                    "scale": 1,
-                  },
-                ],
-                "writingDirection": "ltr",
-              }
-            }
-            testID="input-label-active"
-          >
-            Label
-          </Text>
-          <Text
-            collapsable={false}
-            maxFontSizeMultiplier={1.5}
-            numberOfLines={1}
-            style={
-              {
-                "color": "rgba(73, 69, 79, 1)",
-                "fontFamily": "System",
-                "fontSize": 16,
-                "fontWeight": undefined,
-                "left": 0,
-                "letterSpacing": 0.15,
-                "lineHeight": undefined,
-                "opacity": 0,
-                "paddingHorizontal": 16,
-                "position": "absolute",
-                "textAlign": "left",
-                "top": 32,
-                "transform": [
-                  {
-                    "translateX": 0,
-                  },
-                  {
-                    "translateY": 0,
-                  },
-                  {
-                    "scale": 1,
-                  },
-                ],
-                "writingDirection": "ltr",
-              }
-            }
-            testID="input-label-inactive"
-          >
-            Label
-          </Text>
-        </View>
-        <TextInput
-          autoCapitalize="none"
-          autoCorrect={false}
-          editable={true}
+          Label
+        </Text>
+        <Text
+          collapsable={false}
           maxFontSizeMultiplier={1.5}
-          multiline={false}
-          onBlur={[Function]}
-          onChangeText={[Function]}
-          onFocus={[Function]}
-          placeholder=" "
-          placeholderTextColor="rgba(73, 69, 79, 1)"
-          secureTextEntry={true}
-          selectionColor="rgba(103, 80, 164, 1)"
+          numberOfLines={1}
           style={
-            [
-              {
-                "margin": 0,
-                "zIndex": 1,
-              },
-              {
-                "height": 48,
-              },
-              {
-                "paddingBottom": 0,
-                "paddingTop": 0,
-              },
-              {
-                "color": "rgba(28, 27, 31, 1)",
-                "fontFamily": "System",
-                "fontSize": 16,
-                "fontWeight": undefined,
-                "letterSpacing": 0.15,
-                "lineHeight": undefined,
-                "paddingHorizontal": 16,
-                "textAlign": "left",
-                "textAlignVertical": "center",
-              },
-              false,
-              {
-                "marginRight": 56,
-                "paddingRight": 0,
-              },
-              undefined,
-            ]
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "System",
+              "fontSize": 16,
+              "fontWeight": undefined,
+              "left": 0,
+              "letterSpacing": 0.15,
+              "lineHeight": undefined,
+              "opacity": 0,
+              "paddingLeft": 16,
+              "paddingRight": 56,
+              "position": "absolute",
+              "textAlign": "left",
+              "top": 30,
+              "transform": [
+                {
+                  "translateX": 0,
+                },
+                {
+                  "translateY": 0,
+                },
+                {
+                  "scale": 1,
+                },
+              ],
+              "writingDirection": "ltr",
+            }
           }
-          testID="input"
-          underlineColorAndroid="transparent"
-          value=""
-        />
+          testID="input-label-inactive"
+        >
+          Label
+        </Text>
       </View>
-      <View
+      <TextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        editable={true}
+        maxFontSizeMultiplier={1.5}
+        multiline={false}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        placeholder=" "
+        placeholderTextColor="rgba(73, 69, 79, 1)"
+        secureTextEntry={true}
+        selectionColor="#FBAB4B"
         style={
           [
             {
-              "alignItems": "center",
-              "height": 24,
-              "justifyContent": "center",
-              "position": "absolute",
-              "width": 24,
+              "margin": 0,
             },
             {
-              "right": 16,
-              "top": 19,
+              "paddingLeft": 16,
+              "paddingRight": 56,
             },
+            {
+              "height": 56,
+            },
+            {
+              "paddingBottom": 4,
+              "paddingTop": 24,
+            },
+            {
+              "color": "rgba(73, 69, 79, 1)",
+              "fontFamily": "System",
+              "fontSize": 16,
+              "fontWeight": undefined,
+              "letterSpacing": 0.15,
+              "lineHeight": undefined,
+              "textAlign": "left",
+              "textAlignVertical": "center",
+            },
+            false,
+            {
+              "marginRight": 40,
+              "paddingRight": 16,
+            },
+            undefined,
           ]
         }
+        testID="input"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+    </View>
+    <View
+      style={
+        [
+          {
+            "alignItems": "center",
+            "height": 24,
+            "justifyContent": "center",
+            "position": "absolute",
+            "width": 24,
+          },
+          {
+            "right": 16,
+            "top": 16,
+          },
+        ]
+      }
+    >
+      <View
+        collapsable={false}
+        style={
+          {
+            "backgroundColor": "transparent",
+            "borderRadius": 20,
+            "height": 40,
+            "margin": 0,
+            "shadowColor": "#000",
+            "shadowOffset": {
+              "height": 0,
+              "width": 0,
+            },
+            "shadowOpacity": 0,
+            "shadowRadius": 0,
+            "width": 40,
+          }
+        }
+        testID="hide-icon-container-outer-layer"
       >
         <View
           collapsable={false}
           style={
             {
               "backgroundColor": "transparent",
+              "borderColor": "rgba(121, 116, 126, 1)",
               "borderRadius": 20,
-              "height": 40,
-              "margin": 0,
+              "borderWidth": 0,
+              "elevation": 0,
+              "flex": 1,
+              "overflow": "hidden",
               "shadowColor": "#000",
               "shadowOffset": {
                 "height": 0,
@@ -558,131 +520,107 @@ exports[`<PasswordInput /> renders correctly 1`] = `
               },
               "shadowOpacity": 0,
               "shadowRadius": 0,
-              "width": 40,
             }
           }
-          testID="hide-icon-container-outer-layer"
+          testID="hide-icon-container"
         >
           <View
-            collapsable={false}
-            style={
+            accessibilityComponentType="button"
+            accessibilityRole="button"
+            accessibilityState={
               {
-                "backgroundColor": "transparent",
-                "borderColor": "rgba(121, 116, 126, 1)",
-                "borderRadius": 20,
-                "borderWidth": 0,
-                "elevation": 0,
-                "flex": 1,
-                "overflow": "hidden",
-                "shadowColor": "#000",
-                "shadowOffset": {
-                  "height": 0,
-                  "width": 0,
-                },
-                "shadowOpacity": 0,
-                "shadowRadius": 0,
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": false,
+                "expanded": undefined,
+                "selected": undefined,
               }
             }
-            testID="hide-icon-container"
+            accessibilityTraits="button"
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            centered={true}
+            collapsable={false}
+            focusable={true}
+            hitSlop={
+              {
+                "bottom": 6,
+                "left": 6,
+                "right": 6,
+                "top": 6,
+              }
+            }
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              [
+                {
+                  "overflow": "hidden",
+                },
+                [
+                  {
+                    "alignItems": "center",
+                    "flexGrow": 1,
+                    "justifyContent": "center",
+                  },
+                  {
+                    "borderRadius": 20,
+                  },
+                ],
+              ]
+            }
+            testID="hide-icon"
           >
-            <View
-              accessibilityComponentType="button"
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": false,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityTraits="button"
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              centered={true}
-              collapsable={false}
-              focusable={true}
-              hitSlop={
-                {
-                  "bottom": 6,
-                  "left": 6,
-                  "right": 6,
-                  "top": 6,
-                }
-              }
-              onBlur={[Function]}
-              onClick={[Function]}
-              onFocus={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
+            <Text
+              accessibilityElementsHidden={true}
+              allowFontScaling={false}
+              importantForAccessibility="no-hide-descendants"
+              pointerEvents="none"
+              selectable={false}
               style={
                 [
                   {
-                    "overflow": "hidden",
+                    "color": "rgba(73, 69, 79, 1)",
+                    "fontSize": 24,
                   },
                   [
                     {
-                      "alignItems": "center",
-                      "flexGrow": 1,
-                      "justifyContent": "center",
+                      "lineHeight": 24,
+                      "transform": [
+                        {
+                          "scaleX": 1,
+                        },
+                      ],
                     },
                     {
-                      "borderRadius": 20,
+                      "backgroundColor": "transparent",
                     },
                   ],
+                  {
+                    "fontFamily": "material-community",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  {},
                 ]
               }
-              testID="hide-icon"
             >
-              <Text
-                accessibilityElementsHidden={true}
-                allowFontScaling={false}
-                importantForAccessibility="no-hide-descendants"
-                pointerEvents="none"
-                selectable={false}
-                style={
-                  [
-                    {
-                      "color": "rgba(73, 69, 79, 1)",
-                      "fontSize": 24,
-                    },
-                    [
-                      {
-                        "lineHeight": 24,
-                        "transform": [
-                          {
-                            "scaleX": 1,
-                          },
-                        ],
-                      },
-                      {
-                        "backgroundColor": "transparent",
-                      },
-                    ],
-                    {
-                      "fontFamily": "material-community",
-                      "fontStyle": "normal",
-                      "fontWeight": "normal",
-                    },
-                    {},
-                  ]
-                }
-              >
-                󰈈
-              </Text>
-            </View>
+              󰈈
+            </Text>
           </View>
         </View>
       </View>

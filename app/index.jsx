@@ -1,10 +1,14 @@
 import { AuthProvider } from "./utils/context/auth";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Platform } from "react-native";
+import { useFonts } from "expo-font";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import WelcomeScreen from "./screens/authentication/Welcome";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SplashScreen } from "expo-router";
+
+SplashScreen.preventAutoHideAsync();
 
 export const unstable_settings = {
     // Ensure any route can link back to `/`
@@ -91,6 +95,27 @@ export default function RootNavigation() {
             );
         };
     }, []);
+
+    // loading font
+    const [fontsLoaded] = useFonts({
+        "Nunito-ExtraLight": require("../assets/fonts/Nunito-ExtraLight.ttf"),
+        "Nunito-Light": require("../assets/fonts/Nunito-Light.ttf"),
+        "Nunito-Regular": require("../assets/fonts/Nunito-Regular.ttf"),
+        "Nunito-Medium": require("../assets/fonts/Nunito-Medium.ttf"),
+        "Nunito-Bold": require("../assets/fonts/Nunito-Bold.ttf"),
+        "Nunito-ExtraBold": require("../assets/fonts/Nunito-ExtraBold.ttf"),
+    });
+
+    // stay in splashscreen until font loads
+    const onLayoutRootView = useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
+        return null;
+    }
 
     return (
         <AuthProvider>

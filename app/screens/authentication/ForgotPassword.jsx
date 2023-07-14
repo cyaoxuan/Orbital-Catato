@@ -1,10 +1,12 @@
 import { sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
 import { View } from "react-native";
-import { ActivityIndicator, Text } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import { auth } from "../../utils/context/auth";
 import { AuthInput } from "../../components/TextInput";
 import { PillButton } from "../../components/Button";
+import { allStyles, primaryColor } from "../../components/Styles";
+import { BodyText, ErrorText, TitleText } from "../../components/Text";
 
 export default function ForgotPasswordScreen() {
     const [error, setError] = useState(null);
@@ -30,19 +32,18 @@ export default function ForgotPasswordScreen() {
     };
 
     return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <Text variant="displayMedium">Forgot Password</Text>
-            <Text variant="titleMedium">
-                Please enter your email to reset your password
-            </Text>
-            <Text></Text>
+        <View style={allStyles.centerFlexView}>
+            <View>
+                <TitleText variant="displayMedium" text="Forgot Password" />
+                <BodyText
+                    variant="titleMedium"
+                    text="Please enter your email to reset your password"
+                />
+            </View>
 
             <AuthInput
                 label="Email"
-                iconName="mail"
-                placeholder="orbitee@kitty.xyz"
+                iconName="mail-outline"
                 textContentType="emailAddress"
                 value={email}
                 onChangeText={setEmail}
@@ -51,11 +52,12 @@ export default function ForgotPasswordScreen() {
             <PillButton
                 label="Request Password Reset"
                 onPress={handlePasswordReset}
+                colorMode="primary"
             />
 
-            {error && <Text>{error.message}</Text>}
-            {loading && <ActivityIndicator />}
-            {emailSent && <Text>Email sent!</Text>}
+            {error && <ErrorText variant="bodyMedium" text={error.message} />}
+            {loading && <ActivityIndicator color={primaryColor} />}
+            {emailSent && <BodyText variant="bodyMedium" text="Email sent!" />}
         </View>
     );
 }

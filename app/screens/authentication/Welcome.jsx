@@ -1,10 +1,12 @@
 import { View } from "react-native";
-import { ActivityIndicator, Avatar, Text } from "react-native-paper";
+import { ActivityIndicator, Avatar } from "react-native-paper";
 import { useRouter } from "expo-router";
 import { auth, useAuth } from "../../utils/context/auth";
 import { signInAnonymously } from "firebase/auth";
 import { useState } from "react";
-import { PillButton } from "../../components/Button";
+import { PillButton, TextButton } from "../../components/Button";
+import { ErrorText, TitleText } from "../../components/Text";
+import { allStyles, primaryColor } from "../../components/Styles";
 
 export default function WelcomeScreen() {
     const { user } = useAuth();
@@ -41,15 +43,8 @@ export default function WelcomeScreen() {
     }
 
     return (
-        <View
-            style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "white",
-            }}
-        >
-            <Text variant="displayMedium">Welcome</Text>
+        <View style={allStyles.centerFlexView}>
+            <TitleText variant="displayMedium" text={"Welcome!"} />
 
             <Avatar.Image
                 style={{ backgroundColor: "transparent", margin: 20 }}
@@ -57,18 +52,25 @@ export default function WelcomeScreen() {
                 size={350}
             />
 
-            <PillButton label="Log In" width="65%" onPress={onLoginPressed} />
-
-            <PillButton label="Sign Up" width="65%" onPress={onSignUpPressed} />
+            <PillButton
+                label="Log In"
+                onPress={onLoginPressed}
+                colorMode="primary"
+            />
 
             <PillButton
-                mode="text"
+                label="Sign Up"
+                onPress={onSignUpPressed}
+                colorMode="primary"
+            />
+
+            <TextButton
                 label="Continue as Guest"
                 onPress={handleLoginAnonymously}
             />
 
-            {error && <Text>{error.message}</Text>}
-            {loading && <ActivityIndicator />}
+            {error && <ErrorText variant="bodyMedium" text={error.message} />}
+            {loading && <ActivityIndicator color={primaryColor} />}
         </View>
     );
 }

@@ -18,6 +18,8 @@ import { useNavigation } from "expo-router";
 import { useGetAllCats } from "../../utils/db/cat";
 import { useAuth } from "../../utils/context/auth";
 import { getRandomBuilding } from "../../utils/findLocation";
+import { BodyText, ErrorText } from "../../components/Text";
+import { screenMainColor, secondaryColor } from "../../components/Styles";
 
 // Render Marker component
 // Will generate a random coordinate for marker if random is true
@@ -71,12 +73,11 @@ const RenderMarker = ({ cat, navigation, markers, random }) => {
                                     : require("../../../assets/placeholder.png")
                             }
                         />
-                        <Text
+                        <BodyText
                             variant="bodyLarge"
+                            text={cat.name}
                             style={{ textAlign: "center" }}
-                        >
-                            {cat.name}
-                        </Text>
+                        />
                     </View>
                 ) : (
                     <View
@@ -96,12 +97,11 @@ const RenderMarker = ({ cat, navigation, markers, random }) => {
                                     : require("../../../assets/placeholder.png")
                             }
                         />
-                        <Text
+                        <BodyText
                             variant="bodyLarge"
+                            text={cat.name}
                             style={{ textAlign: "center" }}
-                        >
-                            {cat.name}
-                        </Text>
+                        />
                     </View>
                 )}
             </Callout>
@@ -120,13 +120,21 @@ const RenderPredictionRow = ({ item, onPress }) => {
         >
             {item.lastSeenLocation ? (
                 <View style={styles.predictionRow}>
-                    <Text>{item.name}</Text>
-                    <Text>{item.locationName}</Text>
+                    <BodyText variant="bodyMedium" text={item.name} />
+                    <BodyText variant="bodyMedium" text={item.locationName} />
                 </View>
             ) : (
                 <View style={styles.predictionRow}>
-                    <Text style={{ color: "grey" }}>{item.name}</Text>
-                    <Text style={{ color: "grey" }}>Unknown</Text>
+                    <BodyText
+                        variant="bodyMedium"
+                        text={item.name}
+                        color="grey"
+                    />
+                    <BodyText
+                        variant="bodyMedium"
+                        text="Unknown"
+                        color="grey"
+                    />
                 </View>
             )}
         </TouchableOpacity>
@@ -212,17 +220,17 @@ export default function Map() {
     }, [allCats]);
 
     if (!userRole) {
-        return <ActivityIndicator />;
+        return <ActivityIndicator color={secondaryColor} />;
     }
 
     return (
         <KeyboardAvoidingView
             // to stop map from constantly resizing when keyboard opens but inconsistent
             behavior={Platform.OS === "ios" ? "padding" : ""}
-            style={{ flex: 1 }}
+            style={{ flex: 1, backgroundColor: screenMainColor }}
         >
-            {error[0] && <Text>Error: {error[0].message}</Text>}
-            {loading[0] && <ActivityIndicator />}
+            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {loading[0] && <ActivityIndicator color={secondaryColor} />}
 
             <MapView
                 style={styles.map}
@@ -283,8 +291,17 @@ export default function Map() {
                 {/* show search bar if caretaker */}
                 {userRole && userRole.isCaretaker ? (
                     <Searchbar
-                        style={{ width: "95%", alignSelf: "center" }}
-                        theme={{ colors: { elevation: { level3: "white" } } }}
+                        style={{
+                            width: "95%",
+                            alignSelf: "center",
+                            borderRadius: 0,
+                        }}
+                        inputStyle={{
+                            fontFamily: "Nunito-Medium",
+                        }}
+                        theme={{
+                            colors: { elevation: { level3: screenMainColor } },
+                        }}
                         elevation={2}
                         placeholder="Search"
                         onChangeText={onChangeSearch}
@@ -298,7 +315,7 @@ export default function Map() {
                         style={{
                             height: 75,
                             width: "95%",
-                            backgroundColor: "white",
+                            backgroundColor: screenMainColor,
                             borderWidth: 1,
                             justifyContent: "center",
                         }}
@@ -351,8 +368,8 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     predictionsContainer: {
-        width: "90%",
-        backgroundColor: "white",
+        width: "95%",
+        backgroundColor: screenMainColor,
         padding: 10,
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
