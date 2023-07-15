@@ -15,6 +15,7 @@ const CatAvatar = (props) => {
                         : require("../../assets/placeholder.png")
                 }
                 size={props.size || 100}
+                style={{ marginBottom: 4 }}
             />
             <BodyText variant={props.variant} text={props.name || "Name"} />
         </View>
@@ -39,6 +40,7 @@ const TouchableCatAvatar = (props) => {
                         : require("../../assets/placeholder.png")
                 }
                 size={props.size || 100}
+                style={{ marginBottom: 4 }}
             />
             <BodyText variant={props.variant} text={props.name || "Name"} />
         </TouchableOpacity>
@@ -50,5 +52,6 @@ export { CatAvatar, TouchableCatAvatar };
 const styles = StyleSheet.create({
     avatarContainer: {
         alignItems: "center",
+        marginBottom: 4,
     },
 });

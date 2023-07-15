@@ -161,8 +161,8 @@ const AnnouncementContainer = ({
                         key={item.announcementID}
                         style={styles.announcementView}
                     >
-                        <BodyText
-                            variant="bodyLarge"
+                        <TitleText
+                            variant="bodyMedium"
                             text={"Announcement ID: " + item.announcementID}
                         />
 

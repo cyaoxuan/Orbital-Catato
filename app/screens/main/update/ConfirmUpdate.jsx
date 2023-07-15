@@ -5,7 +5,7 @@ import { useRoute } from "@react-navigation/native";
 import { CatAvatar } from "../../../components/CatAvatar";
 import { PillButton } from "../../../components/Button";
 import { useAuth } from "../../../utils/context/auth";
-import { secondaryColor } from "../../../components/Styles";
+import { allStyles, secondaryColor } from "../../../components/Styles";
 
 export default function ConfirmUpdate() {
     const { userRole } = useAuth();
@@ -17,9 +17,7 @@ export default function ConfirmUpdate() {
     }
 
     return (
-        <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
+        <View style={allStyles.centerFlexView}>
             <CatAvatar
                 photoURL={route.params.photoURLs[0]}
                 size={200}
@@ -27,14 +25,20 @@ export default function ConfirmUpdate() {
                 name={route.params.name}
             />
 
-            <Text
+            <View
                 style={{
-                    marginHorizontal: 100,
-                    paddingVertical: 20,
-                    textAlign: "center",
+                    marginHorizontal: 24,
+                    paddingVertical: 12,
                 }}
             >
-                Thank you for your contribution!
+                <Text
+                    style={{
+                        textAlign: "center",
+                        fontFamily: "Nunito-Medium",
+                    }}
+                >
+                    Thank you for your contribution!
+                </Text>
                 {!userRole.isCaretaker &&
                     (route.params.formType === "report" ||
                         route.params.formType === "location" ||
@@ -42,18 +46,18 @@ export default function ConfirmUpdate() {
                         route.params.formType === "fed") && (
                         <Text
                             style={{
-                                marginHorizontal: 100,
-                                paddingVertical: 20,
                                 textAlign: "center",
+                                fontFamily: "Nunito-Medium",
                             }}
                         >
+                            {" "}
                             As a non-caretaker user, the precise locations of
                             cats are not shown to you for the safety of the
                             cats. Your update has been recorded and will help
                             caretakers greatly!
                         </Text>
                     )}
-            </Text>
+            </View>
 
             {route.params.formType !== "create" &&
                 route.params.formType !== "report" &&

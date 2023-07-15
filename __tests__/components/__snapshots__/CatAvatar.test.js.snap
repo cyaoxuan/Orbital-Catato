@@ -5,6 +5,7 @@ exports[`<CatAvatar /> renders correctly 1`] = `
   style={
     {
       "alignItems": "center",
+      "marginBottom": 4,
     }
   }
 >
@@ -17,7 +18,9 @@ exports[`<CatAvatar /> renders correctly 1`] = `
           "height": 100,
           "width": 100,
         },
-        undefined,
+        {
+          "marginBottom": 4,
+        },
       ]
     }
   >
@@ -93,6 +96,7 @@ exports[`<TouchableCatAvatar /> renders correctly 1`] = `
   style={
     {
       "alignItems": "center",
+      "marginBottom": 4,
       "opacity": 1,
     }
   }
@@ -107,7 +111,9 @@ exports[`<TouchableCatAvatar /> renders correctly 1`] = `
           "height": 100,
           "width": 100,
         },
-        undefined,
+        {
+          "marginBottom": 4,
+        },
       ]
     }
   >
