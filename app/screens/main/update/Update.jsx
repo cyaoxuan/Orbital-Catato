@@ -11,7 +11,7 @@ import {
     secondaryColor,
 } from "../../../components/Styles";
 import { OptionListItem } from "../../../components/OptionListItem";
-import { BodyText, TitleText } from "../../../components/Text";
+import { TitleText } from "../../../components/Text";
 
 export default function Update() {
     const { userRole } = useAuth();

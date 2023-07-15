@@ -52,7 +52,7 @@ const UpdateOptionList = ({ cat }) => {
 
                 {userRole && userRole.isUser && (
                     <OptionListItem
-                        divider
+                        divider={userRole && userRole.isCaretaker}
                         title="Update Concern"
                         onPress={() => {
                             navigation.navigate("Form", {
@@ -78,7 +78,7 @@ const UpdateOptionList = ({ cat }) => {
 
                 {userRole && userRole.isCaretaker && (
                     <OptionListItem
-                        divider
+                        divider={userRole && userRole.isAdmin}
                         title="Update Profile"
                         onPress={() => {
                             navigation.navigate("Form", {

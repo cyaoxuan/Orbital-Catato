@@ -19,7 +19,7 @@
         "android": {
             "package": "com.yxsandpie.Catato",
             "adaptiveIcon": {
-                "foregroundImage": "./assets/catato-logo.png",
+                "foregroundImage": "./assets/catato-icon.png",
                 "backgroundColor": "#ffffff"
             },
             "config": {
