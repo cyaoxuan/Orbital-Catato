@@ -3,7 +3,7 @@ import { ActivityIndicator, Avatar } from "react-native-paper";
 import { useRouter } from "expo-router";
 import { auth, useAuth } from "../../utils/context/auth";
 import { signInAnonymously } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PillButton, TextButton } from "../../components/Button";
 import { ErrorText, TitleText } from "../../components/Text";
 import { allStyles, primaryColor } from "../../components/Styles";
@@ -38,11 +38,9 @@ export default function WelcomeScreen() {
         }
     };
 
-    useEffect(() => {
-        if (user) {
-            router.replace("/screens/main/Dashboard");
-        }
-    }, [router, user]);
+    if (user) {
+        router.replace("/screens/main/Dashboard");
+    }
 
     return (
         <View style={allStyles.centerFlexView}>
