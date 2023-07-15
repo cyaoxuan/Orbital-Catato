@@ -17,8 +17,8 @@ const cats = [
         catID: 1,
         name: "Kitty",
         photoURLs: [
-            require("../../assets/cats/cat-2-1.jpg"),
-            require("../../assets/cats/cat-2-1.jpg"),
+            require("../../assets/testing-cats/cat-2-1.jpg"),
+            require("../../assets/testing-cats/cat-2-1.jpg"),
         ],
         lastSeenLocation: { latitude: 1, longitude: 1 },
         locationName: "E1",
@@ -43,7 +43,7 @@ const cats = [
     {
         catID: 2,
         name: "Skitty",
-        photoURLs: [require("../../assets/cats/cat-2-1.jpg")],
+        photoURLs: [require("../../assets/testing-cats/cat-2-1.jpg")],
         locationName: "SRC",
         locationZone: "Utown",
         lastSeenTime: {
@@ -66,7 +66,7 @@ const cats = [
     {
         catID: 3,
         name: "Mitty",
-        photoURLs: [require("../../assets/cats/cat-2-1.jpg")],
+        photoURLs: [require("../../assets/testing-cats/cat-2-1.jpg")],
         locationName: "S17",
         locationZone: "Science",
         lastSeenTime: {

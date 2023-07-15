@@ -19,7 +19,11 @@ import { useGetAllCats } from "../../utils/db/cat";
 import { useAuth } from "../../utils/context/auth";
 import { getRandomBuilding } from "../../utils/findLocation";
 import { BodyText, ErrorText } from "../../components/Text";
-import { screenMainColor, secondaryColor } from "../../components/Styles";
+import {
+    allStyles,
+    screenMainColor,
+    secondaryColor,
+} from "../../components/Styles";
 
 // Render Marker component
 // Will generate a random coordinate for marker if random is true
@@ -296,9 +300,7 @@ export default function Map() {
                             alignSelf: "center",
                             borderRadius: 0,
                         }}
-                        inputStyle={{
-                            fontFamily: "Nunito-Medium",
-                        }}
+                        inputStyle={allStyles.bodyText}
                         theme={{
                             colors: { elevation: { level3: screenMainColor } },
                         }}
@@ -322,10 +324,13 @@ export default function Map() {
                     >
                         <Text
                             variant="bodyMedium"
-                            style={{
-                                marginHorizontal: 12,
-                                textAlign: "center",
-                            }}
+                            style={[
+                                allStyles.bodyText,
+                                {
+                                    marginHorizontal: 12,
+                                    textAlign: "center",
+                                },
+                            ]}
                         >
                             Cat locations are randomly generated within zones
                             they were last seen in. Precise locations are not

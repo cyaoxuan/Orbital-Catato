@@ -26,7 +26,11 @@ import {
     ImageFAB,
     ImageItem,
 } from "./GalleryComponents";
-import { screenMainColor, secondaryColor } from "../../../components/Styles";
+import {
+    allStyles,
+    screenMainColor,
+    secondaryColor,
+} from "../../../components/Styles";
 import { TitleText } from "../../../components/Text";
 
 export default function PhotoGallery() {
@@ -243,11 +247,13 @@ export default function PhotoGallery() {
                                     />
                                     <Text
                                         variant="bodyLarge"
-                                        style={{
-                                            fontFamily: "Nunito-Medium",
-                                            textAlign: "center",
-                                            marginHorizontal: 16,
-                                        }}
+                                        style={[
+                                            allStyles.bodyText,
+                                            {
+                                                textAlign: "center",
+                                                marginHorizontal: 16,
+                                            },
+                                        ]}
                                     >
                                         Uploaded from concern update forms
                                     </Text>
@@ -262,11 +268,13 @@ export default function PhotoGallery() {
                                     />
                                     <Text
                                         variant="bodyLarge"
-                                        style={{
-                                            fontFamily: "Nunito-Medium",
-                                            textAlign: "center",
-                                            marginHorizontal: 16,
-                                        }}
+                                        style={[
+                                            allStyles.bodyText,
+                                            {
+                                                textAlign: "center",
+                                                marginHorizontal: 16,
+                                            },
+                                        ]}
                                     >
                                         Profile picture and gallery photos
                                     </Text>

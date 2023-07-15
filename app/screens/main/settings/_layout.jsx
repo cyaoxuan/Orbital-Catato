@@ -1,5 +1,6 @@
 import { Stack } from "expo-router";
 import { AuthProvider } from "../../../utils/context/auth";
+import { allStyles } from "../../../components/Styles";
 
 export default function SettingsLayout() {
     return (
@@ -8,7 +9,7 @@ export default function SettingsLayout() {
                 <Stack.Screen
                     name="Settings"
                     options={{
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
@@ -16,7 +17,7 @@ export default function SettingsLayout() {
                 <Stack.Screen
                     name="About"
                     options={{
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
@@ -24,7 +25,7 @@ export default function SettingsLayout() {
                 <Stack.Screen
                     name="FAQ"
                     options={{
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
@@ -32,7 +33,7 @@ export default function SettingsLayout() {
                 <Stack.Screen
                     name="Notifications"
                     options={{
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
@@ -41,7 +42,7 @@ export default function SettingsLayout() {
                     name="AdminPanel"
                     options={{
                         title: "Admin Panel",
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}

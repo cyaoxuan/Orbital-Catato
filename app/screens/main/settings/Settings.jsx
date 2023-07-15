@@ -113,12 +113,16 @@ const SettingsOptionList = ({ userRole }) => {
             <List.Section style={allStyles.listSection}>
                 <OptionListItemIcon
                     title="About"
-                    onPress={() => {}}
+                    onPress={() => {
+                        navigation.navigate("About");
+                    }}
                     iconName="information-circle-outline"
                 />
                 <OptionListItemIcon
                     title="FAQs"
-                    onPress={() => {}}
+                    onPress={() => {
+                        navigation.navigate("FAQ");
+                    }}
                     iconName="help-circle-outline"
                 />
 

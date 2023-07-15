@@ -2,7 +2,7 @@ import React from "react";
 import { Image, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Button, Dialog, FAB, IconButton, Text } from "react-native-paper";
-import { BodyText } from "../../../components/Text";
+import { BodyText, ErrorText } from "../../../components/Text";
 import {
     allStyles,
     screenSecondaryColor,
@@ -231,18 +231,9 @@ const DeletingView = ({
                 )}
                 onPress={changeDeleting}
             />
-            <Text style={{ fontFamily: "Nunito-Medium" }}>
+            <Text style={allStyles.bodyText}>
                 Selected Items: {selectedImages.length}
-                {isAllSelected && (
-                    <Text
-                        style={{
-                            fontFamily: "Nunito-Medium",
-                            color: "#BA1A1A",
-                        }}
-                    >
-                        {" (Cannot Delete All)"}
-                    </Text>
-                )}
+                {isAllSelected && <ErrorText text={" (Cannot Delete All)"} />}
             </Text>
             <Button
                 mode="text"

@@ -50,11 +50,13 @@ export default function Update() {
                 />
                 <Text
                     variant="bodyLarge"
-                    style={{
-                        fontFamily: "Nunito-Medium",
-                        textAlign: "center",
-                        margin: 16,
-                    }}
+                    style={[
+                        allStyles.bodyText,
+                        {
+                            textAlign: "center",
+                            margin: 16,
+                        },
+                    ]}
                 >
                     Guests cannot update. If you see a new or injured cat, or
                     just want to help caretakers find where a cat is, sign up or
@@ -82,11 +84,13 @@ export default function Update() {
                 <TitleText variant="headlineSmall" text="Update Cats" />
                 <Text
                     variant="bodyLarge"
-                    style={{
-                        fontFamily: "Nunito-Medium",
-                        textAlign: "center",
-                        margin: 16,
-                    }}
+                    style={[
+                        allStyles.bodyText,
+                        {
+                            textAlign: "center",
+                            margin: 16,
+                        },
+                    ]}
                 >
                     Please ensure you select the right cat before updating!
                 </Text>

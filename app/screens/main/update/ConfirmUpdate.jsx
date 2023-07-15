@@ -32,10 +32,12 @@ export default function ConfirmUpdate() {
                 }}
             >
                 <Text
-                    style={{
-                        textAlign: "center",
-                        fontFamily: "Nunito-Medium",
-                    }}
+                    style={[
+                        allStyles.bodyText,
+                        {
+                            textAlign: "center",
+                        },
+                    ]}
                 >
                     Thank you for your contribution!
                 </Text>
@@ -45,10 +47,12 @@ export default function ConfirmUpdate() {
                         route.params.formType === "concern" ||
                         route.params.formType === "fed") && (
                         <Text
-                            style={{
-                                textAlign: "center",
-                                fontFamily: "Nunito-Medium",
-                            }}
+                            style={[
+                                allStyles.bodyText,
+                                {
+                                    textAlign: "center",
+                                },
+                            ]}
                         >
                             {" "}
                             As a non-caretaker user, the precise locations of

@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import { AuthProvider } from "../../utils/context/auth";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { secondaryColor } from "../../components/Styles";
+import { allStyles, secondaryColor } from "../../components/Styles";
 
 export default function MainLayout() {
     return (
@@ -15,7 +15,7 @@ export default function MainLayout() {
                 <Tabs.Screen
                     name="Dashboard"
                     options={{
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                         tabBarLabel: "Dashboard",
@@ -59,7 +59,7 @@ export default function MainLayout() {
                 <Tabs.Screen
                     name="Map"
                     options={{
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                         tabBarLabel: "Map",

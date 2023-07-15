@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import { AuthProvider } from "../../../utils/context/auth";
-import { screenSecondaryColor } from "../../../components/Styles";
+import { allStyles, screenSecondaryColor } from "../../../components/Styles";
 
 export default function CatalogueLayout() {
     return (
@@ -10,7 +10,7 @@ export default function CatalogueLayout() {
                     name="Catalogue"
                     options={{
                         title: "CATalogue",
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
@@ -19,9 +19,7 @@ export default function CatalogueLayout() {
                     name="CatProfile"
                     options={{
                         title: "Cat Profile",
-                        headerTitleStyle: {
-                            fontFamily: "Nunito-Bold",
-                        },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                         headerStyle: {
@@ -33,7 +31,7 @@ export default function CatalogueLayout() {
                     name="PhotoGallery"
                     options={{
                         title: "Photo Gallery",
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
