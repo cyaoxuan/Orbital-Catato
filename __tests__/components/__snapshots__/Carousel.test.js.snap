@@ -606,12 +606,16 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              {
-                                "fontFamily": "Nunito-Medium",
-                                "fontSize": 16,
-                                "margin": 0,
-                                "padding": 0,
-                              },
+                              [
+                                {
+                                  "fontFamily": "Nunito-Medium",
+                                },
+                                {
+                                  "fontSize": 16,
+                                  "margin": 0,
+                                  "padding": 0,
+                                },
+                              ],
                             ],
                           ]
                         }
@@ -779,12 +783,16 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              {
-                                "fontFamily": "Nunito-Medium",
-                                "fontSize": 16,
-                                "margin": 0,
-                                "padding": 0,
-                              },
+                              [
+                                {
+                                  "fontFamily": "Nunito-Medium",
+                                },
+                                {
+                                  "fontSize": 16,
+                                  "margin": 0,
+                                  "padding": 0,
+                                },
+                              ],
                             ],
                           ]
                         }
@@ -1305,12 +1313,16 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              {
-                                "fontFamily": "Nunito-Medium",
-                                "fontSize": 16,
-                                "margin": 0,
-                                "padding": 0,
-                              },
+                              [
+                                {
+                                  "fontFamily": "Nunito-Medium",
+                                },
+                                {
+                                  "fontSize": 16,
+                                  "margin": 0,
+                                  "padding": 0,
+                                },
+                              ],
                             ],
                           ]
                         }
@@ -1478,12 +1490,16 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              {
-                                "fontFamily": "Nunito-Medium",
-                                "fontSize": 16,
-                                "margin": 0,
-                                "padding": 0,
-                              },
+                              [
+                                {
+                                  "fontFamily": "Nunito-Medium",
+                                },
+                                {
+                                  "fontSize": 16,
+                                  "margin": 0,
+                                  "padding": 0,
+                                },
+                              ],
                             ],
                           ]
                         }
@@ -2004,12 +2020,16 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              {
-                                "fontFamily": "Nunito-Medium",
-                                "fontSize": 16,
-                                "margin": 0,
-                                "padding": 0,
-                              },
+                              [
+                                {
+                                  "fontFamily": "Nunito-Medium",
+                                },
+                                {
+                                  "fontSize": 16,
+                                  "margin": 0,
+                                  "padding": 0,
+                                },
+                              ],
                             ],
                           ]
                         }
@@ -2177,12 +2197,16 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
-                              {
-                                "fontFamily": "Nunito-Medium",
-                                "fontSize": 16,
-                                "margin": 0,
-                                "padding": 0,
-                              },
+                              [
+                                {
+                                  "fontFamily": "Nunito-Medium",
+                                },
+                                {
+                                  "fontSize": 16,
+                                  "margin": 0,
+                                  "padding": 0,
+                                },
+                              ],
                             ],
                           ]
                         }

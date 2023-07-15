@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Avatar } from "react-native-paper";
-import { BodyText, TitleText } from "./Text";
+import { BodyText } from "./Text";
 
 // Cat Avatar with circular image and name
 // props: photoURL (string), size (image size || number), variant (font size || string), name (string)

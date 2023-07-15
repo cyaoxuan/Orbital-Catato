@@ -213,7 +213,7 @@ export default function Notifications() {
                                 },
                             }}
                         >
-                            <Dialog.Title style={{ fontFamily: "Nunito-Bold" }}>
+                            <Dialog.Title style={allStyles.titleText}>
                                 Notifications Update
                             </Dialog.Title>
                             <Dialog.Content>

@@ -8,7 +8,11 @@ import {
 } from "../../../utils/formatDetails";
 import { getItemWidthCols } from "../../../utils/calculateItemWidths";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { screenMainColor, secondaryColor } from "../../../components/Styles";
+import {
+    allStyles,
+    screenMainColor,
+    secondaryColor,
+} from "../../../components/Styles";
 import { BodyText, ErrorText, TitleText } from "../../../components/Text";
 
 // Avatar Container for profile photo, name and buttons
@@ -241,7 +245,12 @@ const PreviewPhotos = ({ photoURLs }) => {
             <View style={styles.previewContainer}>
                 <Text
                     variant="BodyMedium"
-                    style={{ fontFamily: "Nunito-Medium", marginTop: 20 }}
+                    style={[
+                        allStyles.bodyText,
+                        {
+                            marginTop: 20,
+                        },
+                    ]}
                 >
                     This cat has no photos!
                 </Text>

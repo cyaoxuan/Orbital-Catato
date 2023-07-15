@@ -1,7 +1,7 @@
 import { Button, Card } from "react-native-paper";
 import { IconTextFieldRow } from "./InfoText";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { screenMainColor, secondaryColor } from "./Styles";
+import { allStyles, screenMainColor, secondaryColor } from "./Styles";
 
 // Card used for the Carousel in Dashboard
 // props: cardWidth (number), spaceBetweenCards (number), photoURL (string), name (string), userRole (object of roles)
@@ -48,7 +48,7 @@ const CatCard = (props) => {
             <Card.Title
                 title={props.name || "Name"}
                 titleVariant="titleLarge"
-                titleStyle={{ fontFamily: "Nunito-Bold" }}
+                titleStyle={allStyles.titleText}
             />
             <Card.Content style={{ paddingHorizontal: 8 }}>
                 <IconTextFieldRow
@@ -77,12 +77,14 @@ const CatCard = (props) => {
                         height: 36,
                     }}
                     contentStyle={{ height: 36 }}
-                    labelStyle={{
-                        fontFamily: "Nunito-Medium",
-                        fontSize: 16,
-                        padding: 0,
-                        margin: 0,
-                    }}
+                    labelStyle={[
+                        allStyles.bodyText,
+                        {
+                            fontSize: 16,
+                            padding: 0,
+                            margin: 0,
+                        },
+                    ]}
                     onPress={props.profileOnPress}
                     icon={() => (
                         <Ionicons name="heart" size={16} color={buttonColor} />
@@ -99,12 +101,14 @@ const CatCard = (props) => {
                         contentStyle={{
                             height: 36,
                         }}
-                        labelStyle={{
-                            fontFamily: "Nunito-Medium",
-                            fontSize: 16,
-                            padding: 0,
-                            margin: 0,
-                        }}
+                        labelStyle={[
+                            allStyles.bodyText,
+                            {
+                                fontSize: 16,
+                                padding: 0,
+                                margin: 0,
+                            },
+                        ]}
                         disabled={
                             props.showFindLocation === undefined ? true : false
                         }
@@ -158,7 +162,7 @@ const CatCardSimple = (props) => {
             <Card.Title
                 title={props.name || "Name"}
                 titleVariant="bodyLarge"
-                titleStyle={{ fontFamily: "Nunito-Medium" }}
+                titleStyle={allStyles.bodyText}
                 titleNumberOfLines={2}
             />
         </Card>

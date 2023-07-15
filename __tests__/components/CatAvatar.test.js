@@ -13,7 +13,7 @@ describe("<CatAvatar />", () => {
     });
 
     it("renders avatar with correct photoURL", () => {
-        const photoURL = require("../../assets/cats/cat-2-1.jpg");
+        const photoURL = require("../../assets/testing-cats/cat-2-1.jpg");
         const { getByTestId } = render(<CatAvatar photoURL={photoURL} />);
         const avatar = getByTestId("avatar-image");
         expect(avatar.props.source.uri).toBe(photoURL);

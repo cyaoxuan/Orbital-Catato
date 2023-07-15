@@ -1,5 +1,6 @@
 import { Stack } from "expo-router";
 import { AuthProvider } from "../../../utils/context/auth";
+import { allStyles } from "../../../components/Styles";
 
 export default function SettingsLayout() {
     return (
@@ -8,7 +9,7 @@ export default function SettingsLayout() {
                 <Stack.Screen
                     name="Update"
                     options={{
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
@@ -17,7 +18,7 @@ export default function SettingsLayout() {
                     name="SelectCat"
                     options={{
                         title: "Select Cat",
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
@@ -26,7 +27,7 @@ export default function SettingsLayout() {
                     name="UpdateOptions"
                     options={{
                         title: "Update Options",
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
@@ -34,7 +35,7 @@ export default function SettingsLayout() {
                 <Stack.Screen
                     name="Form"
                     options={{
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
@@ -43,7 +44,7 @@ export default function SettingsLayout() {
                     name="ConfirmUpdate"
                     options={{
                         title: "Confirm Update",
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                         headerBackVisible: false,

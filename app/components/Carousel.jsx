@@ -5,7 +5,7 @@ import {
     formatLastSeenSimple,
 } from "../utils/formatDetails";
 import { Card, Paragraph } from "react-native-paper";
-import { screenMainColor } from "./Styles";
+import { allStyles, screenMainColor } from "./Styles";
 import { View } from "react-native";
 import { BodyText } from "./Text";
 import { dateTimeOptions } from "../data/DateTimeOptions";
@@ -138,10 +138,12 @@ const AnnouncementCarousel = ({ announcements, cardWidth }) => {
                         >
                             <Paragraph
                                 variant="bodyMedium"
-                                style={{
-                                    fontFamily: "Nunito-Medium",
-                                    height: "85%",
-                                }}
+                                style={[
+                                    allStyles.bodyText,
+                                    {
+                                        height: "85%",
+                                    },
+                                ]}
                             >
                                 {item.message}
                             </Paragraph>

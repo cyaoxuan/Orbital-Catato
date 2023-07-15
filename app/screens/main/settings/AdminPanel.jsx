@@ -277,7 +277,7 @@ export default function AdminPanel() {
                             },
                         }}
                     >
-                        <Dialog.Title style={{ fontFamily: "Nunito-Bold" }}>
+                        <Dialog.Title style={allStyles.titleText}>
                             Delete Announcement
                         </Dialog.Title>
                         <Dialog.Content>

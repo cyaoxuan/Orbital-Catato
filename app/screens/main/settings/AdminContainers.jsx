@@ -4,6 +4,7 @@ import { PillButton } from "../../../components/Button";
 import { AuthInput } from "../../../components/TextInput";
 import { ThreeRadioInput } from "../../../components/FormComponents";
 import {
+    allStyles,
     screenSecondaryColor,
     secondaryColor,
 } from "../../../components/Styles";
@@ -95,10 +96,12 @@ const AnnouncementContainer = ({
                                 textColor={secondaryColor}
                                 onPress={onClearPress}
                                 disabled={inProgress}
-                                labelStyle={{
-                                    fontFamily: "Nunito-Medium",
-                                    fontSize: 12,
-                                }}
+                                labelStyle={[
+                                    allStyles.bodyText,
+                                    {
+                                        fontSize: 12,
+                                    },
+                                ]}
                             >
                                 Clear Selection
                             </Button>

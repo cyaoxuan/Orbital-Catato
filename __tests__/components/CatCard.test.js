@@ -22,7 +22,7 @@ describe("<CatCard />", () => {
     });
 
     it("renders the cover image with the correct photoURL", () => {
-        const photoURL = require("../../assets/cats/cat-2-1.jpg");
+        const photoURL = require("../../assets/testing-cats/cat-2-1.jpg");
         const { getByTestId } = render(<CatCard photoURL={photoURL} />);
         const cover = getByTestId("cover-image");
         expect(cover.props.source.uri).toBe(photoURL);

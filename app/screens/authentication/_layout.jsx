@@ -1,6 +1,7 @@
 import { Stack, useRouter } from "expo-router";
 import { AuthProvider } from "../../utils/context/auth";
 import { IconButton } from "react-native-paper";
+import { allStyles } from "../../components/Styles";
 
 export default function AuthLayout() {
     const router = useRouter();
@@ -12,7 +13,7 @@ export default function AuthLayout() {
                 <Stack.Screen
                     name="Login"
                     options={{
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                         headerLeft: () => (
@@ -27,7 +28,7 @@ export default function AuthLayout() {
                     name="ForgotPassword"
                     options={{
                         title: "Forgot Password",
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                     }}
@@ -36,7 +37,7 @@ export default function AuthLayout() {
                     name="SignUp"
                     options={{
                         title: "Sign Up",
-                        headerTitleStyle: { fontFamily: "Nunito-Bold" },
+                        headerTitleStyle: allStyles.titleText,
                         elevation: 0,
                         headerShadowVisible: false,
                         headerLeft: () => (
