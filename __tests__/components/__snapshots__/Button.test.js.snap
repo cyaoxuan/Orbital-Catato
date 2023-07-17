@@ -1,5 +1,270 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<FilterButton /> renders correctly 1`] = `
+<View
+  style={
+    [
+      {
+        "flexDirection": "row",
+      },
+      {
+        "margin": 8,
+        "width": "80%",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "#05668D",
+          "borderBottomRightRadius": 0,
+          "borderColor": "#05668D",
+          "borderRadius": 20,
+          "borderRightWidth": 0,
+          "borderTopRightRadius": 0,
+          "borderWidth": 1,
+        },
+        {
+          "borderStyle": "solid",
+          "flex": 1,
+          "minWidth": 76,
+        },
+        [
+          undefined,
+          {},
+        ],
+      ]
+    }
+  >
+    <View
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": true,
+          "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        [
+          {
+            "overflow": "hidden",
+          },
+          {
+            "borderBottomRightRadius": 0,
+            "borderRadius": 20,
+            "borderRightWidth": 0,
+            "borderTopRightRadius": 0,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "paddingHorizontal": 16,
+              "paddingVertical": 9,
+            },
+            {
+              "paddingVertical": 9,
+            },
+          ]
+        }
+      >
+        <Text
+          numberOfLines={1}
+          selectable={false}
+          style={
+            [
+              {
+                "fontFamily": "System",
+                "fontSize": 14,
+                "fontWeight": "500",
+                "letterSpacing": 0.1,
+                "lineHeight": 20,
+              },
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "rgba(28, 27, 31, 1)",
+                "writingDirection": "ltr",
+              },
+              [
+                {
+                  "textAlign": "center",
+                },
+                {
+                  "color": "white",
+                  "fontFamily": "System",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "letterSpacing": 0.1,
+                  "lineHeight": 20,
+                },
+              ],
+            ]
+          }
+        >
+          First
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "transparent",
+          "borderBottomLeftRadius": 0,
+          "borderColor": "#05668D",
+          "borderRadius": 20,
+          "borderTopLeftRadius": 0,
+          "borderWidth": 1,
+        },
+        {
+          "borderStyle": "solid",
+          "flex": 1,
+          "minWidth": 76,
+        },
+        [
+          undefined,
+          {},
+        ],
+      ]
+    }
+  >
+    <View
+      accessibilityRole="button"
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": false,
+          "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        [
+          {
+            "overflow": "hidden",
+          },
+          {
+            "borderBottomLeftRadius": 0,
+            "borderRadius": 20,
+            "borderTopLeftRadius": 0,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "paddingHorizontal": 16,
+              "paddingVertical": 9,
+            },
+            {
+              "paddingVertical": 9,
+            },
+          ]
+        }
+      >
+        <Text
+          numberOfLines={1}
+          selectable={false}
+          style={
+            [
+              {
+                "fontFamily": "System",
+                "fontSize": 14,
+                "fontWeight": "500",
+                "letterSpacing": 0.1,
+                "lineHeight": 20,
+              },
+              {
+                "textAlign": "left",
+              },
+              {
+                "color": "rgba(28, 27, 31, 1)",
+                "writingDirection": "ltr",
+              },
+              [
+                {
+                  "textAlign": "center",
+                },
+                {
+                  "color": "#05668D",
+                  "fontFamily": "System",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "letterSpacing": 0.1,
+                  "lineHeight": 20,
+                },
+              ],
+            ]
+          }
+        >
+          Second
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
 exports[`<PillButton /> renders correctly 1`] = `
 <View
   style={
@@ -140,6 +405,168 @@ exports[`<PillButton /> renders correctly 1`] = `
                   false,
                   {
                     "color": "white",
+                    "fontFamily": "System",
+                    "fontSize": 14,
+                    "fontWeight": "500",
+                    "letterSpacing": 0.1,
+                    "lineHeight": 20,
+                  },
+                  {
+                    "fontFamily": "Nunito-Medium",
+                    "fontSize": 16,
+                  },
+                ],
+              ]
+            }
+            testID="button-text"
+          >
+            Button
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<TextButton /> renders correctly 1`] = `
+<View
+  style={
+    {
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    collapsable={false}
+    style={
+      {
+        "backgroundColor": "transparent",
+        "borderRadius": 20,
+        "height": 40,
+        "margin": 10,
+        "shadowColor": "#000",
+        "shadowOffset": {
+          "height": 0,
+          "width": 0,
+        },
+        "shadowOpacity": 0,
+        "shadowRadius": 0,
+        "width": "90%",
+      }
+    }
+    testID="button-container-outer-layer"
+  >
+    <View
+      collapsable={false}
+      style={
+        {
+          "backgroundColor": "transparent",
+          "borderColor": "transparent",
+          "borderRadius": 20,
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "flex": 1,
+          "minWidth": 64,
+          "shadowColor": "#000",
+          "shadowOffset": {
+            "height": 0,
+            "width": 0,
+          },
+          "shadowOpacity": 0,
+          "shadowRadius": 0,
+        }
+      }
+      testID="button-container"
+    >
+      <View
+        accessibilityRole="button"
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": true,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          [
+            {
+              "overflow": "hidden",
+            },
+            {
+              "borderRadius": 20,
+            },
+          ]
+        }
+        testID="button"
+      >
+        <View
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          <Text
+            numberOfLines={1}
+            selectable={false}
+            style={
+              [
+                {
+                  "fontFamily": "System",
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "letterSpacing": 0.1,
+                  "lineHeight": 20,
+                },
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "rgba(28, 27, 31, 1)",
+                  "writingDirection": "ltr",
+                },
+                [
+                  {
+                    "marginHorizontal": 16,
+                    "marginVertical": 9,
+                    "textAlign": "center",
+                  },
+                  false,
+                  {
+                    "marginHorizontal": 12,
+                  },
+                  undefined,
+                  false,
+                  {
+                    "color": "#FBAB4B",
                     "fontFamily": "System",
                     "fontSize": 14,
                     "fontWeight": "500",

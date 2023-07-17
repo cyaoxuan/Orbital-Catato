@@ -118,7 +118,7 @@ const AnnouncementCarousel = ({ announcements, cardWidth }) => {
             renderItem={({ item, index }) => {
                 return (
                     <Card
-                        key={index}
+                        key={item.announcementID}
                         style={{
                             height: cardWidth / 2,
                             width: cardWidth,
