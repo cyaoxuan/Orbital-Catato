@@ -3,7 +3,7 @@ import {
     ErrorText,
     RequiredFormText,
     TitleText,
-} from "../../app/components/TextComponents";
+} from "../../app/components/Text";
 import { cleanup, render } from "@testing-library/react-native";
 
 afterEach(cleanup);
