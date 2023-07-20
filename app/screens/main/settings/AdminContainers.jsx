@@ -77,11 +77,14 @@ const AnnouncementContainer = ({
                             label="Announcement"
                             selectionColor={secondaryColor}
                             activeOutlineColor={secondaryColor}
-                            style={{
-                                width: "90%",
-                                backgroundColor: screenSecondaryColor,
-                                fontSize: 14,
-                            }}
+                            style={[
+                                allStyles.bodyText,
+                                {
+                                    width: "90%",
+                                    backgroundColor: screenSecondaryColor,
+                                    fontSize: 14,
+                                },
+                            ]}
                             contentStyle={{
                                 height: 120,
                             }}

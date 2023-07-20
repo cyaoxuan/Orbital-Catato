@@ -1,5 +1,9 @@
 import { cleanup, render, fireEvent } from "@testing-library/react-native";
-import { getInfo1, CardCarousel } from "../../app/components/Carousel";
+import {
+    getInfo1,
+    CardCarousel,
+    AnnouncementCarousel,
+} from "../../app/components/Carousel";
 
 afterEach(cleanup);
 
@@ -255,5 +259,69 @@ describe("<CardCarousel />", () => {
             catID: 1,
             location: { latitude: 1, longitude: 1 },
         });
+    });
+});
+
+const announcements = [
+    {
+        announcementID: 1,
+        message: "Message 1",
+        updatedAt: {
+            toDate() {
+                return new Date(2023, 4, 20, 10, 53, 0, 0);
+            },
+        },
+    },
+    {
+        announcementID: 2,
+        message: "Message 2",
+        updatedAt: {
+            toDate() {
+                return new Date(2023, 4, 20, 10, 53, 0, 0);
+            },
+        },
+    },
+    {
+        announcementID: 3,
+        message: "Message 3",
+        updatedAt: {
+            toDate() {
+                return new Date(2023, 4, 20, 10, 53, 0, 0);
+            },
+        },
+    },
+];
+
+describe("<AnnouncementCarousel />", () => {
+    it("renders carousel successfully", () => {
+        const { getByTestId } = render(<AnnouncementCarousel />);
+        const carousel = getByTestId("announcement-carousel");
+        expect(carousel).toBeDefined();
+    });
+
+    it("renders carousel with announcements correctly", () => {
+        const cardWidth = 200;
+
+        const tree = render(
+            <AnnouncementCarousel
+                announcements={announcements}
+                cardWidth={cardWidth}
+            />
+        ).toJSON();
+
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("renders correct number of announcements", () => {
+        const cardWidth = 200;
+        const { getAllByTestId } = render(
+            <AnnouncementCarousel
+                announcements={announcements}
+                cardWidth={cardWidth}
+            />
+        );
+
+        const announces = getAllByTestId("card");
+        expect(announces).toHaveLength(announcements.length);
     });
 });

@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BodyText /> renders correctly 1`] = `
+<Text
+  style={
+    [
+      {
+        "textAlign": "left",
+      },
+      {
+        "color": "rgba(28, 27, 31, 1)",
+        "fontFamily": "System",
+        "fontWeight": "400",
+        "letterSpacing": 0,
+      },
+      {
+        "writingDirection": "ltr",
+      },
+      {
+        "color": undefined,
+        "fontFamily": "Nunito-Medium",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`<ErrorText /> renders correctly 1`] = `
+<Text
+  style={
+    [
+      {
+        "textAlign": "left",
+      },
+      {
+        "color": "rgba(28, 27, 31, 1)",
+        "fontFamily": "System",
+        "fontWeight": "400",
+        "letterSpacing": 0,
+      },
+      {
+        "writingDirection": "ltr",
+      },
+      {
+        "color": "#BA1A1A",
+        "fontFamily": "Nunito-Medium",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`<RequiredFormText /> renders correctly 1`] = `
+<Text
+  style={
+    [
+      {
+        "textAlign": "left",
+      },
+      {
+        "color": "rgba(28, 27, 31, 1)",
+        "fontFamily": "System",
+        "fontWeight": "400",
+        "letterSpacing": 0,
+      },
+      {
+        "writingDirection": "ltr",
+      },
+      {
+        "color": "#BA1A1A",
+        "fontFamily": "Nunito-Bold",
+      },
+    ]
+  }
+>
+  *
+  <Text
+    style={
+      [
+        {
+          "textAlign": "left",
+        },
+        {
+          "color": "rgba(28, 27, 31, 1)",
+          "fontFamily": "System",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+        },
+        {
+          "writingDirection": "ltr",
+        },
+        {
+          "fontFamily": "Nunito-Medium",
+        },
+      ]
+    }
+  />
+</Text>
+`;
+
+exports[`<TitleText /> renders correctly 1`] = `
+<Text
+  style={
+    [
+      {
+        "textAlign": "left",
+      },
+      {
+        "color": "rgba(28, 27, 31, 1)",
+        "fontFamily": "System",
+        "fontWeight": "400",
+        "letterSpacing": 0,
+      },
+      {
+        "writingDirection": "ltr",
+      },
+      {
+        "color": undefined,
+        "fontFamily": "Nunito-Bold",
+      },
+    ]
+  }
+/>
+`;

@@ -1,7 +1,37 @@
-import { IconTextFieldRow, KeyTextField } from "../../app/components/InfoText";
+import {
+    IconTextField,
+    IconTextFieldRow,
+    KeyTextField,
+} from "../../app/components/InfoText";
 import { cleanup, render } from "@testing-library/react-native";
 
 afterEach(cleanup);
+
+describe("<IconTextField />", () => {
+    it("renders successfully", () => {
+        const iconTextField = render(<IconTextField />);
+        expect(iconTextField).toBeDefined();
+    });
+
+    it("renders correctly", () => {
+        const tree = render(<IconTextField />).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("renders icon", () => {
+        const { getByTestId } = render(<IconTextField />);
+        const icon = getByTestId("icon");
+        expect(icon).toBeDefined();
+    });
+
+    it("displays field and info prop", () => {
+        const { queryByText } = render(
+            <IconTextField field="Hello" info="World!" />
+        );
+        expect(queryByText("Hello")).not.toBeNull();
+        expect(queryByText("World!")).not.toBeNull();
+    });
+});
 
 describe("<IconTextFieldRow />", () => {
     it("renders successfully", () => {

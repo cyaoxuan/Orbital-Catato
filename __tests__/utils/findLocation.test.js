@@ -7,7 +7,7 @@ import {
     getRandomBuilding,
 } from "../../app/utils/findLocation";
 
-// for spying on functions
+// For spying on functions
 const locUtils = require("../../app/utils/findLocation");
 
 // Mocking necessary dependencies

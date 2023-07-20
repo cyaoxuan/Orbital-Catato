@@ -89,7 +89,7 @@ const NumberSpinner = (props) => {
         <View style={styles.container}>
             <RequiredFormText variant={titleVariant} text={props.titleText} />
             <NumericInput
-                type="up-down"
+                type="plus-minus"
                 rounded
                 editable={false}
                 minValue={props.min}
@@ -103,7 +103,9 @@ const NumberSpinner = (props) => {
                           }
                 }
                 upDownButtonsBackgroundColor={screenSecondaryColor}
-                totalWidth={120}
+                leftButtonBackgroundColor={screenSecondaryColor}
+                rightButtonBackgroundColor={screenSecondaryColor}
+                totalWidth={170}
                 totalHeight={40}
             />
         </View>
@@ -113,13 +115,14 @@ const NumberSpinner = (props) => {
 // Styled RN dateTimePicker
 // Only selects time
 // props: titleText (string), displayTime (Date object), today (Date object) onPress (callback), show (boolean)
-// value (hook value), onChange (callback)
+// value (hook value), onChange (callback), disabled (boolean)
 const TimeInput = (props) => {
     return (
         <View style={styles.container}>
             <RequiredFormText variant={titleVariant} text={props.titleText} />
             <Button
                 onPress={props.onPress}
+                disabled={props.disabled}
                 style={{
                     width: "50%",
                     margin: 4,
@@ -149,6 +152,7 @@ const TimeInput = (props) => {
                     mode="time"
                     display="spinner"
                     is24Hour={true}
+                    themeVariant="light"
                     value={props.value}
                     onChange={props.onChange}
                 />
@@ -163,8 +167,8 @@ const TimeInput = (props) => {
 
 // Styled Radio input from RN Paper, for two radio buttons only
 // For gender, sterilised, concerns in forms
-// props: titleText (string), firstText (string), firstValue (string), secondText (string), secondValue (string),
-// value (hook value), onValueChange (callback)
+// props: titleText (string), firstValue (string),  secondValue (string),
+// value (hook value), onValueChange (callback), disabled (boolean)
 const TwoRadioInput = (props) => {
     const [selected, setSelected] = useState("First");
     const radioColor = secondaryColor;
@@ -180,24 +184,25 @@ const TwoRadioInput = (props) => {
                         : (value) => setSelected(value)
                 }
             >
-                <View style={styles.radioButtonContainer}>
-                    <BodyText
-                        variant={bodyVariant}
-                        text={props.firstValue || "First"}
-                    />
-                    <RadioButton.Android
+                <View style={{ flexDirection: "row" }}>
+                    <RadioButton.Item
                         value={props.firstValue || "First"}
                         color={radioColor}
+                        label={props.firstValue || "First"}
+                        labelVariant={bodyVariant}
+                        mode="android"
+                        position="trailing"
+                        disabled={props.disabled}
+                        style={{ marginRight: 8 }}
                     />
-                </View>
-                <View style={styles.radioButtonContainer}>
-                    <BodyText
-                        variant={bodyVariant}
-                        text={props.secondValue || "Second"}
-                    />
-                    <RadioButton.Android
+                    <RadioButton.Item
                         value={props.secondValue || "Second"}
                         color={radioColor}
+                        label={props.secondValue || "Second"}
+                        labelVariant={bodyVariant}
+                        mode="android"
+                        position="trailing"
+                        disabled={props.disabled}
                     />
                 </View>
             </RadioButton.Group>
@@ -222,39 +227,34 @@ const ThreeRadioInput = (props) => {
                     : (value) => setSelected(value)
             }
         >
-            <View style={styles.radioButtonContainer}>
-                <BodyText
-                    variant={bodyVariant}
-                    text={props.firstValue || "First"}
-                />
-                <RadioButton.Android
-                    value={props.firstValue || "First"}
-                    disabled={props.disabled}
-                    color={radioColor}
-                />
-            </View>
-            <View style={styles.radioButtonContainer}>
-                <BodyText
-                    variant={bodyVariant}
-                    text={props.secondValue || "Second"}
-                />
-                <RadioButton.Android
-                    value={props.secondValue || "Second"}
-                    disabled={props.disabled}
-                    color={radioColor}
-                />
-            </View>
-            <View style={styles.radioButtonContainer}>
-                <BodyText
-                    variant={bodyVariant}
-                    text={props.thirdValue || "Third"}
-                />
-                <RadioButton.Android
-                    value={props.thirdValue || "Third"}
-                    disabled={props.disabled}
-                    color={radioColor}
-                />
-            </View>
+            <RadioButton.Item
+                value={props.firstValue || "First"}
+                label={props.firstValue || "First"}
+                labelVariant={bodyVariant}
+                mode="android"
+                position="trailing"
+                disabled={props.disabled}
+                color={radioColor}
+            />
+            <RadioButton.Item
+                value={props.secondValue || "Second"}
+                label={props.secondValue || "Second"}
+                labelVariant={bodyVariant}
+                mode="android"
+                position="trailing"
+                disabled={props.disabled}
+                color={radioColor}
+            />
+
+            <RadioButton.Item
+                value={props.thirdValue || "Third"}
+                label={props.thirdValue || "Third"}
+                labelVariant={bodyVariant}
+                mode="android"
+                position="trailing"
+                disabled={props.disabled}
+                color={radioColor}
+            />
         </RadioButton.Group>
     );
 };
@@ -262,7 +262,7 @@ const ThreeRadioInput = (props) => {
 // Styled button and menu from RN Paper
 // Shows options to upload photo from gallery or camera
 // Required field, shows error whe no photoURI is set
-// props: titleText (string), showError (boolean), photoURI (string),
+// props: titleText (string), showError (boolean), photoURI (string), disabled (boolean)
 // cameraOnPress (callback), galleryOnPress (callback)
 const UploadPhotos = (props) => {
     const [visible, setVisible] = useState(false);
@@ -304,6 +304,7 @@ const UploadPhotos = (props) => {
                                 />
                             )}
                             onPress={openMenu}
+                            disabled={props.disabled}
                         >
                             Upload
                         </Button>
@@ -367,9 +368,6 @@ const styles = StyleSheet.create({
     },
 
     radioButtonContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
         paddingHorizontal: 4,
     },
 
