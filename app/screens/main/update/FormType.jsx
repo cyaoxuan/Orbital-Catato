@@ -116,6 +116,7 @@ const CreateProfile = (props) => {
                 value={newName}
                 onChangeText={setNewName}
                 errorText="Please give a cute name for the cat!"
+                disabled={inProgress}
             />
 
             <Divider />
@@ -126,6 +127,7 @@ const CreateProfile = (props) => {
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
                 showError={true}
+                disabled={inProgress}
             />
 
             <Divider />
@@ -136,6 +138,7 @@ const CreateProfile = (props) => {
                 onValueChange={(value) => setNewGender(value)}
                 firstValue="F"
                 secondValue="M"
+                disabled={inProgress}
             />
 
             <Divider />
@@ -159,6 +162,7 @@ const CreateProfile = (props) => {
                 onValueChange={(value) => setSterile(value)}
                 firstValue="Yes"
                 secondValue="No"
+                disabled={inProgress}
             />
 
             <Divider />
@@ -170,6 +174,7 @@ const CreateProfile = (props) => {
                 value={features}
                 onChangeText={setFeatures}
                 errorText="Please describe your favourite things about the cat!"
+                disabled={inProgress}
             />
 
             <PillButton
@@ -305,6 +310,7 @@ const ReportCat = (props) => {
                 onChange={onTimeChange}
                 show={showTime}
                 onPress={setShowTime}
+                disabled={inProgress}
             />
 
             <Divider />
@@ -315,6 +321,7 @@ const ReportCat = (props) => {
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
                 showError={true}
+                disabled={inProgress}
             />
 
             <Divider />
@@ -325,6 +332,7 @@ const ReportCat = (props) => {
                 onValueChange={(value) => setSterile(value)}
                 firstValue="Yes"
                 secondValue="No"
+                disabled={inProgress}
             />
 
             <Divider />
@@ -335,6 +343,7 @@ const ReportCat = (props) => {
                 onValueChange={(value) => setConcern(value)}
                 firstValue="Healthy"
                 secondValue="Injured"
+                disabled={inProgress}
             />
 
             <Divider />
@@ -346,6 +355,7 @@ const ReportCat = (props) => {
                 value={concernDescription}
                 onChangeText={setConcernDescription}
                 errorText="Please type in anything you think would be helpful!"
+                disabled={inProgress}
             />
 
             <PillButton
@@ -471,6 +481,7 @@ const UpdateLocation = (props) => {
                 onChange={onTimeChange}
                 show={showTime}
                 onPress={setShowTime}
+                disabled={inProgress}
             />
 
             <PillButton
@@ -640,6 +651,7 @@ const UpdateConcern = (props) => {
                 onChange={onTimeChange}
                 show={showTime}
                 onPress={setShowTime}
+                disabled={inProgress}
             />
 
             <Divider />
@@ -650,6 +662,7 @@ const UpdateConcern = (props) => {
                 onValueChange={(value) => setConcern(value)}
                 firstValue="Healthy"
                 secondValue="Injured"
+                disabled={inProgress}
             />
 
             <Divider />
@@ -660,6 +673,7 @@ const UpdateConcern = (props) => {
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
                 showError={true}
+                disabled={inProgress}
             />
 
             <Divider />
@@ -671,6 +685,7 @@ const UpdateConcern = (props) => {
                 value={concernDescription}
                 onChangeText={setConcernDescription}
                 errorText="Please type in anything you think would be helpful!"
+                disabled={inProgress}
             />
 
             <PillButton
@@ -796,6 +811,7 @@ const UpdateFed = (props) => {
                 onChange={onTimeChange}
                 show={showTime}
                 onPress={setShowTime}
+                disabled={inProgress}
             />
 
             <PillButton
@@ -844,7 +860,7 @@ const UpdateProfile = (props) => {
     );
 
     // For New Radio
-    const [isNew, setIsNew] = useState("Yes");
+    const [isNew, setIsNew] = useState(concernStatus.new ? "Yes" : "No");
 
     // For Sterilised Radio
     const [sterile, setSterile] = useState(sterilised ? "Yes" : "No");
@@ -862,6 +878,11 @@ const UpdateProfile = (props) => {
                 sterilised: sterile === "Yes",
                 keyFeatures: features,
                 photoURLs: photoURLs,
+                concernStatus: {
+                    ...concernStatus,
+                    new: isNew === "Yes" ? true : false,
+                },
+                concernDesc: concernDesc,
                 formType: formType,
             });
         }
@@ -877,6 +898,9 @@ const UpdateProfile = (props) => {
         sterile,
         features,
         photoURLs,
+        concernStatus,
+        isNew,
+        concernDesc,
         formType,
     ]);
 
@@ -930,6 +954,7 @@ const UpdateProfile = (props) => {
                 value={newName}
                 onChangeText={setNewName}
                 errorText="Please give a cute name for the cat!"
+                disabled={inProgress}
             />
 
             <Divider />
@@ -940,6 +965,7 @@ const UpdateProfile = (props) => {
                 galleryOnPress={handleImageFromGallery}
                 photoURI={photoURI}
                 showError={false}
+                disabled={inProgress}
             />
 
             <Divider />
@@ -950,6 +976,7 @@ const UpdateProfile = (props) => {
                 onValueChange={(value) => setNewGender(value)}
                 firstValue="F"
                 secondValue="M"
+                disabled={inProgress}
             />
 
             <Divider />
@@ -973,10 +1000,9 @@ const UpdateProfile = (props) => {
                         titleText="Is New"
                         value={isNew}
                         onValueChange={(value) => setIsNew(value)}
-                        firstText="Yes"
                         firstValue="Yes"
-                        secondText="No"
                         secondValue="No"
+                        disabled={inProgress}
                     />
 
                     <Divider />
@@ -989,6 +1015,7 @@ const UpdateProfile = (props) => {
                 onValueChange={(value) => setSterile(value)}
                 firstValue="Yes"
                 secondValue="No"
+                disabled={inProgress}
             />
 
             <Divider />
@@ -1000,6 +1027,7 @@ const UpdateProfile = (props) => {
                 value={features}
                 onChangeText={setFeatures}
                 errorText="Please describe your favourite things about the cat!"
+                disabled={inProgress}
             />
 
             <PillButton
@@ -1059,6 +1087,7 @@ const DeleteProfile = (props) => {
                 value={catName}
                 onChangeText={setCatName}
                 errorText="Please enter the cat's name to confirm deletion"
+                disabled={inProgress}
             />
             <PillButton
                 label="Delete Profile"

@@ -420,15 +420,14 @@ exports[`<NumberSpinner /> renders correctly 1`] = `
       [
         {
           "alignItems": "center",
-          "borderColor": "grey",
           "borderWidth": 1,
           "flexDirection": "row",
-          "justifyContent": "space-between",
+          "justifyContent": "center",
         },
         {
           "borderColor": "#d4d4d4",
           "height": 40,
-          "width": 120,
+          "width": 170,
         },
         {
           "borderRadius": 7.199999999999999,
@@ -437,184 +436,198 @@ exports[`<NumberSpinner /> renders correctly 1`] = `
       ]
     }
   >
-    <TextInput
-      editable={false}
-      keyboardType="numeric"
-      onBlur={[Function]}
-      onChangeText={[Function]}
-      onFocus={[Function]}
-      returnKeyType="done"
-      style={
-        [
-          {
-            "padding": 0,
-            "textAlign": "center",
-          },
-          {
-            "borderRightColor": "#d4d4d4",
-            "borderRightWidth": 2,
-            "color": "black",
-            "fontSize": 15.2,
-            "height": 40,
-            "width": 72,
-          },
-          {},
-        ]
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
       }
-      underlineColorAndroid="rgba(0,0,0,0)"
-      value="2023"
-    />
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#F8F9FD",
+          "borderBottomLeftRadius": 7.199999999999999,
+          "borderTopLeftRadius": 7.199999999999999,
+          "borderWidth": 0,
+          "height": 38,
+          "justifyContent": "center",
+          "left": 0,
+          "opacity": 1,
+          "position": "absolute",
+          "width": 51,
+          "zIndex": -1,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        selectable={false}
+        style={
+          [
+            {
+              "color": undefined,
+              "fontSize": 15.2,
+            },
+            [
+              {
+                "backgroundColor": "rgba(0,0,0,0)",
+                "fontWeight": "900",
+              },
+              {},
+              {},
+              {},
+            ],
+            {
+              "fontFamily": "ionicons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            {},
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
     <View
       style={
         [
           {
-            "alignItems": "center",
-            "backgroundColor": "#F8F9FD",
+            "alignSelf": "center",
+            "borderLeftColor": "#d4d4d4",
+            "borderLeftWidth": 1,
             "borderRightColor": "#d4d4d4",
             "borderRightWidth": 1,
-            "width": 48,
-          },
-          {
-            "borderBottomRightRadius": 7.199999999999999,
-            "borderTopRightRadius": 7.199999999999999,
           },
         ]
       }
     >
-      <View
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+      <TextInput
+        editable={false}
+        keyboardType="numeric"
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        returnKeyType="done"
         style={
-          {
-            "alignItems": "center",
-            "flex": 1,
-            "opacity": 1,
-            "width": "100%",
-          }
+          [
+            {
+              "padding": 0,
+              "textAlign": "center",
+            },
+            {
+              "borderLeftColor": "#d4d4d4",
+              "borderLeftWidth": 1,
+              "borderRightColor": "#d4d4d4",
+              "borderRightWidth": 1,
+              "color": "black",
+              "fontSize": 15.2,
+              "height": 40,
+              "width": 68,
+            },
+            {},
+          ]
         }
-      >
-        <Text
-          allowFontScaling={false}
-          selectable={false}
-          style={
+        underlineColorAndroid="rgba(0,0,0,0)"
+        value="2023"
+      />
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#F8F9FD",
+          "borderBottomRightRadius": 7.199999999999999,
+          "borderTopRightRadius": 7.199999999999999,
+          "borderWidth": 0,
+          "height": 38,
+          "justifyContent": "center",
+          "opacity": 1,
+          "position": "absolute",
+          "right": 0,
+          "width": 51,
+          "zIndex": -1,
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        selectable={false}
+        style={
+          [
+            {
+              "color": undefined,
+              "fontSize": 15.2,
+            },
             [
               {
-                "color": undefined,
-                "fontSize": 15.2,
-              },
-              [
-                {
-                  "backgroundColor": "rgba(0,0,0,0)",
-                  "fontWeight": "900",
-                },
-                {},
-                {},
-                {},
-              ],
-              {
-                "fontFamily": "ionicons",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
+                "backgroundColor": "rgba(0,0,0,0)",
+                "fontWeight": "900",
               },
               {},
-            ]
-          }
-        >
-          
-        </Text>
-      </View>
-      <View
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "alignItems": "center",
-            "flex": 1,
-            "opacity": 1,
-            "width": "100%",
-          }
+              {},
+              {},
+            ],
+            {
+              "fontFamily": "ionicons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            {},
+          ]
         }
       >
-        <Text
-          allowFontScaling={false}
-          selectable={false}
-          style={
-            [
-              {
-                "color": undefined,
-                "fontSize": 15.2,
-              },
-              [
-                {
-                  "backgroundColor": "rgba(0,0,0,0)",
-                  "fontWeight": "900",
-                },
-                {},
-                {},
-                {},
-              ],
-              {
-                "fontFamily": "ionicons",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-              {},
-            ]
-          }
-        >
-          
-        </Text>
-      </View>
+        
+      </Text>
     </View>
   </View>
 </View>
@@ -945,41 +958,12 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
     <View
       style={
         {
-          "alignItems": "center",
           "flexDirection": "row",
-          "justifyContent": "space-between",
-          "paddingHorizontal": 4,
         }
       }
     >
-      <Text
-        style={
-          [
-            {
-              "fontFamily": "System",
-              "fontSize": 14,
-              "fontWeight": "400",
-              "letterSpacing": 0.25,
-              "lineHeight": 20,
-            },
-            {
-              "textAlign": "left",
-            },
-            {
-              "color": "rgba(28, 27, 31, 1)",
-              "writingDirection": "ltr",
-            },
-            {
-              "color": undefined,
-              "fontFamily": "Nunito-Medium",
-            },
-          ]
-        }
-      >
-        First
-      </Text>
       <View
-        accessibilityLiveRegion="polite"
+        accessibilityLabel="First"
         accessibilityRole="radio"
         accessibilityState={
           {
@@ -1000,7 +984,6 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
         }
         accessible={true}
         collapsable={false}
-        color="#05668D"
         focusable={true}
         onBlur={[Function]}
         onClick={[Function]}
@@ -1013,41 +996,102 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           [
-            {
-              "overflow": "hidden",
-            },
-            {
-              "borderRadius": 18,
-            },
+            false,
+            undefined,
           ]
         }
       >
         <View
-          collapsable={false}
+          pointerEvents="none"
           style={
-            {
-              "borderColor": "#05668D",
-              "borderRadius": 10,
-              "borderWidth": 2,
-              "height": 20,
-              "margin": 8,
-              "width": 20,
-            }
+            [
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "paddingHorizontal": 16,
+                "paddingVertical": 8,
+              },
+              {
+                "marginRight": 8,
+              },
+            ]
           }
         >
-          <View
+          <Text
             style={
               [
                 {
-                  "bottom": 0,
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
+                  "fontFamily": "System",
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                  "letterSpacing": 0.25,
+                  "lineHeight": 20,
                 },
                 {
-                  "alignItems": "center",
-                  "justifyContent": "center",
+                  "textAlign": "left",
+                },
+                {
+                  "color": "rgba(28, 27, 31, 1)",
+                  "writingDirection": "ltr",
+                },
+                [
+                  {
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                  },
+                  false,
+                  {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "textAlign": "left",
+                  },
+                  undefined,
+                ],
+              ]
+            }
+          >
+            First
+          </Text>
+          <View
+            accessibilityLiveRegion="polite"
+            accessibilityRole="radio"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": true,
+                "disabled": false,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            color="#05668D"
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              [
+                {
+                  "overflow": "hidden",
+                },
+                {
+                  "borderRadius": 18,
                 },
               ]
             }
@@ -1056,60 +1100,55 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
               collapsable={false}
               style={
                 {
-                  "backgroundColor": "#05668D",
-                  "borderRadius": 5,
-                  "height": 10,
-                  "transform": [
-                    {
-                      "scale": 1,
-                    },
-                  ],
-                  "width": 10,
+                  "borderColor": "#05668D",
+                  "borderRadius": 10,
+                  "borderWidth": 2,
+                  "height": 20,
+                  "margin": 8,
+                  "width": 20,
                 }
               }
-            />
+            >
+              <View
+                style={
+                  [
+                    {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    {
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                    },
+                  ]
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    {
+                      "backgroundColor": "#05668D",
+                      "borderRadius": 5,
+                      "height": 10,
+                      "transform": [
+                        {
+                          "scale": 1,
+                        },
+                      ],
+                      "width": 10,
+                    }
+                  }
+                />
+              </View>
+            </View>
           </View>
         </View>
       </View>
-    </View>
-    <View
-      style={
-        {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "paddingHorizontal": 4,
-        }
-      }
-    >
-      <Text
-        style={
-          [
-            {
-              "fontFamily": "System",
-              "fontSize": 14,
-              "fontWeight": "400",
-              "letterSpacing": 0.25,
-              "lineHeight": 20,
-            },
-            {
-              "textAlign": "left",
-            },
-            {
-              "color": "rgba(28, 27, 31, 1)",
-              "writingDirection": "ltr",
-            },
-            {
-              "color": undefined,
-              "fontFamily": "Nunito-Medium",
-            },
-          ]
-        }
-      >
-        Second
-      </Text>
       <View
-        accessibilityLiveRegion="polite"
+        accessibilityLabel="Second"
         accessibilityRole="radio"
         accessibilityState={
           {
@@ -1130,7 +1169,6 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
         }
         accessible={true}
         collapsable={false}
-        color="#05668D"
         focusable={true}
         onBlur={[Function]}
         onClick={[Function]}
@@ -1143,28 +1181,119 @@ exports[`<TwoRadioInput /> renders correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           [
-            {
-              "overflow": "hidden",
-            },
-            {
-              "borderRadius": 18,
-            },
+            false,
+            undefined,
           ]
         }
       >
         <View
-          collapsable={false}
+          pointerEvents="none"
           style={
-            {
-              "borderColor": "rgba(73, 69, 79, 1)",
-              "borderRadius": 10,
-              "borderWidth": 2,
-              "height": 20,
-              "margin": 8,
-              "width": 20,
-            }
+            [
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "paddingHorizontal": 16,
+                "paddingVertical": 8,
+              },
+              undefined,
+            ]
           }
-        />
+        >
+          <Text
+            style={
+              [
+                {
+                  "fontFamily": "System",
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                  "letterSpacing": 0.25,
+                  "lineHeight": 20,
+                },
+                {
+                  "textAlign": "left",
+                },
+                {
+                  "color": "rgba(28, 27, 31, 1)",
+                  "writingDirection": "ltr",
+                },
+                [
+                  {
+                    "flexGrow": 1,
+                    "flexShrink": 1,
+                  },
+                  false,
+                  {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "textAlign": "left",
+                  },
+                  undefined,
+                ],
+              ]
+            }
+          >
+            Second
+          </Text>
+          <View
+            accessibilityLiveRegion="polite"
+            accessibilityRole="radio"
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": false,
+                "disabled": false,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            color="#05668D"
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              [
+                {
+                  "overflow": "hidden",
+                },
+                {
+                  "borderRadius": 18,
+                },
+              ]
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "borderColor": "rgba(73, 69, 79, 1)",
+                  "borderRadius": 10,
+                  "borderWidth": 2,
+                  "height": 20,
+                  "margin": 8,
+                  "width": 20,
+                }
+              }
+            />
+          </View>
+        </View>
       </View>
     </View>
   </View>
