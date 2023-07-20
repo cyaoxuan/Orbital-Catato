@@ -22,7 +22,7 @@ const catColl = collection(db, "Cat");
 const catUpdateColl = collection(db, "CatUpdate");
 
 // Get new array of photo URLs, where profile pic is at the start
-const processNewPhotoURLs = async (catID, photoURI, isProfilePic) => {
+export const processNewPhotoURLs = async (catID, photoURI, isProfilePic) => {
     try {
         // Upload to storage and get download URL
         const downloadURL = await uploadImageToStorage(photoURI);
@@ -42,20 +42,20 @@ const processNewPhotoURLs = async (catID, photoURI, isProfilePic) => {
     }
 };
 
-const processNewConcerrnPhotoURLs = async (catID, photoURI) => {
+export const processNewConcernPhotoURLs = async (catID, photoURI) => {
     try {
         // Upload to storage and get download URL
         const downloadURL = await uploadImageToStorage(photoURI);
 
         // Get old data from Firestore to append the download URL
         const cat = (await getDoc(doc(db, "Cat", catID))).data();
-        const newConcerrnPhotoURLs = cat.concernPhotoURLs
+        const newConcernPhotoURLs = cat.concernPhotoURLs
             ? [...cat.concernPhotoURLs, downloadURL]
             : [downloadURL];
 
-        return newConcerrnPhotoURLs;
+        return newConcernPhotoURLs;
     } catch (error) {
-        console.error("Error in processNewConcerrnPhotoURLs:", error);
+        console.error("Error in processNewConcernPhotoURLs:", error);
         throw error;
     }
 };
@@ -379,7 +379,12 @@ export const useGetCatsofConcern = () => {
 
 /* ----- UPDATE OPERATIONS ----- */
 // Called in all update operations, writes to Cat document and creates CatUpdate document
-const userUpdateCat = async (userID, catID, updateType, updateFields) => {
+export const userUpdateCat = async (
+    userID,
+    catID,
+    updateType,
+    updateFields
+) => {
     const batch = writeBatch(db);
 
     // Update the cat document
@@ -574,7 +579,7 @@ export const useUserUpdateCatConcern = () => {
                 );
             } else {
                 // Append to concernPhotoURLs
-                processedPhotoURLs = await processNewConcerrnPhotoURLs(
+                processedPhotoURLs = await processNewConcernPhotoURLs(
                     catID,
                     photoURI
                 );

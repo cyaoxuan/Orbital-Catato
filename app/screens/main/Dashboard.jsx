@@ -17,6 +17,88 @@ import { TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useGetAnnouncements } from "../../utils/db/announcement";
 
+// Container for Announcement
+// props: userRole (object), navigation (navigator), errorAnnounce (array), loadingAnnounce (array),
+// announcements (array of objects), cardWidth (number)
+
+export const AnnouncementContainer = ({
+    userRole,
+    navigation,
+    errorAnnounce,
+    loadingAnnounce,
+    announcements,
+    cardWidth,
+}) => {
+    return (
+        <View>
+            <View
+                style={{
+                    marginLeft: 16,
+                    marginTop: 8,
+                }}
+            >
+                <View
+                    style={{
+                        marginTop: 8,
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                    }}
+                >
+                    <TitleText variant="headlineMedium" text="Announcements" />
+                    {userRole.isAdmin && (
+                        <TouchableOpacity
+                            testID="view-button"
+                            onPress={() =>
+                                navigation.navigate("settings", {
+                                    screen: "AdminPanel",
+                                    initial: false,
+                                })
+                            }
+                        >
+                            <View style={{ flexDirection: "row" }}>
+                                <BodyText
+                                    variant="bodyLarge"
+                                    text="Edit"
+                                    color={secondaryColor}
+                                />
+                                <Ionicons
+                                    name="chevron-forward"
+                                    size={24}
+                                    color={secondaryColor}
+                                    style={{ marginHorizontal: 4 }}
+                                />
+                            </View>
+                        </TouchableOpacity>
+                    )}
+                </View>
+
+                {errorAnnounce[0] && (
+                    <ErrorText
+                        variant="bodyMedium"
+                        text={"Error: " + errorAnnounce[0].message}
+                    />
+                )}
+                {loadingAnnounce[0] ? (
+                    <ActivityIndicator color={secondaryColor} />
+                ) : (
+                    !announcements && (
+                        <BodyText
+                            variant="bodyMedium"
+                            text="No announcements!"
+                        />
+                    )
+                )}
+            </View>
+
+            <AnnouncementCarousel
+                announcements={announcements}
+                cardWidth={cardWidth}
+            />
+        </View>
+    );
+};
+
 // Container for Carousels
 // props: titleText (string), subtitleText (string), loading (array from db util), error (array from db util),
 // cats (array of cat objects), ...carousel (carousel props)
@@ -133,75 +215,15 @@ export default function Dashboard() {
             }
             contentContainerStyle={{ backgroundColor: screenSecondaryColor }}
         >
-            <View>
-                <View
-                    style={{
-                        marginLeft: 16,
-                        marginTop: 8,
-                    }}
-                >
-                    <View
-                        style={{
-                            marginTop: 8,
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                        }}
-                    >
-                        <TitleText
-                            variant="headlineMedium"
-                            text="Announcements"
-                        />
-                        {userRole.isAdmin && (
-                            <TouchableOpacity
-                                testID="view-button"
-                                onPress={() =>
-                                    navigation.navigate("settings", {
-                                        screen: "AdminPanel",
-                                        initial: false,
-                                    })
-                                }
-                            >
-                                <View style={{ flexDirection: "row" }}>
-                                    <BodyText
-                                        variant="bodyLarge"
-                                        text="Edit"
-                                        color={secondaryColor}
-                                    />
-                                    <Ionicons
-                                        name="chevron-forward"
-                                        size={24}
-                                        color={secondaryColor}
-                                        style={{ marginHorizontal: 4 }}
-                                    />
-                                </View>
-                            </TouchableOpacity>
-                        )}
-                    </View>
+            <AnnouncementContainer
+                userRole={userRole}
+                navigation={navigation}
+                errorAnnounce={errorAnnounce}
+                loadingAnnounce={loadingAnnounce}
+                announcements={announcements}
+                cardWidth={cardWidth}
+            />
 
-                    {errorAnnounce[0] && (
-                        <ErrorText
-                            variant="bodyMedium"
-                            text={"Error: " + errorAnnounce[0].message}
-                        />
-                    )}
-                    {loadingAnnounce[0] ? (
-                        <ActivityIndicator color={secondaryColor} />
-                    ) : (
-                        !announcements && (
-                            <BodyText
-                                variant="bodyMedium"
-                                text="No announcements!"
-                            />
-                        )
-                    )}
-                </View>
-
-                <AnnouncementCarousel
-                    announcements={announcements}
-                    cardWidth={cardWidth}
-                />
-            </View>
             <CarouselContainer
                 titleText="Cats of Concern"
                 subtitleText="New, Injured, Missing >3 Days"
