@@ -238,7 +238,7 @@ exports[`<FormInput /> renders correctly 1`] = `
               "writingDirection": "ltr",
             }
           }
-          testID="text-input-flat-label-active"
+          testID="form-input-label-active"
         >
           Label
         </Text>
@@ -273,7 +273,7 @@ exports[`<FormInput /> renders correctly 1`] = `
               "writingDirection": "ltr",
             }
           }
-          testID="text-input-flat-label-inactive"
+          testID="form-input-label-inactive"
         >
           Label
         </Text>
@@ -321,7 +321,7 @@ exports[`<FormInput /> renders correctly 1`] = `
             undefined,
           ]
         }
-        testID="text-input-flat"
+        testID="form-input"
         underlineColorAndroid="transparent"
         value=""
       />

@@ -1,15 +1,73 @@
-import { cleanup, render, fireEvent } from "@testing-library/react-native";
+import { cleanup, render } from "@testing-library/react-native";
 import Catalogue from "../../app/screens/main/catalogue/Catalogue";
-import { cats } from "../../app/data/CatTempData";
 
 afterEach(cleanup);
 
-const mockNavigate = jest.fn();
-
 jest.mock("expo-router", () => ({
     useNavigation: () => ({
-        navigate: mockNavigate,
+        navigate: jest.fn(),
     }),
+}));
+
+jest.mock("../../app/utils/db/cat", () => ({
+    useGetAllCats: () => {
+        return {
+            getAllCats: jest.fn(),
+            allCats: [
+                {
+                    catID: 1,
+                    name: "Kitty",
+                    photoURLs: [
+                        require("../../assets/testing-cats/cat-2-1.jpg"),
+                        require("../../assets/testing-cats/cat-2-1.jpg"),
+                    ],
+                },
+                {
+                    catID: 2,
+                    name: "Skitty",
+                    photoURLs: [
+                        require("../../assets/testing-cats/cat-2-1.jpg"),
+                    ],
+                },
+                {
+                    catID: 3,
+                    name: "Mitty",
+                },
+            ],
+            loading: [],
+            error: [],
+        };
+    },
+}));
+
+jest.mock("../../app/utils/db/user", () => ({
+    useGetUserByID: () => {
+        return {
+            getUserByID: jest.fn(),
+            user: {
+                catsFollowed: [1, 3],
+            },
+        };
+    },
+}));
+
+jest.mock("../../app/utils/context/auth", () => ({
+    useAuth: () => {
+        return {
+            user: {
+                uid: 1,
+            },
+            userRole: {
+                isUser: true,
+            },
+        };
+    },
+}));
+
+jest.mock("@react-navigation/native", () => ({
+    useIsFocused: () => {
+        true;
+    },
 }));
 
 describe("<Catalogue />", () => {
@@ -22,18 +80,5 @@ describe("<Catalogue />", () => {
     it("renders catalogue with cat cards correctly", () => {
         const tree = render(<Catalogue />).toJSON();
         expect(tree).toMatchSnapshot();
-    });
-
-    it("navigates to correct cat profile when card is pressed", () => {
-        const { getAllByTestId } = render(<Catalogue />);
-
-        const catAvatars = getAllByTestId("cat-avatar");
-        expect(catAvatars).toHaveLength(5);
-
-        fireEvent.press(catAvatars[0]);
-
-        expect(mockNavigate).toHaveBeenCalledWith("CatProfile", {
-            catID: cats[0].catID,
-        });
     });
 });

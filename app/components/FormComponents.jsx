@@ -56,6 +56,7 @@ const FormInput = (props) => {
     return (
         <View style={styles.container}>
             <TextInput
+                testID="form-input"
                 style={[styles.formInput, allStyles.bodyText]}
                 disabled={props.disabled}
                 multiline={props.multiline}

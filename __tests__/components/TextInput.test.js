@@ -22,7 +22,7 @@ describe("<AuthInput />", () => {
 
     it("apply value when changing text", () => {
         const { getByTestId } = render(<AuthInput />);
-        const authInput = getByTestId("input");
+        const authInput = getByTestId("auth-input");
         fireEvent.changeText(authInput, "hello");
         expect(authInput.props.value).toBe("hello");
     });
@@ -52,14 +52,14 @@ describe("<PasswordInput />", () => {
 
     it("apply value when changing text", () => {
         const { getByTestId } = render(<PasswordInput />);
-        const passwordInput = getByTestId("input");
+        const passwordInput = getByTestId("password-input");
         fireEvent.changeText(passwordInput, "hello");
         expect(passwordInput.props.value).toBe("hello");
     });
 
     it("reveal hidden text when click eye icon", () => {
         const { getByTestId } = render(<PasswordInput />);
-        const passwordInput = getByTestId("input");
+        const passwordInput = getByTestId("password-input");
         const hideIcon = getByTestId("hide-icon");
 
         fireEvent.press(hideIcon);
