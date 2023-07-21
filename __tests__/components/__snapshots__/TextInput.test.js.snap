@@ -225,6 +225,7 @@ exports[`<AuthInput /> renders correctly 1`] = `
           ]
         }
         testID="auth-input"
+        testId="auth-input"
         underlineColorAndroid="transparent"
         value=""
       />
@@ -461,6 +462,7 @@ exports[`<PasswordInput /> renders correctly 1`] = `
           ]
         }
         testID="password-input"
+        testId="password-input"
         underlineColorAndroid="transparent"
         value=""
       />
