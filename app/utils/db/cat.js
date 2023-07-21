@@ -169,6 +169,7 @@ export const useUserCreateCat = () => {
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
 
+    // isTemp to note if its from "Report New Cat" or "Create New Profile"
     const userCreateCat = async (userID, data, isTemp) => {
         try {
             setLoading([true]);
@@ -460,7 +461,6 @@ export const useUserUpdateCatLocation = () => {
     return { userUpdateCatLocation, loading, error };
 };
 
-// TODO: CHANGE TO CONCERN OBJECT, REWRITE
 export const useUserUpdateCatConcern = () => {
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
@@ -704,6 +704,7 @@ export const useUserUpdateCatProfile = () => {
     return { userUpdateCatProfile, loading, error };
 };
 
+// Throws error, to be handled in gallery
 export const useUserAddCatPicture = () => {
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);
@@ -737,6 +738,7 @@ export const useUserAddCatPicture = () => {
     return { userAddCatPicture, loading, error };
 };
 
+// Throws error, to be handled in gallery
 export const useUserDeleteCatPictures = () => {
     const [loading, setLoading] = useState([false]);
     const [error, setError] = useState([null]);

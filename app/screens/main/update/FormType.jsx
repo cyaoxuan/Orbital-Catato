@@ -763,21 +763,20 @@ const UpdateFed = (props) => {
             });
         }
     }, [
-        loading,
-        processed,
-        error,
-        navigation,
-        props,
-        catID,
-        name,
-        gender,
         birthYear,
-        sterilised,
-        keyFeatures,
-        photoURLs,
-        concernStatus,
+        catID,
         concernDesc,
+        concernStatus,
+        error,
         formType,
+        gender,
+        keyFeatures,
+        loading,
+        name,
+        navigation,
+        photoURLs,
+        processed,
+        sterilised,
     ]);
 
     const handleUpdate = async () => {
