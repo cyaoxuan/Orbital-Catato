@@ -215,7 +215,13 @@ export default function AdminPanel() {
     return (
         <Provider theme={lightTheme}>
             <View style={{ backgroundColor: screenMainColor, height: "100%" }}>
-                <View style={{ width: "100%", alignItems: "center" }}>
+                <View
+                    style={{
+                        width: "100%",
+                        alignItems: "center",
+                        marginBottom: 8,
+                    }}
+                >
                     <FilterButton
                         filterValue={filterValue}
                         onValueChange={(value) => setFilterValue(value)}
