@@ -212,6 +212,7 @@ export default function Settings() {
 
             {error && <ErrorText text={"Error: " + error.message} />}
             {loading && <ActivityIndicator color={secondaryColor} />}
+            <View style={{ height: 20 }}></View>
         </ScrollView>
     );
 }

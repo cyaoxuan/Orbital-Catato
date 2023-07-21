@@ -109,7 +109,7 @@ export default function PhotoGallery() {
                     ? await getImageFromGallery()
                     : await getImageFromCamera();
 
-            if (photoURI !== null) {
+            if (photoURI !== "") {
                 await userAddCatPicture(user.uid, catID, photoURI);
                 setDialogText(
                     "Image upload confirmed! Thank you for your contribution!"
@@ -231,7 +231,11 @@ export default function PhotoGallery() {
                 <FlatList
                     ListHeaderComponent={() => (
                         <View
-                            style={{ alignItems: "center", marginVertical: 4 }}
+                            style={{
+                                alignItems: "center",
+                                marginVertical: 4,
+                                paddingBottom: 16,
+                            }}
                         >
                             {filterValue === "Concern" ? (
                                 // Flatlist header based on gallery or concern

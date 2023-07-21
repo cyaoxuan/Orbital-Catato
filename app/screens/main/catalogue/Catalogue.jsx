@@ -78,6 +78,7 @@ export default function Catalogue() {
         <View style={{ backgroundColor: screenMainColor, height: "100%" }}>
             <FlatList
                 testID="catalogue"
+                style={{ paddingBottom: 16 }}
                 contentContainerStyle={{
                     width: "100%",
                 }}

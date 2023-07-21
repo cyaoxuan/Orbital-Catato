@@ -121,6 +121,7 @@ export default function UpdateOptions() {
             <View style={allStyles.roundedOptionView}>
                 <UpdateOptionList cat={route.params} />
             </View>
+            <View style={{ height: 20 }}></View>
         </ScrollView>
     );
 }
