@@ -50,14 +50,18 @@ export const createUser = async (userID, email) => {
 /* ----- READ OPERATIONS ----- */
 // Returns null if user doesn't exist
 // Only used in AuthProvider
-export const authGetUserByID = async (userID) => {
-    try {
-        // console.log("getUserByID, user: 1");
-        const user = await getDoc(doc(db, "User", userID));
-        return user.exists() ? user.data() : null;
-    } catch (error) {
-        console.error("Error getting user:", error);
+export const authGetUserByID = async (userID, maxRetries = 3) => {
+    let retryCount = 0;
+    while (retryCount < maxRetries) {
+        try {
+            const user = await getDoc(doc(db, "User", userID));
+            return user.exists() ? user.data() : null;
+        } catch (error) {
+            console.error("Error getting user:", error);
+            retryCount++;
+        }
     }
+    return null;
 };
 
 export const useGetUserByID = () => {
