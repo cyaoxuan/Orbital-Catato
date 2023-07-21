@@ -203,6 +203,13 @@ export default function Notifications() {
                         />
                     </View>
 
+                    {error[0] && (
+                        <ErrorText text={"Error: " + error[0].message} />
+                    )}
+                    {inProgress && <ActivityIndicator color={secondaryColor} />}
+
+                    <View style={{ height: 30 }}></View>
+
                     <Portal>
                         <Dialog
                             visible={dialogVisible}
@@ -235,11 +242,6 @@ export default function Notifications() {
                             </Dialog.Actions>
                         </Dialog>
                     </Portal>
-
-                    {error[0] && (
-                        <ErrorText text={"Error: " + error[0].message} />
-                    )}
-                    {inProgress && <ActivityIndicator color={secondaryColor} />}
                 </ScrollView>
             </View>
         </Provider>
