@@ -109,7 +109,7 @@ export default function PhotoGallery() {
                     ? await getImageFromGallery()
                     : await getImageFromCamera();
 
-            if (photoURI !== null) {
+            if (photoURI !== "") {
                 await userAddCatPicture(user.uid, catID, photoURI);
                 setDialogText(
                     "Image upload confirmed! Thank you for your contribution!"

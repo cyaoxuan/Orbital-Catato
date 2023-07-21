@@ -167,16 +167,6 @@ export default function Dashboard() {
         error: errorAnnounce,
     } = useGetAnnouncements();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            await getAnnouncements();
-            setUpdateTime(new Date());
-        };
-
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [refreshing]);
-
     // DB Utils to fetch cat data
     const {
         getCatsofConcern,
@@ -192,9 +182,14 @@ export default function Dashboard() {
         error: errorUnfed,
     } = useGetUnfedCats();
 
+    const [loadingProcess, setLoadingProcess] = useState(false); // to keep track if all data is fetched
+
     useEffect(() => {
         const fetchData = async () => {
+            await getAnnouncements();
+            setLoadingProcess(true);
             await autoProcessConcernStatus();
+            setLoadingProcess(false);
             await Promise.all([getCatsofConcern(), getUnfedCats()]);
             setUpdateTime(new Date());
         };
@@ -234,7 +229,9 @@ export default function Dashboard() {
                 field1="Status: "
                 iconName2="location"
                 field2="Seen: "
-                loading={loadingConcern}
+                loading={[
+                    loadingConcern[0] || loadingProcess || loadingAnnounce[0],
+                ]}
                 error={errorConcern}
                 userRole={userRole}
                 navigation={navigation}
@@ -252,7 +249,9 @@ export default function Dashboard() {
                     field1="Last Fed: "
                     iconName2="location"
                     field2="Seen: "
-                    loading={loadingUnfed}
+                    loading={[
+                        loadingUnfed[0] || loadingProcess || loadingAnnounce[0],
+                    ]}
                     error={errorUnfed}
                     userRole={userRole}
                     navigation={navigation}
