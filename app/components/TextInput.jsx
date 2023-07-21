@@ -19,7 +19,7 @@ const AuthInput = (props) => {
                 style={styles.icon}
             />
             <TextInput
-                testID="input"
+                testID="auth-input"
                 style={[styles.input, allStyles.bodyText]}
                 activeUnderlineColor={
                     props.colorMode === "secondary"
@@ -55,7 +55,7 @@ const PasswordInput = (props) => {
                 style={styles.icon}
             />
             <TextInput
-                testID="input"
+                testID="password-input"
                 style={[styles.input, allStyles.bodyText]}
                 activeUnderlineColor={primaryColor}
                 mode="flat"

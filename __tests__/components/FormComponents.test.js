@@ -69,7 +69,7 @@ describe("<FormInput />", () => {
 
     it("applies value when changing text", () => {
         const { getByTestId } = render(<FormInput />);
-        const formInput = getByTestId("text-input-flat");
+        const formInput = getByTestId("form-input");
 
         fireEvent.changeText(formInput, "hello");
 
