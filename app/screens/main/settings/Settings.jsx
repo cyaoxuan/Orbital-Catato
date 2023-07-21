@@ -202,7 +202,11 @@ export default function Settings() {
             </View>
 
             <View style={{ alignItems: "center" }}>
-                <PillButton label="Log Out" onPress={handleLogout} />
+                <PillButton
+                    label="Log Out"
+                    onPress={handleLogout}
+                    disabled={true}
+                />
                 {/* <PillButton label="Reset Data" onPress={resetCatData} /> */}
             </View>
 

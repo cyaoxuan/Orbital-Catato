@@ -23,7 +23,11 @@ export default function LoginScreen() {
             setLoading(true);
             setError(null);
 
-            await signInWithEmailAndPassword(auth, email, password); // Firebase auth
+            await signInWithEmailAndPassword(
+                auth,
+                "catatoadmeown@gmail.com",
+                "meowmeow"
+            ); // Firebase auth
 
             // Get push token from storage
             const token = await AsyncStorage.getItem("expoPushToken");
@@ -79,6 +83,7 @@ export default function LoginScreen() {
             <TextButton
                 label="Forgot Password?"
                 onPress={() => router.push("./ForgotPassword")}
+                disabled={true}
             />
         </View>
     );

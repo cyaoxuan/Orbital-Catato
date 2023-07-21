@@ -64,11 +64,13 @@ export default function WelcomeScreen() {
                 label="Sign Up"
                 onPress={onSignUpPressed}
                 colorMode="primary"
+                disabled={true}
             />
 
             <TextButton
                 label="Continue as Guest"
                 onPress={handleLoginAnonymously}
+                disabled={true}
             />
 
             {error && <ErrorText variant="bodyMedium" text={error.message} />}
