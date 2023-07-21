@@ -7,6 +7,7 @@ import {
 import { ScrollView } from "react-native";
 import { List } from "react-native-paper";
 import { StyleSheet } from "react-native";
+import { View } from "react-native";
 
 const accordionTheme = {
     colors: {
@@ -65,6 +66,7 @@ export default function FAQ() {
                     />
                 </List.Accordion>
             </List.Section>
+            <View style={{ height: 30 }}></View>
         </ScrollView>
     );
 }

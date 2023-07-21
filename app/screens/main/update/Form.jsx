@@ -69,7 +69,7 @@ export default function Form() {
                         name={route.params.name}
                     />
                     {getForm(user.uid, route.params)}
-                    <View style={{ height: 30 }}></View>
+                    <View style={{ height: 20 }}></View>
                 </ScrollView>
             </KeyboardAvoidingView>
         </Provider>

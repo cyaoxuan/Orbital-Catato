@@ -339,6 +339,7 @@ const RoleContainer = ({
                 <ErrorText text={"Error: " + errorUpdate[0].message} />
             )}
             {inProgress && <ActivityIndicator color={secondaryColor} />}
+            <View style={{ height: 30 }}></View>
         </ScrollView>
     );
 };

@@ -22,7 +22,7 @@ export default function SelectCat() {
     const cardWidth = getItemWidthCols(2, 8);
     return (
         <FlatList
-            style={{ flex: 1 }}
+            style={{ flex: 1, paddingBottom: 16 }}
             contentContainerStyle={{
                 backgroundColor: screenSecondaryColor,
                 justifyContent: "space-around",
