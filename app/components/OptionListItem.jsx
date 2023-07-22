@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         height: 65,
         padding: 16,
+        borderRadius: 16,
     },
     switch: {
         transform: [{ scaleX: 1.2 }, { scaleY: 1.2 }],

@@ -9,7 +9,8 @@ import { useAuth } from "../../../utils/context/auth";
 import { useIsFocused } from "@react-navigation/native";
 import { FilterButton } from "../../../components/Button";
 import { screenMainColor, secondaryColor } from "../../../components/Styles";
-import { ErrorText, TitleText } from "../../../components/Text";
+import { BodyText, ErrorText, TitleText } from "../../../components/Text";
+import { SaladSmudgeCat, StandingCat } from "../../../components/CatDrawing";
 
 export default function Catalogue() {
     const { user, userRole } = useAuth();
@@ -101,10 +102,26 @@ export default function Catalogue() {
                         )}
 
                         {error[0] && (
-                            <ErrorText text={"Error: " + error[0].message} />
+                            <>
+                                <ErrorText
+                                    variant="bodyMedium"
+                                    text={"Error: " + error[0].message}
+                                />
+                                <SaladSmudgeCat size={100} />
+                            </>
                         )}
-                        {loading[0] && (
+                        {loading[0] ? (
                             <ActivityIndicator color={secondaryColor} />
+                        ) : (
+                            displayCats.length === 0 && (
+                                <>
+                                    <BodyText
+                                        variant="bodyLarge"
+                                        text="No cats here"
+                                    />
+                                    <StandingCat size={300} />
+                                </>
+                            )
                         )}
                     </View>
                 }

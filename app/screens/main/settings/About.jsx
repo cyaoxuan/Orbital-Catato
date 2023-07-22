@@ -2,6 +2,8 @@ import { ScrollView, View } from "react-native";
 import React from "react";
 import { screenMainColor } from "../../../components/Styles";
 import { BodyText, TitleText } from "../../../components/Text";
+import { MaxwellCat, PantingCat } from "../../../components/CatDrawing";
+import { Avatar } from "react-native-paper";
 
 export default function About() {
     return (
@@ -43,7 +45,14 @@ export default function About() {
                     under the module CP2106 Independent Software Development Project (Orbital). 
                     The inspiration for this project came from our love of cats."
                 />
+                <View
+                    style={{ flexDirection: "row", justifyContent: "center" }}
+                >
+                    <MaxwellCat size={150} />
+                    <PantingCat size={150} />
+                </View>
             </View>
+            <View style={{ height: 30 }}></View>
         </ScrollView>
     );
 }

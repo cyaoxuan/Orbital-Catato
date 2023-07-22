@@ -15,8 +15,9 @@ import {
     screenSecondaryColor,
     secondaryColor,
 } from "../../../components/Styles";
+import { SaladSmudgeCat } from "../../../components/CatDrawing";
 // import { sendNoti } from "../../../utils/noti";
-// import { resetCatData } from "../../../data/resetCatData";
+import { resetCatData } from "../../../data/resetCatData";
 
 // User Details container
 // props: user (object), userRole (object)
@@ -206,7 +207,15 @@ export default function Settings() {
                 {/* <PillButton label="Reset Data" onPress={resetCatData} /> */}
             </View>
 
-            {error && <ErrorText text={"Error: " + error.message} />}
+            {error && (
+                <>
+                    <ErrorText
+                        variant="bodyMedium"
+                        text={"Error: " + error[0].message}
+                    />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading && <ActivityIndicator color={secondaryColor} />}
             <View style={{ height: 20 }}></View>
         </ScrollView>

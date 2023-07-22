@@ -1,4 +1,4 @@
-import { ScrollView, View } from "react-native";
+import { Image, ScrollView, View } from "react-native";
 import {
     ActivityIndicator,
     Button,
@@ -24,6 +24,7 @@ import {
 } from "../../../components/Styles";
 import { SwitchListItem } from "../../../components/OptionListItem";
 import { BodyText, ErrorText, TitleText } from "../../../components/Text";
+import { SaladSmudgeCat } from "../../../components/CatDrawing";
 
 export default function Notifications() {
     const { user, userRole } = useAuth();
@@ -204,7 +205,13 @@ export default function Notifications() {
                     </View>
 
                     {error[0] && (
-                        <ErrorText text={"Error: " + error[0].message} />
+                        <>
+                            <ErrorText
+                                variant="bodyMedium"
+                                text={"Error: " + error[0].message}
+                            />
+                            <SaladSmudgeCat size={100} />
+                        </>
                     )}
                     {inProgress && <ActivityIndicator color={secondaryColor} />}
 

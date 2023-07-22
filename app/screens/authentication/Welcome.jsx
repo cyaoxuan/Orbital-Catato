@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { PillButton, TextButton } from "../../components/Button";
 import { ErrorText, TitleText } from "../../components/Text";
 import { allStyles, primaryColor } from "../../components/Styles";
+import { SaladSmudgeCat } from "../../components/CatDrawing";
 
 export default function WelcomeScreen() {
     const { user } = useAuth();
@@ -71,7 +72,12 @@ export default function WelcomeScreen() {
                 onPress={handleLoginAnonymously}
             />
 
-            {error && <ErrorText variant="bodyMedium" text={error.message} />}
+            {error && (
+                <>
+                    <ErrorText variant="bodyMedium" text={error.message} />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading && <ActivityIndicator color={primaryColor} />}
         </View>
     );

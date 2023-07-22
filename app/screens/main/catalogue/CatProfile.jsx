@@ -23,6 +23,7 @@ import {
 import { ErrorText } from "../../../components/Text";
 import { getItemWidthFrac } from "../../../utils/calculateItemWidths";
 import { Image } from "react-native";
+import { SaladSmudgeCat } from "../../../components/CatDrawing";
 
 export default function CatProfile() {
     const { user, userRole } = useAuth();
@@ -134,7 +135,15 @@ export default function CatProfile() {
                     alignItems: "center",
                 }}
             >
-                {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+                {error[0] && (
+                    <>
+                        <ErrorText
+                            variant="bodyMedium"
+                            text={"Error: " + error[0].message}
+                        />
+                        <SaladSmudgeCat size={100} />
+                    </>
+                )}
                 {loading[0] && <ActivityIndicator color={secondaryColor} />}
             </View>
         );
