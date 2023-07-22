@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { ActivityIndicator, Avatar, List, Text } from "react-native-paper";
+import { ActivityIndicator, List, Text } from "react-native-paper";
 import { useNavigation, useRouter } from "expo-router";
 import { PillButton } from "../../../components/Button";
 import { auth, useAuth } from "../../../utils/context/auth";
@@ -12,6 +12,8 @@ import {
 } from "../../../components/Styles";
 import { OptionListItem } from "../../../components/OptionListItem";
 import { TitleText } from "../../../components/Text";
+import { SmilingGingerCat, StandingCat } from "../../../components/CatDrawing";
+import { ScrollView } from "react-native";
 
 export default function Update() {
     const { userRole } = useAuth();
@@ -43,11 +45,7 @@ export default function Update() {
     if (userRole && !userRole.isUser) {
         return (
             <View style={[allStyles.centerFlexView, { padding: 16 }]}>
-                <Avatar.Image
-                    style={{ backgroundColor: "transparent", margin: 16 }}
-                    source={require("../../../../assets/catato-logo.png")}
-                    size={300}
-                />
+                <StandingCat size={300} />
                 <Text
                     variant="bodyLarge"
                     style={[
@@ -72,16 +70,15 @@ export default function Update() {
     }
 
     return (
-        <View
+        <ScrollView
             style={{
                 padding: 16,
                 height: "100%",
                 backgroundColor: screenSecondaryColor,
-                justifyContent: "center",
             }}
         >
-            <View style={{ alignItems: "center" }}>
-                <TitleText variant="headlineSmall" text="Update Cats" />
+            <View style={{ alignItems: "center", marginBottom: 8 }}>
+                <TitleText variant="headlineMedium" text="Update Cats" />
                 <Text
                     variant="bodyLarge"
                     style={[
@@ -94,6 +91,7 @@ export default function Update() {
                 >
                     Please ensure you select the right cat before updating!
                 </Text>
+                <SmilingGingerCat size={250} />
             </View>
             <View style={allStyles.roundedOptionView}>
                 <List.Section style={allStyles.listSection}>
@@ -131,6 +129,6 @@ export default function Update() {
                     />
                 </List.Section>
             </View>
-        </View>
+        </ScrollView>
     );
 }

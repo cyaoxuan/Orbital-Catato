@@ -16,6 +16,7 @@ import { dateTimeOptions } from "../../data/DateTimeOptions";
 import { TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useGetAnnouncements } from "../../utils/db/announcement";
+import { PopCat, SaladSmudgeCat } from "../../components/CatDrawing";
 
 // Container for Announcement
 // props: userRole (object), navigation (navigator), errorAnnounce (array), loadingAnnounce (array),
@@ -74,19 +75,26 @@ export const AnnouncementContainer = ({
                 </View>
 
                 {errorAnnounce[0] && (
-                    <ErrorText
-                        variant="bodyMedium"
-                        text={"Error: " + errorAnnounce[0].message}
-                    />
+                    <>
+                        <ErrorText
+                            variant="bodyMedium"
+                            text={"Error: " + errorAnnounce[0].message}
+                        />
+
+                        <SaladSmudgeCat size={100} />
+                    </>
                 )}
                 {loadingAnnounce[0] ? (
                     <ActivityIndicator color={secondaryColor} />
                 ) : (
                     !announcements && (
-                        <BodyText
-                            variant="bodyMedium"
-                            text="No announcements!"
-                        />
+                        <>
+                            <BodyText
+                                variant="bodyMedium"
+                                text="No announcements!"
+                            />
+                            <SaladSmudgeCat size={100} />
+                        </>
                     )
                 )}
             </View>
@@ -122,23 +130,32 @@ export const CarouselContainer = ({
                     text={subtitleText || "Subtitle"}
                 />
                 {error[0] && (
-                    <ErrorText
-                        variant="bodyMedium"
-                        text={"Error: " + error[0].message}
-                    />
+                    <>
+                        <ErrorText
+                            variant="bodyMedium"
+                            text={"Error: " + error[0].message}
+                        />
+                        <SaladSmudgeCat size={120} />
+                    </>
                 )}
                 {loading[0] ? (
                     <ActivityIndicator color={secondaryColor} />
                 ) : (
+                    cats &&
                     cats.length === 0 && (
-                        <BodyText
-                            variant="bodyMedium"
-                            text="No cats in this category! :D"
-                        />
+                        <>
+                            <PopCat size={120} />
+                            <BodyText
+                                variant="bodyMedium"
+                                text="No cats in this category! :D"
+                            />
+                        </>
                     )
                 )}
             </View>
-            <CardCarousel {...carousel} cats={cats} />
+            {cats && cats.length !== 0 && (
+                <CardCarousel {...carousel} cats={cats} />
+            )}
         </View>
     );
 };
@@ -205,10 +222,10 @@ export default function Dashboard() {
 
     return (
         <ScrollView
+            style={{ height: "100%", backgroundColor: screenSecondaryColor }}
             refreshControl={
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
-            contentContainerStyle={{ backgroundColor: screenSecondaryColor }}
         >
             <AnnouncementContainer
                 userRole={userRole}

@@ -34,6 +34,7 @@ export const allStyles = StyleSheet.create({
         backgroundColor: "white",
         marginHorizontal: 8,
         borderRadius: 16,
+        overflow: "hidden",
     },
     listSection: {
         marginVertical: 0,

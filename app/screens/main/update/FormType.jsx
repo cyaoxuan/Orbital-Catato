@@ -26,6 +26,7 @@ import {
 import { locations } from "../../../data/locationData";
 import { BodyText, ErrorText, TitleText } from "../../../components/Text";
 import { secondaryColor } from "../../../components/Styles";
+import { SaladSmudgeCat } from "../../../components/CatDrawing";
 
 const CreateProfile = (props) => {
     const navigation = useNavigation();
@@ -187,7 +188,15 @@ const CreateProfile = (props) => {
                     inProgress
                 }
             />
-            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {error[0] && (
+                <>
+                    <ErrorText
+                        variant="bodyMedium"
+                        text={"Error: " + error[0].message}
+                    />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
@@ -369,7 +378,15 @@ const ReportCat = (props) => {
                     inProgress
                 }
             />
-            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {error[0] && (
+                <>
+                    <ErrorText
+                        variant="bodyMedium"
+                        text={"Error: " + error[0].message}
+                    />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
@@ -489,7 +506,15 @@ const UpdateLocation = (props) => {
                 onPress={handleUpdate}
                 disabled={location === "" || date > today || inProgress}
             />
-            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {error[0] && (
+                <>
+                    <ErrorText
+                        variant="bodyMedium"
+                        text={"Error: " + error[0].message}
+                    />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
@@ -699,7 +724,15 @@ const UpdateConcern = (props) => {
                     inProgress
                 }
             />
-            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {error[0] && (
+                <>
+                    <ErrorText
+                        variant="bodyMedium"
+                        text={"Error: " + error[0].message}
+                    />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
@@ -818,7 +851,15 @@ const UpdateFed = (props) => {
                 onPress={handleUpdate}
                 disabled={location === "" || date > today || inProgress}
             />
-            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {error[0] && (
+                <>
+                    <ErrorText
+                        variant="bodyMedium"
+                        text={"Error: " + error[0].message}
+                    />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
@@ -1036,7 +1077,15 @@ const UpdateProfile = (props) => {
                     name.trim() === "" || features.trim() === "" || inProgress
                 }
             />
-            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {error[0] && (
+                <>
+                    <ErrorText
+                        variant="bodyMedium"
+                        text={"Error: " + error[0].message}
+                    />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );
@@ -1093,7 +1142,15 @@ const DeleteProfile = (props) => {
                 onPress={handleDelete}
                 disabled={catName !== name || inProgress}
             />
-            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {error[0] && (
+                <>
+                    <ErrorText
+                        variant="bodyMedium"
+                        text={"Error: " + error[0].message}
+                    />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading[0] && <ActivityIndicator color={secondaryColor} />}
         </View>
     );

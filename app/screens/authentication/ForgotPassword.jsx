@@ -7,6 +7,7 @@ import { AuthInput } from "../../components/TextInput";
 import { PillButton } from "../../components/Button";
 import { allStyles, primaryColor } from "../../components/Styles";
 import { BodyText, ErrorText, TitleText } from "../../components/Text";
+import { LoadingCat, SaladSmudgeCat } from "../../components/CatDrawing";
 
 export default function ForgotPasswordScreen() {
     const [error, setError] = useState(null);
@@ -33,31 +34,43 @@ export default function ForgotPasswordScreen() {
 
     return (
         <View style={allStyles.centerFlexView}>
+            <View style={{ alignItems: "center" }}>
+                <LoadingCat size={150} />
+            </View>
+
             <View>
-                <TitleText variant="displayMedium" text="Forgot Password" />
+                <TitleText variant="displaySmall" text="Forgot Password" />
                 <BodyText
-                    variant="titleMedium"
+                    variant="titleSmall"
                     text="Please enter your email to reset your password"
                 />
             </View>
+            <View style={{ alignItems: "center", marginBottom: 150 }}>
+                <AuthInput
+                    label="Email"
+                    iconName="mail-outline"
+                    textContentType="emailAddress"
+                    value={email}
+                    onChangeText={setEmail}
+                />
 
-            <AuthInput
-                label="Email"
-                iconName="mail-outline"
-                textContentType="emailAddress"
-                value={email}
-                onChangeText={setEmail}
-            />
+                <PillButton
+                    label="Request Password Reset"
+                    onPress={handlePasswordReset}
+                    colorMode="primary"
+                />
 
-            <PillButton
-                label="Request Password Reset"
-                onPress={handlePasswordReset}
-                colorMode="primary"
-            />
-
-            {error && <ErrorText variant="bodyMedium" text={error.message} />}
-            {loading && <ActivityIndicator color={primaryColor} />}
-            {emailSent && <BodyText variant="bodyMedium" text="Email sent!" />}
+                {error && (
+                    <>
+                        <ErrorText variant="bodyMedium" text={error.message} />
+                        <SaladSmudgeCat size={100} />
+                    </>
+                )}
+                {loading && <ActivityIndicator color={primaryColor} />}
+                {emailSent && (
+                    <BodyText variant="bodyMedium" text="Email sent!" />
+                )}
+            </View>
         </View>
     );
 }

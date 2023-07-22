@@ -24,6 +24,7 @@ import {
     screenMainColor,
     secondaryColor,
 } from "../../components/Styles";
+import { SaladSmudgeCat } from "../../components/CatDrawing";
 
 // Render Marker component
 // Will generate a random coordinate for marker if random is true
@@ -233,7 +234,15 @@ export default function Map() {
             behavior={Platform.OS === "ios" ? "padding" : ""}
             style={{ flex: 1, backgroundColor: screenMainColor }}
         >
-            {error[0] && <ErrorText text={"Error: " + error[0].message} />}
+            {error[0] && (
+                <>
+                    <ErrorText
+                        variant="bodyMedium"
+                        text={"Error: " + error[0].message}
+                    />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading[0] && <ActivityIndicator color={secondaryColor} />}
 
             <MapView

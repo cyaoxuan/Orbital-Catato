@@ -10,6 +10,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { addUserPushToken } from "../../utils/db/user";
 import { allStyles, primaryColor } from "../../components/Styles";
 import { BodyText, ErrorText, TitleText } from "../../components/Text";
+import { PantingCat, SaladSmudgeCat } from "../../components/CatDrawing";
 
 export default function LoginScreen() {
     const [error, setError] = useState(null);
@@ -66,14 +67,18 @@ export default function LoginScreen() {
                     onChangeText={setPassword}
                 />
             </View>
-
             <PillButton
                 label="Log In"
                 onPress={handleLoginWithEmail}
                 colorMode="primary"
             />
 
-            {error && <ErrorText variant="bodyMedium" text={error.message} />}
+            {error && (
+                <>
+                    <ErrorText variant="bodyMedium" text={error.message} />
+                    <SaladSmudgeCat size={100} />
+                </>
+            )}
             {loading && <ActivityIndicator color={primaryColor} />}
 
             <TextButton

@@ -13,6 +13,7 @@ import { FlatList } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet } from "react-native";
 import { dateTimeOptions } from "../../../data/DateTimeOptions";
+import { SaladSmudgeCat } from "../../../components/CatDrawing";
 
 // Container for Announcements in Admin Panel
 // props: flatListRef (ref hook value), inProgress (boolean), announcements (array of announcement objects),
@@ -123,9 +124,13 @@ const AnnouncementContainer = ({
                             }}
                         />
                         {errorAnnounce[0] && (
-                            <ErrorText
-                                text={"Error: " + errorAnnounce[0].message}
-                            />
+                            <>
+                                <ErrorText
+                                    variant="bodyMedium"
+                                    text={"Error: " + errorAnnounce[0].message}
+                                />
+                                <SaladSmudgeCat size={100} />
+                            </>
                         )}
                         {errorCreate[0] && (
                             <ErrorText
@@ -289,7 +294,10 @@ const RoleContainer = ({
             />
 
             {processed && !userDB && (
-                <ErrorText variant={bodyVariant} text="User not found!" />
+                <>
+                    <ErrorText variant="bodyMedium" text="User not found!" />
+                    <SaladSmudgeCat size={100} />
+                </>
             )}
             {processed && userDB && (
                 <View style={{ width: "100%", alignItems: "center" }}>

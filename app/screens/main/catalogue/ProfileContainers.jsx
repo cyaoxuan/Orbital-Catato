@@ -14,6 +14,7 @@ import {
     secondaryColor,
 } from "../../../components/Styles";
 import { BodyText, ErrorText, TitleText } from "../../../components/Text";
+import { SaladSmudgeCat } from "../../../components/CatDrawing";
 
 // Avatar Container for profile photo, name and buttons
 // props: name (string), photoURL (string), imageSize (number), userRole (object),
@@ -122,7 +123,12 @@ const AvatarContainer = ({
                         )}
                     </View>
                     {errorFollow[0] && (
-                        <ErrorText text={"Error: " + errorFollow[0].message} />
+                        <>
+                            <ErrorText
+                                text={"Error: " + errorFollow[0].message}
+                            />
+                            <SaladSmudgeCat size={100} />
+                        </>
                     )}
                     {loadingFollow[0] && (
                         <ActivityIndicator color={secondaryColor} />
