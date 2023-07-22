@@ -147,11 +147,11 @@ const SettingsOptionList = ({ userRole }) => {
                     />
                 )}
 
-                <OptionListItemIcon
+                {/* <OptionListItemIcon
                     title="Documentation"
                     onPress={() => {}}
                     iconName="document-outline"
-                />
+                /> */}
             </List.Section>
         </View>
     );
