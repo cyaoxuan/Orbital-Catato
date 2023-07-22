@@ -10,7 +10,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { addUserPushToken } from "../../utils/db/user";
 import { allStyles, primaryColor } from "../../components/Styles";
 import { BodyText, ErrorText, TitleText } from "../../components/Text";
-import { PantingCat, SaladSmudgeCat } from "../../components/CatDrawing";
+import { SaladSmudgeCat } from "../../components/CatDrawing";
+import { KeyboardAvoidingView } from "react-native";
+import { Platform } from "react-native";
 
 export default function LoginScreen() {
     const [error, setError] = useState(null);
@@ -44,7 +46,11 @@ export default function LoginScreen() {
     };
 
     return (
-        <View style={allStyles.centerFlexView}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : ""}
+            keyboardVerticalOffset={100}
+            style={allStyles.centerFlexView}
+        >
             <View>
                 <TitleText variant="displayMedium" text="Login" />
                 <BodyText variant="displaySmall" text="Sign in to continue" />
@@ -85,6 +91,6 @@ export default function LoginScreen() {
                 label="Forgot Password?"
                 onPress={() => router.push("./ForgotPassword")}
             />
-        </View>
+        </KeyboardAvoidingView>
     );
 }

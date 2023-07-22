@@ -5,6 +5,7 @@ import { Button, Dialog, FAB, IconButton, Text } from "react-native-paper";
 import { BodyText, ErrorText } from "../../../components/Text";
 import {
     allStyles,
+    screenMainColor,
     screenSecondaryColor,
     secondaryColor,
 } from "../../../components/Styles";
@@ -159,7 +160,15 @@ const ImageDialog = ({
     confirmHideDialog,
 }) => {
     return (
-        <Dialog visible={visible} onDismiss={backHideDialog}>
+        <Dialog
+            visible={visible}
+            onDismiss={backHideDialog}
+            theme={{
+                colors: {
+                    elevation: { level3: screenMainColor },
+                },
+            }}
+        >
             <Dialog.Title>
                 {deleting || dialogText.includes("Delete")
                     ? "Image Deletion"
@@ -171,10 +180,20 @@ const ImageDialog = ({
             <Dialog.Actions>
                 {deleting && (
                     <>
-                        <Button onPress={() => handleDeleteImages(filterValue)}>
+                        <Button
+                            onPress={() => handleDeleteImages(filterValue)}
+                            textColor={secondaryColor}
+                            labelStyle={allStyles.buttonText}
+                        >
                             Confirm Delete
                         </Button>
-                        <Button onPress={backHideDialog}>Back</Button>
+                        <Button
+                            onPress={backHideDialog}
+                            textColor={secondaryColor}
+                            labelStyle={allStyles.buttonText}
+                        >
+                            Back
+                        </Button>
                     </>
                 )}
                 {!deleting && (

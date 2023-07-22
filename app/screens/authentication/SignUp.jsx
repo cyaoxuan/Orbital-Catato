@@ -10,7 +10,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { addUserPushToken } from "../../utils/db/user";
 import { allStyles, primaryColor } from "../../components/Styles";
 import { BodyText, ErrorText, TitleText } from "../../components/Text";
-import { PantingCat, SaladSmudgeCat } from "../../components/CatDrawing";
+import { SaladSmudgeCat } from "../../components/CatDrawing";
+import { KeyboardAvoidingView } from "react-native";
+import { Platform } from "react-native";
 
 export default function SignUp() {
     const [error, setError] = useState(null);
@@ -46,7 +48,11 @@ export default function SignUp() {
     };
 
     return (
-        <View style={allStyles.centerFlexView}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : ""}
+            keyboardVerticalOffset={100}
+            style={allStyles.centerFlexView}
+        >
             <View>
                 <TitleText variant="displayMedium" text="Sign Up" />
                 <BodyText variant="displaySmall" text="Create an account" />
@@ -91,6 +97,6 @@ export default function SignUp() {
                 </>
             )}
             {loading && <ActivityIndicator color={primaryColor} />}
-        </View>
+        </KeyboardAvoidingView>
     );
 }
