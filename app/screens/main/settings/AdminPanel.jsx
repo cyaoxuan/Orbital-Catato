@@ -1,4 +1,9 @@
-import { RefreshControl, View } from "react-native";
+import {
+    KeyboardAvoidingView,
+    Platform,
+    RefreshControl,
+    View,
+} from "react-native";
 import {
     ActivityIndicator,
     Button,
@@ -214,7 +219,11 @@ export default function AdminPanel() {
 
     return (
         <Provider theme={lightTheme}>
-            <View style={{ backgroundColor: screenMainColor, height: "100%" }}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : ""}
+                style={{ backgroundColor: screenMainColor, height: "100%" }}
+                keyboardVerticalOffset={100}
+            >
                 <View
                     style={{
                         width: "100%",
@@ -316,7 +325,7 @@ export default function AdminPanel() {
                         </Dialog.Actions>
                     </Dialog>
                 </Portal>
-            </View>
+            </KeyboardAvoidingView>
         </Provider>
     );
 }

@@ -114,7 +114,7 @@ const AnnouncementContainer = ({
                     <View style={{ alignItems: "center" }}>
                         <PillButton
                             label={selectedAnnouncement ? "Update" : "Create"}
-                            disabled={inProgress}
+                            disabled={inProgress || announcementInput === ""}
                             onPress={() => {
                                 handleAnnouncementUpdate(
                                     selectedAnnouncement === ""

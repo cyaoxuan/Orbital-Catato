@@ -117,51 +117,54 @@ const AnnouncementCarousel = ({ announcements, cardWidth }) => {
             data={announcements}
             renderItem={({ item, index }) => {
                 return (
-                    <Card
-                        key={item.announcementID}
-                        style={{
-                            height: cardWidth / 2,
-                            width: cardWidth,
-                            borderRadius: 0,
-                            margin: spaceBetweenCards / 2,
-                            overflow: "hidden",
-                        }}
-                        theme={{
-                            colors: { elevation: { level1: screenMainColor } },
-                        }}
-                        mode="elevated"
-                    >
-                        <Card.Content
+                    <View style={{ overflow: "hidden" }}>
+                        <Card
+                            key={item.announcementID}
                             style={{
-                                paddingHorizontal: 12,
+                                height: cardWidth / 2,
+                                width: cardWidth,
+                                borderRadius: 0,
+                                margin: spaceBetweenCards / 2,
                             }}
+                            theme={{
+                                colors: {
+                                    elevation: { level1: screenMainColor },
+                                },
+                            }}
+                            mode="elevated"
                         >
-                            <Paragraph
-                                variant="bodyMedium"
-                                style={[
-                                    allStyles.bodyText,
-                                    {
-                                        height: "85%",
-                                    },
-                                ]}
+                            <Card.Content
+                                style={{
+                                    paddingHorizontal: 12,
+                                }}
                             >
-                                {item.message}
-                            </Paragraph>
-                            <BodyText
-                                variant="bodySmall"
-                                text={
-                                    "Updated At: " +
-                                    item.updatedAt
-                                        .toDate()
-                                        .toLocaleString(
-                                            "en-GB",
-                                            dateTimeOptions
-                                        ) +
-                                    " (SGT)"
-                                }
-                            />
-                        </Card.Content>
-                    </Card>
+                                <Paragraph
+                                    variant="bodyMedium"
+                                    style={[
+                                        allStyles.bodyText,
+                                        {
+                                            height: "85%",
+                                        },
+                                    ]}
+                                >
+                                    {item.message}
+                                </Paragraph>
+                                <BodyText
+                                    variant="bodySmall"
+                                    text={
+                                        "Updated At: " +
+                                        item.updatedAt
+                                            .toDate()
+                                            .toLocaleString(
+                                                "en-GB",
+                                                dateTimeOptions
+                                            ) +
+                                        " (SGT)"
+                                    }
+                                />
+                            </Card.Content>
+                        </Card>
+                    </View>
                 );
             }}
         />

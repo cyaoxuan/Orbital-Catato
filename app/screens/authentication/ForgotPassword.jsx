@@ -8,6 +8,8 @@ import { PillButton } from "../../components/Button";
 import { allStyles, primaryColor } from "../../components/Styles";
 import { BodyText, ErrorText, TitleText } from "../../components/Text";
 import { LoadingCat, SaladSmudgeCat } from "../../components/CatDrawing";
+import { KeyboardAvoidingView } from "react-native";
+import { Platform } from "react-native";
 
 export default function ForgotPasswordScreen() {
     const [error, setError] = useState(null);
@@ -33,7 +35,11 @@ export default function ForgotPasswordScreen() {
     };
 
     return (
-        <View style={allStyles.centerFlexView}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : ""}
+            keyboardVerticalOffset={100}
+            style={allStyles.centerFlexView}
+        >
             <View style={{ alignItems: "center" }}>
                 <LoadingCat size={150} />
             </View>
@@ -71,6 +77,6 @@ export default function ForgotPasswordScreen() {
                     <BodyText variant="bodyMedium" text="Email sent!" />
                 )}
             </View>
-        </View>
+        </KeyboardAvoidingView>
     );
 }

@@ -67,24 +67,11 @@ exports[`<AnnouncementCarousel /> renders carousel with announcements correctly 
       }
     >
       <View
-        collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(255, 255, 255, 1)",
-            "borderRadius": 0,
-            "height": 100,
-            "margin": 10,
-            "shadowColor": "#000",
-            "shadowOffset": {
-              "height": 1,
-              "width": 0,
-            },
-            "shadowOpacity": 0.15,
-            "shadowRadius": 3,
-            "width": 200,
+            "overflow": "hidden",
           }
         }
-        testID="card-container-outer-layer"
       >
         <View
           collapsable={false}
@@ -92,112 +79,132 @@ exports[`<AnnouncementCarousel /> renders carousel with announcements correctly 
             {
               "backgroundColor": "rgba(255, 255, 255, 1)",
               "borderRadius": 0,
-              "elevation": 1,
-              "flex": 1,
-              "overflow": "hidden",
+              "height": 100,
+              "margin": 10,
               "shadowColor": "#000",
               "shadowOffset": {
                 "height": 1,
                 "width": 0,
               },
-              "shadowOpacity": 0.3,
-              "shadowRadius": 1,
+              "shadowOpacity": 0.15,
+              "shadowRadius": 3,
+              "width": 200,
             }
           }
-          testID="card-container"
+          testID="card-container-outer-layer"
         >
           <View
+            collapsable={false}
             style={
-              [
-                {
-                  "flexShrink": 1,
+              {
+                "backgroundColor": "rgba(255, 255, 255, 1)",
+                "borderRadius": 0,
+                "elevation": 1,
+                "flex": 1,
+                "shadowColor": "#000",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 0,
                 },
-                undefined,
-              ]
+                "shadowOpacity": 0.3,
+                "shadowRadius": 1,
+              }
             }
-            testID="card"
+            testID="card-container"
           >
             <View
               style={
                 [
                   {
-                    "paddingHorizontal": 16,
+                    "flexShrink": 1,
                   },
-                  {
-                    "paddingVertical": 16,
-                  },
-                  {
-                    "paddingHorizontal": 12,
-                  },
+                  undefined,
                 ]
               }
+              testID="card"
             >
-              <Text
+              <View
                 style={
                   [
                     {
-                      "color": "rgba(28, 27, 31, 1)",
+                      "paddingHorizontal": 16,
                     },
                     {
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
+                    {
+                      "paddingHorizontal": 12,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
                     [
+                      {
+                        "color": "rgba(28, 27, 31, 1)",
+                      },
+                      {
+                        "textAlign": "left",
+                      },
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 0.87)",
+                          "writingDirection": "ltr",
+                        },
+                        [
+                          {
+                            "fontSize": 14,
+                            "letterSpacing": 0.25,
+                            "lineHeight": 20,
+                            "marginVertical": 2,
+                          },
+                          [
+                            {
+                              "fontFamily": "Nunito-Medium",
+                            },
+                            {
+                              "height": "85%",
+                            },
+                          ],
+                        ],
+                      ],
+                    ]
+                  }
+                  variant="bodyMedium"
+                >
+                  Message 1
+                </Text>
+                <Text
+                  style={
+                    [
+                      {
+                        "fontFamily": "System",
+                        "fontSize": 12,
+                        "fontWeight": "400",
+                        "letterSpacing": 0.4,
+                        "lineHeight": 16,
+                      },
                       {
                         "textAlign": "left",
                       },
                       {
-                        "color": "rgba(28, 27, 31, 0.87)",
+                        "color": "rgba(28, 27, 31, 1)",
                         "writingDirection": "ltr",
                       },
-                      [
-                        {
-                          "fontSize": 14,
-                          "letterSpacing": 0.25,
-                          "lineHeight": 20,
-                          "marginVertical": 2,
-                        },
-                        [
-                          {
-                            "fontFamily": "Nunito-Medium",
-                          },
-                          {
-                            "height": "85%",
-                          },
-                        ],
-                      ],
-                    ],
-                  ]
-                }
-                variant="bodyMedium"
-              >
-                Message 1
-              </Text>
-              <Text
-                style={
-                  [
-                    {
-                      "fontFamily": "System",
-                      "fontSize": 12,
-                      "fontWeight": "400",
-                      "letterSpacing": 0.4,
-                      "lineHeight": 16,
-                    },
-                    {
-                      "textAlign": "left",
-                    },
-                    {
-                      "color": "rgba(28, 27, 31, 1)",
-                      "writingDirection": "ltr",
-                    },
-                    {
-                      "color": undefined,
-                      "fontFamily": "Nunito-Medium",
-                    },
-                  ]
-                }
-              >
-                Updated At: 20/05, 18:53 (SGT)
-              </Text>
+                      {
+                        "color": undefined,
+                        "fontFamily": "Nunito-Medium",
+                      },
+                    ]
+                  }
+                >
+                  Updated At: 20/05, 18:53 (SGT)
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -223,24 +230,11 @@ exports[`<AnnouncementCarousel /> renders carousel with announcements correctly 
       }
     >
       <View
-        collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(255, 255, 255, 1)",
-            "borderRadius": 0,
-            "height": 100,
-            "margin": 10,
-            "shadowColor": "#000",
-            "shadowOffset": {
-              "height": 1,
-              "width": 0,
-            },
-            "shadowOpacity": 0.15,
-            "shadowRadius": 3,
-            "width": 200,
+            "overflow": "hidden",
           }
         }
-        testID="card-container-outer-layer"
       >
         <View
           collapsable={false}
@@ -248,112 +242,132 @@ exports[`<AnnouncementCarousel /> renders carousel with announcements correctly 
             {
               "backgroundColor": "rgba(255, 255, 255, 1)",
               "borderRadius": 0,
-              "elevation": 1,
-              "flex": 1,
-              "overflow": "hidden",
+              "height": 100,
+              "margin": 10,
               "shadowColor": "#000",
               "shadowOffset": {
                 "height": 1,
                 "width": 0,
               },
-              "shadowOpacity": 0.3,
-              "shadowRadius": 1,
+              "shadowOpacity": 0.15,
+              "shadowRadius": 3,
+              "width": 200,
             }
           }
-          testID="card-container"
+          testID="card-container-outer-layer"
         >
           <View
+            collapsable={false}
             style={
-              [
-                {
-                  "flexShrink": 1,
+              {
+                "backgroundColor": "rgba(255, 255, 255, 1)",
+                "borderRadius": 0,
+                "elevation": 1,
+                "flex": 1,
+                "shadowColor": "#000",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 0,
                 },
-                undefined,
-              ]
+                "shadowOpacity": 0.3,
+                "shadowRadius": 1,
+              }
             }
-            testID="card"
+            testID="card-container"
           >
             <View
               style={
                 [
                   {
-                    "paddingHorizontal": 16,
+                    "flexShrink": 1,
                   },
-                  {
-                    "paddingVertical": 16,
-                  },
-                  {
-                    "paddingHorizontal": 12,
-                  },
+                  undefined,
                 ]
               }
+              testID="card"
             >
-              <Text
+              <View
                 style={
                   [
                     {
-                      "color": "rgba(28, 27, 31, 1)",
+                      "paddingHorizontal": 16,
                     },
                     {
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
+                    {
+                      "paddingHorizontal": 12,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
                     [
+                      {
+                        "color": "rgba(28, 27, 31, 1)",
+                      },
+                      {
+                        "textAlign": "left",
+                      },
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 0.87)",
+                          "writingDirection": "ltr",
+                        },
+                        [
+                          {
+                            "fontSize": 14,
+                            "letterSpacing": 0.25,
+                            "lineHeight": 20,
+                            "marginVertical": 2,
+                          },
+                          [
+                            {
+                              "fontFamily": "Nunito-Medium",
+                            },
+                            {
+                              "height": "85%",
+                            },
+                          ],
+                        ],
+                      ],
+                    ]
+                  }
+                  variant="bodyMedium"
+                >
+                  Message 2
+                </Text>
+                <Text
+                  style={
+                    [
+                      {
+                        "fontFamily": "System",
+                        "fontSize": 12,
+                        "fontWeight": "400",
+                        "letterSpacing": 0.4,
+                        "lineHeight": 16,
+                      },
                       {
                         "textAlign": "left",
                       },
                       {
-                        "color": "rgba(28, 27, 31, 0.87)",
+                        "color": "rgba(28, 27, 31, 1)",
                         "writingDirection": "ltr",
                       },
-                      [
-                        {
-                          "fontSize": 14,
-                          "letterSpacing": 0.25,
-                          "lineHeight": 20,
-                          "marginVertical": 2,
-                        },
-                        [
-                          {
-                            "fontFamily": "Nunito-Medium",
-                          },
-                          {
-                            "height": "85%",
-                          },
-                        ],
-                      ],
-                    ],
-                  ]
-                }
-                variant="bodyMedium"
-              >
-                Message 2
-              </Text>
-              <Text
-                style={
-                  [
-                    {
-                      "fontFamily": "System",
-                      "fontSize": 12,
-                      "fontWeight": "400",
-                      "letterSpacing": 0.4,
-                      "lineHeight": 16,
-                    },
-                    {
-                      "textAlign": "left",
-                    },
-                    {
-                      "color": "rgba(28, 27, 31, 1)",
-                      "writingDirection": "ltr",
-                    },
-                    {
-                      "color": undefined,
-                      "fontFamily": "Nunito-Medium",
-                    },
-                  ]
-                }
-              >
-                Updated At: 20/05, 18:53 (SGT)
-              </Text>
+                      {
+                        "color": undefined,
+                        "fontFamily": "Nunito-Medium",
+                      },
+                    ]
+                  }
+                >
+                  Updated At: 20/05, 18:53 (SGT)
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -379,24 +393,11 @@ exports[`<AnnouncementCarousel /> renders carousel with announcements correctly 
       }
     >
       <View
-        collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(255, 255, 255, 1)",
-            "borderRadius": 0,
-            "height": 100,
-            "margin": 10,
-            "shadowColor": "#000",
-            "shadowOffset": {
-              "height": 1,
-              "width": 0,
-            },
-            "shadowOpacity": 0.15,
-            "shadowRadius": 3,
-            "width": 200,
+            "overflow": "hidden",
           }
         }
-        testID="card-container-outer-layer"
       >
         <View
           collapsable={false}
@@ -404,112 +405,132 @@ exports[`<AnnouncementCarousel /> renders carousel with announcements correctly 
             {
               "backgroundColor": "rgba(255, 255, 255, 1)",
               "borderRadius": 0,
-              "elevation": 1,
-              "flex": 1,
-              "overflow": "hidden",
+              "height": 100,
+              "margin": 10,
               "shadowColor": "#000",
               "shadowOffset": {
                 "height": 1,
                 "width": 0,
               },
-              "shadowOpacity": 0.3,
-              "shadowRadius": 1,
+              "shadowOpacity": 0.15,
+              "shadowRadius": 3,
+              "width": 200,
             }
           }
-          testID="card-container"
+          testID="card-container-outer-layer"
         >
           <View
+            collapsable={false}
             style={
-              [
-                {
-                  "flexShrink": 1,
+              {
+                "backgroundColor": "rgba(255, 255, 255, 1)",
+                "borderRadius": 0,
+                "elevation": 1,
+                "flex": 1,
+                "shadowColor": "#000",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 0,
                 },
-                undefined,
-              ]
+                "shadowOpacity": 0.3,
+                "shadowRadius": 1,
+              }
             }
-            testID="card"
+            testID="card-container"
           >
             <View
               style={
                 [
                   {
-                    "paddingHorizontal": 16,
+                    "flexShrink": 1,
                   },
-                  {
-                    "paddingVertical": 16,
-                  },
-                  {
-                    "paddingHorizontal": 12,
-                  },
+                  undefined,
                 ]
               }
+              testID="card"
             >
-              <Text
+              <View
                 style={
                   [
                     {
-                      "color": "rgba(28, 27, 31, 1)",
+                      "paddingHorizontal": 16,
                     },
                     {
-                      "textAlign": "left",
+                      "paddingVertical": 16,
                     },
+                    {
+                      "paddingHorizontal": 12,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
                     [
+                      {
+                        "color": "rgba(28, 27, 31, 1)",
+                      },
+                      {
+                        "textAlign": "left",
+                      },
+                      [
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 0.87)",
+                          "writingDirection": "ltr",
+                        },
+                        [
+                          {
+                            "fontSize": 14,
+                            "letterSpacing": 0.25,
+                            "lineHeight": 20,
+                            "marginVertical": 2,
+                          },
+                          [
+                            {
+                              "fontFamily": "Nunito-Medium",
+                            },
+                            {
+                              "height": "85%",
+                            },
+                          ],
+                        ],
+                      ],
+                    ]
+                  }
+                  variant="bodyMedium"
+                >
+                  Message 3
+                </Text>
+                <Text
+                  style={
+                    [
+                      {
+                        "fontFamily": "System",
+                        "fontSize": 12,
+                        "fontWeight": "400",
+                        "letterSpacing": 0.4,
+                        "lineHeight": 16,
+                      },
                       {
                         "textAlign": "left",
                       },
                       {
-                        "color": "rgba(28, 27, 31, 0.87)",
+                        "color": "rgba(28, 27, 31, 1)",
                         "writingDirection": "ltr",
                       },
-                      [
-                        {
-                          "fontSize": 14,
-                          "letterSpacing": 0.25,
-                          "lineHeight": 20,
-                          "marginVertical": 2,
-                        },
-                        [
-                          {
-                            "fontFamily": "Nunito-Medium",
-                          },
-                          {
-                            "height": "85%",
-                          },
-                        ],
-                      ],
-                    ],
-                  ]
-                }
-                variant="bodyMedium"
-              >
-                Message 3
-              </Text>
-              <Text
-                style={
-                  [
-                    {
-                      "fontFamily": "System",
-                      "fontSize": 12,
-                      "fontWeight": "400",
-                      "letterSpacing": 0.4,
-                      "lineHeight": 16,
-                    },
-                    {
-                      "textAlign": "left",
-                    },
-                    {
-                      "color": "rgba(28, 27, 31, 1)",
-                      "writingDirection": "ltr",
-                    },
-                    {
-                      "color": undefined,
-                      "fontFamily": "Nunito-Medium",
-                    },
-                  ]
-                }
-              >
-                Updated At: 20/05, 18:53 (SGT)
-              </Text>
+                      {
+                        "color": undefined,
+                        "fontFamily": "Nunito-Medium",
+                      },
+                    ]
+                  }
+                >
+                  Updated At: 20/05, 18:53 (SGT)
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -634,24 +655,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
       }
     >
       <View
-        collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(255, 255, 255, 1)",
-            "borderRadius": 20,
-            "height": 375,
-            "margin": 10,
-            "shadowColor": "#000",
-            "shadowOffset": {
-              "height": 1,
-              "width": 0,
-            },
-            "shadowOpacity": 0.15,
-            "shadowRadius": 3,
-            "width": 300,
+            "overflow": "hidden",
           }
         }
-        testID="card-container-outer-layer"
       >
         <View
           collapsable={false}
@@ -659,53 +667,313 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
             {
               "backgroundColor": "rgba(255, 255, 255, 1)",
               "borderRadius": 20,
-              "elevation": 1,
-              "flex": 1,
-              "overflow": "hidden",
+              "height": 375,
+              "margin": 10,
               "shadowColor": "#000",
               "shadowOffset": {
                 "height": 1,
                 "width": 0,
               },
-              "shadowOpacity": 0.3,
-              "shadowRadius": 1,
+              "shadowOpacity": 0.15,
+              "shadowRadius": 3,
+              "width": 300,
             }
           }
-          testID="card-container"
+          testID="card-container-outer-layer"
         >
           <View
+            collapsable={false}
             style={
-              [
-                {
-                  "flexShrink": 1,
+              {
+                "backgroundColor": "rgba(255, 255, 255, 1)",
+                "borderRadius": 20,
+                "elevation": 1,
+                "flex": 1,
+                "overflow": "hidden",
+                "shadowColor": "#000",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 0,
                 },
-                undefined,
-              ]
+                "shadowOpacity": 0.3,
+                "shadowRadius": 1,
+              }
             }
-            testID="card"
+            testID="card-container"
           >
             <View
               style={
                 [
                   {
-                    "backgroundColor": "#eeeeee",
-                    "height": 195,
-                    "overflow": "hidden",
+                    "flexShrink": 1,
                   },
-                  {
-                    "borderTopLeftRadius": 0,
-                    "borderTopRightRadius": 0,
-                  },
-                  {
-                    "height": 200,
-                    "resizeMode": "cover",
-                    "width": 300,
-                  },
+                  undefined,
                 ]
               }
+              testID="card"
             >
-              <Image
-                accessibilityIgnoresInvertColors={true}
+              <View
+                style={
+                  [
+                    {
+                      "backgroundColor": "#eeeeee",
+                      "height": 195,
+                      "overflow": "hidden",
+                    },
+                    {
+                      "borderTopLeftRadius": 0,
+                      "borderTopRightRadius": 0,
+                    },
+                    {
+                      "height": 200,
+                      "resizeMode": "cover",
+                      "width": 300,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  accessibilityIgnoresInvertColors={true}
+                  siblings={
+                    [
+                      "Card.Cover",
+                      "Card.Title",
+                      "Card.Content",
+                      "Card.Actions",
+                    ]
+                  }
+                  source={
+                    {
+                      "uri": 1,
+                    }
+                  }
+                  style={
+                    [
+                      {
+                        "flex": 1,
+                        "height": undefined,
+                        "justifyContent": "flex-end",
+                        "padding": 16,
+                        "width": undefined,
+                      },
+                      {
+                        "borderTopLeftRadius": 0,
+                        "borderTopRightRadius": 0,
+                      },
+                    ]
+                  }
+                  testID="cover-image"
+                />
+              </View>
+              <View
+                style={
+                  [
+                    {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "paddingLeft": 16,
+                    },
+                    {
+                      "minHeight": 50,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  style={
+                    [
+                      {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      [
+                        {
+                          "fontFamily": "System",
+                          "fontSize": 22,
+                          "fontWeight": "400",
+                          "letterSpacing": 0,
+                          "lineHeight": 28,
+                        },
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 1)",
+                          "writingDirection": "ltr",
+                        },
+                        [
+                          {
+                            "minHeight": 30,
+                            "paddingRight": 16,
+                          },
+                          {
+                            "marginBottom": 2,
+                          },
+                          {
+                            "fontFamily": "Nunito-Bold",
+                          },
+                        ],
+                      ]
+                    }
+                  >
+                    Kitty
+                  </Text>
+                </View>
+                <View />
+              </View>
+              <View
+                style={
+                  [
+                    {
+                      "paddingHorizontal": 16,
+                    },
+                    undefined,
+                    {
+                      "paddingHorizontal": 8,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    [
+                      {
+                        "flexDirection": "row",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <Text />
+                  <Text
+                    style={
+                      [
+                        {
+                          "fontFamily": "System",
+                          "fontSize": 14,
+                          "fontWeight": "400",
+                          "letterSpacing": 0.25,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 1)",
+                          "writingDirection": "ltr",
+                        },
+                        {
+                          "flex": 1,
+                          "fontFamily": "Nunito-Bold",
+                        },
+                      ]
+                    }
+                  >
+                    Field: 
+                    <Text
+                      style={
+                        [
+                          {
+                            "fontFamily": "System",
+                            "fontSize": 14,
+                            "fontWeight": "400",
+                            "letterSpacing": 0.25,
+                            "lineHeight": 20,
+                          },
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "rgba(28, 27, 31, 1)",
+                            "writingDirection": "ltr",
+                          },
+                          {
+                            "flex": 1,
+                            "fontFamily": "Nunito-Medium",
+                          },
+                        ]
+                      }
+                    >
+                      Injured
+                    </Text>
+                  </Text>
+                </View>
+                <View
+                  style={
+                    [
+                      {
+                        "flexDirection": "row",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <Text />
+                  <Text
+                    style={
+                      [
+                        {
+                          "fontFamily": "System",
+                          "fontSize": 14,
+                          "fontWeight": "400",
+                          "letterSpacing": 0.25,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 1)",
+                          "writingDirection": "ltr",
+                        },
+                        {
+                          "flex": 1,
+                          "fontFamily": "Nunito-Bold",
+                        },
+                      ]
+                    }
+                  >
+                    Field: 
+                    <Text
+                      style={
+                        [
+                          {
+                            "fontFamily": "System",
+                            "fontSize": 14,
+                            "fontWeight": "400",
+                            "letterSpacing": 0.25,
+                            "lineHeight": 20,
+                          },
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "rgba(28, 27, 31, 1)",
+                            "writingDirection": "ltr",
+                          },
+                          {
+                            "flex": 1,
+                            "fontFamily": "Nunito-Medium",
+                          },
+                        ]
+                      }
+                    >
+                      E1 (27d)
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+              <View
+                index={3}
                 siblings={
                   [
                     "Card.Cover",
@@ -714,291 +982,29 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     "Card.Actions",
                   ]
                 }
-                source={
-                  {
-                    "uri": 1,
-                  }
-                }
                 style={
                   [
                     {
-                      "flex": 1,
-                      "height": undefined,
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "padding": 8,
+                    },
+                    undefined,
+                    {
                       "justifyContent": "flex-end",
-                      "padding": 16,
-                      "width": undefined,
-                    },
-                    {
-                      "borderTopLeftRadius": 0,
-                      "borderTopRightRadius": 0,
                     },
                   ]
                 }
-                testID="cover-image"
-              />
-            </View>
-            <View
-              style={
-                [
-                  {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingLeft": 16,
-                  },
-                  {
-                    "minHeight": 50,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              <View
-                style={
-                  [
-                    {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  numberOfLines={1}
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 22,
-                        "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      [
-                        {
-                          "minHeight": 30,
-                          "paddingRight": 16,
-                        },
-                        {
-                          "marginBottom": 2,
-                        },
-                        {
-                          "fontFamily": "Nunito-Bold",
-                        },
-                      ],
-                    ]
-                  }
-                >
-                  Kitty
-                </Text>
-              </View>
-              <View />
-            </View>
-            <View
-              style={
-                [
-                  {
-                    "paddingHorizontal": 16,
-                  },
-                  undefined,
-                  {
-                    "paddingHorizontal": 8,
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  [
-                    {
-                      "flexDirection": "row",
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                <Text />
-                <Text
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 14,
-                        "fontWeight": "400",
-                        "letterSpacing": 0.25,
-                        "lineHeight": 20,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      {
-                        "flex": 1,
-                        "fontFamily": "Nunito-Bold",
-                      },
-                    ]
-                  }
-                >
-                  Field: 
-                  <Text
-                    style={
-                      [
-                        {
-                          "fontFamily": "System",
-                          "fontSize": 14,
-                          "fontWeight": "400",
-                          "letterSpacing": 0.25,
-                          "lineHeight": 20,
-                        },
-                        {
-                          "textAlign": "left",
-                        },
-                        {
-                          "color": "rgba(28, 27, 31, 1)",
-                          "writingDirection": "ltr",
-                        },
-                        {
-                          "flex": 1,
-                          "fontFamily": "Nunito-Medium",
-                        },
-                      ]
-                    }
-                  >
-                    Injured
-                  </Text>
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexDirection": "row",
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                <Text />
-                <Text
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 14,
-                        "fontWeight": "400",
-                        "letterSpacing": 0.25,
-                        "lineHeight": 20,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      {
-                        "flex": 1,
-                        "fontFamily": "Nunito-Bold",
-                      },
-                    ]
-                  }
-                >
-                  Field: 
-                  <Text
-                    style={
-                      [
-                        {
-                          "fontFamily": "System",
-                          "fontSize": 14,
-                          "fontWeight": "400",
-                          "letterSpacing": 0.25,
-                          "lineHeight": 20,
-                        },
-                        {
-                          "textAlign": "left",
-                        },
-                        {
-                          "color": "rgba(28, 27, 31, 1)",
-                          "writingDirection": "ltr",
-                        },
-                        {
-                          "flex": 1,
-                          "fontFamily": "Nunito-Medium",
-                        },
-                      ]
-                    }
-                  >
-                    E1 (27d)
-                  </Text>
-                </Text>
-              </View>
-            </View>
-            <View
-              index={3}
-              siblings={
-                [
-                  "Card.Cover",
-                  "Card.Title",
-                  "Card.Content",
-                  "Card.Actions",
-                ]
-              }
-              style={
-                [
-                  {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                    "padding": 8,
-                  },
-                  undefined,
-                  {
-                    "justifyContent": "flex-end",
-                  },
-                ]
-              }
-              total={4}
-            >
-              <View
-                collapsable={false}
-                style={
-                  {
-                    "backgroundColor": "transparent",
-                    "borderRadius": 20,
-                    "height": 36,
-                    "marginLeft": 8,
-                    "shadowColor": "#000",
-                    "shadowOffset": {
-                      "height": 0,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0,
-                    "shadowRadius": 0,
-                  }
-                }
-                testID="button-container-outer-layer"
+                total={4}
               >
                 <View
                   collapsable={false}
                   style={
                     {
                       "backgroundColor": "transparent",
-                      "borderColor": "#05668D",
                       "borderRadius": 20,
-                      "borderStyle": "solid",
-                      "borderWidth": 1,
-                      "flex": 1,
-                      "minWidth": 64,
+                      "height": 36,
+                      "marginLeft": 8,
                       "shadowColor": "#000",
                       "shadowOffset": {
                         "height": 0,
@@ -1008,174 +1014,174 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "shadowRadius": 0,
                     }
                   }
-                  testID="button-container"
+                  testID="button-container-outer-layer"
                 >
                   <View
-                    accessibilityRole="button"
-                    accessibilityState={
-                      {
-                        "busy": undefined,
-                        "checked": undefined,
-                        "disabled": false,
-                        "expanded": undefined,
-                        "selected": undefined,
-                      }
-                    }
-                    accessibilityValue={
-                      {
-                        "max": undefined,
-                        "min": undefined,
-                        "now": undefined,
-                        "text": undefined,
-                      }
-                    }
-                    accessible={true}
                     collapsable={false}
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
                     style={
-                      [
-                        {
-                          "overflow": "hidden",
+                      {
+                        "backgroundColor": "transparent",
+                        "borderColor": "#05668D",
+                        "borderRadius": 20,
+                        "borderStyle": "solid",
+                        "borderWidth": 1,
+                        "flex": 1,
+                        "minWidth": 64,
+                        "shadowColor": "#000",
+                        "shadowOffset": {
+                          "height": 0,
+                          "width": 0,
                         },
-                        {
-                          "borderRadius": 20,
-                        },
-                      ]
+                        "shadowOpacity": 0,
+                        "shadowRadius": 0,
+                      }
                     }
-                    testID="button"
+                    testID="button-container"
                   >
                     <View
+                      accessibilityRole="button"
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": false,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
                       style={
                         [
                           {
-                            "alignItems": "center",
-                            "flexDirection": "row",
-                            "justifyContent": "center",
+                            "overflow": "hidden",
                           },
                           {
-                            "height": 36,
+                            "borderRadius": 20,
                           },
                         ]
                       }
+                      testID="button"
                     >
                       <View
                         style={
                           [
                             {
-                              "marginLeft": 12,
-                              "marginRight": -4,
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "justifyContent": "center",
                             },
                             {
-                              "marginLeft": 16,
-                              "marginRight": -16,
+                              "height": 36,
                             },
-                            false,
                           ]
                         }
-                        testID="button-icon-container"
                       >
-                        <Text />
-                      </View>
-                      <Text
-                        numberOfLines={1}
-                        selectable={false}
-                        style={
-                          [
-                            {
-                              "fontFamily": "System",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "letterSpacing": 0.1,
-                              "lineHeight": 20,
-                            },
-                            {
-                              "textAlign": "left",
-                            },
-                            {
-                              "color": "rgba(28, 27, 31, 1)",
-                              "writingDirection": "ltr",
-                            },
+                        <View
+                          style={
                             [
                               {
-                                "marginHorizontal": 16,
-                                "marginVertical": 9,
-                                "textAlign": "center",
+                                "marginLeft": 12,
+                                "marginRight": -4,
+                              },
+                              {
+                                "marginLeft": 16,
+                                "marginRight": -16,
                               },
                               false,
+                            ]
+                          }
+                          testID="button-icon-container"
+                        >
+                          <Text />
+                        </View>
+                        <Text
+                          numberOfLines={1}
+                          selectable={false}
+                          style={
+                            [
                               {
-                                "marginHorizontal": 24,
-                                "marginVertical": 10,
-                              },
-                              false,
-                              false,
-                              {
-                                "color": "#05668D",
                                 "fontFamily": "System",
                                 "fontSize": 14,
                                 "fontWeight": "500",
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "rgba(28, 27, 31, 1)",
+                                "writingDirection": "ltr",
+                              },
                               [
                                 {
-                                  "fontFamily": "Nunito-Medium",
+                                  "marginHorizontal": 16,
+                                  "marginVertical": 9,
+                                  "textAlign": "center",
                                 },
+                                false,
                                 {
-                                  "fontSize": 16,
-                                  "margin": 0,
-                                  "padding": 0,
+                                  "marginHorizontal": 24,
+                                  "marginVertical": 10,
                                 },
+                                false,
+                                false,
+                                {
+                                  "color": "#05668D",
+                                  "fontFamily": "System",
+                                  "fontSize": 14,
+                                  "fontWeight": "500",
+                                  "letterSpacing": 0.1,
+                                  "lineHeight": 20,
+                                },
+                                [
+                                  {
+                                    "fontFamily": "Nunito-Medium",
+                                  },
+                                  {
+                                    "fontSize": 16,
+                                    "margin": 0,
+                                    "padding": 0,
+                                  },
+                                ],
                               ],
-                            ],
-                          ]
-                        }
-                        testID="button-text"
-                      >
-                        Profile
-                      </Text>
+                            ]
+                          }
+                          testID="button-text"
+                        >
+                          Profile
+                        </Text>
+                      </View>
                     </View>
                   </View>
                 </View>
-              </View>
-              <View
-                collapsable={false}
-                style={
-                  {
-                    "backgroundColor": "#05668D",
-                    "borderRadius": 20,
-                    "height": 36,
-                    "marginLeft": 8,
-                    "shadowColor": "#000",
-                    "shadowOffset": {
-                      "height": 0,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0,
-                    "shadowRadius": 0,
-                  }
-                }
-                testID="button-container-outer-layer"
-              >
                 <View
                   collapsable={false}
                   style={
                     {
                       "backgroundColor": "#05668D",
-                      "borderColor": "transparent",
                       "borderRadius": 20,
-                      "borderStyle": "solid",
-                      "borderWidth": 0,
-                      "flex": 1,
-                      "minWidth": 64,
+                      "height": 36,
+                      "marginLeft": 8,
                       "shadowColor": "#000",
                       "shadowOffset": {
                         "height": 0,
@@ -1185,140 +1191,163 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "shadowRadius": 0,
                     }
                   }
-                  testID="button-container"
+                  testID="button-container-outer-layer"
                 >
                   <View
-                    accessibilityRole="button"
-                    accessibilityState={
-                      {
-                        "busy": undefined,
-                        "checked": undefined,
-                        "disabled": false,
-                        "expanded": undefined,
-                        "selected": undefined,
-                      }
-                    }
-                    accessibilityValue={
-                      {
-                        "max": undefined,
-                        "min": undefined,
-                        "now": undefined,
-                        "text": undefined,
-                      }
-                    }
-                    accessible={true}
                     collapsable={false}
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
                     style={
-                      [
-                        {
-                          "overflow": "hidden",
+                      {
+                        "backgroundColor": "#05668D",
+                        "borderColor": "transparent",
+                        "borderRadius": 20,
+                        "borderStyle": "solid",
+                        "borderWidth": 0,
+                        "flex": 1,
+                        "minWidth": 64,
+                        "shadowColor": "#000",
+                        "shadowOffset": {
+                          "height": 0,
+                          "width": 0,
                         },
-                        {
-                          "borderRadius": 20,
-                        },
-                      ]
+                        "shadowOpacity": 0,
+                        "shadowRadius": 0,
+                      }
                     }
-                    testID="button"
+                    testID="button-container"
                   >
                     <View
+                      accessibilityRole="button"
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": false,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
                       style={
                         [
                           {
-                            "alignItems": "center",
-                            "flexDirection": "row",
-                            "justifyContent": "center",
+                            "overflow": "hidden",
                           },
                           {
-                            "height": 36,
+                            "borderRadius": 20,
                           },
                         ]
                       }
+                      testID="button"
                     >
                       <View
                         style={
                           [
                             {
-                              "marginLeft": 12,
-                              "marginRight": -4,
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "justifyContent": "center",
                             },
                             {
-                              "marginLeft": 16,
-                              "marginRight": -16,
+                              "height": 36,
                             },
-                            false,
                           ]
                         }
-                        testID="button-icon-container"
                       >
-                        <Text />
-                      </View>
-                      <Text
-                        numberOfLines={1}
-                        selectable={false}
-                        style={
-                          [
-                            {
-                              "fontFamily": "System",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "letterSpacing": 0.1,
-                              "lineHeight": 20,
-                            },
-                            {
-                              "textAlign": "left",
-                            },
-                            {
-                              "color": "rgba(28, 27, 31, 1)",
-                              "writingDirection": "ltr",
-                            },
+                        <View
+                          style={
                             [
                               {
-                                "marginHorizontal": 16,
-                                "marginVertical": 9,
-                                "textAlign": "center",
+                                "marginLeft": 12,
+                                "marginRight": -4,
+                              },
+                              {
+                                "marginLeft": 16,
+                                "marginRight": -16,
                               },
                               false,
+                            ]
+                          }
+                          testID="button-icon-container"
+                        >
+                          <Text />
+                        </View>
+                        <Text
+                          numberOfLines={1}
+                          selectable={false}
+                          style={
+                            [
                               {
-                                "marginHorizontal": 24,
-                                "marginVertical": 10,
-                              },
-                              false,
-                              false,
-                              {
-                                "color": "rgba(255, 255, 255, 1)",
                                 "fontFamily": "System",
                                 "fontSize": 14,
                                 "fontWeight": "500",
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "rgba(28, 27, 31, 1)",
+                                "writingDirection": "ltr",
+                              },
                               [
                                 {
-                                  "fontFamily": "Nunito-Medium",
+                                  "marginHorizontal": 16,
+                                  "marginVertical": 9,
+                                  "textAlign": "center",
                                 },
+                                false,
                                 {
-                                  "fontSize": 16,
-                                  "margin": 0,
-                                  "padding": 0,
+                                  "marginHorizontal": 24,
+                                  "marginVertical": 10,
                                 },
+                                false,
+                                false,
+                                {
+                                  "color": "rgba(255, 255, 255, 1)",
+                                  "fontFamily": "System",
+                                  "fontSize": 14,
+                                  "fontWeight": "500",
+                                  "letterSpacing": 0.1,
+                                  "lineHeight": 20,
+                                },
+                                [
+                                  {
+                                    "fontFamily": "Nunito-Medium",
+                                  },
+                                  {
+                                    "fontSize": 16,
+                                    "margin": 0,
+                                    "padding": 0,
+                                  },
+                                ],
                               ],
-                            ],
-                          ]
-                        }
-                        testID="button-text"
-                      >
-                        Locate
-                      </Text>
+                            ]
+                          }
+                          testID="button-text"
+                        >
+                          Locate
+                        </Text>
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -1341,24 +1370,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
       }
     >
       <View
-        collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(255, 255, 255, 1)",
-            "borderRadius": 20,
-            "height": 375,
-            "margin": 10,
-            "shadowColor": "#000",
-            "shadowOffset": {
-              "height": 1,
-              "width": 0,
-            },
-            "shadowOpacity": 0.15,
-            "shadowRadius": 3,
-            "width": 300,
+            "overflow": "hidden",
           }
         }
-        testID="card-container-outer-layer"
       >
         <View
           collapsable={false}
@@ -1366,53 +1382,313 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
             {
               "backgroundColor": "rgba(255, 255, 255, 1)",
               "borderRadius": 20,
-              "elevation": 1,
-              "flex": 1,
-              "overflow": "hidden",
+              "height": 375,
+              "margin": 10,
               "shadowColor": "#000",
               "shadowOffset": {
                 "height": 1,
                 "width": 0,
               },
-              "shadowOpacity": 0.3,
-              "shadowRadius": 1,
+              "shadowOpacity": 0.15,
+              "shadowRadius": 3,
+              "width": 300,
             }
           }
-          testID="card-container"
+          testID="card-container-outer-layer"
         >
           <View
+            collapsable={false}
             style={
-              [
-                {
-                  "flexShrink": 1,
+              {
+                "backgroundColor": "rgba(255, 255, 255, 1)",
+                "borderRadius": 20,
+                "elevation": 1,
+                "flex": 1,
+                "overflow": "hidden",
+                "shadowColor": "#000",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 0,
                 },
-                undefined,
-              ]
+                "shadowOpacity": 0.3,
+                "shadowRadius": 1,
+              }
             }
-            testID="card"
+            testID="card-container"
           >
             <View
               style={
                 [
                   {
-                    "backgroundColor": "#eeeeee",
-                    "height": 195,
-                    "overflow": "hidden",
+                    "flexShrink": 1,
                   },
-                  {
-                    "borderTopLeftRadius": 0,
-                    "borderTopRightRadius": 0,
-                  },
-                  {
-                    "height": 200,
-                    "resizeMode": "cover",
-                    "width": 300,
-                  },
+                  undefined,
                 ]
               }
+              testID="card"
             >
-              <Image
-                accessibilityIgnoresInvertColors={true}
+              <View
+                style={
+                  [
+                    {
+                      "backgroundColor": "#eeeeee",
+                      "height": 195,
+                      "overflow": "hidden",
+                    },
+                    {
+                      "borderTopLeftRadius": 0,
+                      "borderTopRightRadius": 0,
+                    },
+                    {
+                      "height": 200,
+                      "resizeMode": "cover",
+                      "width": 300,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  accessibilityIgnoresInvertColors={true}
+                  siblings={
+                    [
+                      "Card.Cover",
+                      "Card.Title",
+                      "Card.Content",
+                      "Card.Actions",
+                    ]
+                  }
+                  source={
+                    {
+                      "uri": 1,
+                    }
+                  }
+                  style={
+                    [
+                      {
+                        "flex": 1,
+                        "height": undefined,
+                        "justifyContent": "flex-end",
+                        "padding": 16,
+                        "width": undefined,
+                      },
+                      {
+                        "borderTopLeftRadius": 0,
+                        "borderTopRightRadius": 0,
+                      },
+                    ]
+                  }
+                  testID="cover-image"
+                />
+              </View>
+              <View
+                style={
+                  [
+                    {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "paddingLeft": 16,
+                    },
+                    {
+                      "minHeight": 50,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  style={
+                    [
+                      {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      [
+                        {
+                          "fontFamily": "System",
+                          "fontSize": 22,
+                          "fontWeight": "400",
+                          "letterSpacing": 0,
+                          "lineHeight": 28,
+                        },
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 1)",
+                          "writingDirection": "ltr",
+                        },
+                        [
+                          {
+                            "minHeight": 30,
+                            "paddingRight": 16,
+                          },
+                          {
+                            "marginBottom": 2,
+                          },
+                          {
+                            "fontFamily": "Nunito-Bold",
+                          },
+                        ],
+                      ]
+                    }
+                  >
+                    Skitty
+                  </Text>
+                </View>
+                <View />
+              </View>
+              <View
+                style={
+                  [
+                    {
+                      "paddingHorizontal": 16,
+                    },
+                    undefined,
+                    {
+                      "paddingHorizontal": 8,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    [
+                      {
+                        "flexDirection": "row",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <Text />
+                  <Text
+                    style={
+                      [
+                        {
+                          "fontFamily": "System",
+                          "fontSize": 14,
+                          "fontWeight": "400",
+                          "letterSpacing": 0.25,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 1)",
+                          "writingDirection": "ltr",
+                        },
+                        {
+                          "flex": 1,
+                          "fontFamily": "Nunito-Bold",
+                        },
+                      ]
+                    }
+                  >
+                    Field: 
+                    <Text
+                      style={
+                        [
+                          {
+                            "fontFamily": "System",
+                            "fontSize": 14,
+                            "fontWeight": "400",
+                            "letterSpacing": 0.25,
+                            "lineHeight": 20,
+                          },
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "rgba(28, 27, 31, 1)",
+                            "writingDirection": "ltr",
+                          },
+                          {
+                            "flex": 1,
+                            "fontFamily": "Nunito-Medium",
+                          },
+                        ]
+                      }
+                    >
+                      Injured, New
+                    </Text>
+                  </Text>
+                </View>
+                <View
+                  style={
+                    [
+                      {
+                        "flexDirection": "row",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <Text />
+                  <Text
+                    style={
+                      [
+                        {
+                          "fontFamily": "System",
+                          "fontSize": 14,
+                          "fontWeight": "400",
+                          "letterSpacing": 0.25,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 1)",
+                          "writingDirection": "ltr",
+                        },
+                        {
+                          "flex": 1,
+                          "fontFamily": "Nunito-Bold",
+                        },
+                      ]
+                    }
+                  >
+                    Field: 
+                    <Text
+                      style={
+                        [
+                          {
+                            "fontFamily": "System",
+                            "fontSize": 14,
+                            "fontWeight": "400",
+                            "letterSpacing": 0.25,
+                            "lineHeight": 20,
+                          },
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "rgba(28, 27, 31, 1)",
+                            "writingDirection": "ltr",
+                          },
+                          {
+                            "flex": 1,
+                            "fontFamily": "Nunito-Medium",
+                          },
+                        ]
+                      }
+                    >
+                      SRC (27d)
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+              <View
+                index={3}
                 siblings={
                   [
                     "Card.Cover",
@@ -1421,291 +1697,29 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     "Card.Actions",
                   ]
                 }
-                source={
-                  {
-                    "uri": 1,
-                  }
-                }
                 style={
                   [
                     {
-                      "flex": 1,
-                      "height": undefined,
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "padding": 8,
+                    },
+                    undefined,
+                    {
                       "justifyContent": "flex-end",
-                      "padding": 16,
-                      "width": undefined,
-                    },
-                    {
-                      "borderTopLeftRadius": 0,
-                      "borderTopRightRadius": 0,
                     },
                   ]
                 }
-                testID="cover-image"
-              />
-            </View>
-            <View
-              style={
-                [
-                  {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingLeft": 16,
-                  },
-                  {
-                    "minHeight": 50,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              <View
-                style={
-                  [
-                    {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  numberOfLines={1}
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 22,
-                        "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      [
-                        {
-                          "minHeight": 30,
-                          "paddingRight": 16,
-                        },
-                        {
-                          "marginBottom": 2,
-                        },
-                        {
-                          "fontFamily": "Nunito-Bold",
-                        },
-                      ],
-                    ]
-                  }
-                >
-                  Skitty
-                </Text>
-              </View>
-              <View />
-            </View>
-            <View
-              style={
-                [
-                  {
-                    "paddingHorizontal": 16,
-                  },
-                  undefined,
-                  {
-                    "paddingHorizontal": 8,
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  [
-                    {
-                      "flexDirection": "row",
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                <Text />
-                <Text
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 14,
-                        "fontWeight": "400",
-                        "letterSpacing": 0.25,
-                        "lineHeight": 20,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      {
-                        "flex": 1,
-                        "fontFamily": "Nunito-Bold",
-                      },
-                    ]
-                  }
-                >
-                  Field: 
-                  <Text
-                    style={
-                      [
-                        {
-                          "fontFamily": "System",
-                          "fontSize": 14,
-                          "fontWeight": "400",
-                          "letterSpacing": 0.25,
-                          "lineHeight": 20,
-                        },
-                        {
-                          "textAlign": "left",
-                        },
-                        {
-                          "color": "rgba(28, 27, 31, 1)",
-                          "writingDirection": "ltr",
-                        },
-                        {
-                          "flex": 1,
-                          "fontFamily": "Nunito-Medium",
-                        },
-                      ]
-                    }
-                  >
-                    Injured, New
-                  </Text>
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexDirection": "row",
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                <Text />
-                <Text
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 14,
-                        "fontWeight": "400",
-                        "letterSpacing": 0.25,
-                        "lineHeight": 20,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      {
-                        "flex": 1,
-                        "fontFamily": "Nunito-Bold",
-                      },
-                    ]
-                  }
-                >
-                  Field: 
-                  <Text
-                    style={
-                      [
-                        {
-                          "fontFamily": "System",
-                          "fontSize": 14,
-                          "fontWeight": "400",
-                          "letterSpacing": 0.25,
-                          "lineHeight": 20,
-                        },
-                        {
-                          "textAlign": "left",
-                        },
-                        {
-                          "color": "rgba(28, 27, 31, 1)",
-                          "writingDirection": "ltr",
-                        },
-                        {
-                          "flex": 1,
-                          "fontFamily": "Nunito-Medium",
-                        },
-                      ]
-                    }
-                  >
-                    SRC (27d)
-                  </Text>
-                </Text>
-              </View>
-            </View>
-            <View
-              index={3}
-              siblings={
-                [
-                  "Card.Cover",
-                  "Card.Title",
-                  "Card.Content",
-                  "Card.Actions",
-                ]
-              }
-              style={
-                [
-                  {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                    "padding": 8,
-                  },
-                  undefined,
-                  {
-                    "justifyContent": "flex-end",
-                  },
-                ]
-              }
-              total={4}
-            >
-              <View
-                collapsable={false}
-                style={
-                  {
-                    "backgroundColor": "transparent",
-                    "borderRadius": 20,
-                    "height": 36,
-                    "marginLeft": 8,
-                    "shadowColor": "#000",
-                    "shadowOffset": {
-                      "height": 0,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0,
-                    "shadowRadius": 0,
-                  }
-                }
-                testID="button-container-outer-layer"
+                total={4}
               >
                 <View
                   collapsable={false}
                   style={
                     {
                       "backgroundColor": "transparent",
-                      "borderColor": "#05668D",
                       "borderRadius": 20,
-                      "borderStyle": "solid",
-                      "borderWidth": 1,
-                      "flex": 1,
-                      "minWidth": 64,
+                      "height": 36,
+                      "marginLeft": 8,
                       "shadowColor": "#000",
                       "shadowOffset": {
                         "height": 0,
@@ -1715,174 +1729,174 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "shadowRadius": 0,
                     }
                   }
-                  testID="button-container"
+                  testID="button-container-outer-layer"
                 >
                   <View
-                    accessibilityRole="button"
-                    accessibilityState={
-                      {
-                        "busy": undefined,
-                        "checked": undefined,
-                        "disabled": false,
-                        "expanded": undefined,
-                        "selected": undefined,
-                      }
-                    }
-                    accessibilityValue={
-                      {
-                        "max": undefined,
-                        "min": undefined,
-                        "now": undefined,
-                        "text": undefined,
-                      }
-                    }
-                    accessible={true}
                     collapsable={false}
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
                     style={
-                      [
-                        {
-                          "overflow": "hidden",
+                      {
+                        "backgroundColor": "transparent",
+                        "borderColor": "#05668D",
+                        "borderRadius": 20,
+                        "borderStyle": "solid",
+                        "borderWidth": 1,
+                        "flex": 1,
+                        "minWidth": 64,
+                        "shadowColor": "#000",
+                        "shadowOffset": {
+                          "height": 0,
+                          "width": 0,
                         },
-                        {
-                          "borderRadius": 20,
-                        },
-                      ]
+                        "shadowOpacity": 0,
+                        "shadowRadius": 0,
+                      }
                     }
-                    testID="button"
+                    testID="button-container"
                   >
                     <View
+                      accessibilityRole="button"
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": false,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
                       style={
                         [
                           {
-                            "alignItems": "center",
-                            "flexDirection": "row",
-                            "justifyContent": "center",
+                            "overflow": "hidden",
                           },
                           {
-                            "height": 36,
+                            "borderRadius": 20,
                           },
                         ]
                       }
+                      testID="button"
                     >
                       <View
                         style={
                           [
                             {
-                              "marginLeft": 12,
-                              "marginRight": -4,
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "justifyContent": "center",
                             },
                             {
-                              "marginLeft": 16,
-                              "marginRight": -16,
+                              "height": 36,
                             },
-                            false,
                           ]
                         }
-                        testID="button-icon-container"
                       >
-                        <Text />
-                      </View>
-                      <Text
-                        numberOfLines={1}
-                        selectable={false}
-                        style={
-                          [
-                            {
-                              "fontFamily": "System",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "letterSpacing": 0.1,
-                              "lineHeight": 20,
-                            },
-                            {
-                              "textAlign": "left",
-                            },
-                            {
-                              "color": "rgba(28, 27, 31, 1)",
-                              "writingDirection": "ltr",
-                            },
+                        <View
+                          style={
                             [
                               {
-                                "marginHorizontal": 16,
-                                "marginVertical": 9,
-                                "textAlign": "center",
+                                "marginLeft": 12,
+                                "marginRight": -4,
+                              },
+                              {
+                                "marginLeft": 16,
+                                "marginRight": -16,
                               },
                               false,
+                            ]
+                          }
+                          testID="button-icon-container"
+                        >
+                          <Text />
+                        </View>
+                        <Text
+                          numberOfLines={1}
+                          selectable={false}
+                          style={
+                            [
                               {
-                                "marginHorizontal": 24,
-                                "marginVertical": 10,
-                              },
-                              false,
-                              false,
-                              {
-                                "color": "#05668D",
                                 "fontFamily": "System",
                                 "fontSize": 14,
                                 "fontWeight": "500",
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "rgba(28, 27, 31, 1)",
+                                "writingDirection": "ltr",
+                              },
                               [
                                 {
-                                  "fontFamily": "Nunito-Medium",
+                                  "marginHorizontal": 16,
+                                  "marginVertical": 9,
+                                  "textAlign": "center",
                                 },
+                                false,
                                 {
-                                  "fontSize": 16,
-                                  "margin": 0,
-                                  "padding": 0,
+                                  "marginHorizontal": 24,
+                                  "marginVertical": 10,
                                 },
+                                false,
+                                false,
+                                {
+                                  "color": "#05668D",
+                                  "fontFamily": "System",
+                                  "fontSize": 14,
+                                  "fontWeight": "500",
+                                  "letterSpacing": 0.1,
+                                  "lineHeight": 20,
+                                },
+                                [
+                                  {
+                                    "fontFamily": "Nunito-Medium",
+                                  },
+                                  {
+                                    "fontSize": 16,
+                                    "margin": 0,
+                                    "padding": 0,
+                                  },
+                                ],
                               ],
-                            ],
-                          ]
-                        }
-                        testID="button-text"
-                      >
-                        Profile
-                      </Text>
+                            ]
+                          }
+                          testID="button-text"
+                        >
+                          Profile
+                        </Text>
+                      </View>
                     </View>
                   </View>
                 </View>
-              </View>
-              <View
-                collapsable={false}
-                style={
-                  {
-                    "backgroundColor": "rgba(28, 27, 31, 0.12)",
-                    "borderRadius": 20,
-                    "height": 36,
-                    "marginLeft": 8,
-                    "shadowColor": "#000",
-                    "shadowOffset": {
-                      "height": 0,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0,
-                    "shadowRadius": 0,
-                  }
-                }
-                testID="button-container-outer-layer"
-              >
                 <View
                   collapsable={false}
                   style={
                     {
                       "backgroundColor": "rgba(28, 27, 31, 0.12)",
-                      "borderColor": "transparent",
                       "borderRadius": 20,
-                      "borderStyle": "solid",
-                      "borderWidth": 0,
-                      "flex": 1,
-                      "minWidth": 64,
+                      "height": 36,
+                      "marginLeft": 8,
                       "shadowColor": "#000",
                       "shadowOffset": {
                         "height": 0,
@@ -1892,140 +1906,163 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "shadowRadius": 0,
                     }
                   }
-                  testID="button-container"
+                  testID="button-container-outer-layer"
                 >
                   <View
-                    accessibilityRole="button"
-                    accessibilityState={
-                      {
-                        "busy": undefined,
-                        "checked": undefined,
-                        "disabled": true,
-                        "expanded": undefined,
-                        "selected": undefined,
-                      }
-                    }
-                    accessibilityValue={
-                      {
-                        "max": undefined,
-                        "min": undefined,
-                        "now": undefined,
-                        "text": undefined,
-                      }
-                    }
-                    accessible={true}
                     collapsable={false}
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
                     style={
-                      [
-                        {
-                          "overflow": "hidden",
+                      {
+                        "backgroundColor": "rgba(28, 27, 31, 0.12)",
+                        "borderColor": "transparent",
+                        "borderRadius": 20,
+                        "borderStyle": "solid",
+                        "borderWidth": 0,
+                        "flex": 1,
+                        "minWidth": 64,
+                        "shadowColor": "#000",
+                        "shadowOffset": {
+                          "height": 0,
+                          "width": 0,
                         },
-                        {
-                          "borderRadius": 20,
-                        },
-                      ]
+                        "shadowOpacity": 0,
+                        "shadowRadius": 0,
+                      }
                     }
-                    testID="button"
+                    testID="button-container"
                   >
                     <View
+                      accessibilityRole="button"
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": true,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
                       style={
                         [
                           {
-                            "alignItems": "center",
-                            "flexDirection": "row",
-                            "justifyContent": "center",
+                            "overflow": "hidden",
                           },
                           {
-                            "height": 36,
+                            "borderRadius": 20,
                           },
                         ]
                       }
+                      testID="button"
                     >
                       <View
                         style={
                           [
                             {
-                              "marginLeft": 12,
-                              "marginRight": -4,
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "justifyContent": "center",
                             },
                             {
-                              "marginLeft": 16,
-                              "marginRight": -16,
+                              "height": 36,
                             },
-                            false,
                           ]
                         }
-                        testID="button-icon-container"
                       >
-                        <Text />
-                      </View>
-                      <Text
-                        numberOfLines={1}
-                        selectable={false}
-                        style={
-                          [
-                            {
-                              "fontFamily": "System",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "letterSpacing": 0.1,
-                              "lineHeight": 20,
-                            },
-                            {
-                              "textAlign": "left",
-                            },
-                            {
-                              "color": "rgba(28, 27, 31, 1)",
-                              "writingDirection": "ltr",
-                            },
+                        <View
+                          style={
                             [
                               {
-                                "marginHorizontal": 16,
-                                "marginVertical": 9,
-                                "textAlign": "center",
+                                "marginLeft": 12,
+                                "marginRight": -4,
+                              },
+                              {
+                                "marginLeft": 16,
+                                "marginRight": -16,
                               },
                               false,
+                            ]
+                          }
+                          testID="button-icon-container"
+                        >
+                          <Text />
+                        </View>
+                        <Text
+                          numberOfLines={1}
+                          selectable={false}
+                          style={
+                            [
                               {
-                                "marginHorizontal": 24,
-                                "marginVertical": 10,
-                              },
-                              false,
-                              false,
-                              {
-                                "color": "rgba(28, 27, 31, 0.38)",
                                 "fontFamily": "System",
                                 "fontSize": 14,
                                 "fontWeight": "500",
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "rgba(28, 27, 31, 1)",
+                                "writingDirection": "ltr",
+                              },
                               [
                                 {
-                                  "fontFamily": "Nunito-Medium",
+                                  "marginHorizontal": 16,
+                                  "marginVertical": 9,
+                                  "textAlign": "center",
                                 },
+                                false,
                                 {
-                                  "fontSize": 16,
-                                  "margin": 0,
-                                  "padding": 0,
+                                  "marginHorizontal": 24,
+                                  "marginVertical": 10,
                                 },
+                                false,
+                                false,
+                                {
+                                  "color": "rgba(28, 27, 31, 0.38)",
+                                  "fontFamily": "System",
+                                  "fontSize": 14,
+                                  "fontWeight": "500",
+                                  "letterSpacing": 0.1,
+                                  "lineHeight": 20,
+                                },
+                                [
+                                  {
+                                    "fontFamily": "Nunito-Medium",
+                                  },
+                                  {
+                                    "fontSize": 16,
+                                    "margin": 0,
+                                    "padding": 0,
+                                  },
+                                ],
                               ],
-                            ],
-                          ]
-                        }
-                        testID="button-text"
-                      >
-                        Locate
-                      </Text>
+                            ]
+                          }
+                          testID="button-text"
+                        >
+                          Locate
+                        </Text>
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -2048,24 +2085,11 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
       }
     >
       <View
-        collapsable={false}
         style={
           {
-            "backgroundColor": "rgba(255, 255, 255, 1)",
-            "borderRadius": 20,
-            "height": 375,
-            "margin": 10,
-            "shadowColor": "#000",
-            "shadowOffset": {
-              "height": 1,
-              "width": 0,
-            },
-            "shadowOpacity": 0.15,
-            "shadowRadius": 3,
-            "width": 300,
+            "overflow": "hidden",
           }
         }
-        testID="card-container-outer-layer"
       >
         <View
           collapsable={false}
@@ -2073,53 +2097,313 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
             {
               "backgroundColor": "rgba(255, 255, 255, 1)",
               "borderRadius": 20,
-              "elevation": 1,
-              "flex": 1,
-              "overflow": "hidden",
+              "height": 375,
+              "margin": 10,
               "shadowColor": "#000",
               "shadowOffset": {
                 "height": 1,
                 "width": 0,
               },
-              "shadowOpacity": 0.3,
-              "shadowRadius": 1,
+              "shadowOpacity": 0.15,
+              "shadowRadius": 3,
+              "width": 300,
             }
           }
-          testID="card-container"
+          testID="card-container-outer-layer"
         >
           <View
+            collapsable={false}
             style={
-              [
-                {
-                  "flexShrink": 1,
+              {
+                "backgroundColor": "rgba(255, 255, 255, 1)",
+                "borderRadius": 20,
+                "elevation": 1,
+                "flex": 1,
+                "overflow": "hidden",
+                "shadowColor": "#000",
+                "shadowOffset": {
+                  "height": 1,
+                  "width": 0,
                 },
-                undefined,
-              ]
+                "shadowOpacity": 0.3,
+                "shadowRadius": 1,
+              }
             }
-            testID="card"
+            testID="card-container"
           >
             <View
               style={
                 [
                   {
-                    "backgroundColor": "#eeeeee",
-                    "height": 195,
-                    "overflow": "hidden",
+                    "flexShrink": 1,
                   },
-                  {
-                    "borderTopLeftRadius": 0,
-                    "borderTopRightRadius": 0,
-                  },
-                  {
-                    "height": 200,
-                    "resizeMode": "cover",
-                    "width": 300,
-                  },
+                  undefined,
                 ]
               }
+              testID="card"
             >
-              <Image
-                accessibilityIgnoresInvertColors={true}
+              <View
+                style={
+                  [
+                    {
+                      "backgroundColor": "#eeeeee",
+                      "height": 195,
+                      "overflow": "hidden",
+                    },
+                    {
+                      "borderTopLeftRadius": 0,
+                      "borderTopRightRadius": 0,
+                    },
+                    {
+                      "height": 200,
+                      "resizeMode": "cover",
+                      "width": 300,
+                    },
+                  ]
+                }
+              >
+                <Image
+                  accessibilityIgnoresInvertColors={true}
+                  siblings={
+                    [
+                      "Card.Cover",
+                      "Card.Title",
+                      "Card.Content",
+                      "Card.Actions",
+                    ]
+                  }
+                  source={
+                    {
+                      "uri": 1,
+                    }
+                  }
+                  style={
+                    [
+                      {
+                        "flex": 1,
+                        "height": undefined,
+                        "justifyContent": "flex-end",
+                        "padding": 16,
+                        "width": undefined,
+                      },
+                      {
+                        "borderTopLeftRadius": 0,
+                        "borderTopRightRadius": 0,
+                      },
+                    ]
+                  }
+                  testID="cover-image"
+                />
+              </View>
+              <View
+                style={
+                  [
+                    {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "paddingLeft": 16,
+                    },
+                    {
+                      "minHeight": 50,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  style={
+                    [
+                      {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      [
+                        {
+                          "fontFamily": "System",
+                          "fontSize": 22,
+                          "fontWeight": "400",
+                          "letterSpacing": 0,
+                          "lineHeight": 28,
+                        },
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 1)",
+                          "writingDirection": "ltr",
+                        },
+                        [
+                          {
+                            "minHeight": 30,
+                            "paddingRight": 16,
+                          },
+                          {
+                            "marginBottom": 2,
+                          },
+                          {
+                            "fontFamily": "Nunito-Bold",
+                          },
+                        ],
+                      ]
+                    }
+                  >
+                    Mitty
+                  </Text>
+                </View>
+                <View />
+              </View>
+              <View
+                style={
+                  [
+                    {
+                      "paddingHorizontal": 16,
+                    },
+                    undefined,
+                    {
+                      "paddingHorizontal": 8,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    [
+                      {
+                        "flexDirection": "row",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <Text />
+                  <Text
+                    style={
+                      [
+                        {
+                          "fontFamily": "System",
+                          "fontSize": 14,
+                          "fontWeight": "400",
+                          "letterSpacing": 0.25,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 1)",
+                          "writingDirection": "ltr",
+                        },
+                        {
+                          "flex": 1,
+                          "fontFamily": "Nunito-Bold",
+                        },
+                      ]
+                    }
+                  >
+                    Field: 
+                    <Text
+                      style={
+                        [
+                          {
+                            "fontFamily": "System",
+                            "fontSize": 14,
+                            "fontWeight": "400",
+                            "letterSpacing": 0.25,
+                            "lineHeight": 20,
+                          },
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "rgba(28, 27, 31, 1)",
+                            "writingDirection": "ltr",
+                          },
+                          {
+                            "flex": 1,
+                            "fontFamily": "Nunito-Medium",
+                          },
+                        ]
+                      }
+                    >
+                      Missing
+                    </Text>
+                  </Text>
+                </View>
+                <View
+                  style={
+                    [
+                      {
+                        "flexDirection": "row",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <Text />
+                  <Text
+                    style={
+                      [
+                        {
+                          "fontFamily": "System",
+                          "fontSize": 14,
+                          "fontWeight": "400",
+                          "letterSpacing": 0.25,
+                          "lineHeight": 20,
+                        },
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 1)",
+                          "writingDirection": "ltr",
+                        },
+                        {
+                          "flex": 1,
+                          "fontFamily": "Nunito-Bold",
+                        },
+                      ]
+                    }
+                  >
+                    Field: 
+                    <Text
+                      style={
+                        [
+                          {
+                            "fontFamily": "System",
+                            "fontSize": 14,
+                            "fontWeight": "400",
+                            "letterSpacing": 0.25,
+                            "lineHeight": 20,
+                          },
+                          {
+                            "textAlign": "left",
+                          },
+                          {
+                            "color": "rgba(28, 27, 31, 1)",
+                            "writingDirection": "ltr",
+                          },
+                          {
+                            "flex": 1,
+                            "fontFamily": "Nunito-Medium",
+                          },
+                        ]
+                      }
+                    >
+                      S17 (NaNh)
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+              <View
+                index={3}
                 siblings={
                   [
                     "Card.Cover",
@@ -2128,291 +2412,29 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                     "Card.Actions",
                   ]
                 }
-                source={
-                  {
-                    "uri": 1,
-                  }
-                }
                 style={
                   [
                     {
-                      "flex": 1,
-                      "height": undefined,
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "padding": 8,
+                    },
+                    undefined,
+                    {
                       "justifyContent": "flex-end",
-                      "padding": 16,
-                      "width": undefined,
-                    },
-                    {
-                      "borderTopLeftRadius": 0,
-                      "borderTopRightRadius": 0,
                     },
                   ]
                 }
-                testID="cover-image"
-              />
-            </View>
-            <View
-              style={
-                [
-                  {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                    "justifyContent": "space-between",
-                    "paddingLeft": 16,
-                  },
-                  {
-                    "minHeight": 50,
-                  },
-                  undefined,
-                ]
-              }
-            >
-              <View
-                style={
-                  [
-                    {
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "center",
-                    },
-                  ]
-                }
-              >
-                <Text
-                  numberOfLines={1}
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 22,
-                        "fontWeight": "400",
-                        "letterSpacing": 0,
-                        "lineHeight": 28,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      [
-                        {
-                          "minHeight": 30,
-                          "paddingRight": 16,
-                        },
-                        {
-                          "marginBottom": 2,
-                        },
-                        {
-                          "fontFamily": "Nunito-Bold",
-                        },
-                      ],
-                    ]
-                  }
-                >
-                  Mitty
-                </Text>
-              </View>
-              <View />
-            </View>
-            <View
-              style={
-                [
-                  {
-                    "paddingHorizontal": 16,
-                  },
-                  undefined,
-                  {
-                    "paddingHorizontal": 8,
-                  },
-                ]
-              }
-            >
-              <View
-                style={
-                  [
-                    {
-                      "flexDirection": "row",
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                <Text />
-                <Text
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 14,
-                        "fontWeight": "400",
-                        "letterSpacing": 0.25,
-                        "lineHeight": 20,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      {
-                        "flex": 1,
-                        "fontFamily": "Nunito-Bold",
-                      },
-                    ]
-                  }
-                >
-                  Field: 
-                  <Text
-                    style={
-                      [
-                        {
-                          "fontFamily": "System",
-                          "fontSize": 14,
-                          "fontWeight": "400",
-                          "letterSpacing": 0.25,
-                          "lineHeight": 20,
-                        },
-                        {
-                          "textAlign": "left",
-                        },
-                        {
-                          "color": "rgba(28, 27, 31, 1)",
-                          "writingDirection": "ltr",
-                        },
-                        {
-                          "flex": 1,
-                          "fontFamily": "Nunito-Medium",
-                        },
-                      ]
-                    }
-                  >
-                    Missing
-                  </Text>
-                </Text>
-              </View>
-              <View
-                style={
-                  [
-                    {
-                      "flexDirection": "row",
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                <Text />
-                <Text
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 14,
-                        "fontWeight": "400",
-                        "letterSpacing": 0.25,
-                        "lineHeight": 20,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      {
-                        "flex": 1,
-                        "fontFamily": "Nunito-Bold",
-                      },
-                    ]
-                  }
-                >
-                  Field: 
-                  <Text
-                    style={
-                      [
-                        {
-                          "fontFamily": "System",
-                          "fontSize": 14,
-                          "fontWeight": "400",
-                          "letterSpacing": 0.25,
-                          "lineHeight": 20,
-                        },
-                        {
-                          "textAlign": "left",
-                        },
-                        {
-                          "color": "rgba(28, 27, 31, 1)",
-                          "writingDirection": "ltr",
-                        },
-                        {
-                          "flex": 1,
-                          "fontFamily": "Nunito-Medium",
-                        },
-                      ]
-                    }
-                  >
-                    S17 (NaNh)
-                  </Text>
-                </Text>
-              </View>
-            </View>
-            <View
-              index={3}
-              siblings={
-                [
-                  "Card.Cover",
-                  "Card.Title",
-                  "Card.Content",
-                  "Card.Actions",
-                ]
-              }
-              style={
-                [
-                  {
-                    "alignItems": "center",
-                    "flexDirection": "row",
-                    "padding": 8,
-                  },
-                  undefined,
-                  {
-                    "justifyContent": "flex-end",
-                  },
-                ]
-              }
-              total={4}
-            >
-              <View
-                collapsable={false}
-                style={
-                  {
-                    "backgroundColor": "transparent",
-                    "borderRadius": 20,
-                    "height": 36,
-                    "marginLeft": 8,
-                    "shadowColor": "#000",
-                    "shadowOffset": {
-                      "height": 0,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0,
-                    "shadowRadius": 0,
-                  }
-                }
-                testID="button-container-outer-layer"
+                total={4}
               >
                 <View
                   collapsable={false}
                   style={
                     {
                       "backgroundColor": "transparent",
-                      "borderColor": "#05668D",
                       "borderRadius": 20,
-                      "borderStyle": "solid",
-                      "borderWidth": 1,
-                      "flex": 1,
-                      "minWidth": 64,
+                      "height": 36,
+                      "marginLeft": 8,
                       "shadowColor": "#000",
                       "shadowOffset": {
                         "height": 0,
@@ -2422,174 +2444,174 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "shadowRadius": 0,
                     }
                   }
-                  testID="button-container"
+                  testID="button-container-outer-layer"
                 >
                   <View
-                    accessibilityRole="button"
-                    accessibilityState={
-                      {
-                        "busy": undefined,
-                        "checked": undefined,
-                        "disabled": false,
-                        "expanded": undefined,
-                        "selected": undefined,
-                      }
-                    }
-                    accessibilityValue={
-                      {
-                        "max": undefined,
-                        "min": undefined,
-                        "now": undefined,
-                        "text": undefined,
-                      }
-                    }
-                    accessible={true}
                     collapsable={false}
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
                     style={
-                      [
-                        {
-                          "overflow": "hidden",
+                      {
+                        "backgroundColor": "transparent",
+                        "borderColor": "#05668D",
+                        "borderRadius": 20,
+                        "borderStyle": "solid",
+                        "borderWidth": 1,
+                        "flex": 1,
+                        "minWidth": 64,
+                        "shadowColor": "#000",
+                        "shadowOffset": {
+                          "height": 0,
+                          "width": 0,
                         },
-                        {
-                          "borderRadius": 20,
-                        },
-                      ]
+                        "shadowOpacity": 0,
+                        "shadowRadius": 0,
+                      }
                     }
-                    testID="button"
+                    testID="button-container"
                   >
                     <View
+                      accessibilityRole="button"
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": false,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
                       style={
                         [
                           {
-                            "alignItems": "center",
-                            "flexDirection": "row",
-                            "justifyContent": "center",
+                            "overflow": "hidden",
                           },
                           {
-                            "height": 36,
+                            "borderRadius": 20,
                           },
                         ]
                       }
+                      testID="button"
                     >
                       <View
                         style={
                           [
                             {
-                              "marginLeft": 12,
-                              "marginRight": -4,
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "justifyContent": "center",
                             },
                             {
-                              "marginLeft": 16,
-                              "marginRight": -16,
+                              "height": 36,
                             },
-                            false,
                           ]
                         }
-                        testID="button-icon-container"
                       >
-                        <Text />
-                      </View>
-                      <Text
-                        numberOfLines={1}
-                        selectable={false}
-                        style={
-                          [
-                            {
-                              "fontFamily": "System",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "letterSpacing": 0.1,
-                              "lineHeight": 20,
-                            },
-                            {
-                              "textAlign": "left",
-                            },
-                            {
-                              "color": "rgba(28, 27, 31, 1)",
-                              "writingDirection": "ltr",
-                            },
+                        <View
+                          style={
                             [
                               {
-                                "marginHorizontal": 16,
-                                "marginVertical": 9,
-                                "textAlign": "center",
+                                "marginLeft": 12,
+                                "marginRight": -4,
+                              },
+                              {
+                                "marginLeft": 16,
+                                "marginRight": -16,
                               },
                               false,
+                            ]
+                          }
+                          testID="button-icon-container"
+                        >
+                          <Text />
+                        </View>
+                        <Text
+                          numberOfLines={1}
+                          selectable={false}
+                          style={
+                            [
                               {
-                                "marginHorizontal": 24,
-                                "marginVertical": 10,
-                              },
-                              false,
-                              false,
-                              {
-                                "color": "#05668D",
                                 "fontFamily": "System",
                                 "fontSize": 14,
                                 "fontWeight": "500",
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "rgba(28, 27, 31, 1)",
+                                "writingDirection": "ltr",
+                              },
                               [
                                 {
-                                  "fontFamily": "Nunito-Medium",
+                                  "marginHorizontal": 16,
+                                  "marginVertical": 9,
+                                  "textAlign": "center",
                                 },
+                                false,
                                 {
-                                  "fontSize": 16,
-                                  "margin": 0,
-                                  "padding": 0,
+                                  "marginHorizontal": 24,
+                                  "marginVertical": 10,
                                 },
+                                false,
+                                false,
+                                {
+                                  "color": "#05668D",
+                                  "fontFamily": "System",
+                                  "fontSize": 14,
+                                  "fontWeight": "500",
+                                  "letterSpacing": 0.1,
+                                  "lineHeight": 20,
+                                },
+                                [
+                                  {
+                                    "fontFamily": "Nunito-Medium",
+                                  },
+                                  {
+                                    "fontSize": 16,
+                                    "margin": 0,
+                                    "padding": 0,
+                                  },
+                                ],
                               ],
-                            ],
-                          ]
-                        }
-                        testID="button-text"
-                      >
-                        Profile
-                      </Text>
+                            ]
+                          }
+                          testID="button-text"
+                        >
+                          Profile
+                        </Text>
+                      </View>
                     </View>
                   </View>
                 </View>
-              </View>
-              <View
-                collapsable={false}
-                style={
-                  {
-                    "backgroundColor": "rgba(28, 27, 31, 0.12)",
-                    "borderRadius": 20,
-                    "height": 36,
-                    "marginLeft": 8,
-                    "shadowColor": "#000",
-                    "shadowOffset": {
-                      "height": 0,
-                      "width": 0,
-                    },
-                    "shadowOpacity": 0,
-                    "shadowRadius": 0,
-                  }
-                }
-                testID="button-container-outer-layer"
-              >
                 <View
                   collapsable={false}
                   style={
                     {
                       "backgroundColor": "rgba(28, 27, 31, 0.12)",
-                      "borderColor": "transparent",
                       "borderRadius": 20,
-                      "borderStyle": "solid",
-                      "borderWidth": 0,
-                      "flex": 1,
-                      "minWidth": 64,
+                      "height": 36,
+                      "marginLeft": 8,
                       "shadowColor": "#000",
                       "shadowOffset": {
                         "height": 0,
@@ -2599,140 +2621,163 @@ exports[`<CardCarousel /> renders carousel with cat cards correctly 1`] = `
                       "shadowRadius": 0,
                     }
                   }
-                  testID="button-container"
+                  testID="button-container-outer-layer"
                 >
                   <View
-                    accessibilityRole="button"
-                    accessibilityState={
-                      {
-                        "busy": undefined,
-                        "checked": undefined,
-                        "disabled": true,
-                        "expanded": undefined,
-                        "selected": undefined,
-                      }
-                    }
-                    accessibilityValue={
-                      {
-                        "max": undefined,
-                        "min": undefined,
-                        "now": undefined,
-                        "text": undefined,
-                      }
-                    }
-                    accessible={true}
                     collapsable={false}
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
                     style={
-                      [
-                        {
-                          "overflow": "hidden",
+                      {
+                        "backgroundColor": "rgba(28, 27, 31, 0.12)",
+                        "borderColor": "transparent",
+                        "borderRadius": 20,
+                        "borderStyle": "solid",
+                        "borderWidth": 0,
+                        "flex": 1,
+                        "minWidth": 64,
+                        "shadowColor": "#000",
+                        "shadowOffset": {
+                          "height": 0,
+                          "width": 0,
                         },
-                        {
-                          "borderRadius": 20,
-                        },
-                      ]
+                        "shadowOpacity": 0,
+                        "shadowRadius": 0,
+                      }
                     }
-                    testID="button"
+                    testID="button-container"
                   >
                     <View
+                      accessibilityRole="button"
+                      accessibilityState={
+                        {
+                          "busy": undefined,
+                          "checked": undefined,
+                          "disabled": true,
+                          "expanded": undefined,
+                          "selected": undefined,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
+                      accessible={true}
+                      collapsable={false}
+                      focusable={true}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
                       style={
                         [
                           {
-                            "alignItems": "center",
-                            "flexDirection": "row",
-                            "justifyContent": "center",
+                            "overflow": "hidden",
                           },
                           {
-                            "height": 36,
+                            "borderRadius": 20,
                           },
                         ]
                       }
+                      testID="button"
                     >
                       <View
                         style={
                           [
                             {
-                              "marginLeft": 12,
-                              "marginRight": -4,
+                              "alignItems": "center",
+                              "flexDirection": "row",
+                              "justifyContent": "center",
                             },
                             {
-                              "marginLeft": 16,
-                              "marginRight": -16,
+                              "height": 36,
                             },
-                            false,
                           ]
                         }
-                        testID="button-icon-container"
                       >
-                        <Text />
-                      </View>
-                      <Text
-                        numberOfLines={1}
-                        selectable={false}
-                        style={
-                          [
-                            {
-                              "fontFamily": "System",
-                              "fontSize": 14,
-                              "fontWeight": "500",
-                              "letterSpacing": 0.1,
-                              "lineHeight": 20,
-                            },
-                            {
-                              "textAlign": "left",
-                            },
-                            {
-                              "color": "rgba(28, 27, 31, 1)",
-                              "writingDirection": "ltr",
-                            },
+                        <View
+                          style={
                             [
                               {
-                                "marginHorizontal": 16,
-                                "marginVertical": 9,
-                                "textAlign": "center",
+                                "marginLeft": 12,
+                                "marginRight": -4,
+                              },
+                              {
+                                "marginLeft": 16,
+                                "marginRight": -16,
                               },
                               false,
+                            ]
+                          }
+                          testID="button-icon-container"
+                        >
+                          <Text />
+                        </View>
+                        <Text
+                          numberOfLines={1}
+                          selectable={false}
+                          style={
+                            [
                               {
-                                "marginHorizontal": 24,
-                                "marginVertical": 10,
-                              },
-                              false,
-                              false,
-                              {
-                                "color": "rgba(28, 27, 31, 0.38)",
                                 "fontFamily": "System",
                                 "fontSize": 14,
                                 "fontWeight": "500",
                                 "letterSpacing": 0.1,
                                 "lineHeight": 20,
                               },
+                              {
+                                "textAlign": "left",
+                              },
+                              {
+                                "color": "rgba(28, 27, 31, 1)",
+                                "writingDirection": "ltr",
+                              },
                               [
                                 {
-                                  "fontFamily": "Nunito-Medium",
+                                  "marginHorizontal": 16,
+                                  "marginVertical": 9,
+                                  "textAlign": "center",
                                 },
+                                false,
                                 {
-                                  "fontSize": 16,
-                                  "margin": 0,
-                                  "padding": 0,
+                                  "marginHorizontal": 24,
+                                  "marginVertical": 10,
                                 },
+                                false,
+                                false,
+                                {
+                                  "color": "rgba(28, 27, 31, 0.38)",
+                                  "fontFamily": "System",
+                                  "fontSize": 14,
+                                  "fontWeight": "500",
+                                  "letterSpacing": 0.1,
+                                  "lineHeight": 20,
+                                },
+                                [
+                                  {
+                                    "fontFamily": "Nunito-Medium",
+                                  },
+                                  {
+                                    "fontSize": 16,
+                                    "margin": 0,
+                                    "padding": 0,
+                                  },
+                                ],
                               ],
-                            ],
-                          ]
-                        }
-                        testID="button-text"
-                      >
-                        Locate
-                      </Text>
+                            ]
+                          }
+                          testID="button-text"
+                        >
+                          Locate
+                        </Text>
+                      </View>
                     </View>
                   </View>
                 </View>

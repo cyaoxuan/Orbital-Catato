@@ -2,24 +2,11 @@
 
 exports[`<CatCard /> renders correctly 1`] = `
 <View
-  collapsable={false}
   style={
     {
-      "backgroundColor": "rgba(255, 255, 255, 1)",
-      "borderRadius": 20,
-      "height": 375,
-      "margin": 10,
-      "shadowColor": "#000",
-      "shadowOffset": {
-        "height": 1,
-        "width": 0,
-      },
-      "shadowOpacity": 0.15,
-      "shadowRadius": 3,
-      "width": 300,
+      "overflow": "hidden",
     }
   }
-  testID="card-container-outer-layer"
 >
   <View
     collapsable={false}
@@ -27,53 +14,355 @@ exports[`<CatCard /> renders correctly 1`] = `
       {
         "backgroundColor": "rgba(255, 255, 255, 1)",
         "borderRadius": 20,
-        "elevation": 1,
-        "flex": 1,
-        "overflow": "hidden",
+        "height": 375,
+        "margin": 10,
         "shadowColor": "#000",
         "shadowOffset": {
           "height": 1,
           "width": 0,
         },
-        "shadowOpacity": 0.3,
-        "shadowRadius": 1,
+        "shadowOpacity": 0.15,
+        "shadowRadius": 3,
+        "width": 300,
       }
     }
-    testID="card-container"
+    testID="card-container-outer-layer"
   >
     <View
+      collapsable={false}
       style={
-        [
-          {
-            "flexShrink": 1,
+        {
+          "backgroundColor": "rgba(255, 255, 255, 1)",
+          "borderRadius": 20,
+          "elevation": 1,
+          "flex": 1,
+          "overflow": "hidden",
+          "shadowColor": "#000",
+          "shadowOffset": {
+            "height": 1,
+            "width": 0,
           },
-          undefined,
-        ]
+          "shadowOpacity": 0.3,
+          "shadowRadius": 1,
+        }
       }
-      testID="card"
+      testID="card-container"
     >
       <View
         style={
           [
             {
-              "backgroundColor": "#eeeeee",
-              "height": 195,
-              "overflow": "hidden",
+              "flexShrink": 1,
             },
-            {
-              "borderTopLeftRadius": 0,
-              "borderTopRightRadius": 0,
-            },
-            {
-              "height": 200,
-              "resizeMode": "cover",
-              "width": 300,
-            },
+            undefined,
           ]
         }
+        testID="card"
       >
-        <Image
-          accessibilityIgnoresInvertColors={true}
+        <View
+          style={
+            [
+              {
+                "backgroundColor": "#eeeeee",
+                "height": 195,
+                "overflow": "hidden",
+              },
+              {
+                "borderTopLeftRadius": 0,
+                "borderTopRightRadius": 0,
+              },
+              {
+                "height": 200,
+                "resizeMode": "cover",
+                "width": 300,
+              },
+            ]
+          }
+        >
+          <Image
+            accessibilityIgnoresInvertColors={true}
+            siblings={
+              [
+                "Card.Cover",
+                "Card.Title",
+                "Card.Content",
+                "Card.Actions",
+              ]
+            }
+            source={1}
+            style={
+              [
+                {
+                  "flex": 1,
+                  "height": undefined,
+                  "justifyContent": "flex-end",
+                  "padding": 16,
+                  "width": undefined,
+                },
+                {
+                  "borderTopLeftRadius": 0,
+                  "borderTopRightRadius": 0,
+                },
+              ]
+            }
+            testID="cover-image"
+          />
+        </View>
+        <View
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "paddingLeft": 16,
+              },
+              {
+                "minHeight": 50,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                },
+              ]
+            }
+          >
+            <Text
+              numberOfLines={1}
+              style={
+                [
+                  {
+                    "fontFamily": "System",
+                    "fontSize": 22,
+                    "fontWeight": "400",
+                    "letterSpacing": 0,
+                    "lineHeight": 28,
+                  },
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "writingDirection": "ltr",
+                  },
+                  [
+                    {
+                      "minHeight": 30,
+                      "paddingRight": 16,
+                    },
+                    {
+                      "marginBottom": 2,
+                    },
+                    {
+                      "fontFamily": "Nunito-Bold",
+                    },
+                  ],
+                ]
+              }
+            >
+              Name
+            </Text>
+          </View>
+          <View />
+        </View>
+        <View
+          style={
+            [
+              {
+                "paddingHorizontal": 16,
+              },
+              undefined,
+              {
+                "paddingHorizontal": 8,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              [
+                {
+                  "flexDirection": "row",
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              selectable={false}
+              style={
+                [
+                  {
+                    "color": undefined,
+                    "fontSize": 20,
+                  },
+                  {
+                    "marginHorizontal": 4,
+                  },
+                  {
+                    "fontFamily": "ionicons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  {},
+                ]
+              }
+              testID="icon"
+            >
+              
+            </Text>
+            <Text
+              style={
+                [
+                  {
+                    "fontFamily": "System",
+                    "fontSize": 14,
+                    "fontWeight": "400",
+                    "letterSpacing": 0.25,
+                    "lineHeight": 20,
+                  },
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "writingDirection": "ltr",
+                  },
+                  {
+                    "flex": 1,
+                    "fontFamily": "Nunito-Bold",
+                  },
+                ]
+              }
+            >
+              Field: 
+              <Text
+                style={
+                  [
+                    {
+                      "fontFamily": "System",
+                      "fontSize": 14,
+                      "fontWeight": "400",
+                      "letterSpacing": 0.25,
+                      "lineHeight": 20,
+                    },
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "rgba(28, 27, 31, 1)",
+                      "writingDirection": "ltr",
+                    },
+                    {
+                      "flex": 1,
+                      "fontFamily": "Nunito-Medium",
+                    },
+                  ]
+                }
+              >
+                Info
+              </Text>
+            </Text>
+          </View>
+          <View
+            style={
+              [
+                {
+                  "flexDirection": "row",
+                },
+                undefined,
+              ]
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              selectable={false}
+              style={
+                [
+                  {
+                    "color": undefined,
+                    "fontSize": 20,
+                  },
+                  {
+                    "marginHorizontal": 4,
+                  },
+                  {
+                    "fontFamily": "ionicons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  {},
+                ]
+              }
+              testID="icon"
+            >
+              
+            </Text>
+            <Text
+              style={
+                [
+                  {
+                    "fontFamily": "System",
+                    "fontSize": 14,
+                    "fontWeight": "400",
+                    "letterSpacing": 0.25,
+                    "lineHeight": 20,
+                  },
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "writingDirection": "ltr",
+                  },
+                  {
+                    "flex": 1,
+                    "fontFamily": "Nunito-Bold",
+                  },
+                ]
+              }
+            >
+              Field: 
+              <Text
+                style={
+                  [
+                    {
+                      "fontFamily": "System",
+                      "fontSize": 14,
+                      "fontWeight": "400",
+                      "letterSpacing": 0.25,
+                      "lineHeight": 20,
+                    },
+                    {
+                      "textAlign": "left",
+                    },
+                    {
+                      "color": "rgba(28, 27, 31, 1)",
+                      "writingDirection": "ltr",
+                    },
+                    {
+                      "flex": 1,
+                      "fontFamily": "Nunito-Medium",
+                    },
+                  ]
+                }
+              >
+                Info
+              </Text>
+            </Text>
+          </View>
+        </View>
+        <View
+          index={3}
           siblings={
             [
               "Card.Cover",
@@ -82,333 +371,29 @@ exports[`<CatCard /> renders correctly 1`] = `
               "Card.Actions",
             ]
           }
-          source={1}
           style={
             [
               {
-                "flex": 1,
-                "height": undefined,
+                "alignItems": "center",
+                "flexDirection": "row",
+                "padding": 8,
+              },
+              undefined,
+              {
                 "justifyContent": "flex-end",
-                "padding": 16,
-                "width": undefined,
-              },
-              {
-                "borderTopLeftRadius": 0,
-                "borderTopRightRadius": 0,
               },
             ]
           }
-          testID="cover-image"
-        />
-      </View>
-      <View
-        style={
-          [
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingLeft": 16,
-            },
-            {
-              "minHeight": 50,
-            },
-            undefined,
-          ]
-        }
-      >
-        <View
-          style={
-            [
-              {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              },
-            ]
-          }
-        >
-          <Text
-            numberOfLines={1}
-            style={
-              [
-                {
-                  "fontFamily": "System",
-                  "fontSize": 22,
-                  "fontWeight": "400",
-                  "letterSpacing": 0,
-                  "lineHeight": 28,
-                },
-                {
-                  "textAlign": "left",
-                },
-                {
-                  "color": "rgba(28, 27, 31, 1)",
-                  "writingDirection": "ltr",
-                },
-                [
-                  {
-                    "minHeight": 30,
-                    "paddingRight": 16,
-                  },
-                  {
-                    "marginBottom": 2,
-                  },
-                  {
-                    "fontFamily": "Nunito-Bold",
-                  },
-                ],
-              ]
-            }
-          >
-            Name
-          </Text>
-        </View>
-        <View />
-      </View>
-      <View
-        style={
-          [
-            {
-              "paddingHorizontal": 16,
-            },
-            undefined,
-            {
-              "paddingHorizontal": 8,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            [
-              {
-                "flexDirection": "row",
-              },
-              undefined,
-            ]
-          }
-        >
-          <Text
-            allowFontScaling={false}
-            selectable={false}
-            style={
-              [
-                {
-                  "color": undefined,
-                  "fontSize": 20,
-                },
-                {
-                  "marginHorizontal": 4,
-                },
-                {
-                  "fontFamily": "ionicons",
-                  "fontStyle": "normal",
-                  "fontWeight": "normal",
-                },
-                {},
-              ]
-            }
-            testID="icon"
-          >
-            
-          </Text>
-          <Text
-            style={
-              [
-                {
-                  "fontFamily": "System",
-                  "fontSize": 14,
-                  "fontWeight": "400",
-                  "letterSpacing": 0.25,
-                  "lineHeight": 20,
-                },
-                {
-                  "textAlign": "left",
-                },
-                {
-                  "color": "rgba(28, 27, 31, 1)",
-                  "writingDirection": "ltr",
-                },
-                {
-                  "flex": 1,
-                  "fontFamily": "Nunito-Bold",
-                },
-              ]
-            }
-          >
-            Field: 
-            <Text
-              style={
-                [
-                  {
-                    "fontFamily": "System",
-                    "fontSize": 14,
-                    "fontWeight": "400",
-                    "letterSpacing": 0.25,
-                    "lineHeight": 20,
-                  },
-                  {
-                    "textAlign": "left",
-                  },
-                  {
-                    "color": "rgba(28, 27, 31, 1)",
-                    "writingDirection": "ltr",
-                  },
-                  {
-                    "flex": 1,
-                    "fontFamily": "Nunito-Medium",
-                  },
-                ]
-              }
-            >
-              Info
-            </Text>
-          </Text>
-        </View>
-        <View
-          style={
-            [
-              {
-                "flexDirection": "row",
-              },
-              undefined,
-            ]
-          }
-        >
-          <Text
-            allowFontScaling={false}
-            selectable={false}
-            style={
-              [
-                {
-                  "color": undefined,
-                  "fontSize": 20,
-                },
-                {
-                  "marginHorizontal": 4,
-                },
-                {
-                  "fontFamily": "ionicons",
-                  "fontStyle": "normal",
-                  "fontWeight": "normal",
-                },
-                {},
-              ]
-            }
-            testID="icon"
-          >
-            
-          </Text>
-          <Text
-            style={
-              [
-                {
-                  "fontFamily": "System",
-                  "fontSize": 14,
-                  "fontWeight": "400",
-                  "letterSpacing": 0.25,
-                  "lineHeight": 20,
-                },
-                {
-                  "textAlign": "left",
-                },
-                {
-                  "color": "rgba(28, 27, 31, 1)",
-                  "writingDirection": "ltr",
-                },
-                {
-                  "flex": 1,
-                  "fontFamily": "Nunito-Bold",
-                },
-              ]
-            }
-          >
-            Field: 
-            <Text
-              style={
-                [
-                  {
-                    "fontFamily": "System",
-                    "fontSize": 14,
-                    "fontWeight": "400",
-                    "letterSpacing": 0.25,
-                    "lineHeight": 20,
-                  },
-                  {
-                    "textAlign": "left",
-                  },
-                  {
-                    "color": "rgba(28, 27, 31, 1)",
-                    "writingDirection": "ltr",
-                  },
-                  {
-                    "flex": 1,
-                    "fontFamily": "Nunito-Medium",
-                  },
-                ]
-              }
-            >
-              Info
-            </Text>
-          </Text>
-        </View>
-      </View>
-      <View
-        index={3}
-        siblings={
-          [
-            "Card.Cover",
-            "Card.Title",
-            "Card.Content",
-            "Card.Actions",
-          ]
-        }
-        style={
-          [
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "padding": 8,
-            },
-            undefined,
-            {
-              "justifyContent": "flex-end",
-            },
-          ]
-        }
-        total={4}
-      >
-        <View
-          collapsable={false}
-          style={
-            {
-              "backgroundColor": "transparent",
-              "borderRadius": 20,
-              "height": 36,
-              "marginLeft": 8,
-              "shadowColor": "#000",
-              "shadowOffset": {
-                "height": 0,
-                "width": 0,
-              },
-              "shadowOpacity": 0,
-              "shadowRadius": 0,
-            }
-          }
-          testID="button-container-outer-layer"
+          total={4}
         >
           <View
             collapsable={false}
             style={
               {
                 "backgroundColor": "transparent",
-                "borderColor": "#05668D",
                 "borderRadius": 20,
-                "borderStyle": "solid",
-                "borderWidth": 1,
-                "flex": 1,
-                "minWidth": 64,
+                "height": 36,
+                "marginLeft": 8,
                 "shadowColor": "#000",
                 "shadowOffset": {
                   "height": 0,
@@ -418,160 +403,183 @@ exports[`<CatCard /> renders correctly 1`] = `
                 "shadowRadius": 0,
               }
             }
-            testID="button-container"
+            testID="button-container-outer-layer"
           >
             <View
-              accessibilityRole="button"
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": true,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
               collapsable={false}
-              focusable={true}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onFocus={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
-                [
-                  {
-                    "overflow": "hidden",
+                {
+                  "backgroundColor": "transparent",
+                  "borderColor": "#05668D",
+                  "borderRadius": 20,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "flex": 1,
+                  "minWidth": 64,
+                  "shadowColor": "#000",
+                  "shadowOffset": {
+                    "height": 0,
+                    "width": 0,
                   },
-                  {
-                    "borderRadius": 20,
-                  },
-                ]
+                  "shadowOpacity": 0,
+                  "shadowRadius": 0,
+                }
               }
-              testID="button"
+              testID="button-container"
             >
               <View
+                accessibilityRole="button"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": true,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
                   [
                     {
-                      "alignItems": "center",
-                      "flexDirection": "row",
-                      "justifyContent": "center",
+                      "overflow": "hidden",
                     },
                     {
-                      "height": 36,
+                      "borderRadius": 20,
                     },
                   ]
                 }
+                testID="button"
               >
                 <View
                   style={
                     [
                       {
-                        "marginLeft": 12,
-                        "marginRight": -4,
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "center",
                       },
                       {
-                        "marginLeft": 16,
-                        "marginRight": -16,
+                        "height": 36,
                       },
-                      false,
                     ]
                   }
-                  testID="button-icon-container"
                 >
+                  <View
+                    style={
+                      [
+                        {
+                          "marginLeft": 12,
+                          "marginRight": -4,
+                        },
+                        {
+                          "marginLeft": 16,
+                          "marginRight": -16,
+                        },
+                        false,
+                      ]
+                    }
+                    testID="button-icon-container"
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      selectable={false}
+                      style={
+                        [
+                          {
+                            "color": "#05668D",
+                            "fontSize": 16,
+                          },
+                          undefined,
+                          {
+                            "fontFamily": "ionicons",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          {},
+                        ]
+                      }
+                    >
+                      
+                    </Text>
+                  </View>
                   <Text
-                    allowFontScaling={false}
+                    numberOfLines={1}
                     selectable={false}
                     style={
                       [
                         {
-                          "color": "#05668D",
-                          "fontSize": 16,
-                        },
-                        undefined,
-                        {
-                          "fontFamily": "ionicons",
-                          "fontStyle": "normal",
-                          "fontWeight": "normal",
-                        },
-                        {},
-                      ]
-                    }
-                  >
-                    
-                  </Text>
-                </View>
-                <Text
-                  numberOfLines={1}
-                  selectable={false}
-                  style={
-                    [
-                      {
-                        "fontFamily": "System",
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "letterSpacing": 0.1,
-                        "lineHeight": 20,
-                      },
-                      {
-                        "textAlign": "left",
-                      },
-                      {
-                        "color": "rgba(28, 27, 31, 1)",
-                        "writingDirection": "ltr",
-                      },
-                      [
-                        {
-                          "marginHorizontal": 16,
-                          "marginVertical": 9,
-                          "textAlign": "center",
-                        },
-                        false,
-                        {
-                          "marginHorizontal": 24,
-                          "marginVertical": 10,
-                        },
-                        false,
-                        false,
-                        {
-                          "color": "#05668D",
                           "fontFamily": "System",
                           "fontSize": 14,
                           "fontWeight": "500",
                           "letterSpacing": 0.1,
                           "lineHeight": 20,
                         },
+                        {
+                          "textAlign": "left",
+                        },
+                        {
+                          "color": "rgba(28, 27, 31, 1)",
+                          "writingDirection": "ltr",
+                        },
                         [
                           {
-                            "fontFamily": "Nunito-Medium",
+                            "marginHorizontal": 16,
+                            "marginVertical": 9,
+                            "textAlign": "center",
                           },
+                          false,
                           {
-                            "fontSize": 16,
-                            "margin": 0,
-                            "padding": 0,
+                            "marginHorizontal": 24,
+                            "marginVertical": 10,
                           },
+                          false,
+                          false,
+                          {
+                            "color": "#05668D",
+                            "fontFamily": "System",
+                            "fontSize": 14,
+                            "fontWeight": "500",
+                            "letterSpacing": 0.1,
+                            "lineHeight": 20,
+                          },
+                          [
+                            {
+                              "fontFamily": "Nunito-Medium",
+                            },
+                            {
+                              "fontSize": 16,
+                              "margin": 0,
+                              "padding": 0,
+                            },
+                          ],
                         ],
-                      ],
-                    ]
-                  }
-                  testID="button-text"
-                >
-                  Profile
-                </Text>
+                      ]
+                    }
+                    testID="button-text"
+                  >
+                    Profile
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -584,23 +592,11 @@ exports[`<CatCard /> renders correctly 1`] = `
 
 exports[`<CatCardSimple /> renders correctly 1`] = `
 <View
-  collapsable={false}
   style={
     {
-      "backgroundColor": "rgba(255, 255, 255, 1)",
-      "borderRadius": 10,
-      "flex": 0.5,
-      "margin": 8,
-      "shadowColor": "#000",
-      "shadowOffset": {
-        "height": 1,
-        "width": 0,
-      },
-      "shadowOpacity": 0.15,
-      "shadowRadius": 3,
+      "overflow": "hidden",
     }
   }
-  testID="card-container-outer-layer"
 >
   <View
     collapsable={false}
@@ -608,142 +604,162 @@ exports[`<CatCardSimple /> renders correctly 1`] = `
       {
         "backgroundColor": "rgba(255, 255, 255, 1)",
         "borderRadius": 10,
-        "elevation": 1,
-        "flex": undefined,
-        "overflow": "hidden",
+        "flex": 0.5,
+        "margin": 8,
         "shadowColor": "#000",
         "shadowOffset": {
           "height": 1,
           "width": 0,
         },
-        "shadowOpacity": 0.3,
-        "shadowRadius": 1,
+        "shadowOpacity": 0.15,
+        "shadowRadius": 3,
       }
     }
-    testID="card-container"
+    testID="card-container-outer-layer"
   >
     <View
+      collapsable={false}
       style={
-        [
-          {
-            "flexShrink": 1,
+        {
+          "backgroundColor": "rgba(255, 255, 255, 1)",
+          "borderRadius": 10,
+          "elevation": 1,
+          "flex": undefined,
+          "overflow": "hidden",
+          "shadowColor": "#000",
+          "shadowOffset": {
+            "height": 1,
+            "width": 0,
           },
-          undefined,
-        ]
+          "shadowOpacity": 0.3,
+          "shadowRadius": 1,
+        }
       }
-      testID="card"
+      testID="card-container"
     >
       <View
         style={
           [
             {
-              "backgroundColor": "#eeeeee",
-              "height": 195,
-              "overflow": "hidden",
-            },
-            {
-              "borderTopLeftRadius": 4,
-              "borderTopRightRadius": 4,
-            },
-            {
-              "height": NaN,
-              "resizeMode": "cover",
-              "width": undefined,
-            },
-          ]
-        }
-      >
-        <Image
-          accessibilityIgnoresInvertColors={true}
-          siblings={
-            [
-              "Card.Cover",
-              "Card.Title",
-            ]
-          }
-          source={1}
-          style={
-            [
-              {
-                "flex": 1,
-                "height": undefined,
-                "justifyContent": "flex-end",
-                "padding": 16,
-                "width": undefined,
-              },
-              {
-                "borderTopLeftRadius": 4,
-                "borderTopRightRadius": 4,
-              },
-            ]
-          }
-          testID="cover-image"
-        />
-      </View>
-      <View
-        style={
-          [
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingLeft": 16,
-            },
-            {
-              "minHeight": 50,
+              "flexShrink": 1,
             },
             undefined,
           ]
         }
+        testID="card"
       >
         <View
           style={
             [
               {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
+                "backgroundColor": "#eeeeee",
+                "height": 195,
+                "overflow": "hidden",
+              },
+              {
+                "borderTopLeftRadius": 4,
+                "borderTopRightRadius": 4,
+              },
+              {
+                "height": NaN,
+                "resizeMode": "cover",
+                "width": undefined,
               },
             ]
           }
         >
-          <Text
-            numberOfLines={2}
+          <Image
+            accessibilityIgnoresInvertColors={true}
+            siblings={
+              [
+                "Card.Cover",
+                "Card.Title",
+              ]
+            }
+            source={1}
             style={
               [
                 {
-                  "fontFamily": "System",
-                  "fontSize": 16,
-                  "fontWeight": "400",
-                  "letterSpacing": 0.15,
-                  "lineHeight": 24,
+                  "flex": 1,
+                  "height": undefined,
+                  "justifyContent": "flex-end",
+                  "padding": 16,
+                  "width": undefined,
                 },
                 {
-                  "textAlign": "left",
+                  "borderTopLeftRadius": 4,
+                  "borderTopRightRadius": 4,
                 },
+              ]
+            }
+            testID="cover-image"
+          />
+        </View>
+        <View
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "paddingLeft": 16,
+              },
+              {
+                "minHeight": 50,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              [
                 {
-                  "color": "rgba(28, 27, 31, 1)",
-                  "writingDirection": "ltr",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
                 },
-                [
-                  {
-                    "minHeight": 30,
-                    "paddingRight": 16,
-                  },
-                  {
-                    "marginBottom": 2,
-                  },
-                  {
-                    "fontFamily": "Nunito-Medium",
-                  },
-                ],
               ]
             }
           >
-            Name
-          </Text>
+            <Text
+              numberOfLines={2}
+              style={
+                [
+                  {
+                    "fontFamily": "System",
+                    "fontSize": 16,
+                    "fontWeight": "400",
+                    "letterSpacing": 0.15,
+                    "lineHeight": 24,
+                  },
+                  {
+                    "textAlign": "left",
+                  },
+                  {
+                    "color": "rgba(28, 27, 31, 1)",
+                    "writingDirection": "ltr",
+                  },
+                  [
+                    {
+                      "minHeight": 30,
+                      "paddingRight": 16,
+                    },
+                    {
+                      "marginBottom": 2,
+                    },
+                    {
+                      "fontFamily": "Nunito-Medium",
+                    },
+                  ],
+                ]
+              }
+            >
+              Name
+            </Text>
+          </View>
+          <View />
         </View>
-        <View />
       </View>
     </View>
   </View>
