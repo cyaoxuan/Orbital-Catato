@@ -6,6 +6,7 @@ import { CatAvatar } from "../../../components/CatAvatar";
 import { PillButton } from "../../../components/Button";
 import { useAuth } from "../../../utils/context/auth";
 import { allStyles, secondaryColor } from "../../../components/Styles";
+import { BodyText } from "../../../components/Text";
 
 export default function ConfirmUpdate() {
     const { userRole } = useAuth();
@@ -31,35 +32,22 @@ export default function ConfirmUpdate() {
                     paddingVertical: 12,
                 }}
             >
-                <Text
-                    style={[
-                        allStyles.bodyText,
-                        {
-                            textAlign: "center",
-                        },
-                    ]}
-                >
-                    Thank you for your contribution!
-                </Text>
+                <BodyText
+                    variant="bodySmall"
+                    text="Thank you for your contribution!"
+                    textAlign="center"
+                />
+
                 {!userRole.isCaretaker &&
                     (route.params.formType === "report" ||
                         route.params.formType === "location" ||
                         route.params.formType === "concern" ||
                         route.params.formType === "fed") && (
-                        <Text
-                            style={[
-                                allStyles.bodyText,
-                                {
-                                    textAlign: "center",
-                                },
-                            ]}
-                        >
-                            {" "}
-                            As a non-caretaker user, the precise locations of
-                            cats are not shown to you for the safety of the
-                            cats. Your update has been recorded and will help
-                            caretakers greatly!
-                        </Text>
+                        <BodyText
+                            variant="bodySmall"
+                            text="As a non-caretaker user, the precise locations of cats are not shown to you for the safety of the cats. Your update has been recorded and will help caretakers greatly!"
+                            textAlign="center"
+                        />
                     )}
             </View>
 

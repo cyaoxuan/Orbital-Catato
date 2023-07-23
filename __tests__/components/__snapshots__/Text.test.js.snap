@@ -19,6 +19,7 @@ exports[`<BodyText /> renders correctly 1`] = `
       {
         "color": undefined,
         "fontFamily": "Nunito-Medium",
+        "textAlign": undefined,
       },
     ]
   }
@@ -117,6 +118,7 @@ exports[`<TitleText /> renders correctly 1`] = `
       {
         "color": undefined,
         "fontFamily": "Nunito-Bold",
+        "textAlign": undefined,
       },
     ]
   }

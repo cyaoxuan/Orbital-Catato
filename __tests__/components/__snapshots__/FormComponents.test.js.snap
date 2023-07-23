@@ -859,6 +859,7 @@ exports[`<TimeInput /> renders correctly 1`] = `
         {
           "color": undefined,
           "fontFamily": "Nunito-Medium",
+          "textAlign": undefined,
         },
       ]
     }
@@ -885,6 +886,7 @@ exports[`<TimeInput /> renders correctly 1`] = `
         {
           "color": undefined,
           "fontFamily": "Nunito-Medium",
+          "textAlign": undefined,
         },
       ]
     }
@@ -1329,6 +1331,7 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
         {
           "color": undefined,
           "fontFamily": "Nunito-Medium",
+          "textAlign": undefined,
         },
       ]
     }
@@ -1547,6 +1550,7 @@ exports[`<UploadPhotos /> renders correctly 1`] = `
         {
           "color": undefined,
           "fontFamily": "Nunito-Medium",
+          "textAlign": undefined,
         },
       ]
     }
