@@ -2,7 +2,6 @@ import { Button, Card } from "react-native-paper";
 import { IconTextFieldRow } from "./InfoText";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { allStyles, screenMainColor, secondaryColor } from "./Styles";
-import { View } from "react-native";
 
 // Card used for the Carousel in Dashboard
 // props: cardWidth (number), spaceBetweenCards (number), photoURL (string), name (string), userRole (object of roles)
