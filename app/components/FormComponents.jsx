@@ -62,6 +62,7 @@ const FormInput = (props) => {
                 multiline={props.multiline}
                 label={props.label || "Label"}
                 placeholder={props.placeholder}
+                activeUnderlineColor={secondaryColor}
                 value={props.value ? props.value : value}
                 onChangeText={
                     props.onChangeText ? props.onChangeText : setValue

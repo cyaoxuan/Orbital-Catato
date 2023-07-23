@@ -181,18 +181,18 @@ const ImageDialog = ({
                 {deleting && (
                     <>
                         <Button
-                            onPress={() => handleDeleteImages(filterValue)}
-                            textColor={secondaryColor}
-                            labelStyle={allStyles.buttonText}
-                        >
-                            Confirm Delete
-                        </Button>
-                        <Button
                             onPress={backHideDialog}
                             textColor={secondaryColor}
                             labelStyle={allStyles.buttonText}
                         >
                             Back
+                        </Button>
+                        <Button
+                            onPress={() => handleDeleteImages(filterValue)}
+                            textColor={secondaryColor}
+                            labelStyle={allStyles.buttonText}
+                        >
+                            Confirm Delete
                         </Button>
                     </>
                 )}

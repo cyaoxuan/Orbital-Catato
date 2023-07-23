@@ -39,7 +39,11 @@ const AvatarContainer = ({
             {userRole && userRole.isUser && (
                 // only show follow and update button for users
                 <>
-                    <TitleText variant="displaySmall" text={name} />
+                    <TitleText
+                        variant="displaySmall"
+                        text={name}
+                        textAlign="center"
+                    />
                     <View
                         style={{
                             alignItems: "center",

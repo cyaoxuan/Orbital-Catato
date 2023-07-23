@@ -17,7 +17,11 @@ const CatAvatar = (props) => {
                 size={props.size || 100}
                 style={{ marginBottom: 4 }}
             />
-            <BodyText variant={props.variant} text={props.name || "Name"} />
+            <BodyText
+                variant={props.variant}
+                text={props.name || "Name"}
+                textAlign="center"
+            />
         </View>
     );
 };
@@ -42,7 +46,11 @@ const TouchableCatAvatar = (props) => {
                 size={props.size || 100}
                 style={{ marginBottom: 4 }}
             />
-            <BodyText variant={props.variant} text={props.name || "Name"} />
+            <BodyText
+                variant={props.variant}
+                text={props.name || "Name"}
+                textAlign="center"
+            />
         </TouchableOpacity>
     );
 };

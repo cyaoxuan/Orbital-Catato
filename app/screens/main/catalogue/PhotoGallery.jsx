@@ -239,16 +239,19 @@ export default function PhotoGallery() {
                         >
                             {filterValue === "Concern" ? (
                                 // Flatlist header based on gallery or concern
-                                <View
-                                    style={{ height: 60, alignItems: "center" }}
-                                >
-                                    <TitleText
+                                <View style={{ alignItems: "center" }}>
+                                    <Text
                                         variant="headlineSmall"
-                                        text={
-                                            route.params.name +
-                                            " Concern Photos"
-                                        }
-                                    />
+                                        style={[
+                                            allStyles.titleText,
+                                            {
+                                                textAlign: "center",
+                                                marginHorizontal: 16,
+                                            },
+                                        ]}
+                                    >
+                                        {route.params.name + " Concern Photos"}
+                                    </Text>
                                     <Text
                                         variant="bodyLarge"
                                         style={[
@@ -263,13 +266,19 @@ export default function PhotoGallery() {
                                     </Text>
                                 </View>
                             ) : (
-                                <View
-                                    style={{ height: 60, alignItems: "center" }}
-                                >
-                                    <TitleText
-                                        variant="headlineMedium"
-                                        text={route.params.name + " Meowmories"}
-                                    />
+                                <View style={{ alignItems: "center" }}>
+                                    <Text
+                                        variant="headlineSmall"
+                                        style={[
+                                            allStyles.titleText,
+                                            {
+                                                textAlign: "center",
+                                                marginHorizontal: 16,
+                                            },
+                                        ]}
+                                    >
+                                        {route.params.name + " Meowmories"}
+                                    </Text>
                                     <Text
                                         variant="bodyLarge"
                                         style={[

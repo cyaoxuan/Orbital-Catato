@@ -198,6 +198,7 @@ exports[`<AnnouncementCarousel /> renders carousel with announcements correctly 
                       {
                         "color": undefined,
                         "fontFamily": "Nunito-Medium",
+                        "textAlign": undefined,
                       },
                     ]
                   }
@@ -361,6 +362,7 @@ exports[`<AnnouncementCarousel /> renders carousel with announcements correctly 
                       {
                         "color": undefined,
                         "fontFamily": "Nunito-Medium",
+                        "textAlign": undefined,
                       },
                     ]
                   }
@@ -524,6 +526,7 @@ exports[`<AnnouncementCarousel /> renders carousel with announcements correctly 
                       {
                         "color": undefined,
                         "fontFamily": "Nunito-Medium",
+                        "textAlign": undefined,
                       },
                     ]
                   }

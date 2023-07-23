@@ -55,6 +55,7 @@ exports[`<CatAvatar /> renders correctly 1`] = `
         {
           "color": undefined,
           "fontFamily": "Nunito-Medium",
+          "textAlign": "center",
         },
       ]
     }
@@ -148,6 +149,7 @@ exports[`<TouchableCatAvatar /> renders correctly 1`] = `
         {
           "color": undefined,
           "fontFamily": "Nunito-Medium",
+          "textAlign": "center",
         },
       ]
     }

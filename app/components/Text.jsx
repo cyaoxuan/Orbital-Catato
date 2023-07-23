@@ -1,12 +1,16 @@
 import { Text } from "react-native-paper";
 
 // Styled RN Paper body text
-// props: variant (string), text (string), color (string)
+// props: variant (string), text (string), color (string), textAlign: (string)
 const BodyText = (props) => {
     return (
         <Text
             variant={props.variant}
-            style={{ fontFamily: "Nunito-Medium", color: props.color }}
+            style={{
+                fontFamily: "Nunito-Medium",
+                color: props.color,
+                textAlign: props.textAlign,
+            }}
         >
             {props.text}
         </Text>
@@ -46,12 +50,16 @@ const RequiredFormText = (props) => {
 };
 
 // Styled RN Paper title text
-// props: variant (string), text (string), color (string)
+// props: variant (string), text (string), color (string), textAlign (string)
 const TitleText = (props) => {
     return (
         <Text
             variant={props.variant}
-            style={{ fontFamily: "Nunito-Bold", color: props.color }}
+            style={{
+                fontFamily: "Nunito-Bold",
+                color: props.color,
+                textAlign: props.textAlign,
+            }}
         >
             {props.text}
         </Text>
