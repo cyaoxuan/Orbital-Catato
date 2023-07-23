@@ -1,6 +1,7 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Avatar } from "react-native-paper";
 import { BodyText } from "./Text";
+import { screenSecondaryColor } from "./Styles";
 
 // Cat Avatar with circular image and name
 // props: photoURL (string), size (image size || number), variant (font size || string), name (string)
@@ -15,7 +16,10 @@ const CatAvatar = (props) => {
                         : require("../../assets/placeholder.png")
                 }
                 size={props.size || 100}
-                style={{ marginBottom: 4 }}
+                style={{
+                    marginBottom: 4,
+                    backgroundColor: screenSecondaryColor,
+                }}
             />
             <BodyText
                 variant={props.variant}
@@ -44,7 +48,10 @@ const TouchableCatAvatar = (props) => {
                         : require("../../assets/placeholder.png")
                 }
                 size={props.size || 100}
-                style={{ marginBottom: 4 }}
+                style={{
+                    marginBottom: 4,
+                    backgroundColor: screenSecondaryColor,
+                }}
             />
             <BodyText
                 variant={props.variant}

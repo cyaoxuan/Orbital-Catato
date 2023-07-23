@@ -3,7 +3,6 @@ import React from "react";
 import { screenMainColor } from "../../../components/Styles";
 import { BodyText, TitleText } from "../../../components/Text";
 import { MaxwellCat, PantingCat } from "../../../components/CatDrawing";
-import { Avatar } from "react-native-paper";
 
 export default function About() {
     return (

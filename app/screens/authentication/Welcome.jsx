@@ -50,9 +50,9 @@ export default function WelcomeScreen() {
             <TitleText variant="displayMedium" text={"Welcome!"} />
 
             <Avatar.Image
-                style={{ backgroundColor: "transparent", margin: 20 }}
+                style={{ backgroundColor: "transparent", margin: 12 }}
                 source={require("../../../assets/catato-logo.png")}
-                size={350}
+                size={320}
             />
 
             <PillButton

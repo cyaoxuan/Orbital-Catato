@@ -1,5 +1,5 @@
 {
-    "User Location": {
+    "Use Current Location": {
         "key": "1",
         "value": "Use Current Location"
     },
@@ -166,7 +166,7 @@
         "zone": "Arts"
     },
     "Eusoff Hall": {
-        "key": "21",
+        "key": "20",
         "value": "Eusoff Hall",
         "location": {
             "latitude": 1.2941828827527924,
@@ -175,7 +175,7 @@
         "zone": "Arts"
     },
     "Temasek Hall": {
-        "key": "22",
+        "key": "21",
         "value": "Temasek Hall",
         "location": {
             "latitude": 1.2929571914918683,
@@ -184,7 +184,7 @@
         "zone": "Arts"
     },
     "KR Bus Terminal": {
-        "key": "23",
+        "key": "22",
         "value": "KR Bus Terminal",
         "location": {
             "latitude": 1.2943191420530757,
@@ -193,7 +193,7 @@
         "zone": "Arts"
     },
     "Central Library": {
-        "key": "24",
+        "key": "23",
         "value": "Central Library",
         "location": {
             "latitude": 1.2964665024080928,
@@ -202,7 +202,7 @@
         "zone": "Arts"
     },
     "Chinese Library": {
-        "key": "25",
+        "key": "24",
         "value": "Chinese Library",
         "location": {
             "latitude": 1.296942351536165,
@@ -211,7 +211,7 @@
         "zone": "Arts"
     },
     "BIZ1": {
-        "key": "26",
+        "key": "25",
         "value": "BIZ1",
         "location": {
             "latitude": 1.292619828536144,
@@ -220,7 +220,7 @@
         "zone": "Biz/Com"
     },
     "BIZ2": {
-        "key": "27",
+        "key": "26",
         "value": "BIZ2",
         "location": {
             "latitude": 1.293477601111824,
@@ -229,7 +229,7 @@
         "zone": "Biz/Com"
     },
     "HSSML": {
-        "key": "28",
+        "key": "27",
         "value": "HSSML",
         "location": {
             "latitude": 1.2931082051623113,
@@ -237,9 +237,9 @@
         },
         "zone": "Biz/Com"
     },
-    "I3": {
-        "key": "29",
-        "value": "I3",
+    "iCube": {
+        "key": "28",
+        "value": "iCube",
         "location": {
             "latitude": 1.2925026330526588,
             "longitude": 103.77566377185111
@@ -247,7 +247,7 @@
         "zone": "Biz/Com"
     },
     "COM1": {
-        "key": "30",
+        "key": "29",
         "value": "COM1",
         "location": {
             "latitude": 1.2950571001707223,
@@ -256,7 +256,7 @@
         "zone": "Biz/Com"
     },
     "COM2": {
-        "key": "31",
+        "key": "30",
         "value": "COM2",
         "location": {
             "latitude": 1.294300471493926,
@@ -265,7 +265,7 @@
         "zone": "Biz/Com"
     },
     "COM3": {
-        "key": "32",
+        "key": "31",
         "value": "COM3",
         "location": {
             "latitude": 1.294914540560788,
@@ -274,7 +274,7 @@
         "zone": "Biz/Com"
     },
     "LT16": {
-        "key": "33",
+        "key": "32",
         "value": "LT16",
         "location": {
             "latitude": 1.2940442218410626,
@@ -283,7 +283,7 @@
         "zone": "Biz/Com"
     },
     "LT17": {
-        "key": "34",
+        "key": "33",
         "value": "LT17",
         "location": {
             "latitude": 1.293631577912106,
@@ -292,7 +292,7 @@
         "zone": "Biz/Com"
     },
     "LT18": {
-        "key": "35",
+        "key": "34",
         "value": "LT18",
         "location": {
             "latitude": 1.293572950899235,
@@ -301,7 +301,7 @@
         "zone": "Biz/Com"
     },
     "LT19": {
-        "key": "36",
+        "key": "35",
         "value": "LT19",
         "location": {
             "latitude": 1.293730792850846,
@@ -310,7 +310,7 @@
         "zone": "Biz/Com"
     },
     "Shaw Foundation AH": {
-        "key": "37",
+        "key": "36",
         "value": "Shaw Foundation AH",
         "location": {
             "latitude": 1.29255572456866,
@@ -319,7 +319,7 @@
         "zone": "Biz/Com"
     },
     "KR Guild House": {
-        "key": "38",
+        "key": "37",
         "value": "KR Guild House",
         "location": {
             "latitude": 1.2934734402819719,
@@ -328,7 +328,7 @@
         "zone": "Biz/Com"
     },
     "Kent Ridge Hall": {
-        "key": "39",
+        "key": "38",
         "value": "Kent Ridge Hall",
         "location": {
             "latitude": 1.291858006182682,
@@ -337,7 +337,7 @@
         "zone": "Biz/Com"
     },
     "Sheares Hall": {
-        "key": "40",
+        "key": "39",
         "value": "Sheares Hall",
         "location": {
             "latitude": 1.2914870350963503,
@@ -346,7 +346,7 @@
         "zone": "Biz/Com"
     },
     "SDE1": {
-        "key": "41",
+        "key": "40",
         "value": "SDE1",
         "location": {
             "latitude": 1.2974325503103152,
@@ -355,7 +355,7 @@
         "zone": "CDE"
     },
     "SDE2": {
-        "key": "42",
+        "key": "41",
         "value": "SDE2",
         "location": {
             "latitude": 1.2974175392080718,
@@ -364,7 +364,7 @@
         "zone": "CDE"
     },
     "SDE3": {
-        "key": "43",
+        "key": "42",
         "value": "SDE3",
         "location": {
             "latitude": 1.2979076473840199,
@@ -373,7 +373,7 @@
         "zone": "CDE"
     },
     "SDE4": {
-        "key": "44",
+        "key": "43",
         "value": "SDE4",
         "location": {
             "latitude": 1.2969180241649483,
@@ -382,7 +382,7 @@
         "zone": "CDE"
     },
     "CELC": {
-        "key": "45",
+        "key": "44",
         "value": "CELC",
         "location": {
             "latitude": 1.2970366346811808,
@@ -391,7 +391,7 @@
         "zone": "CDE"
     },
     "Information Technology": {
-        "key": "46",
+        "key": "45",
         "value": "Information Technology",
         "location": {
             "latitude": 1.297625865049686,
@@ -400,7 +400,7 @@
         "zone": "CDE"
     },
     "Techno Edge": {
-        "key": "47",
+        "key": "46",
         "value": "Techno Edge",
         "location": {
             "latitude": 1.2980586492854946,
@@ -409,7 +409,7 @@
         "zone": "CDE"
     },
     "E1": {
-        "key": "48",
+        "key": "47",
         "value": "E1",
         "location": {
             "latitude": 1.298904345603232,
@@ -418,7 +418,7 @@
         "zone": "CDE"
     },
     "E1A": {
-        "key": "49",
+        "key": "48",
         "value": "E1A",
         "location": {
             "latitude": 1.2994080693195487,
@@ -427,7 +427,7 @@
         "zone": "CDE"
     },
     "E2": {
-        "key": "50",
+        "key": "49",
         "value": "E2",
         "location": {
             "latitude": 1.2991675954046296,
@@ -436,7 +436,7 @@
         "zone": "CDE"
     },
     "E2A": {
-        "key": "51",
+        "key": "50",
         "value": "E2A",
         "location": {
             "latitude": 1.2988551983669434,
@@ -445,7 +445,7 @@
         "zone": "CDE"
     },
     "E3": {
-        "key": "52",
+        "key": "51",
         "value": "E3",
         "location": {
             "latitude": 1.2995589792832356,
@@ -454,7 +454,7 @@
         "zone": "CDE"
     },
     "E3A": {
-        "key": "53",
+        "key": "52",
         "value": "E3A",
         "location": {
             "latitude": 1.3003536288649884,
@@ -463,7 +463,7 @@
         "zone": "CDE"
     },
     "E4": {
-        "key": "54",
+        "key": "53",
         "value": "E4",
         "location": {
             "latitude": 1.2984627266752033,
@@ -472,7 +472,7 @@
         "zone": "CDE"
     },
     "E4A": {
-        "key": "55",
+        "key": "54",
         "value": "E4A",
         "location": {
             "latitude": 1.298628339861265,
@@ -481,7 +481,7 @@
         "zone": "CDE"
     },
     "E5": {
-        "key": "56",
+        "key": "55",
         "value": "E5",
         "location": {
             "latitude": 1.2981184119329074,
@@ -490,7 +490,7 @@
         "zone": "CDE"
     },
     "E6": {
-        "key": "57",
+        "key": "56",
         "value": "E6",
         "location": {
             "latitude": 1.2992896708898778,
@@ -499,7 +499,7 @@
         "zone": "CDE"
     },
     "E7": {
-        "key": "58",
+        "key": "57",
         "value": "E7",
         "location": {
             "latitude": 1.2986170010658777,
@@ -525,7 +525,7 @@
         },
         "zone": "CDE"
     },
-    "Eng Auditorium": {
+    "ENG-AUD": {
         "key": "60",
         "value": "ENG-AUD",
         "location": {
@@ -967,7 +967,7 @@
         "zone": "Sci/Med"
     },
     "MD6": {
-        "key": "110",
+        "key": "109",
         "value": "MD6",
         "location": {
             "latitude": 1.2953991204244217,
@@ -976,7 +976,7 @@
         "zone": "Sci/Med"
     },
     "MD7": {
-        "key": "111",
+        "key": "110",
         "value": "MD7",
         "location": {
             "latitude": 1.296101233302704,
@@ -985,7 +985,7 @@
         "zone": "Sci/Med"
     },
     "MD9": {
-        "key": "112",
+        "key": "111",
         "value": "MD9",
         "location": {
             "latitude": 1.2967301334439036,
@@ -994,7 +994,7 @@
         "zone": "Sci/Med"
     },
     "MD10": {
-        "key": "113",
+        "key": "112",
         "value": "MD10",
         "location": {
             "latitude": 1.296558210460546,
@@ -1003,7 +1003,7 @@
         "zone": "Sci/Med"
     },
     "MD11": {
-        "key": "114",
+        "key": "113",
         "value": "MD11",
         "location": {
             "latitude": 1.2961253863562046,
@@ -1012,7 +1012,7 @@
         "zone": "Sci/Med"
     },
     "Medical Library": {
-        "key": "115",
+        "key": "114",
         "value": "Medical Library",
         "location": {
             "latitude": 1.2952795219602993,
@@ -1021,7 +1021,7 @@
         "zone": "Sci/Med"
     },
     "NUH Main": {
-        "key": "116",
+        "key": "115",
         "value": "NUH Main",
         "location": {
             "latitude": 1.2944630996395872,
@@ -1030,7 +1030,7 @@
         "zone": "Sci/Med"
     },
     "NUH KR Wing": {
-        "key": "117",
+        "key": "116",
         "value": "NUH KR Wing",
         "location": {
             "latitude": 1.2931681573444738,
@@ -1039,7 +1039,7 @@
         "zone": "Sci/Med"
     },
     "NUCOHS": {
-        "key": "118",
+        "key": "117",
         "value": "NUCOHS",
         "location": {
             "latitude": 1.2960072609213025,
@@ -1048,7 +1048,7 @@
         "zone": "Sci/Med"
     },
     "KR MRT": {
-        "key": "119",
+        "key": "118",
         "value": "KR MRT",
         "location": {
             "latitude": 1.293464670248864,
@@ -1057,7 +1057,7 @@
         "zone": "Sci/Med"
     },
     "PGPR": {
-        "key": "120",
+        "key": "119",
         "value": "PGPR",
         "location": {
             "latitude": 1.290823484769731,
@@ -1066,7 +1066,7 @@
         "zone": "KE/PGPR"
     },
     "KE VII Hall": {
-        "key": "121",
+        "key": "120",
         "value": "KE VII Hall",
         "location": {
             "latitude": 1.292447288339472,
@@ -1075,7 +1075,7 @@
         "zone": "KE/PGPR"
     },
     "MP Fields": {
-        "key": "122",
+        "key": "121",
         "value": "MP Fields",
         "location": {
             "latitude": 1.2980564420990912,
@@ -1084,7 +1084,7 @@
         "zone": "Culture/Recreation"
     },
     "MP Courts": {
-        "key": "123",
+        "key": "122",
         "value": "MP Courts",
         "location": {
             "latitude": 1.299422619158618,
@@ -1093,7 +1093,7 @@
         "zone": "Culture/Recreation"
     },
     "NUS Field": {
-        "key": "124",
+        "key": "123",
         "value": "NUS Field",
         "location": {
             "latitude": 1.2987070072854012,
@@ -1101,9 +1101,9 @@
         },
         "zone": "Culture/Recreation"
     },
-    "UHall": {
-        "key": "125",
-        "value": "UHall",
+    "Univesity Hall": {
+        "key": "124",
+        "value": "University Hall",
         "location": {
             "latitude": 1.2972246082519092,
             "longitude": 103.77776243161146
@@ -1111,7 +1111,7 @@
         "zone": "Culture/Recreation"
     },
     "RVRC": {
-        "key": "126",
+        "key": "125",
         "value": "RVRC",
         "location": {
             "latitude": 1.2979702215910351,
@@ -1120,7 +1120,7 @@
         "zone": "Culture/Recreation"
     },
     "Yusok Ishak House": {
-        "key": "127",
+        "key": "126",
         "value": "Yusok Ishak House",
         "location": {
             "latitude": 1.2985725530356347,
@@ -1129,7 +1129,7 @@
         "zone": "Culture/Recreation"
     },
     "UHC": {
-        "key": "128",
+        "key": "127",
         "value": "UHC",
         "location": {
             "latitude": 1.2991228846689535,
@@ -1138,7 +1138,7 @@
         "zone": "Culture/Recreation"
     },
     "USC": {
-        "key": "129",
+        "key": "128",
         "value": "USC",
         "location": {
             "latitude": 1.2998942149142998,
@@ -1147,7 +1147,7 @@
         "zone": "Culture/Recreation"
     },
     "MPSH1-4": {
-        "key": "130",
+        "key": "129",
         "value": "MPSH1-4",
         "location": {
             "latitude": 1.300758364379703,
@@ -1156,7 +1156,7 @@
         "zone": "Culture/Recreation"
     },
     "MPSH5": {
-        "key": "131",
+        "key": "130",
         "value": "MPSH5",
         "location": {
             "latitude": 1.300360911066702,
@@ -1165,7 +1165,7 @@
         "zone": "Culture/Recreation"
     },
     "MPSH6": {
-        "key": "134",
+        "key": "131",
         "value": "MPSH6",
         "location": {
             "latitude": 1.300272588099855,
@@ -1174,7 +1174,7 @@
         "zone": "Culture/Recreation"
     },
     "LKC Museum": {
-        "key": "135",
+        "key": "132",
         "value": "LKC Museum",
         "location": {
             "latitude": 1.3016242116430825,
@@ -1183,7 +1183,7 @@
         "zone": "Culture/Recreation"
     },
     "NUS Museum": {
-        "key": "136",
+        "key": "133",
         "value": "NUS Museum",
         "location": {
             "latitude": 1.3013588636588573,
@@ -1192,7 +1192,7 @@
         "zone": "Culture/Recreation"
     },
     "UCC": {
-        "key": "137",
+        "key": "134",
         "value": "UCC",
         "location": {
             "latitude": 1.301618166976659,
@@ -1201,7 +1201,7 @@
         "zone": "Culture/Recreation"
     },
     "YSTCM": {
-        "key": "138",
+        "key": "135",
         "value": "YSTCM",
         "location": {
             "latitude": 1.3022481963442956,
@@ -1210,7 +1210,7 @@
         "zone": "Culture/Recreation"
     },
     "CREATE": {
-        "key": "139",
+        "key": "136",
         "value": "CREATE",
         "location": {
             "latitude": 1.3041502299227108,
@@ -1219,7 +1219,7 @@
         "zone": "UTown"
     },
     "Town Plaza": {
-        "key": "140",
+        "key": "137",
         "value": "Town Plaza",
         "location": {
             "latitude": 1.303995604112117,
@@ -1228,7 +1228,7 @@
         "zone": "UTown"
     },
     "Town Green": {
-        "key": "141",
+        "key": "138",
         "value": "Town Green",
         "location": {
             "latitude": 1.304926554089299,
@@ -1237,7 +1237,7 @@
         "zone": "UTown"
     },
     "UTown Residence": {
-        "key": "142",
+        "key": "139",
         "value": "Utown Residence",
         "location": {
             "latitude": 1.3052442855137305,
@@ -1246,7 +1246,7 @@
         "zone": "UTown"
     },
     "SRC": {
-        "key": "143",
+        "key": "140",
         "value": "SRC",
         "location": {
             "latitude": 1.304869234889229,
@@ -1255,7 +1255,7 @@
         "zone": "UTown"
     },
     "ERC": {
-        "key": "144",
+        "key": "141",
         "value": "ERC",
         "location": {
             "latitude": 1.3058234345528048,
@@ -1264,7 +1264,7 @@
         "zone": "UTown"
     },
     "UT-AUD1": {
-        "key": "145",
+        "key": "142",
         "value": "UT-AUD1",
         "location": {
             "latitude": 1.3039419072238916,
@@ -1273,7 +1273,7 @@
         "zone": "UTown"
     },
     "UT-AUD2": {
-        "key": "146",
+        "key": "143",
         "value": "UT-AUD2",
         "location": {
             "latitude": 1.304334955367899,
@@ -1282,7 +1282,7 @@
         "zone": "UTown"
     },
     "UT-AUD3": {
-        "key": "147",
+        "key": "144",
         "value": "UT-AUD3",
         "location": {
             "latitude": 1.3073531066780422,
@@ -1291,7 +1291,7 @@
         "zone": "UTown"
     },
     "Saga College": {
-        "key": "148",
+        "key": "145",
         "value": "Saga College",
         "location": {
             "latitude": 1.3057120770072326,
@@ -1300,7 +1300,7 @@
         "zone": "UTown"
     },
     "Elm College": {
-        "key": "149",
+        "key": "146",
         "value": "Elm College",
         "location": {
             "latitude": 1.3063229515618673,
@@ -1309,7 +1309,7 @@
         "zone": "UTown"
     },
     "Cendana College": {
-        "key": "150",
+        "key": "147",
         "value": "Cendana College",
         "location": {
             "latitude": 1.3079818753201116,
@@ -1318,7 +1318,7 @@
         "zone": "UTown"
     },
     "Yale-NUS": {
-        "key": "151",
+        "key": "148",
         "value": "Yale-NUS",
         "location": {
             "latitude": 1.3071095023237163,
@@ -1327,7 +1327,7 @@
         "zone": "UTown"
     },
     "Tembusu College": {
-        "key": "152",
+        "key": "149",
         "value": "Tembusu College",
         "location": {
             "latitude": 1.3062070877473657,
@@ -1336,7 +1336,7 @@
         "zone": "UTown"
     },
     "Cinnamon College": {
-        "key": "153",
+        "key": "150",
         "value": "Cinnamon College",
         "location": {
             "latitude": 1.306701143139086,
@@ -1345,7 +1345,7 @@
         "zone": "UTown"
     },
     "CAPT": {
-        "key": "154",
+        "key": "151",
         "value": "CAPT",
         "location": {
             "latitude": 1.3078564283935188,
@@ -1354,7 +1354,7 @@
         "zone": "UTown"
     },
     "RC4": {
-        "key": "155",
+        "key": "152",
         "value": "RC4",
         "location": {
             "latitude": 1.3082409082264421,
@@ -1363,7 +1363,7 @@
         "zone": "UTown"
     },
     "TCOMS": {
-        "key": "156",
+        "key": "153",
         "value": "TCOMS",
         "location": {
             "latitude": 1.2936000788613897,
@@ -1372,7 +1372,7 @@
         "zone": "R&D"
     },
     "Enterprise Incubator": {
-        "key": "157",
+        "key": "154",
         "value": "Enterprise Incubator",
         "location": {
             "latitude": 1.2933114433482258,
@@ -1381,7 +1381,7 @@
         "zone": "R&D"
     },
     "HMK Terrace": {
-        "key": "159",
+        "key": "155",
         "value": "HMK Terrace",
         "location": {
             "latitude": 1.2909181723225671,
