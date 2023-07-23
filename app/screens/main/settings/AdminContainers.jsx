@@ -5,6 +5,7 @@ import { AuthInput } from "../../../components/TextInput";
 import { ThreeRadioInput } from "../../../components/FormComponents";
 import {
     allStyles,
+    errorColor,
     screenSecondaryColor,
     secondaryColor,
 } from "../../../components/Styles";
@@ -76,6 +77,7 @@ const AnnouncementContainer = ({
                             mode="outlined"
                             multiline
                             label="Announcement"
+                            cursorColor={secondaryColor}
                             selectionColor={secondaryColor}
                             activeOutlineColor={secondaryColor}
                             style={[
@@ -91,15 +93,28 @@ const AnnouncementContainer = ({
                             }}
                             value={announcementInput}
                             onChangeText={changeAnnouncementInput}
+                            maxLength={120}
                         />
                     </View>
-                    <View>
+                    <View style={{ width: "90%", alignItems: "flex-end" }}>
+                        <BodyText
+                            text={announcementInput.length + " / " + 120}
+                            color={
+                                announcementInput.length === 120
+                                    ? errorColor
+                                    : "grey"
+                            }
+                            variant="labelSmall"
+                        />
+                    </View>
+                    <View style={{ alignItems: "center" }}>
                         {selectedAnnouncement !== "" && (
                             <Button
                                 mode="text"
                                 textColor={secondaryColor}
                                 onPress={onClearPress}
                                 disabled={inProgress}
+                                style={{ width: "90%" }}
                                 labelStyle={[
                                     allStyles.bodyText,
                                     {

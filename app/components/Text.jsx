@@ -1,4 +1,5 @@
 import { Text } from "react-native-paper";
+import { errorColor } from "./Styles";
 
 // Styled RN Paper body text
 // props: variant (string), text (string), color (string), textAlign: (string)
@@ -23,7 +24,7 @@ const ErrorText = (props) => {
     return (
         <Text
             variant={props.variant}
-            style={{ fontFamily: "Nunito-Medium", color: "#BA1A1A" }}
+            style={{ fontFamily: "Nunito-Medium", color: errorColor }}
         >
             {props.text}
         </Text>
@@ -36,7 +37,7 @@ const RequiredFormText = (props) => {
     return (
         <Text
             variant={props.variant}
-            style={{ fontFamily: "Nunito-Bold", color: "#BA1A1A" }}
+            style={{ fontFamily: "Nunito-Bold", color: errorColor }}
         >
             *
             <Text

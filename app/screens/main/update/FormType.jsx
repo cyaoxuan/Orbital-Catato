@@ -118,6 +118,7 @@ const CreateProfile = (props) => {
                 onChangeText={setNewName}
                 errorText="Please give a cute name for the cat!"
                 disabled={inProgress}
+                maxLength={50}
             />
 
             <Divider />
@@ -176,6 +177,7 @@ const CreateProfile = (props) => {
                 onChangeText={setFeatures}
                 errorText="Please describe your favourite things about the cat!"
                 disabled={inProgress}
+                maxLength={250}
             />
 
             <PillButton
@@ -365,6 +367,7 @@ const ReportCat = (props) => {
                 onChangeText={setConcernDescription}
                 errorText="Please type in anything you think would be helpful!"
                 disabled={inProgress}
+                maxLength={250}
             />
 
             <PillButton
@@ -711,6 +714,7 @@ const UpdateConcern = (props) => {
                 onChangeText={setConcernDescription}
                 errorText="Please type in anything you think would be helpful!"
                 disabled={inProgress}
+                maxLength={250}
             />
 
             <PillButton
@@ -995,6 +999,7 @@ const UpdateProfile = (props) => {
                 onChangeText={setNewName}
                 errorText="Please give a cute name for the cat!"
                 disabled={inProgress}
+                maxLength={50}
             />
 
             <Divider />
@@ -1068,6 +1073,7 @@ const UpdateProfile = (props) => {
                 onChangeText={setFeatures}
                 errorText="Please describe your favourite things about the cat!"
                 disabled={inProgress}
+                maxLength={250}
             />
 
             <PillButton
@@ -1136,6 +1142,7 @@ const DeleteProfile = (props) => {
                 onChangeText={setCatName}
                 errorText="Please enter the cat's name to confirm deletion"
                 disabled={inProgress}
+                maxLength={50}
             />
             <PillButton
                 label="Delete Profile"

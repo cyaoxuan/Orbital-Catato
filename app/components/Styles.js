@@ -6,6 +6,7 @@ export const primaryColor = "#FBAB4B";
 export const primaryColorLight = "#FFEAD3";
 export const secondaryColor = "#05668D";
 export const secondaryColorLight = "#E5F1F6";
+export const errorColor = "#BA1A1A";
 
 export const allStyles = StyleSheet.create({
     titleText: {
