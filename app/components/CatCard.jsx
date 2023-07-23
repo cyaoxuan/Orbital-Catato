@@ -16,69 +16,90 @@ const CatCard = (props) => {
     const buttonColor = secondaryColor;
 
     return (
-        <View style={{ overflow: "hidden" }}>
-            <Card
+        <Card
+            style={{
+                height: (cardWidth * 5) / 4,
+                width: cardWidth,
+                margin: spaceBetweenCards / 2,
+            }}
+            theme={{
+                colors: { elevation: { level1: screenMainColor } },
+            }}
+            mode="elevated"
+        >
+            <Card.Cover
                 style={{
-                    height: (cardWidth * 5) / 4,
+                    height: (cardWidth * 2) / 3,
                     width: cardWidth,
-                    margin: spaceBetweenCards / 2,
-                    borderRadius: 20,
-                    overflow: "hidden",
+                    resizeMode: "cover",
                 }}
                 theme={{
-                    colors: { elevation: { level1: screenMainColor } },
+                    roundness: 12,
+                    isV3: false,
                 }}
-                mode="elevated"
-            >
-                <Card.Cover
+                testID="cover-image"
+                source={
+                    props.photoURL
+                        ? { uri: props.photoURL }
+                        : require("../../assets/placeholder.png")
+                }
+            />
+            <Card.Title
+                title={props.name || "Name"}
+                titleVariant="titleLarge"
+                titleStyle={allStyles.titleText}
+            />
+            <Card.Content style={{ paddingHorizontal: 8 }}>
+                <IconTextFieldRow
+                    testID="infoText1"
+                    iconName={props.iconName1}
+                    iconSize={20}
+                    variant="bodyMedium"
+                    field={props.field1}
+                    info={props.info1}
+                />
+                <IconTextFieldRow
+                    testID="infoText2"
+                    iconName={props.iconName2}
+                    iconSize={20}
+                    variant="bodyMedium"
+                    field={props.field2}
+                    info={props.info2}
+                />
+            </Card.Content>
+            <Card.Actions>
+                <Button
+                    compact={true}
+                    textColor={buttonColor}
                     style={{
-                        height: (cardWidth * 2) / 3,
-                        width: cardWidth,
-                        resizeMode: "cover",
+                        borderColor: buttonColor,
+                        height: 36,
                     }}
-                    theme={{
-                        roundness: 0,
-                        isV3: false,
-                    }}
-                    testID="cover-image"
-                    source={
-                        props.photoURL
-                            ? { uri: props.photoURL }
-                            : require("../../assets/placeholder.png")
-                    }
-                />
-                <Card.Title
-                    title={props.name || "Name"}
-                    titleVariant="titleLarge"
-                    titleStyle={allStyles.titleText}
-                />
-                <Card.Content style={{ paddingHorizontal: 8 }}>
-                    <IconTextFieldRow
-                        testID="infoText1"
-                        iconName={props.iconName1}
-                        iconSize={20}
-                        variant="bodyMedium"
-                        field={props.field1}
-                        info={props.info1}
-                    />
-                    <IconTextFieldRow
-                        testID="infoText2"
-                        iconName={props.iconName2}
-                        iconSize={20}
-                        variant="bodyMedium"
-                        field={props.field2}
-                        info={props.info2}
-                    />
-                </Card.Content>
-                <Card.Actions>
+                    contentStyle={{ height: 36 }}
+                    labelStyle={[
+                        allStyles.bodyText,
+                        {
+                            fontSize: 16,
+                            padding: 0,
+                            margin: 0,
+                        },
+                    ]}
+                    onPress={props.profileOnPress}
+                    icon={() => (
+                        <Ionicons name="heart" size={16} color={buttonColor} />
+                    )}
+                >
+                    Profile
+                </Button>
+                {props.userRole?.isCaretaker && (
                     <Button
-                        compact={true}
-                        textColor={buttonColor}
+                        buttonColor={buttonColor}
                         style={{
-                            borderColor: buttonColor,
                             height: 36,
                         }}
-                        contentStyle={{ height: 36 }}
+                        contentStyle={{
+                            height: 36,
+                        }}
                         labelStyle={[
                             allStyles.bodyText,
                             {
@@ -87,54 +108,19 @@ const CatCard = (props) => {
                                 margin: 0,
                             },
                         ]}
-                        onPress={props.profileOnPress}
+                        disabled={
+                            props.showFindLocation === undefined ? true : false
+                        }
+                        onPress={props.locationOnPress}
                         icon={() => (
-                            <Ionicons
-                                name="heart"
-                                size={16}
-                                color={buttonColor}
-                            />
+                            <Ionicons name="location" size={16} color="white" />
                         )}
                     >
-                        Profile
+                        Locate
                     </Button>
-                    {props.userRole?.isCaretaker && (
-                        <Button
-                            buttonColor={buttonColor}
-                            style={{
-                                height: 36,
-                            }}
-                            contentStyle={{
-                                height: 36,
-                            }}
-                            labelStyle={[
-                                allStyles.bodyText,
-                                {
-                                    fontSize: 16,
-                                    padding: 0,
-                                    margin: 0,
-                                },
-                            ]}
-                            disabled={
-                                props.showFindLocation === undefined
-                                    ? true
-                                    : false
-                            }
-                            onPress={props.locationOnPress}
-                            icon={() => (
-                                <Ionicons
-                                    name="location"
-                                    size={16}
-                                    color="white"
-                                />
-                            )}
-                        >
-                            Locate
-                        </Button>
-                    )}
-                </Card.Actions>
-            </Card>
-        </View>
+                )}
+            </Card.Actions>
+        </Card>
     );
 };
 
@@ -142,45 +128,41 @@ const CatCard = (props) => {
 // props: cardWidth (number), photoURL (string), name (string), onPress (callback)
 const CatCardSimple = (props) => {
     return (
-        <View style={{ overflow: "hidden" }}>
-            <Card
+        <Card
+            style={{
+                flex: 1 / 2,
+                margin: 8,
+            }}
+            theme={{
+                colors: { elevation: { level1: screenMainColor } },
+            }}
+            onPress={props.onPress}
+            mode="elevated"
+        >
+            <Card.Cover
                 style={{
-                    flex: 1 / 2,
-                    margin: 8,
-                    borderRadius: 10,
-                    overflow: "hidden",
+                    height: (3 * props.cardWidth) / 4,
+                    width: props.cardWidth,
+                    resizeMode: "cover",
                 }}
                 theme={{
-                    colors: { elevation: { level1: screenMainColor } },
+                    roundness: 12,
+                    isV3: false,
                 }}
-                onPress={props.onPress}
-                mode="elevated"
-            >
-                <Card.Cover
-                    style={{
-                        height: (3 * props.cardWidth) / 4,
-                        width: props.cardWidth,
-                        resizeMode: "cover",
-                    }}
-                    theme={{
-                        roundness: 4,
-                        isV3: false,
-                    }}
-                    testID="cover-image"
-                    source={
-                        props.photoURL
-                            ? { uri: props.photoURL }
-                            : require("../../assets/placeholder.png")
-                    }
-                />
-                <Card.Title
-                    title={props.name || "Name"}
-                    titleVariant="bodyLarge"
-                    titleStyle={allStyles.bodyText}
-                    titleNumberOfLines={2}
-                />
-            </Card>
-        </View>
+                testID="cover-image"
+                source={
+                    props.photoURL
+                        ? { uri: props.photoURL }
+                        : require("../../assets/placeholder.png")
+                }
+            />
+            <Card.Title
+                title={props.name || "Name"}
+                titleVariant="bodyLarge"
+                titleStyle={allStyles.bodyText}
+                titleNumberOfLines={2}
+            />
+        </Card>
     );
 };
 

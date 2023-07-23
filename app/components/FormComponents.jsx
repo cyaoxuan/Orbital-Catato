@@ -12,7 +12,12 @@ import NumericInput from "react-native-numeric-input";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { timeOptions } from "../data/DateTimeOptions";
 import { BodyText, ErrorText, RequiredFormText } from "./Text";
-import { allStyles, screenSecondaryColor, secondaryColor } from "./Styles";
+import {
+    allStyles,
+    errorColor,
+    screenSecondaryColor,
+    secondaryColor,
+} from "./Styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 // Styled dropdown select list from react-native-dropdown select list
@@ -48,7 +53,7 @@ const DropdownList = (props) => {
 // Text inputs for form description, reasons, name, features fields etc
 // Styled RN Paper Text Input
 // Required field, shows HelperText error if nothing has been typed
-// props: disabled (boolean), multiline (boolean), label (string), placeholder (string)
+// props: disabled (boolean), multiline (boolean), label (string), placeholder (string), maxLength (number), currLength (number)
 // value (hook value), onChangeText (callback), errorText (string)
 const FormInput = (props) => {
     const [value, setValue] = useState("");
@@ -68,7 +73,24 @@ const FormInput = (props) => {
                     props.onChangeText ? props.onChangeText : setValue
                 }
                 error={props.value ? !props.value.trim() : !value.trim()}
+                maxLength={props.maxLength}
             />
+            {props.maxLength ? (
+                <View style={{ alignItems: "flex-end" }}>
+                    <BodyText
+                        text={props.value.length + " / " + props.maxLength}
+                        color={
+                            props.value.length === props.maxLength
+                                ? errorColor
+                                : "grey"
+                        }
+                        variant="labelSmall"
+                    />
+                </View>
+            ) : (
+                <></>
+            )}
+
             <HelperText
                 type="error"
                 padding="none"
@@ -354,7 +376,7 @@ const bodyVariant = "bodyMedium";
 
 const styles = StyleSheet.create({
     errorText: {
-        color: "#BA1A1A",
+        color: errorColor,
     },
     formInput: {
         fontSize: 16,
